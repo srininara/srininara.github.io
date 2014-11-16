@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en"
+>
+<head>
+    <title>Python can be weird! - Starting Point</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="http://localhost:9999/python-can-be-weird.html">
+
+        <meta name="author" content="Srinivas Narayanan" />
+        <meta name="keywords" content="development,programming languages,python" />
+        <meta name="description" content="Python can be weird at times!" />
+
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="http://localhost:9999/theme/css/bootstrap.superhero.min.css" type="text/css"/>
+    <link href="http://localhost:9999/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="http://localhost:9999/theme/css/pygments/solarizedlight.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://localhost:9999/theme/css/style.css" type="text/css"/>
+
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="http://localhost:9999/" class="navbar-brand">
+<img src="http://localhost:9999/images/myLogo.png" width=""/> Starting Point            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="http://localhost:9999/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="http://localhost:9999/python-can-be-weird.html"
+                       rel="bookmark"
+                       title="Permalink to Python can be weird!">
+                        Python can be weird!
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2014-11-13T00:00:00"> Thu 13 November 2014</time>
+    </span>
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="http://localhost:9999/tag/development.html">development</a>
+        /
+	<a href="http://localhost:9999/tag/programming-languages.html">programming languages</a>
+        /
+	<a href="http://localhost:9999/tag/python.html">python</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p>For a long time, I have been focused on <em>Java</em> as my primary development language (and platform) for both my work and any of my small personal projects. But I have been playing with <em>Python</em> for more than 6 months now. The reason I picked Python, is a discussion for another day. Currently I want to focus on couple of things which I found to be weird with Python.</p>
+<p>Before I get into that, let me make myself clear. My relationship with Python is very young and my perspective comes from a long time Java exposure and a limited exposure to other languages (read <em>Javascript</em> and very very little bit of <em>Haskell</em>). Also, within this short time with Python, I find the language as a breath of fresh air. I find it to be much more concise than what I am used to (think <em>Java</em>). It is really powerful. I am getting a taste of it's dynamic nature as well. These qualities of Python are well known to all and I will probably write about my impressions on specific features sometime down the line. But today I wanted to focus on couple of specific language features I found to be slightly weird in their working.</p>
+<h3>Augmented Assignment</h3>
+<p>The term might sound a bit fancy (that is what I felt when I read it), but the construct is pretty simple and probably known to all programmers (of almost any language).</p>
+<div class="highlight"><pre><span class="n">a</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">a</span> <span class="o">+=</span> <span class="mi">1</span>
+</pre></div>
+
+
+<p>You must have spotted the augmented assignment operator! Yep, it is <code>+=</code> . Of course there are other similar ones like <code>-=</code> , <code>*=</code>  etc. The form <code>a += 1</code> is generally a shortcut of <code>a = a + 1</code> . In Python also it works the same way. At least that is what I thought.</p>
+<p>Let us try using the augmented assignment operator with list concatenation:</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">B</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">A</span> <span class="o">=</span> <span class="n">A</span> <span class="o">+</span> <span class="n">B</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">A</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">B</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">A</span> <span class="o">+=</span> <span class="n">B</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">A</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span>
+</pre></div>
+
+
+<p>That works as expected. So I should be able to reliably use the augmented assignment operator instead of the longer form. Let us try something else now.</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">B</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">C</span> <span class="o">=</span> <span class="n">A</span>     <span class="c"># Why am I doing this? Wait for it.</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">A</span> <span class="o">=</span> <span class="n">A</span> <span class="o">+</span> <span class="n">B</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">A</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">C</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+</pre></div>
+
+
+<p>This makes sense to me. The concatenation operator <code>+</code>  creates a new object and assigns to A. And 'C' keeps pointing to the older object. This is all good and working as expected. Let us change the above using the augmented assignment operator instead.</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">B</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">C</span> <span class="o">=</span> <span class="n">A</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">A</span> <span class="o">+=</span> <span class="n">B</span>  <span class="c"># Here I have used the augmented assignment version</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">A</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">C</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
+</pre></div>
+
+
+<p>????####!!!!. What happened here? Something happened. How did it change? What did I change? The only change I made from the previous listing is that I used augmented assignment. But that changed how things work. Concatenation no longer creates a new object. It mutates the assigned object in place!!!!</p>
+<p>That is weird to me! I figured that it is Python trying to optimize since the list is a mutable object in Python. But somehow it feels unclean, because it seems to break a promise. To a long term Python programmer, this may not be weird at all. But to me, it felt out of character to how generally Python works - predictable and explicit. It might just be my own (mis)interpretation, but it feels weird.</p>
+<h3>Boolean Operations</h3>
+<p>I am referring to the <code>and</code>  and <code>or</code>  operators. In Python they mean exactly what they say. The <code>and</code>  refers to <code>&amp;&amp;</code> (conjunction) in other languages like Java and <code>or</code>  refers to <code>||</code> (disjunction) in other languages. In most other languages, using these operators leads to boolean results. By not in Python! These operators return one of the objects which is an outcome of the corresponding expression. One of the underlying principles behind this is Python's concept of truth values. Let me illustrate this with some examples:</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="s">&quot;&quot;</span> <span class="ow">and</span> <span class="mi">23</span>
+<span class="s">&#39;&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="s">&quot;add&quot;</span> <span class="ow">and</span> <span class="s">&quot;subtract&quot;</span>
+<span class="s">&#39;subtract&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="s">&quot;&quot;</span> <span class="ow">or</span> <span class="mi">23</span>
+<span class="mi">23</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="s">&quot;add&quot;</span> <span class="ow">or</span> <span class="s">&quot;subtract&quot;</span>
+<span class="s">&#39;add&#39;</span>
+</pre></div>
+
+
+<p>In all these examples, you see that <code>and</code> and <code>or</code> are not returning any booleans. They work based on truth value concepts of Python and return the objects involved as per the truth value rules. Let us see its usage below:</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">calc_simple_interest</span><span class="p">(</span><span class="n">principal</span><span class="p">,</span> <span class="n">rate</span><span class="p">,</span> <span class="n">tenure</span><span class="p">):</span>
+<span class="o">...</span>     <span class="n">p</span> <span class="o">=</span> <span class="n">principal</span> <span class="k">if</span> <span class="n">principal</span> <span class="k">else</span> <span class="mi">0</span>
+<span class="o">...</span>     <span class="n">r</span> <span class="o">=</span> <span class="n">rate</span> <span class="k">if</span> <span class="n">rate</span> <span class="k">else</span> <span class="mi">10</span>
+<span class="o">...</span>     <span class="n">t</span> <span class="o">=</span> <span class="n">tenure</span> <span class="k">if</span> <span class="n">tenure</span> <span class="k">else</span> <span class="mi">5</span>
+<span class="o">...</span>     <span class="k">print</span><span class="p">(</span><span class="s">&quot;Returning interest for </span><span class="si">%d</span><span class="s"> at </span><span class="si">%d</span><span class="s"> percent for </span><span class="si">%d</span><span class="s"> years&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">t</span><span class="p">))</span>
+<span class="o">...</span>     <span class="k">return</span> <span class="n">p</span> <span class="o">*</span> <span class="p">(</span><span class="n">r</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span> <span class="o">*</span> <span class="n">t</span>
+<span class="o">...</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">calc_simple_interest</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">Returning</span> <span class="n">interest</span> <span class="k">for</span> <span class="mi">1000</span> <span class="n">at</span> <span class="mi">5</span> <span class="n">percent</span> <span class="k">for</span> <span class="mi">3</span> <span class="n">years</span>
+<span class="mf">150.0</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">calc_simple_interest</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">Returning</span> <span class="n">interest</span> <span class="k">for</span> <span class="mi">1000</span> <span class="n">at</span> <span class="mi">10</span> <span class="n">percent</span> <span class="k">for</span> <span class="mi">5</span> <span class="n">years</span>
+<span class="mf">500.0</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">calc_simple_interest</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">Returning</span> <span class="n">interest</span> <span class="k">for</span> <span class="mi">1000</span> <span class="n">at</span> <span class="mi">8</span> <span class="n">percent</span> <span class="k">for</span> <span class="mi">5</span> <span class="n">years</span>
+<span class="mf">400.0</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">calc_simple_interest</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="bp">None</span><span class="p">)</span>
+<span class="n">Returning</span> <span class="n">interest</span> <span class="k">for</span> <span class="mi">1000</span> <span class="n">at</span> <span class="mi">8</span> <span class="n">percent</span> <span class="k">for</span> <span class="mi">5</span> <span class="n">years</span>
+<span class="mf">400.0</span>
+</pre></div>
+
+
+<p>The above example is a convoluted and contrived way to handle default values (since Python has function argument defaults). But to somebody reading through that code, it still makes reasonable sense. Now let me change it.</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">calc_simple_interest</span><span class="p">(</span><span class="n">principal</span><span class="p">,</span> <span class="n">rate</span><span class="p">,</span> <span class="n">tenure</span><span class="p">):</span>
+<span class="o">...</span>     <span class="n">p</span> <span class="o">=</span> <span class="n">principal</span> <span class="ow">or</span> <span class="mi">0</span>
+<span class="o">...</span>     <span class="n">r</span> <span class="o">=</span> <span class="n">rate</span> <span class="ow">or</span> <span class="mi">10</span>
+<span class="o">...</span>     <span class="n">t</span> <span class="o">=</span> <span class="n">tenure</span> <span class="ow">or</span> <span class="mi">5</span>
+<span class="o">...</span>     <span class="k">print</span><span class="p">(</span><span class="s">&quot;Returning interest for </span><span class="si">%d</span><span class="s"> at </span><span class="si">%d</span><span class="s"> percent for </span><span class="si">%d</span><span class="s"> years&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">t</span><span class="p">))</span>
+<span class="o">...</span>     <span class="k">return</span> <span class="n">p</span> <span class="o">*</span> <span class="p">(</span><span class="n">r</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span> <span class="o">*</span> <span class="n">t</span>
+<span class="o">...</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">calc_simple_interest</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">Returning</span> <span class="n">interest</span> <span class="k">for</span> <span class="mi">1000</span> <span class="n">at</span> <span class="mi">5</span> <span class="n">percent</span> <span class="k">for</span> <span class="mi">3</span> <span class="n">years</span>
+<span class="mf">150.0</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">calc_simple_interest</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">Returning</span> <span class="n">interest</span> <span class="k">for</span> <span class="mi">1000</span> <span class="n">at</span> <span class="mi">10</span> <span class="n">percent</span> <span class="k">for</span> <span class="mi">5</span> <span class="n">years</span>
+<span class="mf">500.0</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">calc_simple_interest</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">Returning</span> <span class="n">interest</span> <span class="k">for</span> <span class="mi">1000</span> <span class="n">at</span> <span class="mi">8</span> <span class="n">percent</span> <span class="k">for</span> <span class="mi">5</span> <span class="n">years</span>
+<span class="mf">400.0</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">calc_simple_interest</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="bp">None</span><span class="p">)</span>
+<span class="n">Returning</span> <span class="n">interest</span> <span class="k">for</span> <span class="mi">1000</span> <span class="n">at</span> <span class="mi">8</span> <span class="n">percent</span> <span class="k">for</span> <span class="mi">5</span> <span class="n">years</span>
+<span class="mf">400.0</span>
+<span class="o">&gt;&gt;&gt;</span>
+</pre></div>
+
+
+<p>Now that is Python's <code>or</code> operator working its way to give us the exact same behavior as the <em>'ternary if'</em> used before.</p>
+<p>The way the logical operators work in Python felt weird to me. But I did not feel very unclean about it like the last one. It just was different.</p>
+<h3>In Closing</h3>
+<p>These are two cases where I felt Python to be slightly weird in its ways. There might be others and may be I will find them down the line (and I will share them if I do).</p>
+<p>Though I have highlighted what I felt weird about Python, it does not mean that I don't like the language. On the contrary, I actually like it quite a lot. But just like anything/anybody who you like/love a lot has some small imperfections, so does Python. In fact, it is those imperfections which make them unique and differentiated to us. That is what this does to Python too.</p>
+            </div>
+            <!-- /.entry-content -->
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<div id="aboutme">
+        <p>
+            <img width="100%" class="img-thumbnail" src="images/profile.png"/>
+        </p>
+    <p>
+        <strong>About Srinivas Narayanan</strong><br/>
+        I am Srinivas and I live out of Bangalore. I work as a software architect/developer. My primary experience has been on <B>Java/JVM</B> technologies but I have started taking an active interest in <I>Python</I> and <I>Javascript</I>
+    </p>
+</div>
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+            <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+              <ul class="list-group" id="social">
+                <li class="list-group-item"><a href="http://twitter.com/srininara"><i class="fa fa-twitter-square fa-lg"></i> twitter</a></li>
+                <li class="list-group-item"><a href="http://github.com/srininara"><i class="fa fa-github-square fa-lg"></i> github</a></li>
+              </ul>
+            </li>
+
+
+
+            <li class="list-group-item"><a href="http://localhost:9999/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+                <ul class="list-group " id="tags">
+                    <li class="list-group-item tag-4">
+                        <a href="http://localhost:9999/tag/bootstrap.html">
+                            bootstrap
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://localhost:9999/tag/pelican.html">
+                            pelican
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://localhost:9999/tag/github-pages.html">
+                            github pages
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://localhost:9999/tag/publishing.html">
+                            publishing
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://localhost:9999/tag/python.html">
+                            python
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://localhost:9999/tag/development.html">
+                            development
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="http://localhost:9999/tag/programming-languages.html">
+                            programming languages
+                        </a>
+                    </li>
+                </ul>
+            </li>
+    </ul>
+</section>
+            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2014 Srinivas Narayanan
+            &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="http://localhost:9999/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="http://localhost:9999/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="http://localhost:9999/theme/js/respond.min.js"></script>
+
+</body>
+</html>
