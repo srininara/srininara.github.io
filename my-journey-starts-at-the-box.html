@@ -2,7 +2,7 @@
 <html lang="en"
 >
 <head>
-    <title>Bye! Google Sites, Hello! Github pages - Starting Point</title>
+    <title>Journey starts at the Box - Starting Point</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -10,11 +10,11 @@
 
 
 
-<link rel="canonical" href="http://www.nacnez.com/move-to-github-pages-and-pelican.html">
+<link rel="canonical" href="http://www.nacnez.com/my-journey-starts-at-the-box.html">
 
         <meta name="author" content="Srinivas Narayanan" />
-        <meta name="keywords" content="publishing,github pages,pelican,bootstrap" />
-        <meta name="description" content="I moved from Google sites to Github pages for my blog and am using pelican for it" />
+        <meta name="keywords" content="charting,visualization,box plots,d3.js,angular.js" />
+        <meta name="description" content="My charting journey starts me on the box plot and d3.js" />
 
 
 
@@ -62,10 +62,10 @@
         <article>
             <header class="page-header">
                 <h1>
-                    <a href="http://www.nacnez.com/move-to-github-pages-and-pelican.html"
+                    <a href="http://www.nacnez.com/my-journey-starts-at-the-box.html"
                        rel="bookmark"
-                       title="Permalink to Bye! Google Sites, Hello! Github pages">
-                        Bye! Google Sites, Hello! Github pages
+                       title="Permalink to Journey starts at the Box">
+                        Journey starts at the Box
                     </a>
                 </h1>
             </header>
@@ -75,33 +75,52 @@
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2014-11-04T00:00:00"> Tue 04 November 2014</time>
+        <i class="fa fa-calendar"></i><time datetime="2014-12-21T00:00:00"> Sun 21 December 2014</time>
     </span>
 
 
 
 <span class="label label-default">Tags</span>
-	<a href="http://www.nacnez.com/tag/publishing.html">publishing</a>
+	<a href="http://www.nacnez.com/tag/charting.html">charting</a>
         /
-	<a href="http://www.nacnez.com/tag/github-pages.html">github pages</a>
+	<a href="http://www.nacnez.com/tag/visualization.html">visualization</a>
         /
-	<a href="http://www.nacnez.com/tag/pelican.html">pelican</a>
+	<a href="http://www.nacnez.com/tag/box-plots.html">box plots</a>
         /
-	<a href="http://www.nacnez.com/tag/bootstrap.html">bootstrap</a>
+	<a href="http://www.nacnez.com/tag/d3js.html">d3.js</a>
+        /
+	<a href="http://www.nacnez.com/tag/angularjs.html">angular.js</a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p>For close to 2 years (the time since I got the domain), I had married myself to <a href="http://en.wikipedia.org/wiki/Google_Sites">Google sites</a> for my own blog and site. It was not a happy marriage. While it might have worked for others, the inherent inability to change anything or use any of the good tools out there, for my content creation did not give me any comfort. I tried hard to use what is provided and finally gave up. I decided that, may be having my own site is really not worth it.</p>
-<h4><a href="https://pages.github.com">Github Pages</a></h4>
-<p>For sometime, I have been hearing about <a href="https://pages.github.com">Github pages</a>, but never thought too much about it. Then I got chatting with <a href="http://www.undefinednull.com">one of my friends</a> and he talked about using Github pages with <a href="http://octopress.org">Octopress</a> as the content management system for his blog. This really piqued my interest and I decided that I would give it a go.</p>
-<p>So I went through the documentation of <a href="https://pages.github.com"><em>github pages</em></a> and figured out how to create a user site and put a place holder page in it.</p>
-<p><img alt="My placeholder page" src="http://www.nacnez.com/images/placeholder_page.png" /></p>
-<p>It was not great but it was a start. I used <a href="http://getbootstrap.com">bootstrap</a> for the css and used some basic elements on the page.</p>
-<p>I also made my domain point to it. It took a day (may be two) for the dns records to get updated and viola! my new site was up. I had finally broken the shackles and escaped from the tyranny of Google sites. My new journey had begun.</p>
-<h4><a href="http://blog.getpelican.com">Pelican</a></h4>
-<p>Now my friend had talked about using <a href="http://octopress.org">octopress</a> for his blog. I felt that using a static file based content management system was surely a good idea but I wanted to use a python based one instead of a ruby one. A quick search lead me to <a href="http://blog.getpelican.com">Pelican</a>.</p>
-<p><a href="http://blog.getpelican.com">Pelican</a> seemed to fit my bill. I could use <a href="http://daringfireball.net/projects/markdown/">markdown</a> (which was another thing I meant to learn) to get my content. Pelican <a href="http://docs.getpelican.com/en/3.4.0/">documentation</a> looked pretty good and it was easy to get started. There was a good amount of configurability in Pelican. Also there was support for themes and plugins (which is python based and that looks interesting to me). The available collection of ready made themes seemed reasonable and I picked the bootstrap 3 based one called <a href="https://github.com/DandyDev/pelican-bootstrap3">pelican-bootstrap3</a> from <a href="http://dandydev.net/">Daan</a>. This post is written on this base setup. I am still to add any plugins to the site but that can wait.</p>
-<p>I wanted to get started. And now I have!  </p>
+                <p>I have been spending some of my free time on working on a personal project. As part of that, I needed to figure out how can we show visualizations of my data - yep charting. To give you some background, I am playing with angular js for this application and using a python based backend. Since I wanted to have a dynamic visualization - with animations and interactions thrown around, I decided to use a client side charting library that takes in the data and does the visualization entirely on the browser. Another thing I wanted to do was to see if I could use the same code or parts of it for delivering visualizations to the mobile.</p>
+<h3>D3 Enters</h3>
+<p>Given its immense popularity and its ability to work with svg based visualization (which I felt would work better for supporting multiple devices - of course that may not be true), I gravitated to <a href="http://d3js.org/">D3</a>. I got to the D3 site and I found so many cool looking visualizations that I was just blown away (I bet you will have the same feeling). Of course almost none of them made much sense to me. I wanted to use some simple visualizations like bar charts, line charts etc. and they were of course available on D3.</p>
+<h3>But I am building an Angular app.</h3>
+<p>Also I was lazy. I wanted to figure out if there is a pain less way to get these charts integrated into my angular app. The immediate thought was to figure out if there are any angular directives.</p>
+<h4>Angular Directives and NVD3 to the rescue</h4>
+<p>So I googled it. And lo and behold there was <a href="https://www.dashingd3js.com/d3-resources/d3-and-angular">an entire page</a> talking about it. After some digging around I settled on two of them - <a href="http://krispo.github.io/angular-nvd3/#/">angular-nvd3</a> and <a href="http://cmaurer.github.io/angularjs-nvd3-directives">angularjs-nvd3-directives</a>. Both of these directive libraries leverage <a href="http://nvd3.org/index.html">nvd3</a> underneath which itself was built on d3 (Wow! A layer above a layer above the actual thing). While both of them seemed promising to me, I somehow settled on the second one. I remember my reasons at that time were that I liked the declarative nature of the directive (I am not sure if I like that still) and that it was around for longer time (which I still think is sensible).</p>
+<p><img alt="nvd3 based bar chart" src="http://www.nacnez.com/images/box-journey-bar.png" /></p>
+<p>That was a simple bar chart (look at the various bar colors!!!) and I followed that with a simple line chart</p>
+<p><img alt="nvd3 based line chart" src="http://www.nacnez.com/images/box-journey-line.png" /></p>
+<p>So my immediate needs were taken care and everything was perfect. I cooked up some bar charts, line chart and even some pie charts. I tweaked some colors and axis layout through the directive provided support. All was going well. Of course, in all the tweaking I was doing (colors, date formats), I sometimes needed to get some insight into d3.js itself. But that was very minimal.</p>
+<h3>Things change, We want more</h3>
+<p>I had taken a short detour into the <a href="https://www.coursera.org/course/stats1">world of statistics</a> earlier. So I always liked the concepts of median and percentiles. So I wanted to figure out if there is a way to depict that in a visualization. My friend then introduced me to the <a href="http://en.wikipedia.org/wiki/Box_plot">box plot</a>. I won't go into the details of box plot here. There is good reference material on that on the internet.</p>
+<p>So my mind was set on the box plot and I wanted to figure out how I can create a visualization for it. The angularjs-nvd3-directives did not have any support for them. Neither did nvd3. So I looked directly at d3 and there was <a href="http://bl.ocks.org/mbostock/4061502">an example</a> and the associated <a href="https://github.com/d3/d3-plugins/tree/master/box">plug-in code</a> available for it.</p>
+<p>My idea of living on top of the abstraction (actually an abstraction over abstraction) no longer worked. I had no choice.</p>
+<h3>Getting my feet wet into D3</h3>
+<p>I initially thought I would try to create a nvd3 based box plot but I realized that it is going to take a lot of time figuring out nvd3 when I did not even know much about d3.</p>
+<p>So I tried to figure out some basic concepts of d3 so that I understand the plug-in code. First and foremost I understood the concept of selection and mapping the selection with data. Also got an understanding of scales. This helped me understand the plug-in code. But that was not enough. I needed to figure out how I can integrate d3 with my angular app. Again there was example readily <a href="http://bl.ocks.org/biovisualize/5372077">available</a>. A simple directive would do the trick and I created a box plot using the same.</p>
+<h3>Tweaking the box plot</h3>
+<p>I started getting interested in the box plot code itself. First thing I realized was that the box plot code in its current form (inside the plug-in) took a lot of horizontal space as you increase the number of plots. This may not work very well when you don't have a lot horizontal space (read mobile device). So I figured I needed to tweak the box plot to support a change in orientation.</p>
+<p>The second thing I wanted to do was to figure out a way to show labels close to my plots to indicate what they are plotting.</p>
+<p>Another thing I noticed was that the outliers plotted by the box plot could skew up your graph quite a lot if you have really high outlier values. So I felt it would be good to have a way to turn it off. That is another thing I wanted to tweak.</p>
+<p>And that is what I did. You can find <a href="http://embed.plnkr.co/7RVMhw/">my code in plunker</a>.</p>
+<p><img alt="box plot visual from plnkr" src="http://www.nacnez.com/images/box-journey-plnkr-box.png" /></p>
+<h3>The Road forward</h3>
+<p>The plnkr code is still not the cleanest. I have done some ugly hacks to make it look reasonable. It is available publicly. If anybody wants to tweak it and make it better (and teach me in the process), that would be fantastic. Also, I have still not been able to make my changed box plot work with my angular directive reliably. That is something I would surely like to fix. If I do I will share that code.</p>
+<p>On the library side, I want to figure out if I can find a better abstraction over d3 which is simple to use. d3 is good but it is very literal and low level in its nature (which is by design from what I understand and hence gives it a lot of power to do new things!). I don't know whether nvd3 is that abstraction. May be it is and I will find out more about it. There seem to be other <a href="http://trifacta.github.io/vega/">alternatives</a> as well. Also for the mobile, I am not sure whether the d3 way would be the best fit - I somehow do not feel so (anybody can correct me!!!).</p>
+<p>Libraries aside, I feel visualization is a field to really get a good handle on. To use a cliche - A picture is 1000 times better than words (or was it a picture is better than 1000 words... either way) - good visualization can be very powerful. I think a more deeper study on visualization will be very useful to me. Hopefully I can go down that path and do something worthwhile!</p>
             </div>
             <!-- /.entry-content -->
     <hr/>
@@ -113,8 +132,8 @@
             /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
             var disqus_shortname = 'nacnez'; // required: replace example with your forum shortname
 
-                    var disqus_identifier = 'move-to-github-pages-and-pelican';
-                var disqus_url = 'http://www.nacnez.com/move-to-github-pages-and-pelican.html';
+                    var disqus_identifier = 'my-journey-starts-at-the-box';
+                var disqus_url = 'http://www.nacnez.com/my-journey-starts-at-the-box.html';
 
             var disqus_config = function () {
                 this.language = "en";
