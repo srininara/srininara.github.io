@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>Nginx Serves Us like this - Maybe - Starting Point</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="http://www.nacnez.com/nginx-working-deepdive.html">
+
+        <meta name="author" content="Srinivas Narayanan" />
+        <meta name="keywords" content="web server,reverse proxy,load balancer,system calls,processes,nginx,architecture" />
+        <meta name="description" content="A slightly deep dive on how nginx starts up and serves client requests." />
+
+        <meta property="og:site_name" content="Starting Point" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="Nginx Serves Us like this - Maybe"/>
+        <meta property="og:url" content="http://www.nacnez.com/nginx-working-deepdive.html"/>
+        <meta property="og:description" content="A slightly deep dive on how nginx starts up and serves client requests."/>
+        <meta property="article:published_time" content="2018-03-31" />
+            <meta property="article:section" content="Server Technology" />
+            <meta property="article:tag" content="web server" />
+            <meta property="article:tag" content="reverse proxy" />
+            <meta property="article:tag" content="load balancer" />
+            <meta property="article:tag" content="system calls" />
+            <meta property="article:tag" content="processes" />
+            <meta property="article:tag" content="nginx" />
+            <meta property="article:tag" content="architecture" />
+            <meta property="article:author" content="Srinivas Narayanan" />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="http://www.nacnez.com/theme/css/bootstrap.superhero.min.css" type="text/css"/>
+    <link href="http://www.nacnez.com/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="http://www.nacnez.com/theme/css/pygments/solarizedlight.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://www.nacnez.com/theme/css/style.css" type="text/css"/>
+
+        <link href="http://www.nacnez.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="Starting Point ATOM Feed"/>
+
+
+
+        <link href="http://www.nacnez.com/feeds/server-technology.atom.xml" type="application/atom+xml" rel="alternate"
+              title="Starting Point Server Technology ATOM Feed"/>
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+        <div class="navbar-header">
+            <a href="http://www.nacnez.com/" class="navbar-brand">
+<img class="img-responsive pull-left gap-right" src="http://www.nacnez.com/images/myLogo.png" width=""/> Starting Point            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<!-- End Banner -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="http://www.nacnez.com/nginx-working-deepdive.html"
+                       rel="bookmark"
+                       title="Permalink to Nginx Serves Us like this - Maybe">
+                        Nginx Serves Us like this - Maybe
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2018-03-31T00:00:00+05:30"> Sat 31 March 2018</time>
+    </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="http://www.nacnez.com/tag/web-server.html">web server</a>
+        /
+	<a href="http://www.nacnez.com/tag/reverse-proxy.html">reverse proxy</a>
+        /
+	<a href="http://www.nacnez.com/tag/load-balancer.html">load balancer</a>
+        /
+	<a href="http://www.nacnez.com/tag/system-calls.html">system calls</a>
+        /
+	<a href="http://www.nacnez.com/tag/processes.html">processes</a>
+        /
+	<a href="http://www.nacnez.com/tag/nginx.html">nginx</a>
+        /
+	<a href="http://www.nacnez.com/tag/architecture.html">architecture</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p>Nginx is one of the projects which I always felt a pull towards, owing to it architecture. It is "event driven"!. For some time, I have heard this but I always wanted to get more deeper into it. So I did some digging on how nginx works. I read many articles (will be referred below) and pieced it together to the best of my understanding. Here is my attempt to explain how I think it works!</p>
+<p>Of course take this with generous helping of salt:</p>
+<ul>
+<li>I don't have much knowledge on linux internals and syscalls - so whatever I describe is surely going to have faults/mistakes. I look forward to get help from others to correct it.</li>
+<li>Another reason is that I did not go through the nginx source code. I don't have expertise in C and I am too scared to peep into nginx codebase for the fear of getting completely lost.</li>
+</ul>
+<p>Now that is out of the way let us get started.</p>
+<h2>Background - Process Roles</h2>
+<p><img alt="The Nginx Master and Workers" src="http://www.nacnez.com/images/nginx-art01.jpg"></p>
+<p>Okay. Before we get started let us get some background on the nginx processes.</p>
+<p>Nginx follows an event driven architecture and has different types of processes doing specific kinds of tasks. Let me first describe these process type and their roles. Once that is out of the way, I can get to more details on how the nginx startup and processes requests.</p>
+<p>The four different kinds of processes are:</p>
+<h4>Master</h4>
+<p>The master process is what starts up and manages the lifecycle of all nginx processes. </p>
+<h4>Worker</h4>
+<p>This is the work horse of nginx. This process is the one which does all processing for client requests. Reverse proxying, load balancing, compression, ssl termination etc. are all done by this process. Generally there could more than one of these processes running at any given time.</p>
+<h4>Cache related processes</h4>
+<ul>
+<li>Cache loader process
+This process checks the on-disk cache items and populates nginx in-memory db with cache metadata. It prepares nginx to work with files already cached and exits after updating in-memory db</li>
+<li>Cache manager process
+This process manages cache expiration and invalidation. It stays in memory.</li>
+</ul>
+<p>That should be enough background. Let us deep dive into how nginx starts and processes requests. For this discussion the processes under focus are only the master and the worker processes.</p>
+<h2>Nginx startup</h2>
+<p>You start nginx by calling <code>nginx</code>. Let us look at what each of the main processes do at this point</p>
+<h3>The Master (A true leader/delegator)</h3>
+<p><img alt="Syscalls made by master at startup" src="http://www.nacnez.com/images/nginx-MasterAtStart.png"></p>
+<p>The first process to start is the master process. It first reads through, validates and compiles the configuration. Once the configuration is validated and compiled, it looks at the configuration to figure out what all listen sockets have to be created for serving client requests.</p>
+<p>The server connection establishment process starts at this point for the required listen sockets. As a server (role played in client server communication), the master first tries to create sockets and bind to the ports defined in the configuration. One thing to note is that if the defined ports belong to the reserved set, the nginx needs to be started as a privileged user (root/sudo). Once the socket is created and binded it will also set the socket to listen mode with a default backlog of 511 (read more about listen backlog from references).</p>
+<p>The next step the nginx master does is to start the worker processes. This is typically done by forking (<code>clone</code>) them out as a child process (this is my assumption/understanding). This also means that listen sockets descriptors are copied over to the child processes and are hence accessible to the workers. The compiled configuration is also passed onto the them. The number of worker processes to be created is based on configuration. The typical default is <code>auto</code> which leads to the creation as many workers as there are cores in the machine (or VM).</p>
+<h3>The Worker (I am awake!)</h3>
+<p><img alt="Syscalls made by worker at startup" src="http://www.nacnez.com/images/nginx-WorkerAtStart.png"></p>
+<p>Each worker creates a epoll data structure with the kernel (using <code>epoll_create</code>). It then registers the listen socket descriptor to it using <code>epoll_ctl</code> and asks the kernel to let it know if there are any events (read or write) on the listen socket(s). All the different workers have access to the listen socket and they concurrently share the requests coming to them. Eventually if the worker has no other work to do it would block using <code>epoll_wait</code>.</p>
+<p>Each of the workers also create non-blocking connection sockets to upstream servers so that they can act as proxies to them. This also is event based and hence based on epoll.</p>
+<h2>Nginx processing requests</h2>
+<p>Now that nginx has started, it is time to process requests.</p>
+<h3>The Master (time to sleep)</h3>
+<p><img alt="Syscalls made by master on getting load/user requests" src="http://www.nacnez.com/images/nginx-MasterOnLoad.png"></p>
+<p>At this point the master pretty much does nothing. It does not have any work to do during the time of processing requests.</p>
+<h3>The Worker (A superstar)</h3>
+<p><img alt="Syscalls made by worker on load" src="http://www.nacnez.com/images/nginx-WorkerOnLoad.png"></p>
+<p>When a new client connection request comes to the listen socket, the linux kernel will pick the latest added worker process among epoll those waiting in the listen queue and send an event.</p>
+<p>This worker process would then do a non-blocking <code>accept</code> call which will create a connection socket between the client and server. This connection is now going to be served by this worker process. The worker does the same thing with the connection socket as it did with the listen socket. It registers interest on IO events happening on that socket through epoll_ctl and waits for events with <code>epoll_wait</code> if it has no other work to do.</p>
+<p>Over a period of time you will find that a worker process ends up serving many connections at the same time. Each of these connections are registered with their own epoll data structure. At the end of epoll_wait, the worker might get multiple sockets which are ready for processing. It then processes each of those requests. Processing of incoming request might include acting as a reverse proxy (write out the request to upstream server), do ssl termination etc. On the other hand processing of the response could be compressing the response read from the up stream server (again this is event based using epoll), and write out the response to the client again in non-blocking fashion. The worker is the one which exhibits all the wonderful features of nginx.</p>
+<p>The worker processes do not use epoll based asynchronous IO for files. For files it does blocking IO in most cases. If AIO is well supported in a platform it might use the same. But generally file IO slowness can lead to blocking behavior in the worker (and hence nginx).</p>
+<h2>What is all this fuss about!</h2>
+<p>Nginx does all this to provide high scalability.</p>
+<h3>The worker's power</h3>
+<p>A nginx worker can process 1000s of connections at the same time because of its non-blocking event based nature. Because of this nature, the cost per new connection in nginx is a matter of space for a new file descriptor and data structures needed to manage that socket's information. This is unlike other servers which have a process driven architecture (apache) which needs to allocate much more memory due to creation of process (stack and heap).</p>
+<p>Also the creation of limited number of worker processes in nginx means they can remain pinned to the cpu cores and avoid excessive context switching.</p>
+<h3>But then it is not all roses</h3>
+<p>Earlier I mentioned that the linux kernel keeps picking up the latest added process to distribute connection requests coming into the listen sockets, it happens that one of the workers get the lion share of the work load and hence the multi-core usage becomes skewed - more on one process. You will find more information in one of the articles in the references section.</p>
+<h3>The master strikes back.</h3>
+<p>From the above it looks like the <em>worker</em> is the only star and master is just sleeping. But the sleeping giant plays an important role in keeping nginx running when reloading configuration changes or even doing a nginx binary upgrade. You can find out more about this in the articles in references.</p>
+<h2>Conclusion</h2>
+<p>As I said earlier, what I have tried here is to give an overview of how nginx goes about serving its clients at a slightly more detail level. I have used the following references as a way to understand most of this. And of course I might have got some of the connecting pieces wrong. If anybody can find these gaps please chime in. Thanks for being here!</p>
+<h2>References</h2>
+<ol>
+<li><a href="https://www.nginx.com/blog/inside-nginx-how-we-designed-for-performance-scale/">Inside NGINX: How We Designed for Performance &amp; Scale</a> - Gives a good idea on Nginx architecture. Also covers how the master is able to handle config changes or binary upgrades without downtime.</li>
+<li><a href="https://www.netguru.co/codestories/nginx-tutorial-basics-concepts">Nginx Tutorial #1: Basic Concepts</a> - Just basic idea on running nginx and some basic configuration</li>
+<li><a href="http://www.aosabook.org/en/nginx.html">nginx</a> - A deep dive on nginx architecture by one of nginx architects</li>
+<li><a href="https://www.nginx.com/blog/tuning-nginx/">Tuning NGINX for Performance</a> - Gives you ideas for improving nginx performance</li>
+<li><a href="https://www.ibm.com/developerworks/aix/library/au-tcpsystemcalls/index.html">Know your TCP system call sequences</a> - A general article covering system calls related to TCP connection creation and management. Covers listen backlog too.</li>
+<li><a href="https://blog.cloudflare.com/the-sad-state-of-linux-socket-balancing/">Why does one NGINX worker take all the load?</a> - This article talks about how it happens that one nginx worker ends up getting a lot more load than others and what you can potentially do about it.</li>
+<li><a href="https://medium.com/@copyconstruct/the-method-to-epolls-madness-d9d2d6378642">The method to epoll’s madness</a> - A good article on how epoll works.</li>
+<li><a href="https://forum.nginx.org/read.php?2,194884,194884">Does Nginx block on file IO?</a> - A discussion thread on how nginx file reading works.</li>
+</ol>
+            </div>
+            <!-- /.entry-content -->
+    <hr/>
+    <section class="comments" id="comments">
+        <h2>Comments</h2>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'nacnez'; // required: replace example with your forum shortname
+
+                    var disqus_identifier = 'nginx-working-deepdive';
+                var disqus_url = 'http://www.nacnez.com/nginx-working-deepdive.html';
+
+            var disqus_config = function () {
+                this.language = "en";
+            };
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function () {
+                var dsq = document.createElement('script');
+                dsq.type = 'text/javascript';
+                dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by
+            Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+    </section>
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<div id="aboutme">
+        <p>
+            <img width="100%" class="img-thumbnail" src="images/profile.png"/>
+        </p>
+    <p>
+        <strong>About Srinivas Narayanan</strong><br/>
+        I am Srinivas and I live out of Bangalore. I work as a software architect/developer. My primary experience has been on <B>Java/JVM</B> technologies but I have started taking an active interest in <I>Python</I> and <I>Javascript</I>
+    </p>
+</div>
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+            <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+              <ul class="list-group" id="social">
+                <li class="list-group-item"><a href="http://twitter.com/srininara"><i class="fa fa-twitter-square fa-lg"></i> twitter</a></li>
+                <li class="list-group-item"><a href="http://github.com/srininara"><i class="fa fa-github-square fa-lg"></i> github</a></li>
+                <li class="list-group-item"><a href="http://www.nacnez.com/feeds/all.atom.xml"><i class="fa fa-rss-square fa-lg"></i> rss</a></li>
+              </ul>
+            </li>
+
+
+
+
+
+    </ul>
+</section>
+            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2018 Srinivas Narayanan
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="http://www.nacnez.com/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="http://www.nacnez.com/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="http://www.nacnez.com/theme/js/respond.min.js"></script>
+
+    <!-- Disqus -->
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'nacnez'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function () {
+            var s = document.createElement('script');
+            s.async = true;
+            s.type = 'text/javascript';
+            s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+    </script>
+    <!-- End Disqus Code -->
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-27638143-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+    <!-- End Google Analytics Code -->
+
+</body>
+</html>
