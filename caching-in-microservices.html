@@ -9,7 +9,7 @@
 
 
 
-<link rel="canonical" href="http://www.nacnez.com/caching-in-microservices.html">
+<link rel="canonical" href="https://www.nacnez.com/caching-in-microservices.html">
 
         <meta name="author" content="Srinivas Narayanan" />
         <meta name="keywords" content="microservices,caching,talk" />
@@ -18,7 +18,7 @@
         <meta property="og:site_name" content="Starting Point" />
         <meta property="og:type" content="article"/>
         <meta property="og:title" content="Caching in Microservices"/>
-        <meta property="og:url" content="http://www.nacnez.com/caching-in-microservices.html"/>
+        <meta property="og:url" content="https://www.nacnez.com/caching-in-microservices.html"/>
         <meta property="og:description" content="A overview of caching in the context of microservices"/>
         <meta property="article:published_time" content="2019-09-15" />
             <meta property="article:section" content="Microservices" />
@@ -30,17 +30,17 @@
 
 
     <!-- Bootstrap -->
-        <link rel="stylesheet" href="http://www.nacnez.com/theme/css/bootstrap.paper.min.css" type="text/css"/>
-    <link href="http://www.nacnez.com/theme/css/font-awesome.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://www.nacnez.com/theme/css/bootstrap.paper.min.css" type="text/css"/>
+    <link href="https://www.nacnez.com/theme/css/font-awesome.min.css" rel="stylesheet">
 
-    <link href="http://www.nacnez.com/theme/css/pygments/monokai.css" rel="stylesheet">
-    <link rel="stylesheet" href="http://www.nacnez.com/theme/css/style.css" type="text/css"/>
-        <link href="http://www.nacnez.com/css/custom.css" rel="stylesheet">
+    <link href="https://www.nacnez.com/theme/css/pygments/monokai.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.nacnez.com/theme/css/style.css" type="text/css"/>
+        <link href="https://www.nacnez.com/css/custom.css" rel="stylesheet">
 
-        <link href="http://www.nacnez.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+        <link href="https://www.nacnez.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
               title="Starting Point ATOM Feed"/>
 
-        <link href="http://www.nacnez.com/feeds/microservices.atom.xml" type="application/atom+xml" rel="alternate"
+        <link href="https://www.nacnez.com/feeds/microservices.atom.xml" type="application/atom+xml" rel="alternate"
               title="Starting Point Microservices ATOM Feed"/>
 </head>
 <body>
@@ -48,8 +48,8 @@
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
-            <a href="http://www.nacnez.com/" class="navbar-brand">
-<img class="img-responsive pull-left gap-right" src="http://www.nacnez.com/images/myLogo.png" width=""/> Starting Point            </a>
+            <a href="https://www.nacnez.com/" class="navbar-brand">
+<img class="img-responsive pull-left gap-right" src="https://www.nacnez.com/images/myLogo.png" width=""/> Starting Point            </a>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
@@ -72,7 +72,7 @@
         <article>
             <header class="page-header">
                 <h1>
-                    <a href="http://www.nacnez.com/caching-in-microservices.html"
+                    <a href="https://www.nacnez.com/caching-in-microservices.html"
                        rel="bookmark"
                        title="Permalink to Caching in Microservices">
                         Caching in Microservices
@@ -93,11 +93,11 @@
 
 
 <span class="label label-default">Tags</span>
-	<a href="http://www.nacnez.com/tag/microservices.html">microservices</a>
+	<a href="https://www.nacnez.com/tag/microservices.html">microservices</a>
         /
-	<a href="http://www.nacnez.com/tag/caching.html">caching</a>
+	<a href="https://www.nacnez.com/tag/caching.html">caching</a>
         /
-	<a href="http://www.nacnez.com/tag/talk.html">talk</a>
+	<a href="https://www.nacnez.com/tag/talk.html">talk</a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
@@ -124,10 +124,10 @@ But do microservices need them? Microservices already offer a lot of good qualit
 </div>
 <p>To answer this let us dig deeper to identify challenges which microservices introduces.</p>
 <h4>Use case - Viewing/Editing an online document</h4>
-<p><img alt="Editing online document" src="http://www.nacnez.com/images/caching_in_ms/usecase1.png">  </p>
+<p><img alt="Editing online document" src="https://www.nacnez.com/images/caching_in_ms/usecase1.png">  </p>
 <p><br/>
 The use case is pretty common. So let us look at potential architecture for making this work. For showing a single document to the end user there are 5 - 6 services involved if we adopt microservices architecture.</p>
-<p><img alt="Editing online document - Architecture" src="http://www.nacnez.com/images/caching_in_ms/usecase1-archi.png"><br>
+<p><img alt="Editing online document - Architecture" src="https://www.nacnez.com/images/caching_in_ms/usecase1-archi.png"><br>
 <br/></p>
 <p>The individual components are:</p>
 <ul>
@@ -175,13 +175,13 @@ The use case is pretty common. So let us look at potential architecture for maki
 <h2>How to cache - Patterns</h2>
 <p>Let us get into details of how caching can be implemented within microservices. There are some well known patterns for reading and writing to cache. These have their pros and cons as well. Also they are not mutually exclusive in any way. They generally work together to solve problems. Let us go through them one by one.</p>
 <h4>Cache aside</h4>
-<p><img alt="Cache aside pattern" src="http://www.nacnez.com/images/caching_in_ms/cache_aside.png"></p>
+<p><img alt="Cache aside pattern" src="https://www.nacnez.com/images/caching_in_ms/cache_aside.png"></p>
 <p>The first one is the <em>Cache aside</em> pattern. This is the most common pattern and used extensively. The idea of the pattern is to treat cache as a different store similar to the database. A service would read and write to the database and the cache as an aside. The control of what and when data are written into or read from the cache lies with the service itself. This pattern is great for read heavy workloads. Also we could write the service in such a way that during a failure in cache setup - when we use standalone/grid mode - the service can still keep serving from db. Of course this can’t be sustained for long given the cache setup is to support scale, but the option is there. The approach for when writes happen depends on us. Writing to database is the first thing the service will do - almost always. What happens to the cached entry is subject to developers choice - the patterns leaves this open to us. One thing to do is to just remove or invalidate the entry from the cache. There are others options available.</p>
 <p>I prefer this approach because as a business service writer I have lot more control with this approach. Hence I have used it a lot as well.</p>
 <p><br/>
 Sometimes we really don’t want so much control. Rather we want convenience and ease of use. The following patterns afford this one way or other and the unifying aspect of these patterns is that the caching library or system acts as the facade and controls how data is written/read to/from the underlying source data store.</p>
 <h4>Read through</h4>
-<p><img alt="Read through pattern" src="http://www.nacnez.com/images/caching_in_ms/read_through.png"></p>
+<p><img alt="Read through pattern" src="https://www.nacnez.com/images/caching_in_ms/read_through.png"></p>
 <p>The first one among them is the <em>Read-Through</em> pattern. Here the cache, when requested for a entry and not finding it, will initiate a call to the underlying store to read the data. It will then cache it and return the data to requester. The key thing to note here is, the cache is the one orchestrating the action. This is different from how cache aside pattern works where the control is with the service code. Also Read through pattern follows lazy or on-demand loading and hence has the same caveats. We must also remember that in this pattern the data structure cached must match with the structure stored in the underlying store.</p>
 <p>Even in Cache aside, we could follow a similar technique of lazy loading when writes happen (i.e writes just invalidates the corresponding entry in cache if it exists) if the applicable caveats work for you.</p>
 <h4>Write Through</h4>
@@ -246,7 +246,7 @@ As I said earlier these are general patterns which have trade-offs. And they are
                 this.language = "en";
 
                         this.page.identifier = '2019-09-15-caching-in-microservices';
-                        this.page.url = 'http://www.nacnez.com/caching-in-microservices.html';
+                        this.page.url = 'https://www.nacnez.com/caching-in-microservices.html';
             };
 
             /* * * DON'T EDIT BELOW THIS LINE * * */
@@ -271,7 +271,7 @@ As I said earlier these are general patterns which have trade-offs. And they are
             <aside>
 <div id="aboutme">
         <p>
-            <img width="100%" class="img-thumbnail" src="http://www.nacnez.com/images/profile.png"/>
+            <img width="100%" class="img-thumbnail" src="https://www.nacnez.com/images/profile.png"/>
         </p>
     <p>
       <strong>About Srinivas Narayanan</strong><br/>
@@ -288,7 +288,7 @@ As I said earlier these are general patterns which have trade-offs. And they are
     <li class="list-group-item"><a href="http://twitter.com/srininara"><i class="fa fa-twitter-square fa-lg"></i> twitter</a></li>
     <li class="list-group-item"><a href="http://github.com/srininara"><i class="fa fa-github-square fa-lg"></i> github</a></li>
     <li class="list-group-item"><a href="https://www.linkedin.com/in/srinivas-narayanan-1912b14/"><i class="fa fa-linkedin-square fa-lg"></i> linkedin</a></li>
-    <li class="list-group-item"><a href="http://www.nacnez.com/feeds/all.atom.xml"><i class="fa fa-rss-square fa-lg"></i> rss</a></li>
+    <li class="list-group-item"><a href="https://www.nacnez.com/feeds/all.atom.xml"><i class="fa fa-rss-square fa-lg"></i> rss</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Social -->
@@ -312,13 +312,13 @@ As I said earlier these are general patterns which have trade-offs. And they are
       </div>
    </div>
 </footer>
-<script src="http://www.nacnez.com/theme/js/jquery.min.js"></script>
+<script src="https://www.nacnez.com/theme/js/jquery.min.js"></script>
 
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="http://www.nacnez.com/theme/js/bootstrap.min.js"></script>
+<script src="https://www.nacnez.com/theme/js/bootstrap.min.js"></script>
 
 <!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
-<script src="http://www.nacnez.com/theme/js/respond.min.js"></script>
+<script src="https://www.nacnez.com/theme/js/respond.min.js"></script>
 
 
     <!-- Disqus -->
