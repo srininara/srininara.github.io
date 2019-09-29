@@ -3,9 +3,17 @@
 body {
   font-family: "Source Sans Pro","Helvetica Neue","Open Sans",Helvetica,Arial,sans-serif;
   font-size: 18px;
-  line-height: 1.728571;
+  line-height: 2.228571;
 }
 
+div #aboutme {
+  font-family: "Source Sans Pro","Helvetica Neue","Open Sans",Helvetica,Arial,sans-serif;
+  font-size: 16px;
+  line-height: 1.628571;
+  background-color: rgb(214, 236, 214);
+  padding: 10px;
+  box-sizing: border-box;
+}
 
 /* Admonition styles */
 div.admonition {
