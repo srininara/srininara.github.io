@@ -114,9 +114,9 @@
 <p>Also I was lazy. I wanted to figure out if there is a pain less way to get these charts integrated into my angular app. The immediate thought was to figure out if there are any angular directives.</p>
 <h4>Angular Directives and NVD3 to the rescue</h4>
 <p>So I googled it. And lo and behold there was <a href="https://www.dashingd3js.com/d3-resources/d3-and-angular">an entire page</a> talking about it. After some digging around I settled on two of them - <a href="http://krispo.github.io/angular-nvd3/#/">angular-nvd3</a> and <a href="http://cmaurer.github.io/angularjs-nvd3-directives">angularjs-nvd3-directives</a>. Both of these directive libraries leverage <a href="http://nvd3.org/index.html">nvd3</a> underneath which itself was built on d3 (Wow! A layer above a layer above the actual thing). While both of them seemed promising to me, I somehow settled on the second one. I remember my reasons at that time were that I liked the declarative nature of the directive (I am not sure if I like that still) and that it was around for longer time (which I still think is sensible).</p>
-<p><img alt="nvd3 based bar chart" src="https://www.nacnez.com/images/box-journey-bar.png"></p>
+<p><img alt="nvd3 based bar chart" src="https://www.nacnez.com/images/box-journey-bar.png" style="width: 972px; height: auto; max-width: 100%;"/></p>
 <p>That was a simple bar chart (look at the various bar colors!!!) and I followed that with a simple line chart</p>
-<p><img alt="nvd3 based line chart" src="https://www.nacnez.com/images/box-journey-line.png"></p>
+<p><img alt="nvd3 based line chart" src="https://www.nacnez.com/images/box-journey-line.png" style="width: 972px; height: auto; max-width: 100%;"/></p>
 <p>So my immediate needs were taken care and everything was perfect. I cooked up some bar charts, line chart and even some pie charts. I tweaked some colors and axis layout through the directive provided support. All was going well. Of course, in all the tweaking I was doing (colors, date formats), I sometimes needed to get some insight into d3.js itself. But that was very minimal.</p>
 <h3>Things change, We want more</h3>
 <p>I had taken a short detour into the <a href="https://www.coursera.org/course/stats1">world of statistics</a> earlier. So I always liked the concepts of median and percentiles. So I wanted to figure out if there is a way to depict that in a visualization. My friend then introduced me to the <a href="http://en.wikipedia.org/wiki/Box_plot">box plot</a>. I won't go into the details of box plot here. There is good reference material on that on the internet.</p>
@@ -130,7 +130,7 @@
 <p>The second thing I wanted to do was to figure out a way to show labels close to my plots to indicate what they are plotting.</p>
 <p>Another thing I noticed was that the outliers plotted by the box plot could skew up your graph quite a lot if you have really high outlier values. So I felt it would be good to have a way to turn it off. That is another thing I wanted to tweak.</p>
 <p>And that is what I did. You can find <a href="http://embed.plnkr.co/7RVMhw/">my code in plunker</a>.</p>
-<p><img alt="box plot visual from plnkr" src="https://www.nacnez.com/images/box-journey-plnkr-box.png"></p>
+<p><img alt="box plot visual from plnkr" src="https://www.nacnez.com/images/box-journey-plnkr-box.png" style="width: 645px; height: auto; max-width: 100%;"/></p>
 <h3>The Road forward</h3>
 <p>The plnkr code is still not the cleanest. I have done some ugly hacks to make it look reasonable. It is available publicly. If anybody wants to tweak it and make it better (and teach me in the process), that would be fantastic. Also, I have still not been able to make my changed box plot work with my angular directive reliably. That is something I would surely like to fix. If I do I will share that code.</p>
 <p>On the library side, I want to figure out if I can find a better abstraction over d3 which is simple to use. d3 is good but it is very literal and low level in its nature (which is by design from what I understand and hence gives it a lot of power to do new things!). I don't know whether nvd3 is that abstraction. May be it is and I will find out more about it. There seem to be other <a href="http://trifacta.github.io/vega/">alternatives</a> as well. Also for the mobile, I am not sure whether the d3 way would be the best fit - I somehow do not feel so (anybody can correct me!!!).</p>
@@ -179,7 +179,7 @@
         </p>
     <p>
       <strong>About Srinivas Narayanan</strong><br/>
-        I am Srini(vas) & I live in Bangalore. I work as a software developer/architect. My experience has been on <B>Java/JVM</B> technologies but I am working currently on <I>Python</I>, <I>Ruby</I> and <I>Javascript</I>. Among other interests, currently trying to learn economics and getting my daughter also into it. Hopefully will get her to code too!
+        I am Srini(vas) & I live in Bangalore. I work as a software developer/architect. Currently a <B><a href="https://medium.com/simpl-under-the-hood">Simpl</a></B>fier. My experience has been on <B>Java/JVM</B> technologies but I am working currently on <B>Python</B>, <B>Ruby</B> and <I>Javascript</I>. Among other interests, currently trying to learn <I>economics</I> and getting my daughter also into it. Hopefully will get her to code too!
     </p>
 </div><!-- Sidebar -->
 <section class="well well-sm">
@@ -196,6 +196,44 @@
   </ul>
 </li>
 <!-- End Sidebar/Social -->
+
+<!-- Sidebar/Tag Cloud -->
+<li class="list-group-item">
+  <a href="https://www.nacnez.com/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+  <ul class="list-group " id="tags">
+    <li class="list-group-item tag-1">
+      <a href="https://www.nacnez.com/tag/architecture.html">architecture</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="https://www.nacnez.com/tag/microservices.html">microservices</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="https://www.nacnez.com/tag/podcasts.html">podcasts</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="https://www.nacnez.com/tag/technology.html">technology</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="https://www.nacnez.com/tag/python.html">python</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="https://www.nacnez.com/tag/resilience.html">resilience</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="https://www.nacnez.com/tag/play.html">play</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="https://www.nacnez.com/tag/design-pattens.html">design pattens</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="https://www.nacnez.com/tag/functional-programming.html">functional programming</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="https://www.nacnez.com/tag/decorators.html">decorators</a>
+    </li>
+  </ul>
+</li>
+<!-- End Sidebar/Tag Cloud -->
   </ul>
 </section>
 <!-- End Sidebar -->            </aside>

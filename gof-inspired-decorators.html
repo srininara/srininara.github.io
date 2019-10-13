@@ -118,17 +118,17 @@
 <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pytest</span>
 <span class="kn">import</span> <span class="nn">app.natural_number_calc</span> <span class="kn">as</span> <span class="nn">calc</span>
 
-<span class="nd">@pytest.mark.parametrize</span><span class="p">(</span><span class="s2">&quot;operator, arg1, arg2, output&quot;</span><span class="p">,</span> <span class="p">[</span>
-    <span class="p">(</span><span class="s1">&#39;+&#39;</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span>
-    <span class="p">(</span><span class="s1">&#39;+&#39;</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">6</span><span class="p">),</span>
-    <span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="mi">22</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span>
-    <span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="mi">24</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span>
-    <span class="p">(</span><span class="s1">&#39;*&#39;</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">84</span><span class="p">),</span>
-    <span class="p">(</span><span class="s1">&#39;*&#39;</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">121</span><span class="p">),</span>
-    <span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span><span class="mi">84</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">14</span><span class="p">),</span>
-    <span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span>
-    <span class="p">(</span><span class="s1">&#39;^&#39;</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">121</span><span class="p">),</span>
-    <span class="p">(</span><span class="s1">&#39;^&#39;</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">64</span><span class="p">),</span>
+<span class="nd">@pytest.mark.parametrize</span><span class="p">(</span><span class="s2">"operator, arg1, arg2, output"</span><span class="p">,</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s1">'+'</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'+'</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">6</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'-'</span><span class="p">,</span><span class="mi">22</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'-'</span><span class="p">,</span><span class="mi">24</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'*'</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">84</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'*'</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">121</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'/'</span><span class="p">,</span><span class="mi">84</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">14</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'/'</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'^'</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">121</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'^'</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">64</span><span class="p">),</span>
 <span class="p">])</span>
 <span class="k">def</span> <span class="nf">test_calculator</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">,</span> <span class="n">output</span><span class="p">):</span>
     <span class="k">assert</span> <span class="n">output</span> <span class="o">==</span> <span class="n">calc</span><span class="o">.</span><span class="n">do</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">)</span>
@@ -136,102 +136,96 @@
 
 <span class="k">def</span> <span class="nf">test_calculator_operator_not_supported</span><span class="p">():</span>
     <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">)</span> <span class="k">as</span> <span class="n">ve</span><span class="p">:</span>
-        <span class="n">calc</span><span class="o">.</span><span class="n">do</span><span class="p">(</span><span class="s1">&#39;%&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+        <span class="n">calc</span><span class="o">.</span><span class="n">do</span><span class="p">(</span><span class="s1">'%'</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 
-    <span class="k">assert</span> <span class="s1">&#39;Calc Error - Operator not supported&#39;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">ve</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="s1">'Calc Error - Operator not supported'</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">ve</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
 
 
-<span class="nd">@pytest.mark.parametrize</span><span class="p">(</span><span class="s2">&quot;operator, arg1, arg2&quot;</span><span class="p">,</span> <span class="p">[</span>
-    <span class="p">(</span><span class="s1">&#39;+&#39;</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span>
-    <span class="p">(</span><span class="s1">&#39;+&#39;</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">),</span>
-    <span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="mi">22</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span>
-    <span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="o">-</span><span class="mi">24</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span>
-    <span class="p">(</span><span class="s1">&#39;*&#39;</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span>
-    <span class="p">(</span><span class="s1">&#39;*&#39;</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="o">-</span><span class="mi">4</span><span class="p">),</span>
-    <span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span><span class="mi">84</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span>
-    <span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">),</span>
-    <span class="p">(</span><span class="s1">&#39;^&#39;</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">),</span>
-    <span class="p">(</span><span class="s1">&#39;^&#39;</span><span class="p">,</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span>
+<span class="nd">@pytest.mark.parametrize</span><span class="p">(</span><span class="s2">"operator, arg1, arg2"</span><span class="p">,</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s1">'+'</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'+'</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'-'</span><span class="p">,</span><span class="mi">22</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'-'</span><span class="p">,</span><span class="o">-</span><span class="mi">24</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'*'</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'*'</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="o">-</span><span class="mi">4</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'/'</span><span class="p">,</span><span class="mi">84</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'/'</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'^'</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'^'</span><span class="p">,</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span>
 <span class="p">])</span>
 <span class="k">def</span> <span class="nf">test_calculator_non_natural_numbers_not_supported</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
     <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">)</span> <span class="k">as</span> <span class="n">ve</span><span class="p">:</span>
         <span class="n">calc</span><span class="o">.</span><span class="n">do</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">)</span>
 
-    <span class="k">assert</span> <span class="s1">&#39;Calc Error - Natural numbers only supported&#39;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">ve</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="s1">'Calc Error - Natural numbers only supported'</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">ve</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
 </pre></div>
-
-
 <p>The test suite covers everything which I want to implement with my calculator. So we have a start.</p>
 <h4>That is some c***!</h4>
 <p>For satisfying the test suite, here is some plain vanilla code.</p>
 <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">do</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">operator</span> <span class="o">==</span> <span class="s1">&#39;+&#39;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">operator</span> <span class="o">==</span> <span class="s1">'+'</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">_add</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">operator</span> <span class="o">==</span> <span class="s1">&#39;-&#39;</span><span class="p">:</span>
+    <span class="k">elif</span> <span class="n">operator</span> <span class="o">==</span> <span class="s1">'-'</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">_subtract</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">operator</span> <span class="o">==</span> <span class="s1">&#39;*&#39;</span><span class="p">:</span>
+    <span class="k">elif</span> <span class="n">operator</span> <span class="o">==</span> <span class="s1">'*'</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">_multiply</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">operator</span> <span class="o">==</span> <span class="s1">&#39;/&#39;</span><span class="p">:</span>
+    <span class="k">elif</span> <span class="n">operator</span> <span class="o">==</span> <span class="s1">'/'</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">_divide</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">operator</span> <span class="o">==</span> <span class="s1">&#39;^&#39;</span><span class="p">:</span>
+    <span class="k">elif</span> <span class="n">operator</span> <span class="o">==</span> <span class="s1">'^'</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">_power</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Calc Error - Operator not supported&#39;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">'Calc Error - Operator not supported'</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">_power</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">arg1</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">arg2</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Calc Error - Natural numbers only supported&#39;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">'Calc Error - Natural numbers only supported'</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">arg1</span> <span class="o">**</span> <span class="n">arg2</span>
 
 <span class="k">def</span> <span class="nf">_divide</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">arg1</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">arg2</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Calc Error - Natural numbers only supported&#39;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">'Calc Error - Natural numbers only supported'</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">arg1</span> <span class="o">/</span> <span class="n">arg2</span>
 
 <span class="k">def</span> <span class="nf">_multiply</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">arg1</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">arg2</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Calc Error - Natural numbers only supported&#39;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">'Calc Error - Natural numbers only supported'</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">arg1</span> <span class="o">*</span> <span class="n">arg2</span>
 
 <span class="k">def</span> <span class="nf">_subtract</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">arg1</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">arg2</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Calc Error - Natural numbers only supported&#39;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">'Calc Error - Natural numbers only supported'</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">arg1</span> <span class="o">-</span> <span class="n">arg2</span>
 
 <span class="k">def</span> <span class="nf">_add</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">arg1</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">arg2</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Calc Error - Natural numbers only supported&#39;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">'Calc Error - Natural numbers only supported'</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">arg1</span> <span class="o">+</span> <span class="n">arg2</span>
 </pre></div>
-
-
 <p>Yeah, I know. This is pathetic code... so many <code>if</code>s and <code>elif</code>s and all. That is on purpose so that we can improve it with some <em>decorator and pattern</em> goodness. And it is code that works and hence our test passes! We are on <em>green</em> mode &amp; we can start refactoring.</p>
 <h4>Let us start decorating</h4>
 <p>If you look at the above code we see an obvious copy paste case. The check for natural numbers is repeated on every operation code and we can easily <strong>decorate</strong> each operation code using the Decorator pattern or in our case python decorators. Let us first look at the decorator code.</p>
 <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">only_natural</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">arg1</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">arg2</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Calc Error - Natural numbers only supported&#39;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">'Calc Error - Natural numbers only supported'</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">)</span>
 <span class="k">return</span> <span class="n">wrapper</span>
 </pre></div>
-
-
 <p>If you know your decorators, this is a <a href="https://realpython.com/primer-on-python-decorators/#simple-decorators">simple decorator</a> in action. It takes the function that needs to be wrapped. It defines an inner wrapper function which take two arguments which checks the arguments are natural numbers. If they are then the wrapped function is called else raise an error. Let us now use this decorator on our calculator module.</p>
 <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">do</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">operator</span> <span class="o">==</span> <span class="s1">&#39;+&#39;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">operator</span> <span class="o">==</span> <span class="s1">'+'</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">_add</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">operator</span> <span class="o">==</span> <span class="s1">&#39;-&#39;</span><span class="p">:</span>
+    <span class="k">elif</span> <span class="n">operator</span> <span class="o">==</span> <span class="s1">'-'</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">_subtract</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">operator</span> <span class="o">==</span> <span class="s1">&#39;*&#39;</span><span class="p">:</span>
+    <span class="k">elif</span> <span class="n">operator</span> <span class="o">==</span> <span class="s1">'*'</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">_multiply</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">operator</span> <span class="o">==</span> <span class="s1">&#39;/&#39;</span><span class="p">:</span>
+    <span class="k">elif</span> <span class="n">operator</span> <span class="o">==</span> <span class="s1">'/'</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">divide</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">operator</span> <span class="o">==</span> <span class="s1">&#39;^&#39;</span><span class="p">:</span>
+    <span class="k">elif</span> <span class="n">operator</span> <span class="o">==</span> <span class="s1">'^'</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">_power</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Calc Error - Operator not supported&#39;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">'Calc Error - Operator not supported'</span><span class="p">)</span>
 
 <span class="nd">@only_natural</span> <span class="c1"># decorator applied</span>
 <span class="k">def</span> <span class="nf">_power</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
@@ -253,8 +247,6 @@
 <span class="k">def</span> <span class="nf">_add</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">arg1</span> <span class="o">+</span> <span class="n">arg2</span>      <span class="c1">#5</span>
 </pre></div>
-
-
 <p>You can see that our calculator is surely improved (note the numbers) using the <em>decorator</em> pattern created with decorators. But the <code>do</code> method is still a eyesore. With just 5 operations, we have a huge <code>if/elif/else</code> clause and this will only grow further if we want to support more operations (I understand this is a toy example but you get the picture).</p>
 <h4>Enter CoR</h4>
 <p>So how can we improve this. Let us dig in. It is clear that for each operation, there is a corresponding method to handle it. The handling determination happens one after the other. It almost feels like a set of actions to do... a chain of things to do... a Chain of Responsibilities to complete (come on, that is not such a bad lead up!). Let us give it a shot once.</p>
@@ -268,20 +260,16 @@
         <span class="k">return</span> <span class="n">inner</span>
     <span class="k">return</span> <span class="n">wrapper</span>
 </pre></div>
-
-
 <p>This is a more involved decorator than the first one. Because we need to take an argument, we need this double nested structure. The outer most <code>cor</code> function is the visible annotation part of the decorator and it takes the function object that needs to be called next in the chain as argument. The <code>cor</code> function defines a <code>wrapper</code> function which is the one that accepts the actual function that is being decorated - the <code>current</code>. The <code>wrapper</code> in turn has the <code>inner</code> function where the actual work happens. It calls the current function and gets its response. If that response is valid (a simple <em>truthy</em> response), then it means that request has been processed and the chain can be broken to return the result. If the response is not valid, it means that the current function is not the one to handle the request. Hence the control has to pass on to the next processor or function (which is available to <code>inner</code> because it is a <a href="https://en.wikipedia.org/wiki/Closure_(computer_programming)">closure</a> - another functional feature of python. You can read more about decorators that take arguments <a href="https://realpython.com/primer-on-python-decorators/#decorators-with-arguments">here</a>.</p>
 <p>For this to <a href="https://realpython.com/primer-on-python-decorators/#nesting-decorators">nest</a> along with the already existing decorator for natural numbers, we need to do some changes to that decorator.</p>
 <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">only_natural_with_operator</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">arg1</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">arg2</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Calc Error - Natural numbers only supported&#39;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">'Calc Error - Natural numbers only supported'</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">wrapper</span>
 </pre></div>
-
-
 <p>The above one is just a simple tweak, so let us move on. Let us look at the calculator to figure out how its usage gets manifested.</p>
 <h4>What the CoR?</h4>
 <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">do</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
@@ -289,11 +277,11 @@
     <span class="k">if</span> <span class="n">value</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">value</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Calc Error - Operator not supported&#39;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">'Calc Error - Operator not supported'</span><span class="p">)</span>
 
 <span class="nd">@only_natural_with_operator</span>
 <span class="k">def</span> <span class="nf">_power</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">operator</span> <span class="o">==</span> <span class="s1">&#39;^&#39;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">operator</span> <span class="o">==</span> <span class="s1">'^'</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">arg1</span> <span class="o">**</span> <span class="n">arg2</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">None</span>
@@ -301,7 +289,7 @@
 <span class="nd">@only_natural_with_operator</span>
 <span class="nd">@cor</span><span class="p">(</span><span class="nb">next</span><span class="o">=</span><span class="n">_power</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">_divide</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">operator</span> <span class="o">==</span> <span class="s1">&#39;/&#39;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">operator</span> <span class="o">==</span> <span class="s1">'/'</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">arg1</span> <span class="o">/</span> <span class="n">arg2</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">None</span>
@@ -309,7 +297,7 @@
 <span class="nd">@only_natural_with_operator</span>
 <span class="nd">@cor</span><span class="p">(</span><span class="nb">next</span><span class="o">=</span><span class="n">_divide</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">_multiply</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">operator</span> <span class="o">==</span> <span class="s1">&#39;*&#39;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">operator</span> <span class="o">==</span> <span class="s1">'*'</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">arg1</span> <span class="o">*</span> <span class="n">arg2</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">None</span>
@@ -317,7 +305,7 @@
 <span class="nd">@only_natural_with_operator</span>
 <span class="nd">@cor</span><span class="p">(</span><span class="nb">next</span><span class="o">=</span><span class="n">_multiply</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">_subtract</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">operator</span> <span class="o">==</span> <span class="s1">&#39;-&#39;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">operator</span> <span class="o">==</span> <span class="s1">'-'</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">arg1</span> <span class="o">-</span> <span class="n">arg2</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">None</span>
@@ -325,13 +313,11 @@
 <span class="nd">@only_natural_with_operator</span>
 <span class="nd">@cor</span><span class="p">(</span><span class="nb">next</span><span class="o">=</span><span class="n">_subtract</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">_add</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">operator</span> <span class="o">==</span> <span class="s1">&#39;+&#39;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">operator</span> <span class="o">==</span> <span class="s1">'+'</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">arg1</span> <span class="o">+</span> <span class="n">arg2</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">None</span>
 </pre></div>
-
-
 <p>Hmm... Pretty underwhelming to put it nicely. But before we get into it, let me first explain what this is doing.</p>
 <p>The <code>do</code> method just calls the first method in the chain, the <code>_add</code> method. It expects that the processing gets completed to return a valid result. If it gets back an invalid result (<code>None</code>), then it understands that this calculation cannot be processed and throws an Error. The <code>do</code> method has improved for sure.</p>
 <p>The <code>_add</code> method declares the next operator/function to call as decorator parameter - (<code>@cor(next=_subtract)</code>). In the body it checks if it can process the request - <em>is it the right operator?</em> . If it is then great, else it returns <code>None</code> denoting that it is not interested. This happens in each operator/function till we reach <code>_power</code> which has no next. So the chain stops here. We can of course extend the chain from this point onwards and for that we don't have to touch the <code>do</code> or the <code>_add</code> (or other) methods. All the methods are separated. This <code>cor</code> decorator could be used to create a chain of any set of functions as long as they follow the basic contract of returning a truthy value if they did the processing or a falsy value if they want to pass it on (provided if they have defined a next).</p>
@@ -345,48 +331,44 @@
             <span class="k">elif</span> <span class="nb">next</span><span class="p">:</span>
                 <span class="k">return</span> <span class="nb">next</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Calc Error - Operator not supported&#39;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">'Calc Error - Operator not supported'</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">inner</span>
     <span class="k">return</span> <span class="n">wrapper</span>
 </pre></div>
-
-
 <p>This is no longer the very generic <code>cor</code> decorator we started with but we sort of expected that. This is a decorated-calculator-specific-CoR - <code>calc_cor</code>. This decorator takes two arguments. The first one is the operator supported by the current function and the second one is the next function. It also expects the the <em>current</em> function (which is being decorated) to always takes the operator symbol as the first argument - the implicit contract. Since the operator is passed, the check of applicability can be done in the decorator itself. Also it does the error handling. This is the <em>decorated</em> part of the new CoR. Now let us see how this changes our calculator code.</p>
 <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">do</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">_add</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">)</span>
 
 
 <span class="nd">@only_natural_with_operator</span>
-<span class="nd">@calc_cor</span><span class="p">(</span><span class="n">my_operator</span><span class="o">=</span><span class="s1">&#39;^&#39;</span><span class="p">)</span>
+<span class="nd">@calc_cor</span><span class="p">(</span><span class="n">my_operator</span><span class="o">=</span><span class="s1">'^'</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">_power</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">arg1</span> <span class="o">**</span> <span class="n">arg2</span>
 
 
 <span class="nd">@only_natural_with_operator</span>
-<span class="nd">@calc_cor</span><span class="p">(</span><span class="n">my_operator</span><span class="o">=</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="nb">next</span><span class="o">=</span><span class="n">_power</span><span class="p">)</span>
+<span class="nd">@calc_cor</span><span class="p">(</span><span class="n">my_operator</span><span class="o">=</span><span class="s1">'/'</span><span class="p">,</span> <span class="nb">next</span><span class="o">=</span><span class="n">_power</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">_divide</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">arg1</span> <span class="o">/</span> <span class="n">arg2</span>
 
 
 <span class="nd">@only_natural_with_operator</span>
-<span class="nd">@calc_cor</span><span class="p">(</span><span class="n">my_operator</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="nb">next</span><span class="o">=</span><span class="n">_divide</span><span class="p">)</span>
+<span class="nd">@calc_cor</span><span class="p">(</span><span class="n">my_operator</span><span class="o">=</span><span class="s1">'*'</span><span class="p">,</span> <span class="nb">next</span><span class="o">=</span><span class="n">_divide</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">_multiply</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">arg1</span> <span class="o">*</span> <span class="n">arg2</span>
 
 
 <span class="nd">@only_natural_with_operator</span>
-<span class="nd">@calc_cor</span><span class="p">(</span><span class="n">my_operator</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="nb">next</span><span class="o">=</span><span class="n">_multiply</span><span class="p">)</span>
+<span class="nd">@calc_cor</span><span class="p">(</span><span class="n">my_operator</span><span class="o">=</span><span class="s1">'-'</span><span class="p">,</span> <span class="nb">next</span><span class="o">=</span><span class="n">_multiply</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">_subtract</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">arg1</span> <span class="o">-</span> <span class="n">arg2</span>
 
 
 <span class="nd">@only_natural_with_operator</span>
-<span class="nd">@calc_cor</span><span class="p">(</span><span class="n">my_operator</span><span class="o">=</span><span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="nb">next</span><span class="o">=</span><span class="n">_subtract</span><span class="p">)</span>
+<span class="nd">@calc_cor</span><span class="p">(</span><span class="n">my_operator</span><span class="o">=</span><span class="s1">'+'</span><span class="p">,</span> <span class="nb">next</span><span class="o">=</span><span class="n">_subtract</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">_add</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">arg1</span> <span class="o">+</span> <span class="n">arg2</span>
 </pre></div>
-
-
 <p>That looks way better than what we had before. The <code>do</code> method just calls the first link in the chain. Each chain link just does its processing. Everything else is just declared as decorator arguments and we are done. This combination of COR and Decorator pattern using decorators seems to have produced the best results. Wouldn't you agree?</p>
 <h4>Centralized CoR -3.0!?!</h4>
 <p>I showed this result to Sathia, a <a href="https://twitter.com/sathia27">friend</a> and colleague of mine (that was different production code but the concept is the same). He pointed out something. With this design somebody trying to add a new operator has to figure out where in the chain she needs to add it. Rather she has to figure out where the current chain ends and add the new one there. In the above example that is simple. In real world code this may or may not be easy. He wanted to see if there is a way for each operator function to just register itself and then the chain would execute them. Of course in all these cases we are talking with the underlying premise that the operator processing order does not matter.</p>
@@ -405,10 +387,8 @@
         <span class="k">if</span> <span class="n">predicate</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">operator</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
 
-    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Calc Error - Operator not supported&#39;</span><span class="p">)</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">'Calc Error - Operator not supported'</span><span class="p">)</span>
 </pre></div>
-
-
 <p>The first function <code>link_to_chain</code> is a decorator function which registers (or links) the <em>operator</em> and its <em>predicate</em> into a registry or chain <code>CHAIN</code>. The predicate is nothing but a function or lambda which provides applicability check. In this case the decorator is not really doing any decoration (no pre or post processing). It is more a way to <a href="https://realpython.com/primer-on-python-decorators/#registering-plugins">plug things</a> in.</p>
 <p>The <code>pull_chain</code> function executes the CoR. It runs through the chain of handlers, uses the registered predicate to find the right one, executes them and breaks out of the chain. If there is none found then it <em>raises</em>.</p>
 <p>With this idea now the calculator looks like this</p>
@@ -416,37 +396,35 @@
     <span class="k">return</span> <span class="n">pull_chain</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">)</span>
 
 
-<span class="nd">@link_to_chain</span><span class="p">(</span><span class="k">lambda</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;^&#39;</span><span class="p">)</span>
+<span class="nd">@link_to_chain</span><span class="p">(</span><span class="k">lambda</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="s1">'^'</span><span class="p">)</span>
 <span class="nd">@only_natural_with_operator</span>
 <span class="k">def</span> <span class="nf">_power</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">arg1</span> <span class="o">**</span> <span class="n">arg2</span>
 
 
-<span class="nd">@link_to_chain</span><span class="p">(</span><span class="k">lambda</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;*&#39;</span><span class="p">)</span>
+<span class="nd">@link_to_chain</span><span class="p">(</span><span class="k">lambda</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="s1">'*'</span><span class="p">)</span>
 <span class="nd">@only_natural_with_operator</span>
 <span class="k">def</span> <span class="nf">_multiply</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">arg1</span> <span class="o">*</span> <span class="n">arg2</span>
 
 
-<span class="nd">@link_to_chain</span><span class="p">(</span><span class="k">lambda</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<span class="nd">@link_to_chain</span><span class="p">(</span><span class="k">lambda</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="s1">'/'</span><span class="p">)</span>
 <span class="nd">@only_natural_with_operator</span>
 <span class="k">def</span> <span class="nf">_divide</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">arg1</span> <span class="o">/</span> <span class="n">arg2</span>
 
 
-<span class="nd">@link_to_chain</span><span class="p">(</span><span class="k">lambda</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;+&#39;</span><span class="p">)</span>
+<span class="nd">@link_to_chain</span><span class="p">(</span><span class="k">lambda</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="s1">'+'</span><span class="p">)</span>
 <span class="nd">@only_natural_with_operator</span>
 <span class="k">def</span> <span class="nf">_add</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">arg1</span> <span class="o">+</span> <span class="n">arg2</span>
 
 
-<span class="nd">@link_to_chain</span><span class="p">(</span><span class="k">lambda</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="nd">@link_to_chain</span><span class="p">(</span><span class="k">lambda</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="s1">'-'</span><span class="p">)</span>
 <span class="nd">@only_natural_with_operator</span>
 <span class="k">def</span> <span class="nf">_subtract</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">arg1</span> <span class="o">-</span> <span class="n">arg2</span>
 </pre></div>
-
-
 <p>Not bad at all! Actually looks pretty good to me. Individual functions link to the chain and the <code>do</code> method pulls the chain. The single responsibility of the functions shine through. Given that the chain is centralized, the individual functions don't even care about who is next. All they do is register into the chain along with their predicate. This is probably the cleanest solution we can get as of now. Time to stop and take a break!</p>
 <h3>Closing thoughts</h3>
 <p>Python is great language with support for useful functional features. Decorators are a sweet way of doing functional programming in python. The great thing I realized in this attempt is, when we try to do functional programming, your earlier learnings of GOF design patterns don't go waste. The ideas still make sense. All we need to do was to tweak them a bit to make them applicable in a functional context. And lo behold we have much better code than where we started ...the <code>if/elif/else</code> blob in the beginning... Let us keep learning and try to extract out the essence of the things we learn. Then we might actually be able use it in more than one places and in more than one ways.</p>
@@ -496,7 +474,7 @@
         </p>
     <p>
       <strong>About Srinivas Narayanan</strong><br/>
-        I am Srini(vas) & I live in Bangalore. I work as a software developer/architect. My experience has been on <B>Java/JVM</B> technologies but I am working currently on <I>Python</I>, <I>Ruby</I> and <I>Javascript</I>. Among other interests, currently trying to learn economics and getting my daughter also into it. Hopefully will get her to code too!
+        I am Srini(vas) & I live in Bangalore. I work as a software developer/architect. Currently a <B><a href="https://medium.com/simpl-under-the-hood">Simpl</a></B>fier. My experience has been on <B>Java/JVM</B> technologies but I am working currently on <B>Python</B>, <B>Ruby</B> and <I>Javascript</I>. Among other interests, currently trying to learn <I>economics</I> and getting my daughter also into it. Hopefully will get her to code too!
     </p>
 </div><!-- Sidebar -->
 <section class="well well-sm">
@@ -513,6 +491,44 @@
   </ul>
 </li>
 <!-- End Sidebar/Social -->
+
+<!-- Sidebar/Tag Cloud -->
+<li class="list-group-item">
+  <a href="https://www.nacnez.com/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+  <ul class="list-group " id="tags">
+    <li class="list-group-item tag-1">
+      <a href="https://www.nacnez.com/tag/architecture.html">architecture</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="https://www.nacnez.com/tag/microservices.html">microservices</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="https://www.nacnez.com/tag/podcasts.html">podcasts</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="https://www.nacnez.com/tag/technology.html">technology</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="https://www.nacnez.com/tag/python.html">python</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="https://www.nacnez.com/tag/resilience.html">resilience</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="https://www.nacnez.com/tag/play.html">play</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="https://www.nacnez.com/tag/design-pattens.html">design pattens</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="https://www.nacnez.com/tag/functional-programming.html">functional programming</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="https://www.nacnez.com/tag/decorators.html">decorators</a>
+    </li>
+  </ul>
+</li>
+<!-- End Sidebar/Tag Cloud -->
   </ul>
 </section>
 <!-- End Sidebar -->            </aside>

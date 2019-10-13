@@ -108,8 +108,6 @@
 <div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">a</span> <span class="o">+=</span> <span class="mi">1</span>
 </pre></div>
-
-
 <p>You must have spotted the augmented assignment operator! Yep, it is <code>+=</code> . Of course there are other similar ones like <code>-=</code> , <code>*=</code>  etc. The form <code>a += 1</code> is generally a shortcut of <code>a = a + 1</code> . In Python also it works the same way. At least that is what I thought.</p>
 <p>Let us try using the augmented assignment operator with list concatenation:</p>
 <div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
@@ -124,8 +122,6 @@
 <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
 <span class="o">&gt;&gt;&gt;</span>
 </pre></div>
-
-
 <p>That works as expected. So I should be able to reliably use the augmented assignment operator instead of the longer form. Let us try something else now.</p>
 <div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">B</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">]</span>
@@ -136,8 +132,6 @@
 <span class="o">&gt;&gt;&gt;</span> <span class="n">C</span>
 <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
 </pre></div>
-
-
 <p>This makes sense to me. The concatenation operator <code>+</code>  creates a new object and assigns to A. And 'C' keeps pointing to the older object. This is all good and working as expected. Let us change the above using the augmented assignment operator instead.</p>
 <div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">B</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">]</span>
@@ -148,29 +142,25 @@
 <span class="o">&gt;&gt;&gt;</span> <span class="n">C</span>
 <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
 </pre></div>
-
-
 <p>????####!!!!. What happened here? Something happened. How did it change? What did I change? The only change I made from the previous listing is that I used augmented assignment. But that changed how things work. Concatenation no longer creates a new object. It mutates the assigned object in place!!!!</p>
 <p>That is weird to me! I figured that it is Python trying to optimize since the list is a mutable object in Python. But somehow it feels unclean, because it seems to break a promise. To a long term Python programmer, this may not be weird at all. But to me, it felt out of character to how generally Python works - predictable and explicit. It might just be my own (mis)interpretation, but it feels weird.</p>
 <h3>Boolean Operations</h3>
 <p>I am referring to the <code>and</code>  and <code>or</code>  operators. In Python they mean exactly what they say. The <code>and</code>  refers to <code>&amp;&amp;</code> (conjunction) in other languages like Java and <code>or</code>  refers to <code>||</code> (disjunction) in other languages. In most other languages, using these operators leads to boolean results. By not in Python! These operators return one of the objects which is an outcome of the corresponding expression. One of the underlying principles behind this is Python's concept of truth values. Let me illustrate this with some examples:</p>
-<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="s2">&quot;&quot;</span> <span class="ow">and</span> <span class="mi">23</span>
-<span class="s1">&#39;&#39;</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="s2">&quot;add&quot;</span> <span class="ow">and</span> <span class="s2">&quot;subtract&quot;</span>
-<span class="s1">&#39;subtract&#39;</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="s2">&quot;&quot;</span> <span class="ow">or</span> <span class="mi">23</span>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="s2">""</span> <span class="ow">and</span> <span class="mi">23</span>
+<span class="s1">''</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="s2">"add"</span> <span class="ow">and</span> <span class="s2">"subtract"</span>
+<span class="s1">'subtract'</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="s2">""</span> <span class="ow">or</span> <span class="mi">23</span>
 <span class="mi">23</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="s2">&quot;add&quot;</span> <span class="ow">or</span> <span class="s2">&quot;subtract&quot;</span>
-<span class="s1">&#39;add&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="s2">"add"</span> <span class="ow">or</span> <span class="s2">"subtract"</span>
+<span class="s1">'add'</span>
 </pre></div>
-
-
 <p>In all these examples, you see that <code>and</code> and <code>or</code> are not returning any booleans. They work based on truth value concepts of Python and return the objects involved as per the truth value rules. Let us see its usage below:</p>
 <div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">calc_simple_interest</span><span class="p">(</span><span class="n">principal</span><span class="p">,</span> <span class="n">rate</span><span class="p">,</span> <span class="n">tenure</span><span class="p">):</span>
 <span class="o">...</span>     <span class="n">p</span> <span class="o">=</span> <span class="n">principal</span> <span class="k">if</span> <span class="n">principal</span> <span class="k">else</span> <span class="mi">0</span>
 <span class="o">...</span>     <span class="n">r</span> <span class="o">=</span> <span class="n">rate</span> <span class="k">if</span> <span class="n">rate</span> <span class="k">else</span> <span class="mi">10</span>
 <span class="o">...</span>     <span class="n">t</span> <span class="o">=</span> <span class="n">tenure</span> <span class="k">if</span> <span class="n">tenure</span> <span class="k">else</span> <span class="mi">5</span>
-<span class="o">...</span>     <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Returning interest for </span><span class="si">%d</span><span class="s2"> at </span><span class="si">%d</span><span class="s2"> percent for </span><span class="si">%d</span><span class="s2"> years&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">t</span><span class="p">))</span>
+<span class="o">...</span>     <span class="k">print</span><span class="p">(</span><span class="s2">"Returning interest for </span><span class="si">%d</span><span class="s2"> at </span><span class="si">%d</span><span class="s2"> percent for </span><span class="si">%d</span><span class="s2"> years"</span> <span class="o">%</span> <span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">t</span><span class="p">))</span>
 <span class="o">...</span>     <span class="k">return</span> <span class="n">p</span> <span class="o">*</span> <span class="p">(</span><span class="n">r</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span> <span class="o">*</span> <span class="n">t</span>
 <span class="o">...</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">calc_simple_interest</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
@@ -186,14 +176,12 @@
 <span class="n">Returning</span> <span class="n">interest</span> <span class="k">for</span> <span class="mi">1000</span> <span class="n">at</span> <span class="mi">8</span> <span class="n">percent</span> <span class="k">for</span> <span class="mi">5</span> <span class="n">years</span>
 <span class="mf">400.0</span>
 </pre></div>
-
-
 <p>The above example is a convoluted and contrived way to handle default values (since Python has function argument defaults). But to somebody reading through that code, it still makes reasonable sense. Now let me change it.</p>
 <div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">calc_simple_interest</span><span class="p">(</span><span class="n">principal</span><span class="p">,</span> <span class="n">rate</span><span class="p">,</span> <span class="n">tenure</span><span class="p">):</span>
 <span class="o">...</span>     <span class="n">p</span> <span class="o">=</span> <span class="n">principal</span> <span class="ow">or</span> <span class="mi">0</span>
 <span class="o">...</span>     <span class="n">r</span> <span class="o">=</span> <span class="n">rate</span> <span class="ow">or</span> <span class="mi">10</span>
 <span class="o">...</span>     <span class="n">t</span> <span class="o">=</span> <span class="n">tenure</span> <span class="ow">or</span> <span class="mi">5</span>
-<span class="o">...</span>     <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Returning interest for </span><span class="si">%d</span><span class="s2"> at </span><span class="si">%d</span><span class="s2"> percent for </span><span class="si">%d</span><span class="s2"> years&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">t</span><span class="p">))</span>
+<span class="o">...</span>     <span class="k">print</span><span class="p">(</span><span class="s2">"Returning interest for </span><span class="si">%d</span><span class="s2"> at </span><span class="si">%d</span><span class="s2"> percent for </span><span class="si">%d</span><span class="s2"> years"</span> <span class="o">%</span> <span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">t</span><span class="p">))</span>
 <span class="o">...</span>     <span class="k">return</span> <span class="n">p</span> <span class="o">*</span> <span class="p">(</span><span class="n">r</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span> <span class="o">*</span> <span class="n">t</span>
 <span class="o">...</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">calc_simple_interest</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
@@ -210,8 +198,6 @@
 <span class="mf">400.0</span>
 <span class="o">&gt;&gt;&gt;</span>
 </pre></div>
-
-
 <p>Now that is Python's <code>or</code> operator working its way to give us the exact same behavior as the <em>'ternary if'</em> used before.</p>
 <p>The way the logical operators work in Python felt weird to me. But I did not feel very unclean about it like the last one. It just was different.</p>
 <h3>In Closing</h3>
@@ -261,7 +247,7 @@
         </p>
     <p>
       <strong>About Srinivas Narayanan</strong><br/>
-        I am Srini(vas) & I live in Bangalore. I work as a software developer/architect. My experience has been on <B>Java/JVM</B> technologies but I am working currently on <I>Python</I>, <I>Ruby</I> and <I>Javascript</I>. Among other interests, currently trying to learn economics and getting my daughter also into it. Hopefully will get her to code too!
+        I am Srini(vas) & I live in Bangalore. I work as a software developer/architect. Currently a <B><a href="https://medium.com/simpl-under-the-hood">Simpl</a></B>fier. My experience has been on <B>Java/JVM</B> technologies but I am working currently on <B>Python</B>, <B>Ruby</B> and <I>Javascript</I>. Among other interests, currently trying to learn <I>economics</I> and getting my daughter also into it. Hopefully will get her to code too!
     </p>
 </div><!-- Sidebar -->
 <section class="well well-sm">
@@ -278,6 +264,44 @@
   </ul>
 </li>
 <!-- End Sidebar/Social -->
+
+<!-- Sidebar/Tag Cloud -->
+<li class="list-group-item">
+  <a href="https://www.nacnez.com/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+  <ul class="list-group " id="tags">
+    <li class="list-group-item tag-1">
+      <a href="https://www.nacnez.com/tag/architecture.html">architecture</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="https://www.nacnez.com/tag/microservices.html">microservices</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="https://www.nacnez.com/tag/podcasts.html">podcasts</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="https://www.nacnez.com/tag/technology.html">technology</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="https://www.nacnez.com/tag/python.html">python</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="https://www.nacnez.com/tag/resilience.html">resilience</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="https://www.nacnez.com/tag/play.html">play</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="https://www.nacnez.com/tag/design-pattens.html">design pattens</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="https://www.nacnez.com/tag/functional-programming.html">functional programming</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="https://www.nacnez.com/tag/decorators.html">decorators</a>
+    </li>
+  </ul>
+</li>
+<!-- End Sidebar/Tag Cloud -->
   </ul>
 </section>
 <!-- End Sidebar -->            </aside>

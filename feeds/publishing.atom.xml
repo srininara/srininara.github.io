@@ -3,7 +3,7 @@
 &lt;h4&gt;&lt;a href="https://pages.github.com"&gt;Github Pages&lt;/a&gt;&lt;/h4&gt;
 &lt;p&gt;For sometime, I have been hearing about &lt;a href="https://pages.github.com"&gt;Github pages&lt;/a&gt;, but never thought too much about it. Then I got chatting with &lt;a href="http://www.undefinednull.com"&gt;one of my friends&lt;/a&gt; and he talked about using Github pages with &lt;a href="http://octopress.org"&gt;Octopress&lt;/a&gt; as the content management system for his blog. This really piqued my interest and I decided that I would give it a go.&lt;/p&gt;
 &lt;p&gt;So I went through the documentation of &lt;a href="https://pages.github.com"&gt;&lt;em&gt;github pages&lt;/em&gt;&lt;/a&gt; and figured out how to create a user site and put a place holder page in it.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="My placeholder page" src="https://www.nacnez.com/images/placeholder_page.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="My placeholder page" src="https://www.nacnez.com/images/placeholder_page.png" style="width: 995px; height: auto; max-width: 100%;"/&gt;&lt;/p&gt;
 &lt;p&gt;It was not great but it was a start. I used &lt;a href="http://getbootstrap.com"&gt;bootstrap&lt;/a&gt; for the css and used some basic elements on the page.&lt;/p&gt;
 &lt;p&gt;I also made my domain point to it. It took a day (may be two) for the dns records to get updated and viola! my new site was up. I had finally broken the shackles and escaped from the tyranny of Google sites. My new journey had begun.&lt;/p&gt;
 &lt;h4&gt;&lt;a href="http://blog.getpelican.com"&gt;Pelican&lt;/a&gt;&lt;/h4&gt;
