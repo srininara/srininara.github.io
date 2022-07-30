@@ -11,6 +11,11 @@ span.bold-calm {
   font-weight: bold;
 }
 
+span.bold-green {
+  color: #468847;
+  font-weight: bold;
+}
+
 span.bold-angry {
   color: #a91834;
   font-weight: bold;
@@ -148,6 +153,7 @@ div.tip p.admonition-title:before {
     margin: 0 1em 1em 0;
     box-shadow: 4px 4px 4px 0px rgba(128, 128, 128, 0.5);
 }
+
 .figure.align-right {
     float: right;
     margin: 0 0 1em 1em;
@@ -178,4 +184,32 @@ div.tip p.admonition-title:before {
     font-style: italic;
 
     float: left;
+}
+
+hr.style-one {
+  border: 0;
+  height: 1px;
+  background: #333;
+  background-image: linear-gradient(to right, #ccc, #333, #ccc);
+}
+
+hr.style-two {
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.75), rgba(0, 0, 0, 0));
+}
+
+hr.style-three {
+  border: 0;
+  border-bottom: 1px dashed #868585;
+  background: #222222;
+}
+
+hr.style-five {
+  border: 0;
+  height: 0; /* Firefox... */
+  box-shadow: 0 0 10px 1px white;
+}
+hr.style-five:after {  /* Not really supposed to work, but does */
+  content: "\00a0";  /* Prevent margin collapse */
 }

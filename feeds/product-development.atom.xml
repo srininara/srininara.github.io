@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Starting Point - Product development</title><link href="https://www.nacnez.com/" rel="alternate"></link><link href="https://www.nacnez.com/feeds/product-development.atom.xml" rel="self"></link><id>https://www.nacnez.com/</id><updated>2022-04-30T00:00:00+05:30</updated><entry><title>Product:Scope::Engineering:Time</title><link href="https://www.nacnez.com/product-and-engg.html" rel="alternate"></link><published>2022-04-30T00:00:00+05:30</published><updated>2022-04-30T00:00:00+05:30</updated><author><name>Srinivas Narayanan</name></author><id>tag:www.nacnez.com,2022-04-30:/product-and-engg.html</id><summary type="html">&lt;p&gt;Product controls Scope, Engineering controls time.&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Product &amp;amp; Engineering - Peers&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Starting Point - Product development</title><link href="https://www.nacnez.com/" rel="alternate"></link><link href="https://www.nacnez.com/feeds/product-development.atom.xml" rel="self"></link><id>https://www.nacnez.com/</id><updated>2022-04-30T00:00:00+05:30</updated><entry><title>Product:Scope::Engineering:Time</title><link href="https://www.nacnez.com/product-and-engg.html" rel="alternate"></link><published>2022-04-30T00:00:00+05:30</published><updated>2022-04-30T00:00:00+05:30</updated><author><name>Srinivas Narayanan</name></author><id>tag:www.nacnez.com,2022-04-30:/product-and-engg.html</id><summary type="html">&lt;p&gt;Product controls Scope, Engineering controls time.&lt;/p&gt;</summary><content type="html">&lt;h2 id="product-engineering-peers"&gt;Product &amp;amp; Engineering - Peers&lt;/h2&gt;
 &lt;p&gt;Product &amp;amp; Engineering are two sides of the same coin. Together, they make things happen. One without the other is meaningless or can be considered as leading a half life. We can broadly compare them to the role played by Legislative &amp;amp; Executive in a nation's governance. One does not sit above the other, they sit to the side of each other. Equals. Peers.&lt;/p&gt;
 &lt;p&gt; 
 &lt;img alt="Picture - Product &amp;amp; Engineering need to balance" src="https://www.nacnez.com/images/blog-product-engg-balance.jpg" style="width: 4000px; height: auto; max-width: 100%;"/&gt;
  &lt;/p&gt;
-&lt;h2&gt;The 3 levers&lt;/h2&gt;
+&lt;h2 id="the-3-levers"&gt;The 3 levers&lt;/h2&gt;
 &lt;p&gt;That said, the perspectives they have and what they control are different. So let me start with the point that I want to make. &lt;/p&gt;
 &lt;p&gt;The common goal of all product development is to improve the product in question by working it and adding new features to it. This benefits the Customer. And a customer always wants quality. Both Product &amp;amp; Engineering teams aspire and work towards quality from different directions. Quality is the one thing we really can't compromise (at least in the ideal case). &lt;/p&gt;
 &lt;p&gt;Stepping back a bit, we need to understand that when we deliver a feature in software (or anything in software), there are only 3 levers we can control: &lt;/p&gt;
@@ -14,7 +14,7 @@
 &lt;li&gt;Time&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;Now given that quality as a lever is taken away from both the teams, how do we use the left over 2 to manage the delivery of software?&lt;/p&gt;
-&lt;h2&gt;Who controls what?&lt;/h2&gt;
+&lt;h2 id="who-controls-what"&gt;Who controls what?&lt;/h2&gt;
 &lt;p&gt;We are finally here.&lt;/p&gt;
 &lt;p&gt;In my opinion, Product team gets to control scope and the Engineering team gets to control time. The product team figures out what makes up the change (the feature) which is the scope and hence it belongs to them. They can add or remove things as they see fit. The engineering team figures out how to execute the change and it controls the time that is needed to make it happen. &lt;/p&gt;
 &lt;p&gt;Product figures out the &lt;em&gt;what&lt;/em&gt;, but Engineering figures out the &lt;em&gt;how&lt;/em&gt; and hence controls the &lt;em&gt;when&lt;/em&gt;. Product can change the scope to effect the time but they can't change time directly. Engineering can dictate the time but it cannot change the scope (directly) to suit its needs. &lt;/p&gt;

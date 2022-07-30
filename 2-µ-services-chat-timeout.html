@@ -12,7 +12,7 @@
 <link rel="canonical" href="https://www.nacnez.com/2-µ-services-chat-timeout.html">
 
         <meta name="author" content="Srinivas Narayanan" />
-        <meta name="keywords" content="architecture,resilience,microservices,play" />
+        <meta name="keywords" content="architecture,resilience,microservices,play,bounded contexts" />
         <meta name="description" content="A casual bar chat between µ services Jack and Jill about Jack&#39;s problem with Jill." />
 
         <meta property="og:site_name" content="Starting Point" />
@@ -26,12 +26,13 @@
             <meta property="article:tag" content="resilience" />
             <meta property="article:tag" content="microservices" />
             <meta property="article:tag" content="play" />
+            <meta property="article:tag" content="bounded contexts" />
             <meta property="article:author" content="Srinivas Narayanan" />
 
 
 
     <!-- Bootstrap -->
-        <link rel="stylesheet" href="https://www.nacnez.com/theme/css/bootstrap.sandstone.min.css" type="text/css"/>
+        <link rel="stylesheet" href="https://www.nacnez.com/theme/css/bootstrap.darkly.min.css" type="text/css"/>
     <link href="https://www.nacnez.com/theme/css/font-awesome.min.css" rel="stylesheet">
 
     <link href="https://www.nacnez.com/theme/css/pygments/monokai.css" rel="stylesheet">
@@ -102,10 +103,12 @@
 	<a href="https://www.nacnez.com/tag/microservices.html">microservices</a>
         /
 	<a href="https://www.nacnez.com/tag/play.html">play</a>
+        /
+	<a href="https://www.nacnez.com/tag/bounded-contexts.html">bounded contexts</a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <h4>Act 1</h4>
+                <h4 id="act-1">Act 1</h4>
 <p><span class="small-italicized-green"> ------------------------ The curtain opens ------------------------ </span></p>
 <p><span class="small-italicized-green"> - Jill µ service is already sitting in the bar. The setting is typical of all bars. It is crowded with a lot of µ services having a good time with drinks and conversations. It is a chatty place. Jack µ service enters, looking haggard. - </span></p>
 <p><img alt="A Services Bar" class="figure" src="https://www.nacnez.com/images/ms_conversation_timeout/a_service_bar.jpg" style="width: 2538px; height: auto; max-width: 100%;"/></p>
@@ -157,7 +160,7 @@
 <p><span class="bold-calm">Jill µ</span>: Sure. Doing this will be a great step towards your own stability and avoiding <strong>Cascading Failures</strong>.</p>
 <p><span class="bold-calm">Jack µ</span>: Okay! This is good. I am finishing this drink and going to talk to my Dev folks right after. I am going to be the stablest µ service in the world. Cheers!!</p>
 <p><span class="bold-calm">Jill µ</span>: Cheers!! Have fun buddy! Have a timeout!</p>
-<h2><span class="small-italicized-green"> Music grows louder and Jack and Jill go up to the dance floor. </span></h2>
+<h2 id="music-grows-louder-and-jack-and-jill-go-up-to-the-dance-floor"><span class="small-italicized-green"> Music grows louder and Jack and Jill go up to the dance floor. </span></h2>
 <p><span class="small-italicized-green"> ------------------------ The curtain falls ------------------------ </span></p>
             </div>
             <!-- /.entry-content -->
@@ -226,34 +229,34 @@
   <a href="https://www.nacnez.com/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
   <ul class="list-group " id="tags">
     <li class="list-group-item tag-1">
-      <a href="https://www.nacnez.com/tag/architecture.html">architecture</a>
-    </li>
-    <li class="list-group-item tag-1">
-      <a href="https://www.nacnez.com/tag/python.html">python</a>
-    </li>
-    <li class="list-group-item tag-1">
-      <a href="https://www.nacnez.com/tag/technology.html">technology</a>
-    </li>
-    <li class="list-group-item tag-1">
-      <a href="https://www.nacnez.com/tag/podcasts.html">podcasts</a>
-    </li>
-    <li class="list-group-item tag-1">
       <a href="https://www.nacnez.com/tag/microservices.html">microservices</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="https://www.nacnez.com/tag/architecture.html">architecture</a>
     </li>
     <li class="list-group-item tag-1">
       <a href="https://www.nacnez.com/tag/software-engineering.html">software-engineering</a>
     </li>
-    <li class="list-group-item tag-4">
-      <a href="https://www.nacnez.com/tag/product-development.html">product-development</a>
+    <li class="list-group-item tag-2">
+      <a href="https://www.nacnez.com/tag/podcasts.html">podcasts</a>
+    </li>
+    <li class="list-group-item tag-2">
+      <a href="https://www.nacnez.com/tag/bounded-contexts.html">bounded contexts</a>
+    </li>
+    <li class="list-group-item tag-2">
+      <a href="https://www.nacnez.com/tag/technology.html">technology</a>
+    </li>
+    <li class="list-group-item tag-2">
+      <a href="https://www.nacnez.com/tag/python.html">python</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="https://www.nacnez.com/tag/responsibility.html">responsibility</a>
+      <a href="https://www.nacnez.com/tag/ddd.html">DDD</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="https://www.nacnez.com/tag/people.html">people</a>
+      <a href="https://www.nacnez.com/tag/domain-driven-design.html">domain-driven-design</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="https://www.nacnez.com/tag/india.html">India</a>
+      <a href="https://www.nacnez.com/tag/size.html">size</a>
     </li>
   </ul>
 </li>

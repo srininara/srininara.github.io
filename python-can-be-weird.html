@@ -30,7 +30,7 @@
 
 
     <!-- Bootstrap -->
-        <link rel="stylesheet" href="https://www.nacnez.com/theme/css/bootstrap.sandstone.min.css" type="text/css"/>
+        <link rel="stylesheet" href="https://www.nacnez.com/theme/css/bootstrap.darkly.min.css" type="text/css"/>
     <link href="https://www.nacnez.com/theme/css/font-awesome.min.css" rel="stylesheet">
 
     <link href="https://www.nacnez.com/theme/css/pygments/monokai.css" rel="stylesheet">
@@ -104,7 +104,7 @@
                 </div>
                 <p>For a long time, I have been focused on <em>Java</em> as my primary development language (and platform) for both my work and any of my small personal projects. But I have been playing with <em>Python</em> for more than 6 months now. The reason I picked Python, is a discussion for another day. Currently I want to focus on couple of things which I found to be weird with Python.</p>
 <p>Before I get into that, let me make myself clear. My relationship with Python is very young and my perspective comes from a long time Java exposure and a limited exposure to other languages (read <em>Javascript</em> and very very little bit of <em>Haskell</em>). Also, within this short time with Python, I find the language as a breath of fresh air. I find it to be much more concise than what I am used to (think <em>Java</em>). It is really powerful. I am getting a taste of it's dynamic nature as well. These qualities of Python are well known to all and I will probably write about my impressions on specific features sometime down the line. But today I wanted to focus on couple of specific language features I found to be slightly weird in their working.</p>
-<h3>Augmented Assignment</h3>
+<h3 id="augmented-assignment">Augmented Assignment</h3>
 <p>The term might sound a bit fancy (that is what I felt when I read it), but the construct is pretty simple and probably known to all programmers (of almost any language).</p>
 <div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">a</span> <span class="o">+=</span> <span class="mi">1</span>
@@ -145,7 +145,7 @@
 </pre></div>
 <p>????####!!!!. What happened here? Something happened. How did it change? What did I change? The only change I made from the previous listing is that I used augmented assignment. But that changed how things work. Concatenation no longer creates a new object. It mutates the assigned object in place!!!!</p>
 <p>That is weird to me! I figured that it is Python trying to optimize since the list is a mutable object in Python. But somehow it feels unclean, because it seems to break a promise. To a long term Python programmer, this may not be weird at all. But to me, it felt out of character to how generally Python works - predictable and explicit. It might just be my own (mis)interpretation, but it feels weird.</p>
-<h3>Boolean Operations</h3>
+<h3 id="boolean-operations">Boolean Operations</h3>
 <p>I am referring to the <code>and</code>  and <code>or</code>  operators. In Python they mean exactly what they say. The <code>and</code>  refers to <code>&amp;&amp;</code> (conjunction) in other languages like Java and <code>or</code>  refers to <code>||</code> (disjunction) in other languages. In most other languages, using these operators leads to boolean results. By not in Python! These operators return one of the objects which is an outcome of the corresponding expression. One of the underlying principles behind this is Python's concept of truth values. Let me illustrate this with some examples:</p>
 <div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="s2">""</span> <span class="ow">and</span> <span class="mi">23</span>
 <span class="s1">''</span>
@@ -201,7 +201,7 @@
 </pre></div>
 <p>Now that is Python's <code>or</code> operator working its way to give us the exact same behavior as the <em>'ternary if'</em> used before.</p>
 <p>The way the logical operators work in Python felt weird to me. But I did not feel very unclean about it like the last one. It just was different.</p>
-<h3>In Closing</h3>
+<h3 id="in-closing">In Closing</h3>
 <p>These are two cases where I felt Python to be slightly weird in its ways. There might be others and may be I will find them down the line (and I will share them if I do).</p>
 <p>Though I have highlighted what I felt weird about Python, it does not mean that I don't like the language. On the contrary, I actually like it quite a lot. But just like anything/anybody who you like/love a lot has some small imperfections, so does Python. In fact, it is those imperfections which make them unique and differentiated to us. That is what this does to Python too.</p>
             </div>
@@ -271,34 +271,34 @@
   <a href="https://www.nacnez.com/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
   <ul class="list-group " id="tags">
     <li class="list-group-item tag-1">
-      <a href="https://www.nacnez.com/tag/architecture.html">architecture</a>
-    </li>
-    <li class="list-group-item tag-1">
-      <a href="https://www.nacnez.com/tag/python.html">python</a>
-    </li>
-    <li class="list-group-item tag-1">
-      <a href="https://www.nacnez.com/tag/technology.html">technology</a>
-    </li>
-    <li class="list-group-item tag-1">
-      <a href="https://www.nacnez.com/tag/podcasts.html">podcasts</a>
-    </li>
-    <li class="list-group-item tag-1">
       <a href="https://www.nacnez.com/tag/microservices.html">microservices</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="https://www.nacnez.com/tag/architecture.html">architecture</a>
     </li>
     <li class="list-group-item tag-1">
       <a href="https://www.nacnez.com/tag/software-engineering.html">software-engineering</a>
     </li>
-    <li class="list-group-item tag-4">
-      <a href="https://www.nacnez.com/tag/product-development.html">product-development</a>
+    <li class="list-group-item tag-2">
+      <a href="https://www.nacnez.com/tag/podcasts.html">podcasts</a>
+    </li>
+    <li class="list-group-item tag-2">
+      <a href="https://www.nacnez.com/tag/bounded-contexts.html">bounded contexts</a>
+    </li>
+    <li class="list-group-item tag-2">
+      <a href="https://www.nacnez.com/tag/technology.html">technology</a>
+    </li>
+    <li class="list-group-item tag-2">
+      <a href="https://www.nacnez.com/tag/python.html">python</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="https://www.nacnez.com/tag/responsibility.html">responsibility</a>
+      <a href="https://www.nacnez.com/tag/ddd.html">DDD</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="https://www.nacnez.com/tag/people.html">people</a>
+      <a href="https://www.nacnez.com/tag/domain-driven-design.html">domain-driven-design</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="https://www.nacnez.com/tag/india.html">India</a>
+      <a href="https://www.nacnez.com/tag/size.html">size</a>
     </li>
   </ul>
 </li>

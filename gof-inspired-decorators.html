@@ -31,7 +31,7 @@
 
 
     <!-- Bootstrap -->
-        <link rel="stylesheet" href="https://www.nacnez.com/theme/css/bootstrap.sandstone.min.css" type="text/css"/>
+        <link rel="stylesheet" href="https://www.nacnez.com/theme/css/bootstrap.darkly.min.css" type="text/css"/>
     <link href="https://www.nacnez.com/theme/css/font-awesome.min.css" rel="stylesheet">
 
     <link href="https://www.nacnez.com/theme/css/pygments/monokai.css" rel="stylesheet">
@@ -105,16 +105,16 @@
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <h3>The back story</h3>
+                <h2 id="the-back-story">The back story</h2>
 <p>As part of day to day development work, I have been trying to apply functional concepts wherever it makes sense. I have long been a OO developer and hence some of the effects stay with you. Especially design patterns. In my opinion, design patterns - primarily <a href="https://en.wikipedia.org/wiki/Design_Patterns">GOF patterns</a>, though referenced in the context of OO design and languages, have some good ideas that can apply elsewhere too. With languages that support functional features, I believe some of these patterns can be applied at a method/function level instead of carrying around the cruft of classes for just doing behavior (OO enthusiasts bear with me - Classes are great in the right places, but in others they are just there because a language forces you to use <a href="http://bit.ly/2mTnlZz">them</a>).</p>
 <p>I am also a fan of Python decorators. Decorators are a very cool and powerful feature of python. It is syntactic sugar to create higher order functions - a very important functional paradigm feature. We can combine multiple functions to get work done - composability. You can read a lot about decorators <a href="http://bit.ly/2lmNNKn">here</a> - a highly recommended read. I will referring to it throughout this post.</p>
 <p>So given my background and my current love (functional programming and decorators), I have had a chance to get inspired by GOF pattens and use decorators to create some clean code as part of my work. Here I am going to share that attempt with you.</p>
-<h3>Ok, let us get in</h3>
+<h2 id="ok-let-us-get-in">Ok, let us get in</h2>
 <p>When you look at the general use and applicability of python decorators they feel like a ready-made way to replace the traditional <a href="https://en.wikipedia.org/wiki/Decorator_pattern">Decorator pattern</a> - and for the code lovers you can look <a href="https://sourcemaking.com/design_patterns/decorator/python/1">here</a>. This thought is not knew and you will see it mentioned in <a href="https://yos.io/2013/07/05/decorator-pattern/">other places</a> too. Theoretically, this is not exactly correct (my opinion). A class level decorator is a structural pattern which allows me to decorate multiple behaviors of the object or component. But in practical terms, I have seen that this does not pan out and method level decorators (using python decorators) are more prevalent.</p>
 <p>As I played more with python decorators, I realized that there is one more of my favorite patterns that I could implement using decorators. That is the <a href="https://en.wikipedia.org/wiki/Chain-of-responsibility_pattern">Chain or Responsibility</a> pattern (CoR) - <a href="https://sourcemaking.com/design_patterns/chain_of_responsibility/python/1">code sample</a>. CoR is a behavioral pattern and behaviors are generally managed at method level. Hence decorators feel like a great fit for CoR.</p>
-<h3>Enough talk!</h3>
+<h2 id="enough-talk">Enough talk!</h2>
 <p>It is really difficult to explain my thinking with english words. So let us get down to writing some python words/code. I need an example to illustrate what this is.</p>
-<h4>The example</h4>
+<h3 id="the-example">The example</h3>
 <p>Here is a contrived example (of course) - a calculator. And since I love <a href="https://en.wikipedia.org/wiki/Test-driven_development">TDD</a> and <a href="https://docs.pytest.org/en/latest/">py.test</a> let us start with a test which can drive our code.</p>
 <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pytest</span>
 <span class="kn">import</span> <span class="nn">app.natural_number_calc</span> <span class="kn">as</span> <span class="nn">calc</span>
@@ -161,7 +161,7 @@
     <span class="k">assert</span> <span class="s1">'Calc Error - Natural numbers only supported'</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">ve</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
 </pre></div>
 <p>The test suite covers everything which I want to implement with my calculator. So we have a start.</p>
-<h4>That is some c***!</h4>
+<h3 id="that-is-some-c">That is some c***!</h3>
 <p>For satisfying the test suite, here is some plain vanilla code.</p>
 <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">do</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">operator</span> <span class="o">==</span> <span class="s1">'+'</span><span class="p">:</span>
@@ -203,7 +203,7 @@
     <span class="k">return</span> <span class="n">arg1</span> <span class="o">+</span> <span class="n">arg2</span>
 </pre></div>
 <p>Yeah, I know. This is pathetic code... so many <code>if</code>s and <code>elif</code>s and all. That is on purpose so that we can improve it with some <em>decorator and pattern</em> goodness. And it is code that works and hence our test passes! We are on <em>green</em> mode &amp; we can start refactoring.</p>
-<h4>Let us start decorating</h4>
+<h3 id="let-us-start-decorating">Let us start decorating</h3>
 <p>If you look at the above code we see an obvious copy paste case. The check for natural numbers is repeated on every operation code and we can easily <strong>decorate</strong> each operation code using the Decorator pattern or in our case python decorators. Let us first look at the decorator code.</p>
 <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">only_natural</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
@@ -249,7 +249,7 @@
     <span class="k">return</span> <span class="n">arg1</span> <span class="o">+</span> <span class="n">arg2</span>      <span class="c1">#5</span>
 </pre></div>
 <p>You can see that our calculator is surely improved (note the numbers) using the <em>decorator</em> pattern created with decorators. But the <code>do</code> method is still a eyesore. With just 5 operations, we have a huge <code>if/elif/else</code> clause and this will only grow further if we want to support more operations (I understand this is a toy example but you get the picture).</p>
-<h4>Enter CoR</h4>
+<h3 id="enter-cor">Enter CoR</h3>
 <p>So how can we improve this. Let us dig in. It is clear that for each operation, there is a corresponding method to handle it. The handling determination happens one after the other. It almost feels like a set of actions to do... a chain of things to do... a Chain of Responsibilities to complete (come on, that is not such a bad lead up!). Let us give it a shot once.</p>
 <p>Before we get to the code let us understand a bit. A classic COR goes roughly like this. A request which needs to be processed is given to the first link in the chain of processors. That processor either processes it if it can or passes it on to the next processor. A given processor knows what it can process and also knows who is the next one in the chain. That is pretty much the essence of it. The class based style is already referred earlier, so let us try to do this with decorators which can work at method level.</p>
 <p>First shot:</p>
@@ -272,7 +272,7 @@
     <span class="k">return</span> <span class="n">wrapper</span>
 </pre></div>
 <p>The above one is just a simple tweak, so let us move on. Let us look at the calculator to figure out how its usage gets manifested.</p>
-<h4>What the CoR?</h4>
+<h3 id="what-the-cor">What the CoR?</h3>
 <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">do</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
     <span class="n">value</span> <span class="o">=</span> <span class="n">_add</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">value</span><span class="p">:</span>
@@ -322,7 +322,7 @@
 <p>Hmm... Pretty underwhelming to put it nicely. But before we get into it, let me first explain what this is doing.</p>
 <p>The <code>do</code> method just calls the first method in the chain, the <code>_add</code> method. It expects that the processing gets completed to return a valid result. If it gets back an invalid result (<code>None</code>), then it understands that this calculation cannot be processed and throws an Error. The <code>do</code> method has improved for sure.</p>
 <p>The <code>_add</code> method declares the next operator/function to call as decorator parameter - (<code>@cor(next=_subtract)</code>). In the body it checks if it can process the request - <em>is it the right operator?</em> . If it is then great, else it returns <code>None</code> denoting that it is not interested. This happens in each operator/function till we reach <code>_power</code> which has no next. So the chain stops here. We can of course extend the chain from this point onwards and for that we don't have to touch the <code>do</code> or the <code>_add</code> (or other) methods. All the methods are separated. This <code>cor</code> decorator could be used to create a chain of any set of functions as long as they follow the basic contract of returning a truthy value if they did the processing or a falsy value if they want to pass it on (provided if they have defined a next).</p>
-<h4>CoR 2.0?</h4>
+<h3 id="cor-20">CoR 2.0?</h3>
 <p>Now back to that bad feeling we get on seeing the resultant code. In the process of introducing CoR to save the <code>do</code> method, the operation functions have lost their charm. They are crowded now and that is not what we want. And when we look closely, we see that each operation function does one common thing: it checks if the operation is what it can handle, before it actually does the real work. The error handling in the <code>do</code> function looks similar in some way too. All these seem to be common behavior which can be applied to these functions using a <em>wrapper/decorator</em> - is it not? Let us get our decorator pattern back now. The improved cor (2.0) decorator looks like this.</p>
 <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calc_cor</span><span class="p">(</span><span class="n">my_operator</span><span class="p">,</span> <span class="nb">next</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="n">current</span><span class="p">):</span>
@@ -371,7 +371,7 @@
     <span class="k">return</span> <span class="n">arg1</span> <span class="o">+</span> <span class="n">arg2</span>
 </pre></div>
 <p>That looks way better than what we had before. The <code>do</code> method just calls the first link in the chain. Each chain link just does its processing. Everything else is just declared as decorator arguments and we are done. This combination of COR and Decorator pattern using decorators seems to have produced the best results. Wouldn't you agree?</p>
-<h4>Centralized CoR -3.0!?!</h4>
+<h3 id="centralized-cor-30">Centralized CoR -3.0!?!</h3>
 <p>I showed this result to Sathia, a <a href="https://twitter.com/sathia27">friend</a> and colleague of mine (that was different production code but the concept is the same). He pointed out something. With this design somebody trying to add a new operator has to figure out where in the chain she needs to add it. Rather she has to figure out where the current chain ends and add the new one there. In the above example that is simple. In real world code this may or may not be easy. He wanted to see if there is a way for each operator function to just register itself and then the chain would execute them. Of course in all these cases we are talking with the underlying premise that the operator processing order does not matter.</p>
 <p>So some more thinking is needed. Can we make the CoR satisfy this? For this, we probably have to give away the decentralized nature of the current CoR. We need some kind of centralization. We need some way to register operation functions to a common place and then <em>pull the chain</em> to execute them all. Here goes another shot.</p>
 <div class="highlight"><pre><span></span><span class="n">CHAIN</span> <span class="o">=</span> <span class="p">[]</span>
@@ -427,7 +427,7 @@
     <span class="k">return</span> <span class="n">arg1</span> <span class="o">-</span> <span class="n">arg2</span>
 </pre></div>
 <p>Not bad at all! Actually looks pretty good to me. Individual functions link to the chain and the <code>do</code> method pulls the chain. The single responsibility of the functions shine through. Given that the chain is centralized, the individual functions don't even care about who is next. All they do is register into the chain along with their predicate. This is probably the cleanest solution we can get as of now. Time to stop and take a break!</p>
-<h3>Closing thoughts</h3>
+<h2 id="closing-thoughts">Closing thoughts</h2>
 <p>Python is great language with support for useful functional features. Decorators are a sweet way of doing functional programming in python. The great thing I realized in this attempt is, when we try to do functional programming, your earlier learnings of GOF design patterns don't go waste. The ideas still make sense. All we need to do was to tweak them a bit to make them applicable in a functional context. And lo behold we have much better code than where we started ...the <code>if/elif/else</code> blob in the beginning... Let us keep learning and try to extract out the essence of the things we learn. Then we might actually be able use it in more than one places and in more than one ways.</p>
 <p>Happy development to all in the festive season! Please chime in with your thoughts and comments. Your criticisms and improvements are most welcome since I  learn a lot from them. See you soon.</p>
 <p>p.s: You can get all this code <a href="http://bit.ly/2mMojaa">here</a></p>
@@ -498,34 +498,34 @@
   <a href="https://www.nacnez.com/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
   <ul class="list-group " id="tags">
     <li class="list-group-item tag-1">
-      <a href="https://www.nacnez.com/tag/architecture.html">architecture</a>
-    </li>
-    <li class="list-group-item tag-1">
-      <a href="https://www.nacnez.com/tag/python.html">python</a>
-    </li>
-    <li class="list-group-item tag-1">
-      <a href="https://www.nacnez.com/tag/technology.html">technology</a>
-    </li>
-    <li class="list-group-item tag-1">
-      <a href="https://www.nacnez.com/tag/podcasts.html">podcasts</a>
-    </li>
-    <li class="list-group-item tag-1">
       <a href="https://www.nacnez.com/tag/microservices.html">microservices</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="https://www.nacnez.com/tag/architecture.html">architecture</a>
     </li>
     <li class="list-group-item tag-1">
       <a href="https://www.nacnez.com/tag/software-engineering.html">software-engineering</a>
     </li>
-    <li class="list-group-item tag-4">
-      <a href="https://www.nacnez.com/tag/product-development.html">product-development</a>
+    <li class="list-group-item tag-2">
+      <a href="https://www.nacnez.com/tag/podcasts.html">podcasts</a>
+    </li>
+    <li class="list-group-item tag-2">
+      <a href="https://www.nacnez.com/tag/bounded-contexts.html">bounded contexts</a>
+    </li>
+    <li class="list-group-item tag-2">
+      <a href="https://www.nacnez.com/tag/technology.html">technology</a>
+    </li>
+    <li class="list-group-item tag-2">
+      <a href="https://www.nacnez.com/tag/python.html">python</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="https://www.nacnez.com/tag/responsibility.html">responsibility</a>
+      <a href="https://www.nacnez.com/tag/ddd.html">DDD</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="https://www.nacnez.com/tag/people.html">people</a>
+      <a href="https://www.nacnez.com/tag/domain-driven-design.html">domain-driven-design</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="https://www.nacnez.com/tag/india.html">India</a>
+      <a href="https://www.nacnez.com/tag/size.html">size</a>
     </li>
   </ul>
 </li>

@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>The Right size of a µService? - Starting Point</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="https://www.nacnez.com/micro-service-size.html">
+
+        <meta name="author" content="Srinivas Narayanan" />
+        <meta name="keywords" content="architecture,size,bounded contexts,microservices,software-engineering,DDD,domain-driven-design" />
+        <meta name="description" content="Ideas to figure out if your microservice is too big or too small." />
+
+        <meta property="og:site_name" content="Starting Point" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="The Right size of a µService?"/>
+        <meta property="og:url" content="https://www.nacnez.com/micro-service-size.html"/>
+        <meta property="og:description" content="Ideas to figure out if your microservice is too big or too small."/>
+        <meta property="article:published_time" content="2022-07-30" />
+            <meta property="article:section" content="Microservices" />
+            <meta property="article:tag" content="architecture" />
+            <meta property="article:tag" content="size" />
+            <meta property="article:tag" content="bounded contexts" />
+            <meta property="article:tag" content="microservices" />
+            <meta property="article:tag" content="software-engineering" />
+            <meta property="article:tag" content="DDD" />
+            <meta property="article:tag" content="domain-driven-design" />
+            <meta property="article:author" content="Srinivas Narayanan" />
+
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://www.nacnez.com/theme/css/bootstrap.darkly.min.css" type="text/css"/>
+    <link href="https://www.nacnez.com/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="https://www.nacnez.com/theme/css/pygments/monokai.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.nacnez.com/theme/css/style.css" type="text/css"/>
+        <link href="https://www.nacnez.com/css/custom.css" rel="stylesheet">
+
+        <link href="https://www.nacnez.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="Starting Point ATOM Feed"/>
+
+        <link href="https://www.nacnez.com/feeds/microservices.atom.xml" type="application/atom+xml" rel="alternate"
+              title="Starting Point Microservices ATOM Feed"/>
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="https://www.nacnez.com/" class="navbar-brand">
+<img class="img-responsive pull-left gap-right" src="https://www.nacnez.com/images/myLogo.png" width=""/> Starting Point            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+
+<!-- Banner -->
+<!-- End Banner -->
+
+<!-- Content Container -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="https://www.nacnez.com/micro-service-size.html"
+                       rel="bookmark"
+                       title="Permalink to The Right size of a µService?">
+                        The Right size of a µService?
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-success">28 min. read</span>
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2022-07-30T00:00:00+05:30"> Sat 30 July 2022</time>
+    </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="https://www.nacnez.com/tag/architecture.html">architecture</a>
+        /
+	<a href="https://www.nacnez.com/tag/size.html">size</a>
+        /
+	<a href="https://www.nacnez.com/tag/bounded-contexts.html">bounded contexts</a>
+        /
+	<a href="https://www.nacnez.com/tag/microservices.html">microservices</a>
+        /
+	<a href="https://www.nacnez.com/tag/software-engineering.html">software-engineering</a>
+        /
+	<a href="https://www.nacnez.com/tag/ddd.html">DDD</a>
+        /
+	<a href="https://www.nacnez.com/tag/domain-driven-design.html">domain-driven-design</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                
+<div class="admonition tip">
+<p class="admonition-title">TL;DR<p>There is no simple formula to figure out the right size of a microservice. There are different considerations, which affect size in different ways. This is illustrated in Fig 4 and 5. These figures provide you a bird's eye view on the considerations you have to keep in mind.</p>
+</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Why write this?<p>I had given a session to my engineering team at <a href="https://getsimpl.com/about-us/">Simpl</a> on this topic as part of our Bi-Weekly Tech talks. Decided to create a blog post out of it since I (and others) can refer to it later.  </p>
+</p>
+</div>
+<p>I have been working with microservices for some time. There is one question that keeps coming back when I work with them or discuss them with people. How small or big a microservice needs to be? The below blog post is my attempt to explain (&amp; understand) the concepts around this &amp; express my opinions/inferences along with it.</p>
+<p>At the outset, I need to establish some context about microservices. A very short journey into history &amp; a foray into the realm of definitions will help us understand the core topic better.</p>
+<hr/>
+<h2 id="before-microservices-there-was"><span class="bold-green">Before microservices there was...</span></h2>
+<p>Microservices have been around for some time now, but they are relatively nascent compared to these older fellows which I am going to describe now.</p>
+<p><em>At the beginning of time there was Client Server architecture!</em> Ok, that is not the truth, I have only gone back a few decades here. There were other architecture styles before, but they are not relevant to our conversation. Also, I am not explaining the entire computing history. The two relevant architecture styles are listed below:</p>
+<ol>
+<li>N-tier architecture (client/server?) </li>
+<li>Service Oriented architecture</li>
+</ol>
+<p>Let us dig a little deeper.</p>
+<h3 id="n-tier-architecture"><span class="bold-calm">N-tier Architecture</span></h3>
+<p>This architecture started off as the basic client server architecture which is two tiers. It was just a thick client which talked to a server typically for data storage. This obviously had some problems &amp; hence things evolved. Cutting things short, we get to the final (or at least prevalent) incarnation of this architecture: the 3 tier architecture. </p>
+<p>The tiers in a 3 tier architecture are:</p>
+<ol>
+<li>A thin client, like the browser</li>
+<li>A thick middle tier server component, which held all the business logic</li>
+<li>A data store, which held all the data.</li>
+</ol>
+<div class="figure" style="width: 361px; height: auto; max-width: 100%;">
+<img alt="N tier architecture" src="https://www.nacnez.com/images/ms_size/n_tier_architecture.png" style="width: 361px; height: auto; max-width: 100%;"/>
+<p class="caption">Fig 1: N(3) Tier Architecture</p>
+</div>
+<p>I am sure this is familiar to all of you as it is a valid architecture style even today. Monoliths were/are basically 3 tier applications in all their pomp &amp; glory (and extra cheese!). Actually, many of the microservices today follow the same architecture.</p>
+<p>The 3 tier architecture was embraced wholeheartedly by the software community. Advanced middle tier components called application servers got built with tonnes of features, to make it easy for developers to deploy 3 tier applications. This lead to creation of highly capable applications which can deliver a lot of useful functionality to multiple thin clients. </p>
+<p>Lo &amp; Behold! The <span class="bold-angry">Monolith</span> was born!</p>
+<h3 id="service-oriented-architecture"><span class="bold-calm">Service Oriented Architecture</span></h3>
+<p>I think this architecture's inception happened like this (purely a figment of my imagination) :</p>
+<ul>
+<li>Software people always want to reuse code &amp; leverage functionality in other existing applications without having to change them much (so use them remotely).</li>
+<li>Software people always like to componentize things.</li>
+<li>These folks come across XML &amp; figured out that this language can be used to represent any piece of data &amp; can be read by any tech (<span class="small-italicized-green">Side note: there was a platform war going on at that time in tech history just like now there is cloud war going on</span>).</li>
+<li>Then they put all these together &amp; SOA was born. </li>
+</ul>
+<p>I am just making this up and hence will be missing a lot of details (the individual aspects mentioned here are true but the story itself is fictional). </p>
+<p>One key thing I did not specify yet are the <span class="bold-calm">Service Design principles</span> which are very important (according to me). So let us focus on them:</p>
+<ul>
+<li>Standard contract &amp; Service abstraction</li>
+<li>Service autonomy (implementation &amp; location)</li>
+<li>Service discoverability</li>
+<li>Service statelessness</li>
+<li>Service composability</li>
+<li>Service reusability</li>
+</ul>
+<p>If you look at these principles, they all make sense even today. Don't they? I would even wager that they make even more sense today. Especially in the context of microservices.</p>
+<hr class="style-three"/>
+<div class="figure align-right" style="width: 510px; height: auto; max-width: 100%;">
+<img alt="Service Oriented Architecture" src="https://www.nacnez.com/images/ms_size/soa.jpeg" style="width: 510px; height: auto; max-width: 100%;"/>
+<p class="caption">Fig 2: Service Oriented Architecture</p>
+</div>
+<p>While the SOA principles were (/are) very strong, the real world implementations got ugly soon. Given the enterprise focus of SOA, things changed for the worse. Enterprises already had a lot of software applications lying around &amp; working in silos. Software Vendors took the SOA's promise of reusability &amp; interoperability &amp; created all sorts of products (read ESB <span class="emoji">😖</span>) which were supposed to help these enterprises to leverage these siloed apps. This did not go as planned since such a transformation requires a lot of fundamental change in how these enterprises work, which mere tools can't make happen. Enterprises made a lot of upfront investment on these vendor products expecting them to do some kind of magic. Of course, they did not get much out of it in the timeline they wanted it on. Not only that, these products became single point of failures (both from a dev &amp; runtime perspective).</p>
+<p>Apart from the above progression, there was one more issue. To solve a wide range of problems in these products &amp; in general within SOA, many standards were evolved (WS*). While this effort was admirable, it did not sit well with developers since it meant a lot of complex artifacts added, which felt like boilerplate since they did not add visible value.</p>
+<p>All said and done, I don't think SOA is dead. It has just morphed to what is called <span class="bold-green">microservices</span> now (my opinion).</p>
+<hr>
+<h2 id="why-microservices-instead-of-monolith"><span class="bold-green">Why microservices (instead of monolith)</span></h2>
+<p>I am not going to explain the microservice architecture since in today's world everyone has a pretty good idea about it. Instead, I am going to explore the reasons why microservices are preferred over monoliths. I get into this, because these attributes come into play when we eventually want to figure out the right size of a microservice. Remember when a microservice gets too big, it becomes a monolith. (<span class="small-italicized-green">When it gets too small then it becomes a nano/pico service</span>).</p>
+<p>There are some well known reasons for preferring microservices:</p>
+<h3 id="1-independent-deployment"><span class="bold-calm">1. Independent Deployment</span></h3>
+<p>Microservices are fantastic because they allow for independent deployment of specific changes. When a feature requires localized changes on a particular module (or code path), a microservice (which represents that module) will allow us to deploy that part alone (by deploying the microservice) instead of deploying the entire functionality (app) which is required in case of a monolith. This plays out in many business scenarios. </p>
+<p>This is a pretty crucial aspect of a microservice. If this is not realized then the point of having microservices is lost.</p>
+<h3 id="2-freedom-of-tech-choices"><span class="bold-calm">2. Freedom of tech choices</span></h3>
+<p>Given that microservices focus on a smaller cohesive footprint, they allow for more flexibility in tech choices. As they say, you can use the right tool for the job!</p>
+<h3 id="3-easy-replaceability"><span class="bold-calm">3. Easy replaceability</span></h3>
+<p>The ability to take a microservice out &amp; replace it with a new one, in a relatively short amount of time, is cool. This is of course not possible with a monolith. This is another key aspect of a microservice. It allows us product developers to make mistakes &amp; correct them.</p>
+<p>Having said that, in the real world, we forget this &amp; expect that everything works perfectly, the first time. Rewriting or replacing is always considered as an unacceptable thing. This defeats one of the great benefits of microservices - the ability to make a mistake &amp; learn from it. </p>
+<h3 id="4-shorter-time-to-market"><span class="bold-calm">4. Shorter time to market</span></h3>
+<p>Microservices allow for a focused approach. Whenever the business wants to create a new feature, the focus of the corresponding team &amp; its microservice(s) allows them to independently build out the feature &amp; release it. This means that we are faster to market.</p>
+<h3 id="5-independent-scaling"><span class="bold-calm">5. Independent scaling</span></h3>
+<p>In my experience, this is the favorite reason people think about &amp; give others, when wanting to create microservices. Scaling is a problem everybody wants to have &amp; solve. The microservice architecture's capability of making this happen is the most important reason for everyone to flock to this architecture style. </p>
+<p>Many times this solution leads people down the path of very small services (nano/pico services) which may not really solve the actual scalability problem. That said, no one can refute that microservice architecture when applied correctly can provide you ways to independently scale different parts of the bigger system, and that, is surely an advantage.</p>
+<hr class="style-three"/>
+<p>Now that the obvious ones are done, there are some advantages of microservices which are important but not appreciated as much:</p>
+<h3 id="1-organized-around-business-capabilities"><span class="bold-calm">1. Organized around Business Capabilities</span></h3>
+<p>The premise of a microservice is that it is organized around business capabilities. For example, you might create a microservice for payment management (<em>'Payments'</em>) &amp; another for order management (<em>'Orders'</em>). Each of these are distinct business capabilities and have different concerns, interactions &amp; business focus. This type of organization leads microservices to evolve independently based on what a particular business team (domain experts) wants to do in that specific area.</p>
+<p>For example, if we want to use a different payment gateway because it provides better success rates, it is the <em>'Payments'</em> microservice which will work &amp; evolve this feature. The <em>'Orders'</em> microservice does not bother about this.</p>
+<p>Also, by doing this there is easier alignment of engineering teams with business goals, and it helps the team to build domain specific knowledge, which can help in making quicker &amp; better decisions during development.</p>
+<p>Some earlier mentioned benefits like <em>shorter time to market</em>, <em>independent deployment</em> etc. work because of this aspect of microservices.</p>
+<h3 id="2-strong-interfaces"><span class="bold-calm">2. Strong Interfaces</span></h3>
+<p>Once you go down the path of microservices, we would have split a large app into smaller services. The interactions between them need to happen remotely through an interface. This interface has to be clearly defined, is generally coarse grained, and all interactions happen only through it. </p>
+<p>While we don't want too many such interactions happening for fulfilling a single user action, when these calls do happen, they happen in a well-defined &amp; clear manner. This reduces coupling between systems. Also, with proper microservices we reduce the creeping up of multiple concepts within a single service which removes cognitive overload. </p>
+<p>In summary, two different microservices or sub-systems always talk to each other through strong well-defined interfaces. This leads to a lot of good things in the life of developers of both systems.</p>
+<h3 id="3-decentralized-governance"><span class="bold-calm">3. Decentralized governance</span></h3>
+<p>We already covered the fact that there is freedom of choice in terms of technologies used when we use microservices. That is part of governance, but that is not all of it. With microservices, individual microservice teams can even choose different processes &amp; tools to run their development. </p>
+<p>While, there needs to be a set of guidelines &amp; some basic oversight to ensure that <em>the fruit does not fall too far away from the tree</em>, the need to govern everything through <span class="bold-angry"><strong>committee</strong></span> is reduced. This means that the dimensions of freedom for teams are much higher, leading to a more agile engineering organization.</p>
+<hr>
+<h2 id="what-does-micro-mean"><span class="bold-green">What does “micro” mean?</span></h2>
+<p>Now that we have covered why microservices, let us move back towards the question of this write-up. What does "micro" mean in a microservice? What is the right size of a microservice? </p>
+<p>The rest of the blog post is about answering that in detail. But to start off, I thought that I could briefly cover some points which people say about size of microservices. I am mentioning the extreme ones here because that has been my experience. More reasonable ideas on the right size of microservices will be presented down the line.</p>
+<h3 id="200-lines-of-code"><span class="bold-calm">200 Lines of Code <span class="emoji">😖</span></span></h3>
+<p>One of the metrics people use to talk about microservice size is lines of code. There are claims that microservices should be only 200 lines. There are others who say it can be 500 or 1000 lines. These absolute values don't make sense to me, because lines of code can vary a lot depending on the language platform &amp; the frameworks used in development. If I am building something using say, the RoR stack, a few lines of code would be enough to create a complete CRUD app. If I use direct Golang or C to build the same app the line of code required might be order of magnitude higher. So defining microservice size using lines of code count does not make sense to me.</p>
+<h3 id="a-person-per-service"><span class="bold-calm">A person per service <span class="emoji">😕</span></span></h3>
+<p>Another famous one I have heard about the right size of a microservice is that it can be managed by a single person for the most part. This again does not make a lot of sense to me. Microservices are supposed to represent business functions. Typically, in any normal business function (unless you are very small startup), the processes followed are involved &amp; are typically managed by multiple people. One developer catering to all these needs does not sound feasible to me.    </p>
+<h3 id="an-endpoint-per-service"><span class="bold-calm">An endpoint per service <span class="emoji">😩</span></span></h3>
+<p>The third kind of logic I have heard is to split things up in such a way that a service only serves one endpoint. The argument is that one can scale this independently &amp; hence it gives us a lot of advantage. </p>
+<p>For me this setup does not make sense most of the time. If there is a business domain that only serves one API endpoint, I would be very surprised. There are potential niche domains for which this might happen. Even so, one API endpoint is cutting it too small. In my experience, I have never seen such a domain &amp; I would love to hear from others if such domains exist. </p>
+<p>There are other ideas of splitting the same domain into multiple services (since the domain needs more than one endpoint). This is a valid idea but when I probe deeper with these advocates, I find them expressing the idea of sharing a data store (database) across all these services. Once that happens, I find it difficult to stay with them. Sharing a data store breaks one of the fundamental principles of microservices - autonomy. That is not acceptable to me. So I walk away from the idea.</p>
+<hr class="style-three"/>
+<p>None of these ideas on the right size of microservices are good according to me (making it explicit in case my subtle hints were not clear enough), though I have heard them often. Now I will start describing some better ideas to figure out the right size of a microservice. But before I do that (<span class="small-italicized-green"> not again! </span>), I want to take an important digression. This digression is about Domain driven design, and to me, it is one of the vital ideas in the area of microservices.</p>
+<hr>
+<h2 id="domain-driven-design"><span class="bold-green">Domain driven design</span></h2>
+<p>Domain driven design is a methodology or approach of developing software that focuses on a creating a software based model of the actual domain it is representing, thereby making the software model rich in concepts, processes &amp; rules of the domain. It all started with <a href="https://www.amazon.in/gp/product/B00794TAUG">a book created by Eric Evans</a>. </p>
+<div class="figure align-right" style="width: 539px; height: auto; max-width: 100%;">
+<img alt="Domain Driven Design by Eric Evans: Model Integrity Patterns" src="https://www.nacnez.com/images/ms_size/ddd.png" style="width: 539px; height: auto; max-width: 100%;"/>
+<p class="caption">Fig 3: Domain Driven Design by Eric Evans: Model Integrity Patterns</p>
+</div>
+<p>This book focused on a bunch of concepts which I will describe very briefly in this write-up. I am touching this area of study because I think it is relevant to our topic - microservice &amp; it's right size. A detailed description is just not possible in this post. Given that more than one books have been written on the topic, there are multiple articles, courses etc. (and also communities), I will ask you to dive into one (or more) of them. <span class="small-italicized-green"> May be down the line I will attempt to write something about it </span>. Let us move to the crash course on the subject:</p>
+<h3 id="bounded-contexts"><span class="bold-calm">Bounded Contexts</span></h3>
+<p>One of the key ideas in domain driven design (DDD) is to organize large systems according to their business domains. As soon as I say this, I am sure you would realize that this is fantastic in the context of microservices. Microservices are also organized around business capabilities, so this seems like a good match to start with.</p>
+<p>Within the context of a business area, we can define a domain model that makes sense within that context. Outside that context these domain concepts generally don't make clear sense. Or at least they make different sense in different contexts. This boundary is defined as a "Bounded Context" &amp; it is focused on a single domain. If you think a little, this idea is the foundation of microservices. A bounded context can be built using one or more microservices.</p>
+<h3 id="ubiquitous-language"><span class="bold-calm">Ubiquitous Language</span></h3>
+<p>The next important concept of DDD is called the Ubiquitous Language. As the name suggests this means a language that is used across teams and disciplines - ubiquitous. It is a common language for developers &amp; domain experts and is used to express business concepts &amp; rules of the domain. The same language is also used to express concepts/rules in the software domain model. Let me reiterate: The idea is that software uses the terminology present in the business domain &amp; makes it easy for business experts to understand the software as well.</p>
+<p><span class="small-italicized-green"> This one does not contribute too much to the microservice architecture discussion, but I mentioned here because it is of fundamental importance in DDD. </span></p>
+<h3 id="context-maps"><span class="bold-calm">Context maps</span></h3>
+<p>Any given business organization or super system is made up of multiple bounded contexts. There needs to be a way to describe how interactions between different bounded contexts happen. In the context of DDD, this interaction is expressed as Context maps. Context maps are very powerful to understand the business systems. It can also be very handy in figuring out our microservices. A context map could help us understand how our microservices work together, how they interact, their communication patterns, build and runtime dependencies etc.</p>
+<h3 id="aggregates"><span class="bold-calm">Aggregates</span></h3>
+<p>There is one more important idea in DDD that I need to discuss here: <span class="bold-green">"Aggregate"</span>. This is one of the tactical design patterns presented in the DDD book. An aggregate represents a composite domain object which can contain one or more "entities" or "value objects" <span class="small-italicized-green">(these are other tactical patterns in DDD which I won't cover)</span> &amp; ensures that invariants across these composed objects are kept intact. It also represents a consistency boundary. </p>
+<p>An example could be an <em>'Order'</em> &amp; its <em>'LineItems'</em>. One of the rules/invariants could be the value of the order should be equal to sum of the values of its line items. </p>
+<hr class="style-three"/>
+<p>These are some key ideas of DDD &amp; I have described them only as much as I require for explaining how they affect microservices &amp; their size. There is a lot more to dig deeper in this area &amp; I will provide references for the same, later in this write-up.</p>
+<hr>
+<h2 id="what-is-the-right-microservice-size-considerations"><span class="bold-green">What is the right microservice size? - Considerations</span></h2>
+<p>Now that we are done with all the ceremony, we can get into the main discussion. Though I call it ceremony, I think the previous sections are relevant &amp; will make this section much simpler to explain &amp; understand. The following are the ideas, which we have to keep in mind when we think about the size of a microservice - how micro is micro?</p>
+<h3 id="bounded-contexts_1"><span class="bold-calm">Bounded Contexts</span></h3>
+<p>I covered bounded contexts in the earlier section. As I mentioned there, a microservice can contain a maximum of one bounded context. A bounded context represents a business domain &amp; hence having a microservice representing more than one business domain defeats the main purpose of microservices - independence &amp; autonomy. If two bounded contexts are present within a single microservice and one business team focused on a particular context wants changes on their aspects, then that will need to be synced with the needs of the other team &amp; their bounded context. While keeping separate microservices does not guarantee that different business teams can work independently all the time, it takes it towards the best possible outcome.   </p>
+<h3 id="transaction-boundaries-consistency"><span class="bold-calm">Transaction Boundaries &amp; Consistency</span></h3>
+<p>While the bounded context acts as a force on the upper bound of size for a microservice, the need to ensure that transactions work properly &amp; data consistency is maintained in a given use case acts as a force on the lower bound.</p>
+<p>There was a time when Java EE world thought they solved distributed transactions with 2 phase commit &amp; everyone should be happy. But everyone was not happy. Scalability challenges &amp; complexity of the architecture did not help the cause. Also, the solution of platform specific and everyone did not want to move to the Java EE stack for their own valid reasons.</p>
+<p>As of today distributed transactions are not a solved problem at a tech level (there are patterns like Saga which help, but they add to the complexity). So if we want a user interaction to be properly managed as a transaction &amp; consistency to be maintained for the data, then that interaction must not span microservices. It should begin &amp; end within one microservice. If that does not happen then data consistency &amp; good user experience cannot be guaranteed. <em>Somehow in today's world these things have become important!</em> So this is a criterion to keep in mind to keep the service big enough.</p>
+<p>The concept of an aggregate plays well in this aspect. Since an aggregate is a consistency boundary, a microservice that contains at least one entire aggregate and no partial aggregates, can meet this criterion. If an aggregate is split up into two microservices then it can cause havoc. So aggregate size acts as a lower bound to the size of a microservice.</p>
+<h3 id="infrastructure-aspects"><span class="bold-calm">Infrastructure Aspects</span></h3>
+<p>A new microservice typically needs a set of infrastructure components. There are the basic compute, memory &amp; network needs and things generally don't stop there. Most of these microservices will need other elements like databases &amp; caches, and those need to be considered as part of infrastructure needs. And it does not stop here. </p>
+<p>        If you are going to develop &amp; run a microservice, then a team needs to work on it. It needs to build, test &amp; work with it. This means more infra needed for various environments like development, staging, testing etc. Keeping this in mind, creation of tiny microservices means adding to overhead in terms of infra needs. Our IT or Devops team may not be happy about it.</p>
+<p>Having said all this, the current cloud based world (with spot instances &amp; server-less infrastructure) makes this somewhat easier to manage or handle. But I still think it involves significant work &amp; hence cannot be treated as a non-reason when it comes to creating microservices &amp; their corresponding <em>small</em> size. </p>
+<p>So before you think that I will split up the service to make it smaller keep the infra requirement in mind. </p>
+<h3 id="iteration-speed-agility"><span class="bold-calm">Iteration speed &amp; Agility</span></h3>
+<p>One of the key purposes of creating microservices in an organization is to be able to improve its agility &amp; iteration speed. An ideal microservice, which focuses on a specific business function, allows that function to quickly add new changes that can be shipped to customers to get quick feedback. This ability to ship a product/feature &amp; get quick feedback is the hallmark of agility. This increased iteration speed is what allows organizations to keep ahead of their competition. The microservice architecture's key benefit is to allow this to happen.</p>
+<p>In terms of <em>'right-sizing'</em> the microservice, this is another guiding principle. If the microservice size still allows our team to deliver in an agile manner then we are safe with its size. If it is slowing things down then it is potentially time to look at making changes to the size of the service (either split them or combine them). This consideration is slightly indirect but if we track our agile processes properly then this can be an eye-opener to determine microservice size. </p>
+<p>Couple of opposing forces to note in this context:</p>
+<ul>
+<li>Typically, when services grow big, testing all the scenarios takes more time. So <span class="bold-green">testing time</span> increases with the size and hence it pushes services down to make them smaller.</li>
+<li>If a feature change needs developers to work with multiple services (within the same team) to release it, then overall <span class="bold-green">development time</span> increases. Developers have to work with all the services individually, test against their contracts (with &amp; without mocks/stubs), deploy in different environments in a co-ordinated manner and also ensure distributed communication scenarios are handled. So if we want <em>development time</em> to be reduced within a context of business team it might be better to have a bigger service that caters to that business function fully.</li>
+</ul>
+<h3 id="team-size-two-pizzas-team"><span class="bold-calm">Team Size (Two Pizzas team)</span></h3>
+<p>This criterion speaks a lot to engineering managers. Every manager wants to have a clear idea on the right (or good) team size for managing a microservice. The accepted intelligence out there is that a microservice team has as many members as can be fed by <strong>"two pizzas"</strong>. This means a size of around 6 - 10 members (few indicate that it can be up to 12 members). <span class="small-italicized-green">The original quote of "Pizza teams" came from Jeff Bezos.</span> </p>
+<p>From an agile team perspective, who constitutes a team? Is it the set of developers in the team? What about testers? What about engineering managers &amp; product owners? In the literature out there, this aspect is not clear. So I am going to wing this part, based on my experience &amp; intuition. </p>
+<p>For me, an agile team which takes care of a business focus area or a domain should be the set of people who interact &amp; communicate about it on a daily basis. Developers, testers &amp; product owner(s), all form part of that team. Developers are focused in creating the feature, the testers are focused on ensuring quality of the feature &amp; the product owner is the one responsible for envisioning the feature (<span class="small-italicized-green">I say 'responsible' to differentiate the fact that she does not have to be the only person doing the thinking, but she takes charge of the process</span>). These members focus on the service/business area day in &amp; day out. Another important criteria of an agile team is that they are self-managed. </p>
+<p>         If these two criteria are met, then those are the team members that manage the bounded context &amp; they can be as big as 6 - 10 members. Let me summarize the types of people in the team so far (they are just in alphabetical order):</p>
+<ol>
+<li>Developers</li>
+<li>Product Owner(s)</li>
+<li>Testers</li>
+</ol>
+<p>     You might ask: What about the engineering manager? If the engineering manager is solely focused on the team &amp; contributing to the teams work on a regular basis then they could also be considered in the 10 member gang. But if they have a broader focus &amp; are indirectly involved with the team and engage at higher level, then I would consider them to be sitting outside the 10 member team. Similar approach can be applied to members from Devops, Security etc.</p>
+<p>Back to the microservice size question. This agile team is focused on a bounded context/domain &amp; hence need to manage one or more services within itself. It is ok for the team to manage just one service which takes care of all of business functions. Or the team might decide that it needs to manage it using 2 - 4 services. Either way, things work. </p>
+<p>What does NOT work is this: For managing this domain specific service, if we start needing a team bigger than 10 people, then it may be time to split things up. This splitting up is not just about the service. If I need a team bigger than 10 people to manage a business subdomain then it means that the domain is more nuanced and/or broad. So the business needs to look at how to split the business function up to provide better focus on each of these parts. This part is purely my own opinion &amp; hence subject to disagreement. I am ok with that. </p>
+<p>The one thing we should not forget from this section is that team size acts as an upper limit determinant of microservice size and pushes it down.</p>
+<h3 id="modularization"><span class="bold-calm">Modularization</span></h3>
+<p>The concept of modularization is well known to a lot of us. We want modularization because it helps us to understand things easily &amp; reuse things. Also, modules operate with each other through contracts, and contracts are always a good thing. Creating small modules to make a big system is not a new idea. It has been around for long. </p>
+<p>Microservices take this to the next level where they are <span class="bold-calm">reusable deployed modules</span> which can be used by others through <em>an API contract</em>. When a developer is working within a module, she doesn't have to keep in mind a lot of other (external) concepts but can focus on only the ones that make sense in the given context. </p>
+<p>When people use normal modules (that are not microservices) in an application, they tend to be less disciplined in their usage of other module code. They just import it anywhere they want &amp; start using it as they like. This increases the coupling between modules. Microservices stop this kind of undisciplined usage since calling a microservice is a network call (<span class="small-italicized-green">there are associated costs</span>) &amp; it is generally done through a very strict contract (interactions typically happen using a specific pattern - client). This means that developers will adhere to module boundaries, and will be deliberate about module usage.</p>
+<p>From a size perspective, small modules are always good. So as per modularization, small microservices are also good. That said modules need to be cohesive things which expose a single responsibility (or a single set of them). That applies to microservices too &amp; if you can find the smallest cohesive set of functionality then we can make it into a microservice. In summary, modularization tend to make services smaller and push on upper bound to make things smaller.</p>
+<p>The story does not stop here. Let us continue to the next one. </p>
+<h3 id="refactorability"><span class="bold-calm">Refactorability</span></h3>
+<p>Refactorability as a term feels odd from an English perspective, but makes some sense from a perspective of developer. The way I understand it is that, it refers to the ability of a codebase to lend itself to easy refactoring. This ability depends on a lot of things. Generally good IDEs &amp; editors provide this ability &amp; they generally work better in the case of statically typed languages. </p>
+<p>As a developer, refactoring code within a project, to create some clean &amp; readable code has been one of the best joys I have experienced in my career. It rivals <span class="small-italicized-green">(even beats it sometimes)</span> the feeling of building something completely from scratch. </p>
+<p>Now back to the process of refactoring. Irrespective of the development platform, most of the IDEs allow you to refactor code within a project. They generally don't allow you to refactor code across multiple projects. This is even more true in case these multiple projects refer to different microservices which are integrating over a structured contract made up of say JSON and are potentially implemented in different platforms.   </p>
+<p>While from a modularity standpoint, creating smaller &amp; focused microservices is a good thing, when you do that, you tend to lose out the ability to easily refactor code. This again increases <span class="bold-green">development time</span> and hence something to consider. </p>
+<p>So don't make microservices so small that refactoring is very difficult. This generally won't be problem if the concerns of microservices are quite separate (then they won't have much commonality to refactor). To sum up, modularization is great, but it needs to be balanced with refactorability.</p>
+<h3 id="scaling"><span class="bold-calm">Scaling</span></h3>
+<p>One of the key reasons for creating microservices is the ability to independently scale small services as per their needs. Please take special note of the word <span class="bold-calm">independently</span> in that sentence. When we say we can 'independently' scale, it should not just be a theoretical possibility. Creating small microservices that can scale separately since they deal with independent business use cases, is a good idea. But if that is not the case then there is a problem. </p>
+<p>Let us take a counter example: </p>
+<p>Let us say that a single business use case (which might include multiple user interactions) is spanning three services. Also, let us say that these services primarily serve this business use case only. So when you want to scale to serve more users of the business case concurrently, you will have to scale all the three services involved in a corresponding &amp; related manner. This is really <em>NOT independence of scaling</em>. What this is, is a case where you don't have any true independent scaling, but you have incurred all the cost of having a distributed system. </p>
+<p>     We need to keep this in mind before we decide to split things up to small services. So, while the idea of independent scaling will push the size of the service to be smaller, please keep in mind that unless things are truly independent, the point is lost. </p>
+<p>I will even take an audacious step to say that we should not use scaling as a criterion for determining microservice size. I think the other concerns will anyway guide you in the direction of achieving maximum possible scale. Again this could be controversial to some, and I am open for discussion. </p>
+<h3 id="replaceability"><span class="bold-calm">Replaceability</span></h3>
+<p>We talked about this criterion as a key advantage of microservices. Microservices allow engineering teams to build a first cut or pilot version of some functionality, and then throw it away, and replace it with something better. This promise makes a lot of sense for startups &amp; even for established companies who are trying to innovate &amp; stay ahead.</p>
+<p>For doing this, the size of the microservice better be small so that we developers feel that it is ok to throw it out &amp; build something in its place. If we have a microservice which is large &amp; holds sizeable functionality then it becomes more difficult for developers to dismantle it. We won't feel comfortable to quickly replace it. It will take a lot more effort &amp; when that happens, teams tend to forgo the change. It becomes a case of not wanting to deal with the regression that the replacement might cause. So if we want replaceability, then the size of the microservice needs to be small. So this criterion pushes down from the upper limit. </p>
+<h3 id="distributed-communication"><span class="bold-calm">Distributed Communication</span></h3>
+<p>We just learned that small microservices are great for replaceability. But small does not mean good all the time. When we have small services, we invariably need to communicate between them to get work done. Distributed communication is a very hard thing to do. </p>
+<p>All of us have experienced working with distributed systems in one way or the other, and we all are aware of the <a href="https://en.wikipedia.org/wiki/Fallacies_of_distributed_computing">fallacies of distributed computing</a>. There are dozens of patterns that we can use to bring reliability in distributed communication (entire books have been written on them) but as the <a href="https://martinfowler.com/articles/distributed-objects-microservices.html">first law</a> states to never distribute objects if we can get away with it. </p>
+<p>So distributed communication comes with its own bag of issues (reliability &amp; latency related). If we can keep this communication to a minimum then our systems will be better off. So this drives the size of microservice to be bigger - pushes up from the lower limit.  </p>
+<hr/>
+<h2 id="size-of-a-microservice-summary"><span class="bold-green">Size of a microservice - Summary</span></h2>
+<p>We looked at a set of considerations above which act as forces governing the right size of a microservice. Whether you are trying to design/architect a new microservice or evolve one from a monolith, these considerations should be kept in mind. Obviously this is not very easy. There is no simple formula to arrive at an optimum size of a microservice. <span class="small-italicized-green"> (I know it feels like a letdown after reading this for such a long time. I am sorry! <span class="emoji">🥺</span>) </span></p>
+<p>That said, giving a set of descriptions on these ideas is not an effective way to keep track of this information. In this section I will try to depict the above considerations into a more usable form in terms of quick reference. The idea is that once you understand the above considerations, this section could act as an easy reference for you to do the actual work of architecture.</p>
+<p>The key considerations can be treated like forces. These forces act on the upper &amp; lower limit of the size of microservice:</p>
+<ul>
+<li>Forces which push the service to be bigger, push at the lower limit not allowing it to get smaller. </li>
+<li>Forces which push the service to be smaller, push at the upper limit to not allow them to get bigger.</li>
+</ul>
+<div class="figure" style="width: 1024px; height: auto; max-width: 100%;">
+<img alt="Microservice sizing factors graphic" src="https://www.nacnez.com/images/ms_size/microservice_size_factors_pic.gif" style="width: 1024px; height: auto; max-width: 100%;"/>
+<p class="caption">Fig 4: Key factors shown as forces affecting size of a microservice </p>
+<div class="legend">When the service tries to shrink down, the lower limit factors push to expand it. Similarly when the service tries to expand out, the upper limit factors push to shrink it down.</div>
+</div>
+<p>I am also tabulating these factors along with the limit they influence for easy reference.</p>
+<div class="figure" style="width: 1004px; height: auto; max-width: 100%;">
+<img alt="Microservice sizing factors table" src="https://www.nacnez.com/images/ms_size/microservice_size_factors_table.png" style="width: 1004px; height: auto; max-width: 100%;"/>
+<p class="caption">Fig 5: Key factors affecting size of a microservice tabulated </p>
+</div>
+<p>Hopefully these aids will help you remember/refer to the key ideas which these thousands of words are trying to convey.</p>
+<hr/>
+<h2 id="closing-remarks"><span class="bold-green">Closing remarks</span></h2>
+<p>We have come to end of this long write-up. At the end I want to leave you with some informal ideas. When deciding to build (or building) or carving out a microservice:</p>
+<ul>
+<li>Focus on Business capabilities &amp; Service boundaries</li>
+<li>Don’t look at Lines of Code (LoC)</li>
+<li>Get a clear understanding of the user interactions involved in your service and related services.</li>
+<li>Focus on enabling agility within &amp; around the engineering team.</li>
+<li>Use techniques like Bounded contexts, Aggregate design, Event storming etc.</li>
+<li>Err on the side of bigger - It is relatively easier to split it up later rather than the other way around. </li>
+<li>Be cognizant of nano/pico services. They are only useful if they are very simple utilities</li>
+<li>It is not an <em>"in vogue"</em> thing, and you don't have to join it if you don't want to! </li>
+</ul>
+<p>That's it. We have come to the end. I have listed down all my references, so that you can go read &amp; explore more. Please share your thoughts, comments, insights with me so that I can also learn from your experiences. Ciao! </p>
+<hr/>
+<h2 id="references-explorations"><span class="bold-green">References &amp; Explorations</span></h2>
+<ul>
+<li><a href="https://martinfowler.com/articles/microservices.html">Microservices article in Martin Fowler blog</a></li>
+<li><a href="https://www.amazon.in/Microservices-Flexible-Architecture-Eberhard-Wolff/dp/0134602412">Book: “Microservices: Flexible Software Architecture” by Eberhard Wolff</a></li>
+<li><a href="https://kylegenebrown.medium.com/whats-the-right-size-for-a-microservice-bf1740370d47#">Article: "What’s the right size for a Microservice?" by Kyle Brown</a></li>
+<li><a href="https://www.ben-morris.com/how-big-is-a-microservice/">Article: "How big is a microservice?" - by Ben Morris</a></li>
+<li><a href="https://www.amazon.in/gp/product/B00794TAUG">Book: “Domain-Driven Design: Tackling Complexity in the Heart of Software” by Eric Evans</a></li>
+<li><a href="https://www.amazon.in/Domain-Driven-Design-Distilled-Vaughn-Vernon/dp/9332585369">Book: "Domain-Driven Design Distilled" by Vaughn Vernon</a></li>
+<li><a href="http://ziobrando.blogspot.com/2013/11/introducing-event-storming.html">Article: Event Storming</a></li>
+</ul></hr></hr></hr></hr>
+            </div>
+            <!-- /.entry-content -->
+    <hr/>
+    <section class="comments" id="comments">
+        <h2>Comments</h2>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'nacnez'; // required: replace example with your forum shortname
+
+            var disqus_config = function () {
+                this.language = "en";
+
+                        this.page.identifier = '2022-07-30-micro-service-size';
+                        this.page.url = 'https://www.nacnez.com/micro-service-size.html';
+            };
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function () {
+                var dsq = document.createElement('script');
+                dsq.type = 'text/javascript';
+                dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by
+            Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+    </section>
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<div id="aboutme">
+        <p>
+            <img width="100%" class="img-thumbnail" src="https://www.nacnez.com/images/profile.jpeg"/>
+        </p>
+    <p>
+      <strong>About Srinivas Narayanan</strong><br/>
+        I am Srini & I live in Bangalore, India. I am a sapien, a husband, a father & a software engineer. Currently a <B><a href="https://medium.com/simpl-under-the-hood">Simpl</a></B>fier. This blog is a place for me to write about thoughts / events / people in my life.
+    </p>
+</div><!-- Sidebar -->
+<section class="well well-sm">
+  <ul class="list-group list-group-flush">
+
+<!-- Sidebar/Social -->
+<li class="list-group-item">
+  <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+  <ul class="list-group" id="social">
+    <li class="list-group-item"><a href="http://twitter.com/srininara"><i class="fa fa-twitter-square fa-lg"></i> twitter</a></li>
+    <li class="list-group-item"><a href="http://github.com/srininara"><i class="fa fa-github-square fa-lg"></i> github</a></li>
+    <li class="list-group-item"><a href="https://www.linkedin.com/in/srinivas-narayanan-1912b14/"><i class="fa fa-linkedin-square fa-lg"></i> linkedin</a></li>
+    <li class="list-group-item"><a href="https://www.nacnez.com/feeds/all.atom.xml"><i class="fa fa-rss-square fa-lg"></i> rss</a></li>
+  </ul>
+</li>
+<!-- End Sidebar/Social -->
+
+<!-- Sidebar/Tag Cloud -->
+<li class="list-group-item">
+  <a href="https://www.nacnez.com/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+  <ul class="list-group " id="tags">
+    <li class="list-group-item tag-1">
+      <a href="https://www.nacnez.com/tag/microservices.html">microservices</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="https://www.nacnez.com/tag/architecture.html">architecture</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="https://www.nacnez.com/tag/software-engineering.html">software-engineering</a>
+    </li>
+    <li class="list-group-item tag-2">
+      <a href="https://www.nacnez.com/tag/podcasts.html">podcasts</a>
+    </li>
+    <li class="list-group-item tag-2">
+      <a href="https://www.nacnez.com/tag/bounded-contexts.html">bounded contexts</a>
+    </li>
+    <li class="list-group-item tag-2">
+      <a href="https://www.nacnez.com/tag/technology.html">technology</a>
+    </li>
+    <li class="list-group-item tag-2">
+      <a href="https://www.nacnez.com/tag/python.html">python</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="https://www.nacnez.com/tag/ddd.html">DDD</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="https://www.nacnez.com/tag/domain-driven-design.html">domain-driven-design</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="https://www.nacnez.com/tag/size.html">size</a>
+    </li>
+  </ul>
+</li>
+<!-- End Sidebar/Tag Cloud -->
+  </ul>
+</section>
+<!-- End Sidebar -->            </aside>
+        </div>
+    </div>
+</div>
+<!-- End Content Container -->
+
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2022 Srinivas Narayanan
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="https://www.nacnez.com/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="https://www.nacnez.com/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="https://www.nacnez.com/theme/js/respond.min.js"></script>
+
+
+    <!-- Disqus -->
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'nacnez'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function () {
+            var s = document.createElement('script');
+            s.async = true;
+            s.type = 'text/javascript';
+            s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+    </script>
+    <!-- End Disqus Code -->
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-27638143-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+    <!-- End Google Analytics Code -->
+
+
+</body>
+</html>
