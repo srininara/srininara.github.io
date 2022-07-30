@@ -5,7 +5,7 @@
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="admonition note"&gt;
-&lt;p class="admonition-title"&gt;Why write this?&lt;p&gt;I had given a session to my engineering team at &lt;a href="https://getsimpl.com/about-us/"&gt;Simpl&lt;/a&gt; on this topic as part of our Bi-Weekly Tech talks. Decided to create a blog post out of it since I (and others) can refer to it later.  &lt;/p&gt;
+&lt;p class="admonition-title"&gt;Origin Note&lt;p&gt;I had given a session to my engineering team at &lt;a href="https://getsimpl.com/about-us/"&gt;Simpl&lt;/a&gt; on this topic as part of our Bi-Weekly Tech talks. Decided to create a blog post out of it since I (and others) can refer to it later.  &lt;/p&gt;
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;I have been working with microservices for some time. There is one question that keeps coming back when I work with them or discuss them with people. How small or big a microservice needs to be? The below blog post is my attempt to explain (&amp;amp; understand) the concepts around this &amp;amp; express my opinions/inferences along with it.&lt;/p&gt;
@@ -287,7 +287,7 @@
 &lt;p&gt;&lt;span class="bold-calm"&gt;Jill µ&lt;/span&gt;: Cheers!! Have fun buddy! Have a timeout!&lt;/p&gt;
 &lt;h2 id="music-grows-louder-and-jack-and-jill-go-up-to-the-dance-floor"&gt;&lt;span class="small-italicized-green"&gt; Music grows louder and Jack and Jill go up to the dance floor. &lt;/span&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;span class="small-italicized-green"&gt; ------------------------ The curtain falls ------------------------ &lt;/span&gt;&lt;/p&gt;</content><category term="architecture"></category><category term="resilience"></category><category term="microservices"></category><category term="play"></category><category term="bounded contexts"></category></entry><entry><title>Caching in Microservices</title><link href="https://www.nacnez.com/caching-in-microservices.html" rel="alternate"></link><published>2019-09-15T00:00:00+05:30</published><updated>2019-09-15T00:00:00+05:30</updated><author><name>Srinivas Narayanan</name></author><id>tag:www.nacnez.com,2019-09-15:/caching-in-microservices.html</id><summary type="html">&lt;p&gt;A overview of caching in the context of microservices&lt;/p&gt;</summary><content type="html">&lt;div class="admonition note"&gt;
-&lt;p class="admonition-title"&gt;TL/DR&lt;/p&gt;
+&lt;p class="admonition-title"&gt;TL;DR&lt;/p&gt;
 &lt;p&gt;Caching in microservices can help with improving performance and scaling if used wisely. Opt for service level domain aggregate caches and use mashed up object caching on client services only when you are trying to speed-up/avoid local processing on remote data. Don't use blackboard caches and remember cache cannot be a source of truth or a permanent data store.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="admonition note"&gt;

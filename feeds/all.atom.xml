@@ -5,7 +5,7 @@
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="admonition note"&gt;
-&lt;p class="admonition-title"&gt;Why write this?&lt;p&gt;I had given a session to my engineering team at &lt;a href="https://getsimpl.com/about-us/"&gt;Simpl&lt;/a&gt; on this topic as part of our Bi-Weekly Tech talks. Decided to create a blog post out of it since I (and others) can refer to it later.  &lt;/p&gt;
+&lt;p class="admonition-title"&gt;Origin Note&lt;p&gt;I had given a session to my engineering team at &lt;a href="https://getsimpl.com/about-us/"&gt;Simpl&lt;/a&gt; on this topic as part of our Bi-Weekly Tech talks. Decided to create a blog post out of it since I (and others) can refer to it later.  &lt;/p&gt;
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;I have been working with microservices for some time. There is one question that keeps coming back when I work with them or discuss them with people. How small or big a microservice needs to be? The below blog post is my attempt to explain (&amp;amp; understand) the concepts around this &amp;amp; express my opinions/inferences along with it.&lt;/p&gt;
@@ -698,7 +698,7 @@
 &lt;p&gt;Python is great language with support for useful functional features. Decorators are a sweet way of doing functional programming in python. The great thing I realized in this attempt is, when we try to do functional programming, your earlier learnings of GOF design patterns don't go waste. The ideas still make sense. All we need to do was to tweak them a bit to make them applicable in a functional context. And lo behold we have much better code than where we started ...the &lt;code&gt;if/elif/else&lt;/code&gt; blob in the beginning... Let us keep learning and try to extract out the essence of the things we learn. Then we might actually be able use it in more than one places and in more than one ways.&lt;/p&gt;
 &lt;p&gt;Happy development to all in the festive season! Please chime in with your thoughts and comments. Your criticisms and improvements are most welcome since I  learn a lot from them. See you soon.&lt;/p&gt;
 &lt;p&gt;p.s: You can get all this code &lt;a href="http://bit.ly/2mMojaa"&gt;here&lt;/a&gt;&lt;/p&gt;</content><category term="design pattens"></category><category term="functional programming"></category><category term="decorators"></category><category term="python"></category></entry><entry><title>Caching in Microservices</title><link href="https://www.nacnez.com/caching-in-microservices.html" rel="alternate"></link><published>2019-09-15T00:00:00+05:30</published><updated>2019-09-15T00:00:00+05:30</updated><author><name>Srinivas Narayanan</name></author><id>tag:www.nacnez.com,2019-09-15:/caching-in-microservices.html</id><summary type="html">&lt;p&gt;A overview of caching in the context of microservices&lt;/p&gt;</summary><content type="html">&lt;div class="admonition note"&gt;
-&lt;p class="admonition-title"&gt;TL/DR&lt;/p&gt;
+&lt;p class="admonition-title"&gt;TL;DR&lt;/p&gt;
 &lt;p&gt;Caching in microservices can help with improving performance and scaling if used wisely. Opt for service level domain aggregate caches and use mashed up object caching on client services only when you are trying to speed-up/avoid local processing on remote data. Don't use blackboard caches and remember cache cannot be a source of truth or a permanent data store.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="admonition note"&gt;
