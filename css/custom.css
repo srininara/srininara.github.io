@@ -16,6 +16,12 @@ span.bold-green {
   font-weight: bold;
 }
 
+span.italic-green {
+  color: #468847;
+  font-style: italic;
+}
+
+
 span.bold-angry {
   color: #a91834;
   font-weight: bold;
@@ -36,7 +42,7 @@ div #aboutme {
   font-family: "Source Sans Pro","Helvetica Neue","Open Sans",Helvetica,Arial,sans-serif;
   font-size: 16px;
   line-height: 1.628571;
-  background-color: rgb(214, 236, 214);
+  background-color: rgb(24, 26, 24);
   padding: 10px;
   box-sizing: border-box;
 }
