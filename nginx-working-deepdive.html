@@ -9,7 +9,7 @@
 
 
 
-<link rel="canonical" href="https://www.nacnez.com/nginx-working-deepdive.html">
+<link rel="canonical" href="http://localhost:9999/nginx-working-deepdive.html">
 
         <meta name="author" content="Srinivas Narayanan" />
         <meta name="keywords" content="web server,reverse proxy,load balancer,system calls,processes,nginx,architecture" />
@@ -18,7 +18,7 @@
         <meta property="og:site_name" content="Starting Point" />
         <meta property="og:type" content="article"/>
         <meta property="og:title" content="Nginx Serves Us like this - Maybe"/>
-        <meta property="og:url" content="https://www.nacnez.com/nginx-working-deepdive.html"/>
+        <meta property="og:url" content="http://localhost:9999/nginx-working-deepdive.html"/>
         <meta property="og:description" content="A slightly deep dive on how nginx starts up and serves client requests."/>
         <meta property="article:published_time" content="2018-03-31" />
             <meta property="article:section" content="Server Technology" />
@@ -34,35 +34,15 @@
 
 
     <!-- Bootstrap -->
-        <link rel="stylesheet" href="https://www.nacnez.com/theme/css/bootstrap.cyborg.min.css" type="text/css"/>
-    <link href="https://www.nacnez.com/theme/css/font-awesome.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="http://localhost:9999/theme/css/bootstrap.cyborg.min.css" type="text/css"/>
+    <link href="http://localhost:9999/theme/css/font-awesome.min.css" rel="stylesheet">
 
-    <link href="https://www.nacnez.com/theme/css/pygments/monokai.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://www.nacnez.com/theme/css/style.css" type="text/css"/>
-        <link href="https://www.nacnez.com/css/custom.css" rel="stylesheet">
+    <link href="http://localhost:9999/theme/css/pygments/monokai.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://localhost:9999/theme/css/style.css" type="text/css"/>
+        <link href="http://localhost:9999/css/custom.css" rel="stylesheet">
 
-        <link href="https://www.nacnez.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
-              title="Starting Point ATOM Feed"/>
 
-        <link href="https://www.nacnez.com/feeds/server-technology.atom.xml" type="application/atom+xml" rel="alternate"
-              title="Starting Point Server Technology ATOM Feed"/>
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-79BTGL1LJS"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
 
-        gtag('config', G-79BTGL1LJS);
-    </script>
-    <!-- End Google Analytics Code -->
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-NBHLX3B');</script>
-    <!-- End Google Tag Manager -->
 
 </head>
 <body>
@@ -70,8 +50,8 @@
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
-            <a href="https://www.nacnez.com/" class="navbar-brand">
-<img class="img-responsive pull-left gap-right" src="https://www.nacnez.com/images/myLogo.png" width=""/> Starting Point            </a>
+            <a href="http://localhost:9999/" class="navbar-brand">
+<img class="img-responsive pull-left gap-right" src="http://localhost:9999/images/myLogo.png" width=""/> Starting Point            </a>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
@@ -94,7 +74,7 @@
         <article>
             <header class="page-header">
                 <h1>
-                    <a href="https://www.nacnez.com/nginx-working-deepdive.html"
+                    <a href="http://localhost:9999/nginx-working-deepdive.html"
                        rel="bookmark"
                        title="Permalink to Nginx Serves Us like this - Maybe">
                         Nginx Serves Us like this - Maybe
@@ -116,19 +96,19 @@
 
 
 <span class="label label-default">Tags</span>
-	<a href="https://www.nacnez.com/tag/web-server.html">web server</a>
+	<a href="http://localhost:9999/tag/web-server.html">web server</a>
         /
-	<a href="https://www.nacnez.com/tag/reverse-proxy.html">reverse proxy</a>
+	<a href="http://localhost:9999/tag/reverse-proxy.html">reverse proxy</a>
         /
-	<a href="https://www.nacnez.com/tag/load-balancer.html">load balancer</a>
+	<a href="http://localhost:9999/tag/load-balancer.html">load balancer</a>
         /
-	<a href="https://www.nacnez.com/tag/system-calls.html">system calls</a>
+	<a href="http://localhost:9999/tag/system-calls.html">system calls</a>
         /
-	<a href="https://www.nacnez.com/tag/processes.html">processes</a>
+	<a href="http://localhost:9999/tag/processes.html">processes</a>
         /
-	<a href="https://www.nacnez.com/tag/nginx.html">nginx</a>
+	<a href="http://localhost:9999/tag/nginx.html">nginx</a>
         /
-	<a href="https://www.nacnez.com/tag/architecture.html">architecture</a>
+	<a href="http://localhost:9999/tag/architecture.html">architecture</a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
@@ -140,7 +120,7 @@
 </ul>
 <p>Now that is out of the way let us get started.</p>
 <h2 id="background-process-roles">Background - Process Roles</h2>
-<p><img alt="The Nginx Master and Workers" src="https://www.nacnez.com/images/nginx-art01.jpg" style="width: 511px; height: auto; max-width: 100%;"/></p>
+<p><img alt="The Nginx Master and Workers" src="http://localhost:9999/images/nginx-art01.jpg"></p>
 <p>Okay. Before we get started let us get some background on the nginx processes.</p>
 <p>Nginx follows an event driven architecture and has different types of processes doing specific kinds of tasks. Let me first describe these process type and their roles. Once that is out of the way, I can get to more details on how the nginx startup and processes requests.</p>
 <p>The four different kinds of processes are:</p>
@@ -159,42 +139,48 @@ This process manages cache expiration and invalidation. It stays in memory.</li>
 <h3 id="see-it-yourselves">See it yourselves</h3>
 <p>If you want to see these processes in action. Do the following (assuming you have done the installation):
 Open a terminal/shell and execute</p>
-<div class="highlight"><pre><span></span>watch -n <span class="m">1</span> <span class="s2">"sudo ps -eFww --forest | grep 'nginx\|PID'"</span>
+<div class="highlight"><pre><span></span>watch -n <span class="m">1</span> <span class="s2">&quot;sudo ps -eFww --forest | grep &#39;nginx\|PID&#39;&quot;</span>
 </pre></div>
+
+
 <p>In another terminal execute</p>
 <div class="highlight"><pre><span></span>sudo nginx
 </pre></div>
+
+
 <p>You can drop the <code>sudo</code> if your nginx does not have reserved ports configured for listening.</p>
 <p>Once you start nginx, you should see the processes in the first terminal window. Keep watching it for sometime (you might notice something).</p>
 <h2 id="nginx-startup">Nginx startup</h2>
 <p>You start nginx by calling <code>nginx</code>. Let us look at what each of the main processes do at this point</p>
 <h3 id="the-master-a-true-leaderdelegator">The Master (A true leader/delegator)</h3>
-<p><img alt="Master startup flow" src="https://www.nacnez.com/images/nginx-MasterStartupFlow.jpg" style="width: 803px; height: auto; max-width: 100%;"/></p>
+<p><img alt="Master startup flow" src="http://localhost:9999/images/nginx-MasterStartupFlow.jpg"></p>
 <p>The first process to start is the master process. It first reads through, validates and compiles the configuration. Once the configuration is validated and compiled, it looks at the configuration to figure out what all listen sockets have to be created for serving client requests.</p>
 <p>The server connection establishment process starts at this point for the required listen sockets. As a server (role played in client server communication), the master first tries to create sockets and bind to the ports defined in the configuration. One thing to note is that if the defined ports belong to the reserved set, the nginx needs to be started as a privileged user (root/sudo). Once the socket is created and binded it will also set the socket to listen mode with a default backlog of 511 (read more about listen backlog from references).</p>
 <p>The next step the nginx master does is to start the worker processes. This is typically done by forking (<code>clone</code>) them out as a child process (this is my assumption/understanding). This also means that listen sockets descriptors are copied over to the child processes and are hence accessible to the workers. The compiled configuration is also passed onto the them. The number of worker processes to be created is based on configuration. The typical default is <code>auto</code> which leads to the creation as many workers as there are cores in the machine (or VM).</p>
-<p><img alt="Syscalls made by master at startup" src="https://www.nacnez.com/images/nginx-MasterAtStart.png" style="width: 912px; height: auto; max-width: 100%;"/></p>
+<p><img alt="Syscalls made by master at startup" src="http://localhost:9999/images/nginx-MasterAtStart.png"></p>
 <h3 id="the-worker-i-am-awake">The Worker (I am awake!)</h3>
-<p><img alt="Worker startup" src="https://www.nacnez.com/images/nginx-WorkerAtStartPic.jpg" style="width: 805px; height: auto; max-width: 100%;"/></p>
+<p><img alt="Worker startup" src="http://localhost:9999/images/nginx-WorkerAtStartPic.jpg"></p>
 <p>Each worker creates a epoll data structure with the kernel (using <code>epoll_create</code>). It then registers the listen socket descriptor to it using <code>epoll_ctl</code> and asks the kernel to let it know if there are any events (read or write) on the listen socket(s). All the different workers have access to the listen socket and they concurrently share the requests coming to them. Eventually if the worker has no other work to do it would block using <code>epoll_wait</code>.</p>
 <p>Each of the workers also create non-blocking connection sockets to upstream servers so that they can act as proxies to them. This also is event based and hence based on epoll.</p>
-<p><img alt="Syscalls made by worker at startup" src="https://www.nacnez.com/images/nginx-WorkerAtStart.png" style="width: 912px; height: auto; max-width: 100%;"/></p>
+<p><img alt="Syscalls made by worker at startup" src="http://localhost:9999/images/nginx-WorkerAtStart.png"></p>
 <h2 id="nginx-processing-requests">Nginx processing requests</h2>
 <p>Now that nginx has started, it is time to process requests.</p>
 <h3 id="the-master-time-to-sleep">The Master (time to sleep)</h3>
 <p>At this point the master pretty much does nothing. It does not have any work to do during the time of processing requests.</p>
-<p><img alt="Syscalls made by master on getting load/user requests" src="https://www.nacnez.com/images/nginx-MasterOnLoad.png" style="width: 912px; height: auto; max-width: 100%;"/></p>
+<p><img alt="Syscalls made by master on getting load/user requests" src="http://localhost:9999/images/nginx-MasterOnLoad.png"></p>
 <h3 id="the-worker-a-superstar">The Worker (A superstar)</h3>
-<p><img alt="Worker at work" src="https://www.nacnez.com/images/nginx-WorkerAtWork.jpg" style="width: 816px; height: auto; max-width: 100%;"/></p>
+<p><img alt="Worker at work" src="http://localhost:9999/images/nginx-WorkerAtWork.jpg"></p>
 <p>When a new client connection request comes to the listen socket, the linux kernel will pick the latest added worker process among epoll those waiting in the listen queue and send an event.</p>
 <p>This worker process would then do a non-blocking <code>accept</code> call which will create a connection socket between the client and server. This connection is now going to be served by this worker process. The worker does the same thing with the connection socket as it did with the listen socket. It registers interest on IO events happening on that socket through epoll_ctl and waits for events with <code>epoll_wait</code> if it has no other work to do.</p>
 <p>Over a period of time you will find that a worker process ends up serving many connections at the same time. Each of these connections are registered within their (worker's) own epoll data structure. At the end of epoll_wait, the worker might get multiple sockets which are ready for processing. It then processes each of those requests. Processing of incoming request might include acting as a reverse proxy (write out the request to upstream server), do ssl termination etc. On the other hand processing of the response could be compressing the response read from the up stream server (again this is event based using epoll), and write out the response to the client again in non-blocking fashion. The worker is the one which exhibits all the wonderful features of nginx.</p>
 <p>The worker processes do not use epoll based asynchronous IO for files. For files it does blocking IO in most cases. If AIO is well supported in a platform it might use the same. But generally file IO slowness can lead to blocking behavior in the worker (and hence nginx).</p>
-<p><img alt="Syscalls made by worker on load" src="https://www.nacnez.com/images/nginx-WorkerOnLoad.png" style="width: 912px; height: auto; max-width: 100%;"/></p>
+<p><img alt="Syscalls made by worker on load" src="http://localhost:9999/images/nginx-WorkerOnLoad.png"></p>
 <h4 id="see-the-worker-in-action">See the worker in action</h4>
 <p>Do you want to see the workers in action? Go ahead and watch the connections using the following command:</p>
-<div class="highlight"><pre><span></span>watch -n <span class="m">1</span> <span class="s2">"sudo netstat -npt  | grep :80"</span>
+<div class="highlight"><pre><span></span>watch -n <span class="m">1</span> <span class="s2">&quot;sudo netstat -npt  | grep :80&quot;</span>
 </pre></div>
+
+
 <p>With that watch running go ahead and hit your nginx server using <code>ab</code> or something similar. You should see the connections swelling up. Of course I have assumed here that the port nginx is listening to is 80. Change it according to your setup.</p>
 <h2 id="what-is-all-this-fuss-about">What is all this fuss about!</h2>
 <p>Nginx does all this to provide high scalability.</p>
@@ -221,36 +207,6 @@ Open a terminal/shell and execute</p>
 </ol>
             </div>
             <!-- /.entry-content -->
-    <hr/>
-    <section class="comments" id="comments">
-        <h2>Comments</h2>
-
-        <div id="disqus_thread"></div>
-        <script type="text/javascript">
-            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-            var disqus_shortname = 'nacnez'; // required: replace example with your forum shortname
-
-            var disqus_config = function () {
-                this.language = "en";
-
-                        this.page.identifier = '2018-03-31-nginx-working-deepdive';
-                        this.page.url = 'https://www.nacnez.com/nginx-working-deepdive.html';
-            };
-
-            /* * * DON'T EDIT BELOW THIS LINE * * */
-            (function () {
-                var dsq = document.createElement('script');
-                dsq.type = 'text/javascript';
-                dsq.async = true;
-                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-            })();
-        </script>
-        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by
-            Disqus.</a></noscript>
-        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-
-    </section>
         </article>
     </section>
 
@@ -259,7 +215,7 @@ Open a terminal/shell and execute</p>
             <aside>
 <div id="aboutme">
         <p>
-            <img width="100%" class="img-thumbnail" src="https://www.nacnez.com/images/profile.jpeg"/>
+            <img width="100%" class="img-thumbnail" src="http://localhost:9999/images/profile.jpeg"/>
         </p>
     <p>
       <strong>About Srinivas Narayanan (Srini)</strong><br/>
@@ -276,44 +232,43 @@ Open a terminal/shell and execute</p>
     <li class="list-group-item"><a href="http://twitter.com/srininara"><i class="fa fa-twitter-square fa-lg"></i> twitter</a></li>
     <li class="list-group-item"><a href="http://github.com/srininara"><i class="fa fa-github-square fa-lg"></i> github</a></li>
     <li class="list-group-item"><a href="https://www.linkedin.com/in/srinivas-narayanan-1912b14/"><i class="fa fa-linkedin-square fa-lg"></i> linkedin</a></li>
-    <li class="list-group-item"><a href="https://www.nacnez.com/feeds/all.atom.xml"><i class="fa fa-rss-square fa-lg"></i> rss</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Social -->
 
 <!-- Sidebar/Tag Cloud -->
 <li class="list-group-item">
-  <a href="https://www.nacnez.com/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+  <a href="http://localhost:9999/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
   <ul class="list-group " id="tags">
     <li class="list-group-item tag-1">
-      <a href="https://www.nacnez.com/tag/life.html">life</a>
+      <a href="http://localhost:9999/tag/software-engineering.html">software-engineering</a>
     </li>
     <li class="list-group-item tag-1">
-      <a href="https://www.nacnez.com/tag/software-engineering.html">software-engineering</a>
+      <a href="http://localhost:9999/tag/life.html">life</a>
     </li>
     <li class="list-group-item tag-2">
-      <a href="https://www.nacnez.com/tag/microservices.html">microservices</a>
+      <a href="http://localhost:9999/tag/people.html">people</a>
     </li>
     <li class="list-group-item tag-2">
-      <a href="https://www.nacnez.com/tag/architecture.html">architecture</a>
+      <a href="http://localhost:9999/tag/microservices.html">microservices</a>
     </li>
     <li class="list-group-item tag-2">
-      <a href="https://www.nacnez.com/tag/technology.html">technology</a>
+      <a href="http://localhost:9999/tag/python.html">python</a>
     </li>
     <li class="list-group-item tag-2">
-      <a href="https://www.nacnez.com/tag/people.html">people</a>
+      <a href="http://localhost:9999/tag/architecture.html">architecture</a>
+    </li>
+    <li class="list-group-item tag-2">
+      <a href="http://localhost:9999/tag/technology.html">technology</a>
+    </li>
+    <li class="list-group-item tag-2">
+      <a href="http://localhost:9999/tag/development.html">development</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="https://www.nacnez.com/tag/india.html">India</a>
+      <a href="http://localhost:9999/tag/spirituality.html">spirituality</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="https://www.nacnez.com/tag/agile.html">agile</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="https://www.nacnez.com/tag/spirituality.html">spirituality</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="https://www.nacnez.com/tag/process.html">process</a>
+      <a href="http://localhost:9999/tag/programming-languages.html">programming languages</a>
     </li>
   </ul>
 </li>
@@ -338,30 +293,15 @@ Open a terminal/shell and execute</p>
       </div>
    </div>
 </footer>
-<script src="https://www.nacnez.com/theme/js/jquery.min.js"></script>
+<script src="http://localhost:9999/theme/js/jquery.min.js"></script>
 
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="https://www.nacnez.com/theme/js/bootstrap.min.js"></script>
+<script src="http://localhost:9999/theme/js/bootstrap.min.js"></script>
 
 <!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
-<script src="https://www.nacnez.com/theme/js/respond.min.js"></script>
+<script src="http://localhost:9999/theme/js/respond.min.js"></script>
 
 
-    <!-- Disqus -->
-    <script type="text/javascript">
-        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-        var disqus_shortname = 'nacnez'; // required: replace example with your forum shortname
-
-        /* * * DON'T EDIT BELOW THIS LINE * * */
-        (function () {
-            var s = document.createElement('script');
-            s.async = true;
-            s.type = 'text/javascript';
-            s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-        }());
-    </script>
-    <!-- End Disqus Code -->
 
 
 </body>

@@ -6,10 +6,12 @@
 &lt;p&gt;For many years, I have been part of teams that follow the agile methodology and practises some kind of scrum. One of the key practices in agile scrum is the Daily Stand-up or Scrum meeting. The DSM is done in different ways, and it is really up to the team to do what works best for them. That said, there are certain characteristics which are important to maintain, irrespective of the team which is following DSM. I explain these characteristics as I understand them and see fit.&lt;/p&gt;
 &lt;h2 id="a-typical-daily-scrum-meeting"&gt;&lt;span class="bold-green"&gt;A typical Daily Scrum Meeting&lt;/span&gt;&lt;/h2&gt;
 &lt;hr class="style-two"/&gt;
-&lt;div class="figure" style="width: 2400px; height: auto; max-width: 100%;"&gt;
-&lt;img alt="DSM Virtual Meeting" src="https://www.nacnez.com/images/dsm/dsm_1.jpeg" style="width: 2400px; height: auto; max-width: 100%;"/&gt;
-&lt;p class="caption"&gt;A Virtual DSM: Photo by &lt;a href="https://unsplash.com/@cwmonty?utm_source=unsplash&amp;amp;utm_medium=referral&amp;amp;utm_content=creditCopyText"&gt;Chris Montgomery&lt;/a&gt; on &lt;a href="https://unsplash.com/photos/smgTvepind4?utm_source=unsplash&amp;amp;utm_medium=referral&amp;amp;utm_content=creditCopyText"&gt;Unsplash&lt;/a&gt;&lt;/p&gt;
+
+&lt;div class="figure"&gt;
+    &lt;img alt="DSM Virtual Meeting" src="https://www.nacnez.com/images/dsm/dsm_1.jpeg"/&gt;
+    &lt;p class="caption"&gt;A Virtual DSM: Photo by &lt;a href="https://unsplash.com/@cwmonty?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText"&gt;Chris Montgomery&lt;/a&gt; on &lt;a href="https://unsplash.com/photos/smgTvepind4?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText"&gt;Unsplash&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
+
 &lt;p&gt;&lt;span class="bold-calm"&gt;It is 11:30am in the morning. Every one from the "Delta" team has assembled in the virtual meeting room. Out of 13 member team (11 developers, 1 product owner and 1 engineering manager), only a few of them had turned on the video. Some kind of construction noise is heard in the background. Ram, the manager opens the scrum dashboard and filters the cards for Hasina, a team member.&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class="bold-green"&gt;"Ok Hasina, can you please share your update"&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class="bold-green"&gt;"Sure Ram. Yesterday, I was working on these items but got stuck on some testing issues. Ram, what is the priority of this task?"&lt;/span&gt;&lt;/p&gt;
@@ -42,6 +44,7 @@
 &lt;p&gt;&lt;span class="bold-green"&gt;"Nothing from me Ram."&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class="bold-green"&gt;"Great. Have a good day folks!"&lt;/span&gt;&lt;/p&gt;
 &lt;hr class="style-two"/&gt;
+
 &lt;p&gt;This is a typical Daily Stand-up or Scrum meeting I observe in my world. I am sure many of you have experienced something similar. I want to dissect this example, but first I want to give you some historical context on Stand-ups and Daily Scrum meetings.&lt;/p&gt;
 &lt;h2 id="origins"&gt;&lt;span class="bold-green"&gt;Origins&lt;/span&gt;&lt;/h2&gt;
 &lt;p&gt;The daily stand-up originated from the annals of Extreme Programming (XP). Kent Beck made this methodology famous through his book by the &lt;a href="https://www.goodreads.com/en/book/show/67833.Extreme_Programming_Explained"&gt;same name&lt;/a&gt; (almost). The daily stand-up was just one of the practices/rules in Extreme Programming (dig more &lt;a href="http://www.extremeprogramming.org/rules.html"&gt;here&lt;/a&gt;). Our focus is only the daily stand-up.&lt;/p&gt;
@@ -77,11 +80,13 @@
 &lt;p&gt;There could be more, but these stand out to me. Using these sources as the main reference (I will include other ideas if required), let us dissect the example DSM (of the &lt;em&gt;Delta&lt;/em&gt; team) which I described before. I am treating the name stand-up (XP) and daily scrum meeting (DSM) as synonyms. If you see one, I mean either.&lt;/p&gt;
 &lt;p&gt;Before you look at my thoughts below, spend sometime dissecting the &lt;em&gt;Delta&lt;/em&gt; stand-up and share the same in comments below.&lt;/p&gt;
 &lt;hr class="style-three"/&gt;
+
 &lt;h2 id="the-delta-team-dsm-biopsy"&gt;&lt;span class="bold-green"&gt;The "Delta Team" DSM biopsy&lt;/span&gt;&lt;/h2&gt;
-&lt;div class="figure" style="width: 1920px; height: auto; max-width: 100%;"&gt;
-&lt;img alt="Doing a biopsy on the Delta team DSM" src="https://www.nacnez.com/images/dsm/biopsy.jpg" style="width: 1920px; height: auto; max-width: 100%;"/&gt;
-&lt;p class="caption"&gt;Disecting the Delta DSM - image by &lt;a href="https://pixabay.com/users/ri_ya-12911237/?utm_source=link-attribution&amp;amp;utm_medium=referral&amp;amp;utm_campaign=image&amp;amp;utm_content=4607284"&gt;Ri Butov&lt;/a&gt; from &lt;a href="https://pixabay.com//?utm_source=link-attribution&amp;amp;utm_medium=referral&amp;amp;utm_campaign=image&amp;amp;utm_content=4607284"&gt;Pixabay&lt;/a&gt;&lt;/p&gt;
+&lt;div class="figure"&gt;
+    &lt;img alt="Doing a biopsy on the Delta team DSM" src="https://www.nacnez.com/images/dsm/biopsy.jpg"/&gt;
+    &lt;p class="caption"&gt;Disecting the Delta DSM - image by &lt;a href="https://pixabay.com/users/ri_ya-12911237/?utm_source=link-attribution&amp;amp;utm_medium=referral&amp;amp;utm_campaign=image&amp;amp;utm_content=4607284"&gt;Ri Butov&lt;/a&gt; from &lt;a href="https://pixabay.com//?utm_source=link-attribution&amp;amp;utm_medium=referral&amp;amp;utm_campaign=image&amp;amp;utm_content=4607284"&gt;Pixabay&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
+
 &lt;h3 id="the-good-parts"&gt;&lt;span class="bold-green"&gt;The "Good Parts"&lt;/span&gt;&lt;/h3&gt;
 &lt;p&gt;There are good things happening in the &lt;em&gt;Delta&lt;/em&gt; team stand-up.&lt;/p&gt;
 &lt;ol&gt;
@@ -116,10 +121,11 @@
 &lt;p&gt;In my opinion, it is better to send an offline update to the team rather than joining the stand-up after minutes of its starting.&lt;/p&gt;
 &lt;h2 id="remedial-ideas"&gt;&lt;span class="bold-green"&gt;Remedial Ideas&lt;/span&gt;&lt;/h2&gt;
 &lt;p&gt;Now that the biopsy and diagnosis is complete, it is time for some remedial actions.&lt;/p&gt;
-&lt;div class="figure" style="width: 1920px; height: auto; max-width: 100%;"&gt;
-&lt;img alt="Remedies for a better DSM for Delta team" src="https://www.nacnez.com/images/dsm/remedy.jpg" style="width: 1920px; height: auto; max-width: 100%;"/&gt;
-&lt;p class="caption"&gt;Remedies for improving the DSM - image by &lt;a href="https://pixabay.com/users/angelorosa-4392745/?utm_source=link-attribution&amp;amp;utm_medium=referral&amp;amp;utm_campaign=image&amp;amp;utm_content=2055130"&gt;Angelo Rosa&lt;/a&gt; from &lt;a href="https://pixabay.com//?utm_source=link-attribution&amp;amp;utm_medium=referral&amp;amp;utm_campaign=image&amp;amp;utm_content=2055130"&gt;Pixabay&lt;/a&gt;&lt;/p&gt;
+&lt;div class="figure"&gt;
+    &lt;img alt="Remedies for a better DSM for Delta team" src="https://www.nacnez.com/images/dsm/remedy.jpg"/&gt;
+    &lt;p class="caption"&gt;Remedies for improving the DSM - image by &lt;a href="https://pixabay.com/users/angelorosa-4392745/?utm_source=link-attribution&amp;amp;utm_medium=referral&amp;amp;utm_campaign=image&amp;amp;utm_content=2055130"&gt;Angelo Rosa&lt;/a&gt; from &lt;a href="https://pixabay.com//?utm_source=link-attribution&amp;amp;utm_medium=referral&amp;amp;utm_campaign=image&amp;amp;utm_content=2055130"&gt;Pixabay&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
+
 &lt;h3 id="transfer-ownership-to-team"&gt;&lt;span class="bold-green"&gt;Transfer Ownership to team&lt;/span&gt;&lt;/h3&gt;
 &lt;p&gt;The first thing I want to address is the aspect of ownership. While other aspects are important, this one is critical. There are a couple of things that Ram (the scrum master) can do to change the situation:&lt;/p&gt;
 &lt;ol&gt;
@@ -147,12 +153,14 @@
 &lt;p&gt;Ensure that we look at where we are with respect to the Spring goal. Discuss progress using burn-down charts etc. to ensure that everyone understands where we are and where we are going.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;hr class="style-seven-top"/&gt;
+&lt;hr class="style-seven-top"&gt;
+
 &lt;h4 id="how-a-post-stand-up-works"&gt;&lt;span class="bold-green"&gt;How a Post Stand-up works?&lt;/span&gt;&lt;/h4&gt;
 &lt;p&gt;As part of stand-up, I mention that I worked on a particular task/story yesterday and I plan to either continue on it or pick another one today. I might have an impediment for which I need help or want a discussion to clear out some ideas. For doing this I state that I need a "Post Stand-up" discussion after everyone goes through their own updates. The stand-up is complete once updates and sprint progress discussions are complete. For the Post stand-up discussion, relevant &amp;amp; interested people can stay and others can drop off. This saves time for many developers who are not connected to the discussion. Also, the post stand-up allows the stand-up discussion to be more focused, structured and short. Since only relevant people need to be present, the post stand-up discussion itself could become more focused.&lt;/p&gt;
 &lt;p&gt;There can be a concern that if we create post stand-ups then the team could lose out on learnings that might come from knowing about the impediments &amp;amp; solutions. This is a valid concern, but post stand-ups don't eliminate participation. It only makes it a choice for the person which respects their time and pressures. In my experience, I have found that this works well for teams.&lt;/p&gt;
 &lt;p&gt;Again, remember that the &lt;em&gt;Post Stand-up&lt;/em&gt; is a good broad idea. You can use it, tweak it and make it your own.&lt;/p&gt;
-&lt;hr class="style-seven-bottom"&gt;
+&lt;hr class="style-seven-bottom"/&gt;
+
 &lt;p&gt;I also want to emphasize that we need the stand-up to be a place where developers can have free-flowing and open conversations. The structure is only to help the developers, but if that structure becomes a problem then we obviously need to change things up. As I said earlier, this should be done as a team.&lt;/p&gt;
 &lt;p&gt;Once you have a structure and start having post stand-ups, the duration of stand-up will come down (provided some of the below etiquette are followed). You can (and should) measure it so that we know how we are doing. I have done this with one of my sprint teams (after discussing with the team of course) and it helped us to look for ways to fine-tune the stand-up process. Measurement is almost always a good thing. &lt;/p&gt;
 &lt;h3 id="good-etiquette"&gt;&lt;span class="bold-green"&gt;Good etiquette&lt;/span&gt;&lt;/h3&gt;
@@ -176,8 +184,8 @@
 &lt;li&gt;&lt;a href="https://www.atlassian.com/agile/scrum/standups"&gt;Daily stand-ups for agile teams&lt;/a&gt; - An Atlassian perspective on standups - good tips on remote standups&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://walkingtree.tech/detect-scrum-anti-patterns/"&gt;How to detect Scrum anti-patterns?&lt;/a&gt; - Good write up on anti-patterns of agile itself. You can focus on DSM like me.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;span class="small-italicized-green"&gt;Aum sarvam SriKrishnarpanam astu&lt;/span&gt; &lt;/p&gt;&lt;/hr&gt;</content><category term="software-engineering"></category><category term="process"></category><category term="agile"></category><category term="scrum"></category><category term="people"></category><category term="extreme-programming"></category><category term="stand-up"></category></entry><entry><title>Why Process!</title><link href="https://www.nacnez.com/why-process.html" rel="alternate"></link><published>2019-10-27T00:00:00+05:30</published><updated>2019-10-27T00:00:00+05:30</updated><author><name>Srinivas Narayanan</name></author><id>tag:www.nacnez.com,2019-10-27:/why-process.html</id><summary type="html">&lt;p&gt;Expressing my reason for having a process&lt;/p&gt;</summary><content type="html">&lt;p&gt;The &lt;a href="https://agilemanifesto.org/"&gt;agile manifesto&lt;/a&gt; says people come above processes. But every team I have worked with has always followed a process framework. The usual suspects are of course &lt;a href="https://en.wikipedia.org/wiki/Scrum_(software_development)"&gt;Scrum&lt;/a&gt; and &lt;a href="https://en.wikipedia.org/wiki/Kanban"&gt;Kanban&lt;/a&gt;. Why do they do this?&lt;/p&gt;
-&lt;p&gt;&lt;img alt="A process" src="https://www.nacnez.com/images/process/process.png" style="width: 637px; height: auto; max-width: 100%;"/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class="small-italicized-green"&gt;Aum sarvam SriKrishnarpanam astu&lt;/span&gt; &lt;/p&gt;</content><category term="software-engineering"></category><category term="process"></category><category term="agile"></category><category term="scrum"></category><category term="people"></category><category term="extreme-programming"></category><category term="stand-up"></category></entry><entry><title>Why Process!</title><link href="https://www.nacnez.com/why-process.html" rel="alternate"></link><published>2019-10-27T00:00:00+05:30</published><updated>2019-10-27T00:00:00+05:30</updated><author><name>Srinivas Narayanan</name></author><id>tag:www.nacnez.com,2019-10-27:/why-process.html</id><summary type="html">&lt;p&gt;Expressing my reason for having a process&lt;/p&gt;</summary><content type="html">&lt;p&gt;The &lt;a href="https://agilemanifesto.org/"&gt;agile manifesto&lt;/a&gt; says people come above processes. But every team I have worked with has always followed a process framework. The usual suspects are of course &lt;a href="https://en.wikipedia.org/wiki/Scrum_(software_development)"&gt;Scrum&lt;/a&gt; and &lt;a href="https://en.wikipedia.org/wiki/Kanban"&gt;Kanban&lt;/a&gt;. Why do they do this?&lt;/p&gt;
+&lt;p&gt;&lt;img alt="A process" src="https://www.nacnez.com/images/process/process.png"&gt;&lt;/p&gt;
 &lt;h2 id="a-process"&gt;A process&lt;/h2&gt;
 &lt;p&gt;I would like to move away from the context of agile. For me, a process is something more fundamental. Processes are not something which only teams follow. It can be applied at a personal level as well. So let me state the definition of the word (Googled it!)&lt;/p&gt;
 &lt;div class="admonition process"&gt;

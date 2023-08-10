@@ -9,7 +9,7 @@
 
 
 
-<link rel="canonical" href="https://www.nacnez.com/python-can-be-weird.html">
+<link rel="canonical" href="http://localhost:9999/python-can-be-weird.html">
 
         <meta name="author" content="Srinivas Narayanan" />
         <meta name="keywords" content="development,programming languages,python" />
@@ -18,7 +18,7 @@
         <meta property="og:site_name" content="Starting Point" />
         <meta property="og:type" content="article"/>
         <meta property="og:title" content="Python can be weird!"/>
-        <meta property="og:url" content="https://www.nacnez.com/python-can-be-weird.html"/>
+        <meta property="og:url" content="http://localhost:9999/python-can-be-weird.html"/>
         <meta property="og:description" content="Python can be weird at times!"/>
         <meta property="article:published_time" content="2014-11-16" />
             <meta property="article:section" content="Programming Languages" />
@@ -30,35 +30,15 @@
 
 
     <!-- Bootstrap -->
-        <link rel="stylesheet" href="https://www.nacnez.com/theme/css/bootstrap.cyborg.min.css" type="text/css"/>
-    <link href="https://www.nacnez.com/theme/css/font-awesome.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="http://localhost:9999/theme/css/bootstrap.cyborg.min.css" type="text/css"/>
+    <link href="http://localhost:9999/theme/css/font-awesome.min.css" rel="stylesheet">
 
-    <link href="https://www.nacnez.com/theme/css/pygments/monokai.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://www.nacnez.com/theme/css/style.css" type="text/css"/>
-        <link href="https://www.nacnez.com/css/custom.css" rel="stylesheet">
+    <link href="http://localhost:9999/theme/css/pygments/monokai.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://localhost:9999/theme/css/style.css" type="text/css"/>
+        <link href="http://localhost:9999/css/custom.css" rel="stylesheet">
 
-        <link href="https://www.nacnez.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
-              title="Starting Point ATOM Feed"/>
 
-        <link href="https://www.nacnez.com/feeds/programming-languages.atom.xml" type="application/atom+xml" rel="alternate"
-              title="Starting Point Programming Languages ATOM Feed"/>
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-79BTGL1LJS"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
 
-        gtag('config', G-79BTGL1LJS);
-    </script>
-    <!-- End Google Analytics Code -->
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-NBHLX3B');</script>
-    <!-- End Google Tag Manager -->
 
 </head>
 <body>
@@ -66,8 +46,8 @@
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
-            <a href="https://www.nacnez.com/" class="navbar-brand">
-<img class="img-responsive pull-left gap-right" src="https://www.nacnez.com/images/myLogo.png" width=""/> Starting Point            </a>
+            <a href="http://localhost:9999/" class="navbar-brand">
+<img class="img-responsive pull-left gap-right" src="http://localhost:9999/images/myLogo.png" width=""/> Starting Point            </a>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
@@ -90,7 +70,7 @@
         <article>
             <header class="page-header">
                 <h1>
-                    <a href="https://www.nacnez.com/python-can-be-weird.html"
+                    <a href="http://localhost:9999/python-can-be-weird.html"
                        rel="bookmark"
                        title="Permalink to Python can be weird!">
                         Python can be weird!
@@ -112,11 +92,11 @@
 
 
 <span class="label label-default">Tags</span>
-	<a href="https://www.nacnez.com/tag/development.html">development</a>
+	<a href="http://localhost:9999/tag/development.html">development</a>
         /
-	<a href="https://www.nacnez.com/tag/programming-languages.html">programming languages</a>
+	<a href="http://localhost:9999/tag/programming-languages.html">programming languages</a>
         /
-	<a href="https://www.nacnez.com/tag/python.html">python</a>
+	<a href="http://localhost:9999/tag/python.html">python</a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
@@ -127,6 +107,8 @@
 <div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">a</span> <span class="o">+=</span> <span class="mi">1</span>
 </pre></div>
+
+
 <p>You must have spotted the augmented assignment operator! Yep, it is <code>+=</code> . Of course there are other similar ones like <code>-=</code> , <code>*=</code>  etc. The form <code>a += 1</code> is generally a shortcut of <code>a = a + 1</code> . In Python also it works the same way. At least that is what I thought.</p>
 <p>Let us try using the augmented assignment operator with list concatenation:</p>
 <div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
@@ -141,6 +123,8 @@
 <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
 <span class="o">&gt;&gt;&gt;</span>
 </pre></div>
+
+
 <p>That works as expected. So I should be able to reliably use the augmented assignment operator instead of the longer form. Let us try something else now.</p>
 <div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">B</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">]</span>
@@ -151,6 +135,8 @@
 <span class="o">&gt;&gt;&gt;</span> <span class="n">C</span>
 <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
 </pre></div>
+
+
 <p>This makes sense to me. The concatenation operator <code>+</code>  creates a new object and assigns to A. And 'C' keeps pointing to the older object. This is all good and working as expected. Let us change the above using the augmented assignment operator instead.</p>
 <div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">B</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">]</span>
@@ -161,25 +147,29 @@
 <span class="o">&gt;&gt;&gt;</span> <span class="n">C</span>
 <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
 </pre></div>
+
+
 <p>????####!!!!. What happened here? Something happened. How did it change? What did I change? The only change I made from the previous listing is that I used augmented assignment. But that changed how things work. Concatenation no longer creates a new object. It mutates the assigned object in place!!!!</p>
 <p>That is weird to me! I figured that it is Python trying to optimize since the list is a mutable object in Python. But somehow it feels unclean, because it seems to break a promise. To a long term Python programmer, this may not be weird at all. But to me, it felt out of character to how generally Python works - predictable and explicit. It might just be my own (mis)interpretation, but it feels weird.</p>
 <h3 id="boolean-operations">Boolean Operations</h3>
 <p>I am referring to the <code>and</code>  and <code>or</code>  operators. In Python they mean exactly what they say. The <code>and</code>  refers to <code>&amp;&amp;</code> (conjunction) in other languages like Java and <code>or</code>  refers to <code>||</code> (disjunction) in other languages. In most other languages, using these operators leads to boolean results. By not in Python! These operators return one of the objects which is an outcome of the corresponding expression. One of the underlying principles behind this is Python's concept of truth values. Let me illustrate this with some examples:</p>
-<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="s2">""</span> <span class="ow">and</span> <span class="mi">23</span>
-<span class="s1">''</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="s2">"add"</span> <span class="ow">and</span> <span class="s2">"subtract"</span>
-<span class="s1">'subtract'</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="s2">""</span> <span class="ow">or</span> <span class="mi">23</span>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="s2">&quot;&quot;</span> <span class="ow">and</span> <span class="mi">23</span>
+<span class="s1">&#39;&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="s2">&quot;add&quot;</span> <span class="ow">and</span> <span class="s2">&quot;subtract&quot;</span>
+<span class="s1">&#39;subtract&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="s2">&quot;&quot;</span> <span class="ow">or</span> <span class="mi">23</span>
 <span class="mi">23</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="s2">"add"</span> <span class="ow">or</span> <span class="s2">"subtract"</span>
-<span class="s1">'add'</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="s2">&quot;add&quot;</span> <span class="ow">or</span> <span class="s2">&quot;subtract&quot;</span>
+<span class="s1">&#39;add&#39;</span>
 </pre></div>
+
+
 <p>In all these examples, you see that <code>and</code> and <code>or</code> are not returning any booleans. They work based on truth value concepts of Python and return the objects involved as per the truth value rules. Let us see its usage below:</p>
 <div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">calc_simple_interest</span><span class="p">(</span><span class="n">principal</span><span class="p">,</span> <span class="n">rate</span><span class="p">,</span> <span class="n">tenure</span><span class="p">):</span>
 <span class="o">...</span>     <span class="n">p</span> <span class="o">=</span> <span class="n">principal</span> <span class="k">if</span> <span class="n">principal</span> <span class="k">else</span> <span class="mi">0</span>
 <span class="o">...</span>     <span class="n">r</span> <span class="o">=</span> <span class="n">rate</span> <span class="k">if</span> <span class="n">rate</span> <span class="k">else</span> <span class="mi">10</span>
 <span class="o">...</span>     <span class="n">t</span> <span class="o">=</span> <span class="n">tenure</span> <span class="k">if</span> <span class="n">tenure</span> <span class="k">else</span> <span class="mi">5</span>
-<span class="o">...</span>     <span class="k">print</span><span class="p">(</span><span class="s2">"Returning interest for </span><span class="si">%d</span><span class="s2"> at </span><span class="si">%d</span><span class="s2"> percent for </span><span class="si">%d</span><span class="s2"> years"</span> <span class="o">%</span> <span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">t</span><span class="p">))</span>
+<span class="o">...</span>     <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Returning interest for </span><span class="si">%d</span><span class="s2"> at </span><span class="si">%d</span><span class="s2"> percent for </span><span class="si">%d</span><span class="s2"> years&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">t</span><span class="p">))</span>
 <span class="o">...</span>     <span class="k">return</span> <span class="n">p</span> <span class="o">*</span> <span class="p">(</span><span class="n">r</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span> <span class="o">*</span> <span class="n">t</span>
 <span class="o">...</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">calc_simple_interest</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
@@ -195,12 +185,14 @@
 <span class="n">Returning</span> <span class="n">interest</span> <span class="k">for</span> <span class="mi">1000</span> <span class="n">at</span> <span class="mi">8</span> <span class="n">percent</span> <span class="k">for</span> <span class="mi">5</span> <span class="n">years</span>
 <span class="mf">400.0</span>
 </pre></div>
+
+
 <p>The above example is a convoluted and contrived way to handle default values (since Python has function argument defaults). But to somebody reading through that code, it still makes reasonable sense. Now let me change it.</p>
 <div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">calc_simple_interest</span><span class="p">(</span><span class="n">principal</span><span class="p">,</span> <span class="n">rate</span><span class="p">,</span> <span class="n">tenure</span><span class="p">):</span>
 <span class="o">...</span>     <span class="n">p</span> <span class="o">=</span> <span class="n">principal</span> <span class="ow">or</span> <span class="mi">0</span>
 <span class="o">...</span>     <span class="n">r</span> <span class="o">=</span> <span class="n">rate</span> <span class="ow">or</span> <span class="mi">10</span>
 <span class="o">...</span>     <span class="n">t</span> <span class="o">=</span> <span class="n">tenure</span> <span class="ow">or</span> <span class="mi">5</span>
-<span class="o">...</span>     <span class="k">print</span><span class="p">(</span><span class="s2">"Returning interest for </span><span class="si">%d</span><span class="s2"> at </span><span class="si">%d</span><span class="s2"> percent for </span><span class="si">%d</span><span class="s2"> years"</span> <span class="o">%</span> <span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">t</span><span class="p">))</span>
+<span class="o">...</span>     <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Returning interest for </span><span class="si">%d</span><span class="s2"> at </span><span class="si">%d</span><span class="s2"> percent for </span><span class="si">%d</span><span class="s2"> years&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">t</span><span class="p">))</span>
 <span class="o">...</span>     <span class="k">return</span> <span class="n">p</span> <span class="o">*</span> <span class="p">(</span><span class="n">r</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span> <span class="o">*</span> <span class="n">t</span>
 <span class="o">...</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">calc_simple_interest</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
@@ -217,6 +209,8 @@
 <span class="mf">400.0</span>
 <span class="o">&gt;&gt;&gt;</span>
 </pre></div>
+
+
 <p>Now that is Python's <code>or</code> operator working its way to give us the exact same behavior as the <em>'ternary if'</em> used before.</p>
 <p>The way the logical operators work in Python felt weird to me. But I did not feel very unclean about it like the last one. It just was different.</p>
 <h3 id="in-closing">In Closing</h3>
@@ -224,36 +218,6 @@
 <p>Though I have highlighted what I felt weird about Python, it does not mean that I don't like the language. On the contrary, I actually like it quite a lot. But just like anything/anybody who you like/love a lot has some small imperfections, so does Python. In fact, it is those imperfections which make them unique and differentiated to us. That is what this does to Python too.</p>
             </div>
             <!-- /.entry-content -->
-    <hr/>
-    <section class="comments" id="comments">
-        <h2>Comments</h2>
-
-        <div id="disqus_thread"></div>
-        <script type="text/javascript">
-            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-            var disqus_shortname = 'nacnez'; // required: replace example with your forum shortname
-
-            var disqus_config = function () {
-                this.language = "en";
-
-                        this.page.identifier = '2014-11-16-python-can-be-weird';
-                        this.page.url = 'https://www.nacnez.com/python-can-be-weird.html';
-            };
-
-            /* * * DON'T EDIT BELOW THIS LINE * * */
-            (function () {
-                var dsq = document.createElement('script');
-                dsq.type = 'text/javascript';
-                dsq.async = true;
-                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-            })();
-        </script>
-        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by
-            Disqus.</a></noscript>
-        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-
-    </section>
         </article>
     </section>
 
@@ -262,7 +226,7 @@
             <aside>
 <div id="aboutme">
         <p>
-            <img width="100%" class="img-thumbnail" src="https://www.nacnez.com/images/profile.jpeg"/>
+            <img width="100%" class="img-thumbnail" src="http://localhost:9999/images/profile.jpeg"/>
         </p>
     <p>
       <strong>About Srinivas Narayanan (Srini)</strong><br/>
@@ -279,44 +243,43 @@
     <li class="list-group-item"><a href="http://twitter.com/srininara"><i class="fa fa-twitter-square fa-lg"></i> twitter</a></li>
     <li class="list-group-item"><a href="http://github.com/srininara"><i class="fa fa-github-square fa-lg"></i> github</a></li>
     <li class="list-group-item"><a href="https://www.linkedin.com/in/srinivas-narayanan-1912b14/"><i class="fa fa-linkedin-square fa-lg"></i> linkedin</a></li>
-    <li class="list-group-item"><a href="https://www.nacnez.com/feeds/all.atom.xml"><i class="fa fa-rss-square fa-lg"></i> rss</a></li>
   </ul>
 </li>
 <!-- End Sidebar/Social -->
 
 <!-- Sidebar/Tag Cloud -->
 <li class="list-group-item">
-  <a href="https://www.nacnez.com/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+  <a href="http://localhost:9999/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
   <ul class="list-group " id="tags">
     <li class="list-group-item tag-1">
-      <a href="https://www.nacnez.com/tag/life.html">life</a>
+      <a href="http://localhost:9999/tag/software-engineering.html">software-engineering</a>
     </li>
     <li class="list-group-item tag-1">
-      <a href="https://www.nacnez.com/tag/software-engineering.html">software-engineering</a>
+      <a href="http://localhost:9999/tag/life.html">life</a>
     </li>
     <li class="list-group-item tag-2">
-      <a href="https://www.nacnez.com/tag/microservices.html">microservices</a>
+      <a href="http://localhost:9999/tag/people.html">people</a>
     </li>
     <li class="list-group-item tag-2">
-      <a href="https://www.nacnez.com/tag/architecture.html">architecture</a>
+      <a href="http://localhost:9999/tag/microservices.html">microservices</a>
     </li>
     <li class="list-group-item tag-2">
-      <a href="https://www.nacnez.com/tag/technology.html">technology</a>
+      <a href="http://localhost:9999/tag/python.html">python</a>
     </li>
     <li class="list-group-item tag-2">
-      <a href="https://www.nacnez.com/tag/people.html">people</a>
+      <a href="http://localhost:9999/tag/architecture.html">architecture</a>
+    </li>
+    <li class="list-group-item tag-2">
+      <a href="http://localhost:9999/tag/technology.html">technology</a>
+    </li>
+    <li class="list-group-item tag-2">
+      <a href="http://localhost:9999/tag/development.html">development</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="https://www.nacnez.com/tag/india.html">India</a>
+      <a href="http://localhost:9999/tag/spirituality.html">spirituality</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="https://www.nacnez.com/tag/agile.html">agile</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="https://www.nacnez.com/tag/spirituality.html">spirituality</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="https://www.nacnez.com/tag/process.html">process</a>
+      <a href="http://localhost:9999/tag/programming-languages.html">programming languages</a>
     </li>
   </ul>
 </li>
@@ -341,30 +304,15 @@
       </div>
    </div>
 </footer>
-<script src="https://www.nacnez.com/theme/js/jquery.min.js"></script>
+<script src="http://localhost:9999/theme/js/jquery.min.js"></script>
 
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="https://www.nacnez.com/theme/js/bootstrap.min.js"></script>
+<script src="http://localhost:9999/theme/js/bootstrap.min.js"></script>
 
 <!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
-<script src="https://www.nacnez.com/theme/js/respond.min.js"></script>
+<script src="http://localhost:9999/theme/js/respond.min.js"></script>
 
 
-    <!-- Disqus -->
-    <script type="text/javascript">
-        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-        var disqus_shortname = 'nacnez'; // required: replace example with your forum shortname
-
-        /* * * DON'T EDIT BELOW THIS LINE * * */
-        (function () {
-            var s = document.createElement('script');
-            s.async = true;
-            s.type = 'text/javascript';
-            s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-        }());
-    </script>
-    <!-- End Disqus Code -->
 
 
 </body>

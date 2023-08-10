@@ -7,7 +7,7 @@
 &lt;/ul&gt;
 &lt;p&gt;Now that is out of the way let us get started.&lt;/p&gt;
 &lt;h2 id="background-process-roles"&gt;Background - Process Roles&lt;/h2&gt;
-&lt;p&gt;&lt;img alt="The Nginx Master and Workers" src="https://www.nacnez.com/images/nginx-art01.jpg" style="width: 511px; height: auto; max-width: 100%;"/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="The Nginx Master and Workers" src="https://www.nacnez.com/images/nginx-art01.jpg"&gt;&lt;/p&gt;
 &lt;p&gt;Okay. Before we get started let us get some background on the nginx processes.&lt;/p&gt;
 &lt;p&gt;Nginx follows an event driven architecture and has different types of processes doing specific kinds of tasks. Let me first describe these process type and their roles. Once that is out of the way, I can get to more details on how the nginx startup and processes requests.&lt;/p&gt;
 &lt;p&gt;The four different kinds of processes are:&lt;/p&gt;
@@ -26,42 +26,48 @@ This process manages cache expiration and invalidation. It stays in memory.&lt;/
 &lt;h3 id="see-it-yourselves"&gt;See it yourselves&lt;/h3&gt;
 &lt;p&gt;If you want to see these processes in action. Do the following (assuming you have done the installation):
 Open a terminal/shell and execute&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;watch -n &lt;span class="m"&gt;1&lt;/span&gt; &lt;span class="s2"&gt;"sudo ps -eFww --forest | grep 'nginx\|PID'"&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;watch -n &lt;span class="m"&gt;1&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;sudo ps -eFww --forest | grep &amp;#39;nginx\|PID&amp;#39;&amp;quot;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
+
+
 &lt;p&gt;In another terminal execute&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo nginx
 &lt;/pre&gt;&lt;/div&gt;
+
+
 &lt;p&gt;You can drop the &lt;code&gt;sudo&lt;/code&gt; if your nginx does not have reserved ports configured for listening.&lt;/p&gt;
 &lt;p&gt;Once you start nginx, you should see the processes in the first terminal window. Keep watching it for sometime (you might notice something).&lt;/p&gt;
 &lt;h2 id="nginx-startup"&gt;Nginx startup&lt;/h2&gt;
 &lt;p&gt;You start nginx by calling &lt;code&gt;nginx&lt;/code&gt;. Let us look at what each of the main processes do at this point&lt;/p&gt;
 &lt;h3 id="the-master-a-true-leaderdelegator"&gt;The Master (A true leader/delegator)&lt;/h3&gt;
-&lt;p&gt;&lt;img alt="Master startup flow" src="https://www.nacnez.com/images/nginx-MasterStartupFlow.jpg" style="width: 803px; height: auto; max-width: 100%;"/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Master startup flow" src="https://www.nacnez.com/images/nginx-MasterStartupFlow.jpg"&gt;&lt;/p&gt;
 &lt;p&gt;The first process to start is the master process. It first reads through, validates and compiles the configuration. Once the configuration is validated and compiled, it looks at the configuration to figure out what all listen sockets have to be created for serving client requests.&lt;/p&gt;
 &lt;p&gt;The server connection establishment process starts at this point for the required listen sockets. As a server (role played in client server communication), the master first tries to create sockets and bind to the ports defined in the configuration. One thing to note is that if the defined ports belong to the reserved set, the nginx needs to be started as a privileged user (root/sudo). Once the socket is created and binded it will also set the socket to listen mode with a default backlog of 511 (read more about listen backlog from references).&lt;/p&gt;
 &lt;p&gt;The next step the nginx master does is to start the worker processes. This is typically done by forking (&lt;code&gt;clone&lt;/code&gt;) them out as a child process (this is my assumption/understanding). This also means that listen sockets descriptors are copied over to the child processes and are hence accessible to the workers. The compiled configuration is also passed onto the them. The number of worker processes to be created is based on configuration. The typical default is &lt;code&gt;auto&lt;/code&gt; which leads to the creation as many workers as there are cores in the machine (or VM).&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Syscalls made by master at startup" src="https://www.nacnez.com/images/nginx-MasterAtStart.png" style="width: 912px; height: auto; max-width: 100%;"/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Syscalls made by master at startup" src="https://www.nacnez.com/images/nginx-MasterAtStart.png"&gt;&lt;/p&gt;
 &lt;h3 id="the-worker-i-am-awake"&gt;The Worker (I am awake!)&lt;/h3&gt;
-&lt;p&gt;&lt;img alt="Worker startup" src="https://www.nacnez.com/images/nginx-WorkerAtStartPic.jpg" style="width: 805px; height: auto; max-width: 100%;"/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Worker startup" src="https://www.nacnez.com/images/nginx-WorkerAtStartPic.jpg"&gt;&lt;/p&gt;
 &lt;p&gt;Each worker creates a epoll data structure with the kernel (using &lt;code&gt;epoll_create&lt;/code&gt;). It then registers the listen socket descriptor to it using &lt;code&gt;epoll_ctl&lt;/code&gt; and asks the kernel to let it know if there are any events (read or write) on the listen socket(s). All the different workers have access to the listen socket and they concurrently share the requests coming to them. Eventually if the worker has no other work to do it would block using &lt;code&gt;epoll_wait&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Each of the workers also create non-blocking connection sockets to upstream servers so that they can act as proxies to them. This also is event based and hence based on epoll.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Syscalls made by worker at startup" src="https://www.nacnez.com/images/nginx-WorkerAtStart.png" style="width: 912px; height: auto; max-width: 100%;"/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Syscalls made by worker at startup" src="https://www.nacnez.com/images/nginx-WorkerAtStart.png"&gt;&lt;/p&gt;
 &lt;h2 id="nginx-processing-requests"&gt;Nginx processing requests&lt;/h2&gt;
 &lt;p&gt;Now that nginx has started, it is time to process requests.&lt;/p&gt;
 &lt;h3 id="the-master-time-to-sleep"&gt;The Master (time to sleep)&lt;/h3&gt;
 &lt;p&gt;At this point the master pretty much does nothing. It does not have any work to do during the time of processing requests.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Syscalls made by master on getting load/user requests" src="https://www.nacnez.com/images/nginx-MasterOnLoad.png" style="width: 912px; height: auto; max-width: 100%;"/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Syscalls made by master on getting load/user requests" src="https://www.nacnez.com/images/nginx-MasterOnLoad.png"&gt;&lt;/p&gt;
 &lt;h3 id="the-worker-a-superstar"&gt;The Worker (A superstar)&lt;/h3&gt;
-&lt;p&gt;&lt;img alt="Worker at work" src="https://www.nacnez.com/images/nginx-WorkerAtWork.jpg" style="width: 816px; height: auto; max-width: 100%;"/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Worker at work" src="https://www.nacnez.com/images/nginx-WorkerAtWork.jpg"&gt;&lt;/p&gt;
 &lt;p&gt;When a new client connection request comes to the listen socket, the linux kernel will pick the latest added worker process among epoll those waiting in the listen queue and send an event.&lt;/p&gt;
 &lt;p&gt;This worker process would then do a non-blocking &lt;code&gt;accept&lt;/code&gt; call which will create a connection socket between the client and server. This connection is now going to be served by this worker process. The worker does the same thing with the connection socket as it did with the listen socket. It registers interest on IO events happening on that socket through epoll_ctl and waits for events with &lt;code&gt;epoll_wait&lt;/code&gt; if it has no other work to do.&lt;/p&gt;
 &lt;p&gt;Over a period of time you will find that a worker process ends up serving many connections at the same time. Each of these connections are registered within their (worker's) own epoll data structure. At the end of epoll_wait, the worker might get multiple sockets which are ready for processing. It then processes each of those requests. Processing of incoming request might include acting as a reverse proxy (write out the request to upstream server), do ssl termination etc. On the other hand processing of the response could be compressing the response read from the up stream server (again this is event based using epoll), and write out the response to the client again in non-blocking fashion. The worker is the one which exhibits all the wonderful features of nginx.&lt;/p&gt;
 &lt;p&gt;The worker processes do not use epoll based asynchronous IO for files. For files it does blocking IO in most cases. If AIO is well supported in a platform it might use the same. But generally file IO slowness can lead to blocking behavior in the worker (and hence nginx).&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Syscalls made by worker on load" src="https://www.nacnez.com/images/nginx-WorkerOnLoad.png" style="width: 912px; height: auto; max-width: 100%;"/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Syscalls made by worker on load" src="https://www.nacnez.com/images/nginx-WorkerOnLoad.png"&gt;&lt;/p&gt;
 &lt;h4 id="see-the-worker-in-action"&gt;See the worker in action&lt;/h4&gt;
 &lt;p&gt;Do you want to see the workers in action? Go ahead and watch the connections using the following command:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;watch -n &lt;span class="m"&gt;1&lt;/span&gt; &lt;span class="s2"&gt;"sudo netstat -npt  | grep :80"&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;watch -n &lt;span class="m"&gt;1&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;sudo netstat -npt  | grep :80&amp;quot;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
+
+
 &lt;p&gt;With that watch running go ahead and hit your nginx server using &lt;code&gt;ab&lt;/code&gt; or something similar. You should see the connections swelling up. Of course I have assumed here that the port nginx is listening to is 80. Change it according to your setup.&lt;/p&gt;
 &lt;h2 id="what-is-all-this-fuss-about"&gt;What is all this fuss about!&lt;/h2&gt;
 &lt;p&gt;Nginx does all this to provide high scalability.&lt;/p&gt;

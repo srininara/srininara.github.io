@@ -15,8 +15,10 @@
 &lt;p&gt;Once nginx is set up, you find the following folder where definitions of the virtual hosts are kept:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;nginx&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
+
+
 &lt;p&gt;The folder structure is as depicted below:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Nginx folder structure" src="https://www.nacnez.com/images/nginx-folders1.png" style="width: 550px; height: auto; max-width: 100%;"/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Nginx folder structure" src="https://www.nacnez.com/images/nginx-folders1.png"&gt;&lt;/p&gt;
 &lt;p&gt;The important folders for our discussion are &lt;code&gt;sites-available&lt;/code&gt; and &lt;code&gt;sites-enabled&lt;/code&gt;. For all sites which are to be hosted by nginx inside the current machine, an entry needs to be made inside the &lt;code&gt;sites-available&lt;/code&gt; folder.  A file needs to be created which holds the configuration and the name of file is the domain name. For example, I can create a file - &lt;code&gt;ex.nacnez.com&lt;/code&gt; which represents the domain name using which the virtual host can be accessed. The contents of the configuration file are as follows (remember this is just the basic stuff - more configuration is possible but for setting up the virtual host this is good enough):&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;server&lt;/span&gt; &lt;span class="err"&gt;{&lt;/span&gt;
     &lt;span class="k"&gt;listen&lt;/span&gt;   &lt;span class="mi"&gt;80&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
@@ -29,19 +31,25 @@
     &lt;span class="err"&gt;}&lt;/span&gt;
 &lt;span class="err"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
+
+
 &lt;p&gt;Here &lt;code&gt;/home/your/docroot/basepath&lt;/code&gt; means the base path under which you want to store your site and its document root folders.&lt;/p&gt;
 &lt;h3 id="setting-up-the-actual-document-root"&gt;Setting up the actual document root&lt;/h3&gt;
 &lt;p&gt;The contents of your site is generally placed under its document root folder.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="nginx docroot folders" src="https://www.nacnez.com/images/nginx-docroot-folders.png" style="width: 300px; height: auto; max-width: 100%;"/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="nginx docroot folders" src="https://www.nacnez.com/images/nginx-docroot-folders.png"&gt;&lt;/p&gt;
 &lt;p&gt;If you look at the configuration above you can understand where the document root of your site is placed. Under the &lt;code&gt;public&lt;/code&gt; folder is where your index file (&lt;code&gt;index.html&lt;/code&gt; as per the above configuration and which could contain any HTML content) and other website artifacts go. Anybody accessing your web server through the above domain (of course there is more work to be done for that) is taken to this folder. The log folder is used to store logs like &lt;code&gt;access&lt;/code&gt; and &lt;code&gt;error&lt;/code&gt; logs. There are a couple of other folders (&lt;code&gt;private&lt;/code&gt; and &lt;code&gt;backup&lt;/code&gt;) but they are not used for simple setups (and I don't even know how they are going to be used - may be something for a future post).&lt;/p&gt;
 &lt;h3 id="enabling-the-virtual-host"&gt;Enabling the virtual host&lt;/h3&gt;
 &lt;p&gt;Though the configuration file has been created inside the &lt;code&gt;sites-available&lt;/code&gt; folder, the nginx server still does not serve the pages of this site yet. For enabling this, one needs to create a soft link to the config file inside the &lt;code&gt;sites-enabled&lt;/code&gt; folder.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;ln&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;nginx&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sites&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;available&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;ex&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;nacnez&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;nginx&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sites&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;enabled&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;ex&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;nacnez&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
+
+
 &lt;p&gt;This enables the site on nginx. Once you restart nginx ideally this site should be available.&lt;/p&gt;
 &lt;h2 id="setting-up-the-hosts-file"&gt;Setting up the hosts file&lt;/h2&gt;
 &lt;p&gt;The last important step is to ensure that the hostname is configured in the DNS server to point to your machine. Since I was using it just for my local development, I went ahead and configured my &lt;code&gt;/etc/hosts&lt;/code&gt; file.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="mi"&gt;127&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;  &lt;span class="n"&gt;ex&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;nacnez&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
+
+
 &lt;p&gt;Once this is done, we are all set. If you crank up the browser and type in the domain name you must get the content of your index page.&lt;/p&gt;
 &lt;p&gt;This was my first encounter with nginx. This was enough for me for my current use of nginx. Hopefully I will get pushed to learn more on nginx and that should be fun.&lt;/p&gt;</content><category term="development"></category><category term="technology"></category><category term="nginx"></category><category term="web"></category></entry></feed>
