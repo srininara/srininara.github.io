@@ -22,6 +22,10 @@ span.italic-green {
   font-style: italic;
 }
 
+span.real-bold-green {
+  color: #468847;
+  font-weight: 1000;
+}
 
 span.bold-angry {
   color: #a91834;
