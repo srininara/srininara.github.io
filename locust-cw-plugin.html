@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>Locust statistics in AWS Cloudwatch - Starting Point</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="https://www.nacnez.com/locust-cw-plugin.html">
+
+        <meta name="author" content="Srinivas Narayanan" />
+        <meta name="keywords" content="open source,performance testing,AWS,locust,plugin,software-engineering,development,community" />
+        <meta name="description" content="A plugin to push locust test metrics to AWS CloudWatch - open sourced." />
+
+        <meta property="og:site_name" content="Starting Point" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="Locust statistics in AWS Cloudwatch"/>
+        <meta property="og:url" content="https://www.nacnez.com/locust-cw-plugin.html"/>
+        <meta property="og:description" content="A plugin to push locust test metrics to AWS CloudWatch - open sourced."/>
+        <meta property="article:published_time" content="2023-10-22" />
+            <meta property="article:section" content="Performance Testing" />
+            <meta property="article:tag" content="open source" />
+            <meta property="article:tag" content="performance testing" />
+            <meta property="article:tag" content="AWS" />
+            <meta property="article:tag" content="locust" />
+            <meta property="article:tag" content="plugin" />
+            <meta property="article:tag" content="software-engineering" />
+            <meta property="article:tag" content="development" />
+            <meta property="article:tag" content="community" />
+            <meta property="article:author" content="Srinivas Narayanan" />
+
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://www.nacnez.com/theme/css/bootstrap.darkly.min.css" type="text/css"/>
+    <link href="https://www.nacnez.com/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="https://www.nacnez.com/theme/css/pygments/monokai.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.nacnez.com/theme/css/style.css" type="text/css"/>
+        <link href="https://www.nacnez.com/css/custom.css" rel="stylesheet">
+
+        <link href="https://www.nacnez.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="Starting Point ATOM Feed"/>
+
+        <link href="https://www.nacnez.com/feeds/performance-testing.atom.xml" type="application/atom+xml" rel="alternate"
+              title="Starting Point Performance Testing ATOM Feed"/>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-79BTGL1LJS"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', G-79BTGL1LJS);
+    </script>
+    <!-- End Google Analytics Code -->
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-NBHLX3B');</script>
+    <!-- End Google Tag Manager -->
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="https://www.nacnez.com/" class="navbar-brand">
+<img class="img-responsive pull-left gap-right" src="https://www.nacnez.com/images/myLogo.png" width=""/> Starting Point            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+
+<!-- Banner -->
+<!-- End Banner -->
+
+<!-- Content Container -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="https://www.nacnez.com/locust-cw-plugin.html"
+                       rel="bookmark"
+                       title="Permalink to Locust statistics in AWS Cloudwatch">
+                        Locust statistics in AWS Cloudwatch
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-success">5 min. read</span>
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2023-10-22T00:00:00+05:30"> Sun 22 October 2023</time>
+    </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="https://www.nacnez.com/tag/open-source.html">open source</a>
+        /
+	<a href="https://www.nacnez.com/tag/performance-testing.html">performance testing</a>
+        /
+	<a href="https://www.nacnez.com/tag/aws.html">AWS</a>
+        /
+	<a href="https://www.nacnez.com/tag/locust.html">locust</a>
+        /
+	<a href="https://www.nacnez.com/tag/plugin.html">plugin</a>
+        /
+	<a href="https://www.nacnez.com/tag/software-engineering.html">software-engineering</a>
+        /
+	<a href="https://www.nacnez.com/tag/development.html">development</a>
+        /
+	<a href="https://www.nacnez.com/tag/community.html">community</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <div class="admonition tip">
+<p class="admonition-title">TL;DR<p>Developing &amp; open sourcing a locust plugin that pushes performance test metrics to AWS CloudWatch using locust event hooks and boto3 client.</p>
+</p>
+</div>
+<p>I developed a simple locust plugin and open sourced it. Your questions answered:</p>
+<h2 id="what-are-you-talking-about"><span class="bold-calm">What are you talking about?</span></h2>
+<p>Let me give you some context. I needed a performance test setup for one of our important services in <a href="https://getsimpl.com/"><img src="https://www.google.com/s2/favicons?domain=https://getsimpl.com">Simpl</a>. My tool of choice for load generation was <a href="https://locust.io/">Locust</a>. I had my reasons and I will discuss that in a different post.</p>
+<h2 id="ok-so-what-why-a-plugin"><span class="bold-calm">Ok, so what? Why a plugin?</span></h2>
+<p>Locust is a great load generation tool. It has been around for a long time, has a good community, fairly performant and supports a lot of features for load generation. But, there was still one problem that needed to be solved for our case - <span class="real-bold-green">performance test reporting the way we wanted it</span>. </p>
+<p>Locust does allow us to generate reports from the UI, but that approach did not work for us since we were running it in headless mode (part of the CI setup). I also wanted the reports to live for much longer than the duration of test runs since it helps in comparitive analysis. So I decided that we need to send the metric information elsewhere to store and track them. <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/working_with_metrics.html">AWS Cloudwatch metrics</a> was a good solution for Simpl's setup - a lot of our metrics go there. </p>
+<p>To make this happen, we needed some software which will take the metrics measured by locust and send it to AWS Cloudwatch. The idea is not a new one. If we look at <a href="https://github.com/SvenskaSpel/locust-plugins/tree/master/locust_plugins/listeners">listeners in the locust plugins repo</a>, we can see solutions for this for other metrics collection systems. Timescale is one such example. I decided that a <code>cloudwatch</code> listener plugin is the way to go.</p>
+<h2 id="what-does-this-plugin-do"><span class="bold-calm">What does this plugin do?</span></h2>
+<p>The plugin is simple. It hooks into the events generated by locust, gathers the data from the event hooks, converts them into metrics and uses a client (<a href="https://github.com/boto/boto3">boto3</a>) to push it into Cloudwatch. </p>
+<h3 id="give-me-more-details-buddy"><span class="bold-calm">Give me more details buddy...</span></h3>
+<p>Locust provides a set of <a href="https://docs.locust.io/en/stable/extending-locust.html">event hooks</a>, which can be used to track various actions &amp; events of locust. </p>
+<p>The <code>cloudwatch</code> plugin works primarily using 2 event hooks (it actually uses 4, but 2 are important):</p>
+<ul>
+<li>When locust initialises, it calls the <code>init</code> event hook. Our plugin is bootstrapped as part of the event hook. The user of the plugin does this step. Checkout an example for <span class="italic-green">Application Insights</span>.</li>
+</ul>
+<script src="https://emgithub.com/embed-v2.js?target=https%3A%2F%2Fgithub.com%2FSvenskaSpel%2Flocust-plugins%2Fblob%2F7e46f18330d8d0e8f3bba654371fa1d75ad90ffb%2Fexamples%2Fappinsights_listener_ex.py%23L14-L16&style=atom-one-dark-reasonable&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on"></script>
+
+<p>The cloudwatch plugin also does it in similar manner:</p>
+<script src="https://emgithub.com/embed-v2.js?target=https%3A%2F%2Fgithub.com%2FSvenskaSpel%2Flocust-plugins%2Fblob%2F7e46f18330d8d0e8f3bba654371fa1d75ad90ffb%2Fexamples%2Fcloudwatch_listener_ex.py%23L5-L7&style=atom-one-dark-reasonable&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on"></script>
+
+<ul>
+<li>When each request is completed (successful or unsuccessful), the <code>request</code> event hook is called. All the data related to the request like request type, URL of the request, response time etc. are passed as parameters to this call. This is the primary source of data for creating and publishing metrics of a performance test. The plugin registers this event hook when it is instantiated as part of bootstrapping. <span class="italic-green">Application Insights</span> example here - <span class="bold-green">focus on line 26 (last line)</span>.</li>
+</ul>
+<script src="https://emgithub.com/embed-v2.js?target=https%3A%2F%2Fgithub.com%2FSvenskaSpel%2Flocust-plugins%2Fblob%2F7e46f18330d8d0e8f3bba654371fa1d75ad90ffb%2Flocust_plugins%2Flisteners%2Fappinsights.py%23L12-26&style=atom-one-dark-reasonable&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on"></script>
+
+<p>The cloudwatch plugin does it this way (<span class="bold-green">line 168</span>):</p>
+<script src="https://emgithub.com/embed-v2.js?target=https%3A%2F%2Fgithub.com%2FSvenskaSpel%2Flocust-plugins%2Fblob%2F7e46f18330d8d0e8f3bba654371fa1d75ad90ffb%2Flocust_plugins%2Flisteners%2Fcloudwatch.py%23L145-L169&style=atom-one-dark-reasonable&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on"></script>
+
+<p>Now the data is all available, so all the plugin has to do is to push it to Cloudwatch. Sounds easy right. It is easy, but the plugin does a little trick:</p>
+<p>Instead of just passing the metrics to Cloudwatch at the end of each request, the plugin batches them. Why? Because posting metrics to Cloudwatch costs money at request level. So, instead, it is better to batch them &amp; send it. Cost reduction is always a good idea!<span class="emoji">😄🤩</span> Also, this approach optimises the time spent in publishing these metrics. </p>
+<p>The request data is encapsulated into an object <code>RequestResult</code> which provides methods to convert locust raw data to meaningful Cloudwatch metrics.</p>
+<script src="https://emgithub.com/embed-v2.js?target=https%3A%2F%2Fgithub.com%2FSvenskaSpel%2Flocust-plugins%2Fblob%2F7e46f18330d8d0e8f3bba654371fa1d75ad90ffb%2Flocust_plugins%2Flisteners%2Fcloudwatch.py%23L13-L29&style=atom-one-dark-reasonable&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on"></script>
+
+<p><span class="small-italicized-green">Dig more using view raw.</span></p>
+<p>This object is stored in <code>gevent.queue.Queue</code> - <span class="bold-green">line 200</span>. </p>
+<script src="https://emgithub.com/embed-v2.js?target=https%3A%2F%2Fgithub.com%2FSvenskaSpel%2Flocust-plugins%2Fblob%2F7e46f18330d8d0e8f3bba654371fa1d75ad90ffb%2Flocust_plugins%2Flisteners%2Fcloudwatch.py%23L183-205&style=atom-one-dark-reasonable&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on"></script>
+
+<p>Once a batch of requests has been queued in, the plugin will create metrics out of them and send them to cloudwatch in batches <span class="bold-green">(lines 203-204)</span>. Two constants govern the limits of this behaviour.</p>
+<script src="https://emgithub.com/embed-v2.js?target=https%3A%2F%2Fgithub.com%2FSvenskaSpel%2Flocust-plugins%2Fblob%2F7e46f18330d8d0e8f3bba654371fa1d75ad90ffb%2Flocust_plugins%2Flisteners%2Fcloudwatch.py%23L153-154&style=atom-one-dark-reasonable&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on"></script>
+
+<p>The first one focuses on the limit of actual requests batched. The second one is focused on batch size of metrics sent to Cloudwatch - (one request can lead to more than one metric record - request count, response time, failure count etc.).</p>
+<p>That is it! If you want to look at the code in full, check it <a href="https://github.com/SvenskaSpel/locust-plugins/blob/master/locust_plugins/listeners/cloudwatch.py">here</a></p>
+<h2 id="where-does-the-plugin-run-now"><span class="bold-calm">Where does the plugin run now?</span></h2>
+<p>The plugin (a version of it) has been running in <a href="https://getsimpl.com/"><img src="https://www.google.com/s2/favicons?domain=https://getsimpl.com">Simpl</a> perf environments for one of the services for more than a year. More teams/services within Simpl are adopting it now.</p>
+<p>The version which is running inside Simpl has some support for configuring AWS Cloudwatch response time alarms as well. But we have not open sourced that yet (hopefully can do it soon).</p>
+<h2 id="where-is-the-code-now"><span class="bold-calm">Where is the code now?</span></h2>
+<p>The <a href="https://github.com/SvenskaSpel/locust-plugins/pull/147">pull request</a> was submitted to the <a href="https://github.com/SvenskaSpel/locust-plugins">main github repo</a>, and it got approved and merged into the master branch. It was released on 18th Oct as part of <a href="https://github.com/SvenskaSpel/locust-plugins/releases/tag/4.1.0">Release 4.1.0</a>. You can track all releases <a href="https://github.com/SvenskaSpel/locust-plugins/releases">here</a>. The locust plugin repo has other useful plugins as well. So you should check it out fully.</p>
+<h2 id="how-did-the-process-of-open-source-contribution-go"><span class="bold-calm">How did the process of open source contribution go?</span></h2>
+<p>I had thought of contributing this plugin sometime back in January 2023. I raised a <a href="https://github.com/SvenskaSpel/locust-plugins/issues/111">Github issue</a> and discussed with my CTO <a href="https://www.linkedin.com/in/puneetsingh80/">Puneet Singh</a> to get his approval- He was all for it. But before taking the next step, life got in the way and I dropped the ball; the issue got closed.</p>
+<p>I picked it back up in the last couple of weeks and actively started the contribution process. <a href="https://github.com/cyberw">Lars Holmberg</a>, the maintainer of the plugins repo and the main <a href="https://github.com/locustio/locust">locust repo</a> helped me through the entire process.</p>
+<p>We had very useful and timely interactions on the locust Slack channel. Apart from the plugin code, I created an example usage file (referred above) as well as a basic test for the plugin. Lars suggested and helped me with creating these. He also helped me improve the code of the plugin to make it easier to understand and to conform to the policies followed by the locust development process. And in quick time, the plugin code got accepted. It was a swift, constructive and satisfying process.</p>
+<p>I have not made too many open source contributions till date, but this experience makes me want to do a lot more of it. Thanks <a href="https://twitter.com/cyberw">Lars Holmberg</a> for helping with this.</p>
+<h2 id="conclusion"><span class="bold-calm">Conclusion</span></h2>
+<p>This is my first significant open source contribution. I know it is very late in the game, but it better late than never. This experience has made me believe that this process is a worthwhile one. 
+My journey has only started, and I hope to do more. Also, hopefully this post will encourage you to do more of this and not wait for long like me. Wish you a happy time doing open source!</p>
+            </div>
+            <!-- /.entry-content -->
+    <hr/>
+    <section class="comments" id="comments">
+        <h2>Comments</h2>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'nacnez'; // required: replace example with your forum shortname
+
+            var disqus_config = function () {
+                this.language = "en";
+
+                        this.page.identifier = '2023-10-22-locust-cw-plugin';
+                        this.page.url = 'https://www.nacnez.com/locust-cw-plugin.html';
+            };
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function () {
+                var dsq = document.createElement('script');
+                dsq.type = 'text/javascript';
+                dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by
+            Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+    </section>
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<div id="aboutme">
+        <p>
+            <img width="100%" class="img-thumbnail" src="https://www.nacnez.com/images/profile.jpeg"/>
+        </p>
+    <p>
+      <strong>About Srinivas Narayanan (Srini)</strong><br/>
+        Living in Bengaluru. Family man & Software engineer. Currently I am a <span class="bold-green"><a href="https://getsimpl.com/"><img src="https://www.google.com/s2/favicons?domain=https://getsimpl.com">Simpl</a></span>fier. <br/>This, a place for me to write about anything under the 🌞. <span class="bold-angry">My views are mine alone</span> & not related to any person or organisation including my employer.
+    </p>
+</div><!-- Sidebar -->
+<section class="well well-sm">
+  <ul class="list-group list-group-flush">
+
+<!-- Sidebar/Social -->
+<li class="list-group-item">
+  <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+  <ul class="list-group" id="social">
+    <li class="list-group-item"><a href="http://twitter.com/srininara"><i class="fa fa-twitter-square fa-lg"></i> twitter</a></li>
+    <li class="list-group-item"><a href="http://github.com/srininara"><i class="fa fa-github-square fa-lg"></i> github</a></li>
+    <li class="list-group-item"><a href="https://www.linkedin.com/in/srinivas-narayanan-1912b14/"><i class="fa fa-linkedin-square fa-lg"></i> linkedin</a></li>
+    <li class="list-group-item"><a href="https://www.nacnez.com/feeds/all.atom.xml"><i class="fa fa-rss-square fa-lg"></i> rss</a></li>
+  </ul>
+</li>
+<!-- End Sidebar/Social -->
+
+<!-- Sidebar/Tag Cloud -->
+<li class="list-group-item">
+  <a href="https://www.nacnez.com/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+  <ul class="list-group " id="tags">
+    <li class="list-group-item tag-1">
+      <a href="https://www.nacnez.com/tag/life.html">life</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="https://www.nacnez.com/tag/software-engineering.html">software-engineering</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="https://www.nacnez.com/tag/development.html">development</a>
+    </li>
+    <li class="list-group-item tag-2">
+      <a href="https://www.nacnez.com/tag/technology.html">technology</a>
+    </li>
+    <li class="list-group-item tag-2">
+      <a href="https://www.nacnez.com/tag/people.html">people</a>
+    </li>
+    <li class="list-group-item tag-2">
+      <a href="https://www.nacnez.com/tag/python.html">python</a>
+    </li>
+    <li class="list-group-item tag-2">
+      <a href="https://www.nacnez.com/tag/microservices.html">microservices</a>
+    </li>
+    <li class="list-group-item tag-2">
+      <a href="https://www.nacnez.com/tag/architecture.html">architecture</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="https://www.nacnez.com/tag/programming-languages.html">programming languages</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="https://www.nacnez.com/tag/extreme-programming.html">extreme-programming</a>
+    </li>
+  </ul>
+</li>
+<!-- End Sidebar/Tag Cloud -->
+  </ul>
+</section>
+<!-- End Sidebar -->            </aside>
+        </div>
+    </div>
+</div>
+<!-- End Content Container -->
+
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2023 Srinivas Narayanan (Srini)
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="https://www.nacnez.com/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="https://www.nacnez.com/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="https://www.nacnez.com/theme/js/respond.min.js"></script>
+
+
+    <!-- Disqus -->
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'nacnez'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function () {
+            var s = document.createElement('script');
+            s.async = true;
+            s.type = 'text/javascript';
+            s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+    </script>
+    <!-- End Disqus Code -->
+
+
+</body>
+</html>
