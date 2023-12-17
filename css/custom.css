@@ -12,6 +12,12 @@ span.bold-calm {
   font-weight: bold;
 }
 
+span.bold-yellow {
+  color: #fbfb05;
+  font-weight: bold;
+}
+
+
 span.bold-green {
   color: #468847;
   font-weight: bolder;

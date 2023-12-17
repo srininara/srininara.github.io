@@ -1,5 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Starting Point - Srinivas Narayanan</title><link href="https://www.nacnez.com/" rel="alternate"></link><link href="https://www.nacnez.com/feeds/srinivas-narayanan.atom.xml" rel="self"></link><id>https://www.nacnez.com/</id><updated>2023-10-22T00:00:00+05:30</updated><entry><title>Locust statistics in AWS Cloudwatch</title><link href="https://www.nacnez.com/locust-cw-plugin.html" rel="alternate"></link><published>2023-10-22T00:00:00+05:30</published><updated>2023-10-22T00:00:00+05:30</updated><author><name>Srinivas Narayanan</name></author><id>tag:www.nacnez.com,2023-10-22:/locust-cw-plugin.html</id><summary type="html">&lt;p&gt;A plugin to push locust test metrics to AWS CloudWatch - open sourced.&lt;/p&gt;</summary><content type="html">&lt;div class="admonition tip"&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Starting Point - Srinivas Narayanan</title><link href="https://www.nacnez.com/" rel="alternate"></link><link href="https://www.nacnez.com/feeds/srinivas-narayanan.atom.xml" rel="self"></link><id>https://www.nacnez.com/</id><updated>2023-12-17T00:00:00+05:30</updated><entry><title>Learning Teaching - Chapter One</title><link href="https://www.nacnez.com/teaching-lessons-1.html" rel="alternate"></link><published>2023-12-17T00:00:00+05:30</published><updated>2023-12-17T00:00:00+05:30</updated><author><name>Srinivas Narayanan</name></author><id>tag:www.nacnez.com,2023-12-17:/teaching-lessons-1.html</id><summary type="html">&lt;p&gt;Beginning my journey of learning about teaching&lt;/p&gt;</summary><content type="html">&lt;p&gt;If you follow my blog, you probably know that I am interested in education. One of my specific goals is becoming a teacher. I even feel that I have some talent in the profession&lt;span class="emoji"&gt;😛&lt;/span&gt;. In the past, I have attempted some teaching by giving sessions to co-workers (in software development topics - Architecture, TDD etc.), albiet I am not sure about their success. I have also tried my hand at some online course creation (you probably know about &lt;a href="https://www.nacnez.com/pykidz-basic-course.html"&gt;that one&lt;/a&gt;).&lt;/p&gt;
+&lt;h2 id="the-source"&gt;&lt;span class="bold-calm"&gt;The Source&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;Given this background, it is clear that I don't have any formal training on teaching. No formal foundation in teaching &amp;amp; developing skills in others. So I decided to invest sometime on it. My search lead me to &lt;a href="https://www.coursera.org/learn/teaching"&gt;this course in Coursera&lt;/a&gt;. The &lt;em&gt;&lt;span class="bold-green"&gt;Commonwealth Education Trust&lt;/span&gt;&lt;/em&gt; provides a lot of courses on teaching and I thought this could be a starting point to getting trained.&lt;/p&gt;
+&lt;p&gt;The course itself is for actual teachers who are practising the craft across the world. I have very limited experience teaching a classroom. Also, the experience I have, has been with fairly older students (not sure if I can call them students, since they are already in a professional setup). But I was interested in understanding how the teaching profession worked. So I started on the course.&lt;/p&gt;
+&lt;p&gt;I have now completed &lt;em&gt;2 weeks&lt;/em&gt; of the course. I finished an assignment as part of the course and that made me reflect on some of my learnings in the course (a great idea for an assignment). After some thought, I decided that it will be good to share whatever I have learnt. You may or may not find it useful, but this will help me internalise the ideas.  The course has a lot to offer (for anyone interested in the subject). What I cover here are just the top ideas I picked up.&lt;/p&gt;
+&lt;h2 id="the-lessons"&gt;&lt;span class="bold-calm"&gt;The Lessons&lt;/span&gt;&lt;/h2&gt;
+&lt;h3 id="aim-of-teaching"&gt;&lt;span class="bold-calm"&gt;Aim of Teaching&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;One of the first points made in the course is about the aim of teaching. Let me quote the sentence here:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;span class="bold-green"&gt;The aim of teaching is not to produce learning but to produce the conditions for learning.&lt;/span&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div&gt;
+    &lt;img alt="Teaching - create the conditions for learning" src="https://www.nacnez.com/images/teaching_lessons/teacher_aim.jpg"/&gt;
+    &lt;p class="caption"&gt;The Art of Teaching - Image by &lt;a href="https://pixabay.com/users/peggy_marco-1553824/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1015630"&gt;Peggy und Marco Lachmann-Anke&lt;/a&gt; from &lt;a href="https://pixabay.com//?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1015630"&gt;Pixabay&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Learning is not a simple process of just listening and memorising the ideas said by a teacher (the &lt;em&gt;&lt;span class="bold-green"&gt;"teaching"&lt;/span&gt;&lt;/em&gt;). It is a multistep, multi-layered process. All learning is social, emotional &amp;amp; intellectual and hence giving a lecture cannot directly create learning. Teaching is more an attempt to create an environment and a set of circumstances which help students learn. It is not a transfer, it is a facilitation. We need to create multiple mechanisms which acts as conditions for learning. Before the course, I did not think of teaching and learning in a holistic sense. It... made sense!&lt;/p&gt;
+&lt;h3 id="the-learners-mind"&gt;&lt;span class="bold-calm"&gt;The Learner's mind&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;The course talks about how the thinking about learning evolves in the mind of the learner - the student. The learner will need to think about:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;What do I know about learning? How am I smart?&lt;/li&gt;
+&lt;li&gt;What learning mechanisms work best for me? What helps/hinders my learning?&lt;/li&gt;
+&lt;li&gt;Who do I learn best with? Where and when do I learn best?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div&gt;
+    &lt;img alt="Learner's mind is full of questions" src="https://www.nacnez.com/images/teaching_lessons/mind.png"/&gt;
+    &lt;p class="caption"&gt;A Learner's mind - Image by &lt;a href="https://pixabay.com/users/gdj-1086657/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3350778"&gt;Gordon Johnson&lt;/a&gt; from &lt;a href="https://pixabay.com//?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3350778"&gt;Pixabay&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;These questions trigger 2 thoughts in me:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;As a learner &lt;span class="small-italicized-green"&gt;(both my current profession &amp;amp; teaching need learning)&lt;/span&gt;, I need to answer these questions for my own learning process.&lt;/li&gt;
+&lt;li&gt;As a teacher, I should try to answer these questions for my learners.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;If I can do the second one at an individual level, it would be ideal. But, it may not be practical. In a classroom setting where the teacher and her students have a longer association (in terms of time spent together), individual attention might be possible. Then again, this also depends on how big the class is - teacher to student ratio.&lt;/p&gt;
+&lt;p&gt;All said and done, this is another aspect to look at to become a better teacher and learner.&lt;/p&gt;
+&lt;h3 id="the-unknown-hinderances"&gt;&lt;span class="bold-calm"&gt;The Unknown hinderances&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;I am listing out some hinderances in learning. I call these unknown because I was unaware of it myself &lt;span class="small-italicized-green"&gt;(you might already know)&lt;/span&gt;. They are subtle in nature:
+&lt;div&gt;
+    &lt;img alt="Hinderances in learning" src="https://www.nacnez.com/images/teaching_lessons/hinderances.jpg"/&gt;
+    &lt;p class="caption"&gt;Hinderances in my student's mind - &lt;a href="https://www.pexels.com/photo/traffic-cones-3095695/"&gt;Photo by Ann H&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;span class="bold-yellow"&gt;Self-doubt &amp;amp; self talk in the learners mind&lt;/span&gt;: 
+Learners have a lot of things running in their head which can reduce the acquired learning. This is mentioned in the context of kids, but I think it applies to elders too. I can relate to it in my own learning attempts. When a topic become tough, our mind starts doubting our capabilities and starts talking negatively, which hinders the learning further. As a teacher, I need to be aware of this and be able to empathise with learners.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;span class="bold-yellow"&gt;Inappropriate medium&lt;/span&gt;: 
+If we just talk through a very visually rich concept, it is obviously a poor medium to convey the message. A crude example is me trying to explain a Picasso or Ravi Varma painting verbally instead of showing a picture. It could be better to use more than one medium (multimedia) to convey lessons. This can also help different kinds of learners (who are partial to different mediums) to grasp the concepts that are explained.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;span class="bold-yellow"&gt;Misconceptions&lt;/span&gt;: 
+Many a times, when we are trying to learn a concept that is related to another known concept, our understanding of the new concept is shaped by our understanding of the known concept. But, if we have misconceptions on it, then our new learning suffers. For example if I start learning statistics and have the misconception that average and mean are the only ways to measure central tendencies (which is wrong in more than one way), then I am going to find it harder to properly grasp the concepts of central tendencies. &lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;span class="bold-yellow"&gt;Lack of prior knowledge&lt;/span&gt;: 
+Trying to understand Machine learning without knowing the basics of Statistics is probably going to backfire on us. For any learner trying to learn something, it is important to know the pre-requisites. As a teacher it is imperative on my part to clarify this clearly to the learner.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;span class="bold-yellow"&gt;Peer norms and pressure&lt;/span&gt;: 
+In a social setting (which is where all learning happens), the effect of peers on the learner is very high. All learners want social validation and want to confirm to peer norms. If the social setting moves the learner away from learning, my efforts as a teacher may not really bear any fruit.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;All these have to be seen in the context of individual learners. Every learner might not have all these issues, but they might have different subsets. So it is critical to provide individual attention to the extent possible. I am not sure if this is practical in all situations, but it is the ideal to strive for.&lt;/p&gt;
+&lt;h3 id="a-teachinglearning-technique"&gt;&lt;span class="bold-calm"&gt;A teaching/learning technique &lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;The course introduces a good technique that can be used to teach and learn. It is a 3-step process:&lt;/p&gt;
+&lt;div&gt;
+    &lt;img alt="Connect, extend and challenge" src="https://www.nacnez.com/images/teaching_lessons/connect.jpg"/&gt;
+    &lt;p class="caption"&gt;Connect, extend and challenge - Image by &lt;a href="https://pixabay.com/users/tungnguyen0905-17946924/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=7111755"&gt;Tung Nguyen&lt;/a&gt; from &lt;a href="https://pixabay.com//?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=7111755"&gt;Pixabay&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;span class="bold-yellow"&gt;Connect&lt;/span&gt; - Connect new information to what they (or you) already know.&lt;/li&gt;
+&lt;li&gt;&lt;span class="bold-yellow"&gt;Extend&lt;/span&gt; - Think or explain, how the new concept builds on top of what they (or you) know&lt;/li&gt;
+&lt;li&gt;&lt;span class="bold-yellow"&gt;Challenge&lt;/span&gt; - Think or discuss, how it challenges what they (or you) know, think and do&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;This kind of learning allows for active inquiry, assimilation and understanding of the material. The learner understands the applicability of the learnings too. It can help break misconceptions which we already have. I plan to apply this to my own learning process. I feel this is very similar to the ideas explained in the &lt;em&gt;&lt;a href="https://en.wikipedia.org/wiki/Zettelkasten"&gt;Zettelkasten&lt;/a&gt;&lt;/em&gt; method. More on that some other time.&lt;/p&gt;
+&lt;h3 id="learning-is-mediated-by-emotional-centers"&gt;&lt;span class="bold-calm"&gt;Learning is mediated by emotional centers&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;I had some inkling of this idea before. I had noticed that whenever something worth learning has a story attached to it, the recollection of the material is better. The story has to be appealing - have an emotional connect. This applied to my own learning as well as a few times when I had an opportunity to teach others. I did not know that there is a formal understanding that learning has an emotional component. This is new information which &lt;span class="bold-green"&gt;connects and extends&lt;/span&gt; my understanding. Going forward, I should add something in my teaching which will evoke an emotion in the learner.&lt;/p&gt;
+&lt;p&gt;The &lt;span class="bold-green"&gt;challenge&lt;/span&gt; I see in doing this, is that I need to figure out a way to control this in a classroom/teaching setting. It should not distract the learner from the core topic and take him to unplanned areas. Venturing into unchartered areas might be good at times, but it could also lead to challenging situations where the core ideas that need to reach the learner get replaced by ancilliary thoughts which may not add the necessary value to the learner. This is something I will have to watch out for and mitigate.&lt;/p&gt;
+&lt;h3 id="a-teachable-moment"&gt;&lt;span class="bold-calm"&gt; A teachable moment&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;The modules talks about an idea that learning happens at a teachable moment and that teachable moment cannot be pre-determined by the teacher. It varies with different learners. There is a stress on the idea of repeating the learning material from time to time so that a teachable moment occurs for the learner to grasp it.&lt;/p&gt;
+&lt;div&gt;
+    &lt;img alt="A teachable moment is a learning moment" src="https://www.nacnez.com/images/teaching_lessons/teachable_moment.jpg"/&gt;
+    &lt;p class="caption"&gt;A teachable moment is a learning moment - &lt;a href="https://www.pexels.com/photo/cheerful-multiethnic-students-having-high-five-with-teacher-5940841/"&gt;Photo by Kampus Production&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;I have seen many teachers repeating their content, but always felt that doing it, would unnecessarily cause boredom to the listener. Now I understand that this is not true always. The repeating of lessons and ideas is required so that learners get multiple attempts at grasping them. It also explains why many teachers tend to include small sections in their class where they reiterate previously learnt concepts. I also intend to apply this technique down the line. I will ensure that these interludes are brief (and to the point) in nature so that it does not feel overly repetitive &amp;amp; tiresome to the learner.&lt;/p&gt;
+&lt;h3 id="learning-by-teaching"&gt;&lt;span class="bold-calm"&gt; Learning by teaching&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;This is something I have observed myself. Any topic which I try to learn takes time. More importantly the nature of the effort I take to learn the topic, matters. When I am learning to teach someone (through a session or through writing), my quality of learning improves by leaps and bounds. I crystallise on thoughts, concepts and ideas better. Also, sessions with learners bring in more questions which makes me think in directions which I had not thought of earlier. &lt;/p&gt;
+&lt;p&gt;What I learnt from the module is the fact that this technique could be extended to children or learners. If we provide opportunities for the learners (kids) to teach their peers, it can help them learn better. The challenge I see is that, this could be a big ask for some learners since they might be intimidated by the idea of teaching someone else. I will have to figure out ways to make this attuned to their own comfort. Also, I need to work on getting more learners to participate in the process so that many can benefit from it.&lt;/p&gt;
+&lt;h3 id="what-makes-you-say-that"&gt;&lt;span class="bold-calm"&gt; "What makes you say that?"&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;This idea from the module struck me as a profound one. While I keep focusing on whether the learner(s) have grasped the ideas of the lessons, I have not really delved deep into their thinking and reasoning behind it. Simple questions like "What makes you say that?", "What do you think you know?" pushes me into the realm of the learner's thinking process and helps me understand where they are coming from. It helps me to get deeper into their psyche and ensures that I don't stay at a superficial level.&lt;/p&gt;
+&lt;div&gt;
+    &lt;img alt="Questioning our thinking leads us to deeper understanding" src="https://www.nacnez.com/images/teaching_lessons/question_thinking.png"/&gt;
+    &lt;p class="caption"&gt;Questioning our thinking leads us to deeper understanding - Image by &lt;a href="https://pixabay.com/users/jambulboy-4860762/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2519654"&gt;nugroho dwi hartawan&lt;/a&gt; from &lt;a href="https://pixabay.com//?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2519654"&gt;Pixabay&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;As I think more, I feel that the question &lt;span class="real-bold-green"&gt;"What makes me say that?"&lt;/span&gt; is one I should ask myself more often, so that I can delve deeper into my own understanding of topics.&lt;/p&gt;
+&lt;h3 id="a-living-curriculum"&gt;&lt;span class="bold-calm"&gt; A living curriculum&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;Earlier I have been restricted to the idea of looking at a curriculum as a fixed one. I have come up with curriculums for teaching certain topics in my brief experience as a teacher. &lt;/p&gt;
+&lt;p&gt;The idea that the curriculum is a living one that needs to change as per the observations I make, and the needs expressed by learners was new to me. But it makes a lot of sense once I think about it. I will have to figure out how much of this idea I can implement under various circumstances. If I work on my own courses, the curriculum can be changed at my will. Other times I will have to look at innovative ways to keep the curriculum live in spite of the restrictions. &lt;/p&gt;
+&lt;h2 id="conclusion"&gt;&lt;span class="bold-calm"&gt; Conclusion&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;Thes are the top points from the modules which I connected to and was able to extend my thinking and also identify some challenges. These are my first set of lessons in this journey. I hope to learn more from the course (and other courses) and also by sharing it with you all. Please do share your thoughts and comments on this.&lt;/p&gt;
+&lt;p&gt;&lt;span class="small-italicized-green"&gt;Aum sarvam SriKrishnarpanam astu&lt;/span&gt;&lt;/p&gt;</content><category term="education"></category><category term="teaching"></category><category term="learning"></category><category term="lessons"></category></entry><entry><title>Locust statistics in AWS Cloudwatch</title><link href="https://www.nacnez.com/locust-cw-plugin.html" rel="alternate"></link><published>2023-10-22T00:00:00+05:30</published><updated>2023-10-22T00:00:00+05:30</updated><author><name>Srinivas Narayanan</name></author><id>tag:www.nacnez.com,2023-10-22:/locust-cw-plugin.html</id><summary type="html">&lt;p&gt;A plugin to push locust test metrics to AWS CloudWatch - open sourced.&lt;/p&gt;</summary><content type="html">&lt;div class="admonition tip"&gt;
 &lt;p class="admonition-title"&gt;TL;DR&lt;p&gt;Developing &amp;amp; open sourcing a locust plugin that pushes performance test metrics to AWS CloudWatch using locust event hooks and boto3 client.&lt;/p&gt;
 &lt;/p&gt;
 &lt;/div&gt;
