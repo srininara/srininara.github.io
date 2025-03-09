@@ -143,10 +143,10 @@ But do microservices need them? Microservices already offer a lot of good qualit
 </div>
 <p>To answer this let us dig deeper to identify challenges which microservices introduces.</p>
 <h4 id="use-case-viewingediting-an-online-document">Use case - Viewing/Editing an online document</h4>
-<p><img alt="Editing online document" src="https://www.nacnez.com/images/caching_in_ms/usecase1.png">  </p>
+<p><img alt="Editing online document" src="https://www.nacnez.com/images/caching_in_ms/usecase1.png" style="width: 702px; height: auto; max-width: 100%;"/> </p>
 <p><br/>
 The use case is pretty common. So let us look at potential architecture for making this work. For showing a single document to the end user there are 5 - 6 services involved if we adopt microservices architecture.</p>
-<p><img alt="Editing online document - Architecture" src="https://www.nacnez.com/images/caching_in_ms/usecase1-archi.png"><br>
+<p><img alt="Editing online document - Architecture" src="https://www.nacnez.com/images/caching_in_ms/usecase1-archi.png" style="width: 521px; height: auto; max-width: 100%;"/><br/>
 <br/></p>
 <p>The individual components are:</p>
 <ul>
@@ -194,13 +194,13 @@ The use case is pretty common. So let us look at potential architecture for maki
 <h2 id="how-to-cache-patterns">How to cache - Patterns</h2>
 <p>Let us get into details of how caching can be implemented within microservices. There are some well known patterns for reading and writing to cache. These have their pros and cons as well. Also they are not mutually exclusive in any way. They generally work together to solve problems. Let us go through them one by one.</p>
 <h4 id="cache-aside">Cache aside</h4>
-<p><img alt="Cache aside pattern" src="https://www.nacnez.com/images/caching_in_ms/cache_aside.png"></p>
+<p><img alt="Cache aside pattern" src="https://www.nacnez.com/images/caching_in_ms/cache_aside.png" style="width: 411px; height: auto; max-width: 100%;"/></p>
 <p>The first one is the <em>Cache aside</em> pattern. This is the most common pattern and used extensively. The idea of the pattern is to treat cache as a different store similar to the database. A service would read and write to the database and the cache as an aside. The control of what and when data are written into or read from the cache lies with the service itself. This pattern is great for read heavy workloads. Also we could write the service in such a way that during a failure in cache setup - when we use standalone/grid mode - the service can still keep serving from db. Of course this can’t be sustained for long given the cache setup is to support scale, but the option is there. The approach for when writes happen depends on us. Writing to database is the first thing the service will do - almost always. What happens to the cached entry is subject to developers choice - the patterns leaves this open to us. One thing to do is to just remove or invalidate the entry from the cache. There are others options available.</p>
 <p>I prefer this approach because as a business service writer I have lot more control with this approach. Hence I have used it a lot as well.</p>
 <p><br/>
 Sometimes we really don’t want so much control. Rather we want convenience and ease of use. The following patterns afford this one way or other and the unifying aspect of these patterns is that the caching library or system acts as the facade and controls how data is written/read to/from the underlying source data store.</p>
 <h4 id="read-through">Read through</h4>
-<p><img alt="Read through pattern" src="https://www.nacnez.com/images/caching_in_ms/read_through.png"></p>
+<p><img alt="Read through pattern" src="https://www.nacnez.com/images/caching_in_ms/read_through.png" style="width: 451px; height: auto; max-width: 100%;"/></p>
 <p>The first one among them is the <em>Read-Through</em> pattern. Here the cache, when requested for a entry and not finding it, will initiate a call to the underlying store to read the data. It will then cache it and return the data to requester. The key thing to note here is, the cache is the one orchestrating the action. This is different from how cache aside pattern works where the control is with the service code. Also Read through pattern follows lazy or on-demand loading and hence has the same caveats. We must also remember that in this pattern the data structure cached must match with the structure stored in the underlying store.</p>
 <p>Even in Cache aside, we could follow a similar technique of lazy loading when writes happen (i.e writes just invalidates the corresponding entry in cache if it exists) if the applicable caveats work for you.</p>
 <h4 id="write-through">Write Through</h4>
@@ -294,7 +294,7 @@ As I said earlier these are general patterns which have trade-offs. And they are
         </p>
     <p>
       <strong>About Srinivas Narayanan (Srini)</strong><br/>
-        Living in Bengaluru. Family man & Software engineer. Currently I am a <span class="bold-green"><a href="https://getsimpl.com/"><img src="https://www.google.com/s2/favicons?domain=https://getsimpl.com">Simpl</a></span>fier. <br/>This, a place for me to write about anything under the 🌞. <span class="bold-angry">My views are mine alone</span> & not related to any person or organisation including my employer.
+        Living in Bengaluru. Family man & Software engineer. Currently I am working at <a href="https://www.avalara.com/in/en/index.html">Avalara</a>. <br/>This, a place for me to write about anything under the 🌞. <span class="bold-angry">My views are mine alone</span> & not related to any person or organisation including my employer.
     </p>
 </div><!-- Sidebar -->
 <section class="well well-sm">
@@ -320,31 +320,31 @@ As I said earlier these are general patterns which have trade-offs. And they are
       <a href="https://www.nacnez.com/tag/life.html">life</a>
     </li>
     <li class="list-group-item tag-1">
-      <a href="https://www.nacnez.com/tag/development.html">development</a>
+      <a href="https://www.nacnez.com/tag/software-engineering.html">software-engineering</a>
     </li>
     <li class="list-group-item tag-1">
-      <a href="https://www.nacnez.com/tag/software-engineering.html">software-engineering</a>
+      <a href="https://www.nacnez.com/tag/development.html">development</a>
+    </li>
+    <li class="list-group-item tag-2">
+      <a href="https://www.nacnez.com/tag/technology.html">technology</a>
+    </li>
+    <li class="list-group-item tag-2">
+      <a href="https://www.nacnez.com/tag/spirituality.html">spirituality</a>
     </li>
     <li class="list-group-item tag-2">
       <a href="https://www.nacnez.com/tag/architecture.html">architecture</a>
     </li>
     <li class="list-group-item tag-2">
-      <a href="https://www.nacnez.com/tag/people.html">people</a>
+      <a href="https://www.nacnez.com/tag/python.html">python</a>
     </li>
     <li class="list-group-item tag-2">
-      <a href="https://www.nacnez.com/tag/python.html">python</a>
+      <a href="https://www.nacnez.com/tag/people.html">people</a>
     </li>
     <li class="list-group-item tag-2">
       <a href="https://www.nacnez.com/tag/microservices.html">microservices</a>
     </li>
-    <li class="list-group-item tag-2">
-      <a href="https://www.nacnez.com/tag/technology.html">technology</a>
-    </li>
     <li class="list-group-item tag-4">
-      <a href="https://www.nacnez.com/tag/teaching.html">teaching</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="https://www.nacnez.com/tag/education.html">education</a>
+      <a href="https://www.nacnez.com/tag/devotion.html">devotion</a>
     </li>
   </ul>
 </li>
@@ -361,7 +361,7 @@ As I said earlier these are general patterns which have trade-offs. And they are
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2023 Srinivas Narayanan (Srini)
+         <div class="col-xs-10">&copy; 2025 Srinivas Narayanan (Srini)
             &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>

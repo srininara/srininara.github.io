@@ -139,10 +139,8 @@
 <p>Once nginx is set up, you find the following folder where definitions of the virtual hosts are kept:</p>
 <div class="highlight"><pre><span></span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span>
 </pre></div>
-
-
 <p>The folder structure is as depicted below:</p>
-<p><img alt="Nginx folder structure" src="https://www.nacnez.com/images/nginx-folders1.png"></p>
+<p><img alt="Nginx folder structure" src="https://www.nacnez.com/images/nginx-folders1.png" style="width: 550px; height: auto; max-width: 100%;"/></p>
 <p>The important folders for our discussion are <code>sites-available</code> and <code>sites-enabled</code>. For all sites which are to be hosted by nginx inside the current machine, an entry needs to be made inside the <code>sites-available</code> folder.  A file needs to be created which holds the configuration and the name of file is the domain name. For example, I can create a file - <code>ex.nacnez.com</code> which represents the domain name using which the virtual host can be accessed. The contents of the configuration file are as follows (remember this is just the basic stuff - more configuration is possible but for setting up the virtual host this is good enough):</p>
 <div class="highlight"><pre><span></span><span class="n">server</span> <span class="err">{</span>
     <span class="k">listen</span>   <span class="mi">80</span><span class="p">;</span>
@@ -155,26 +153,20 @@
     <span class="err">}</span>
 <span class="err">}</span>
 </pre></div>
-
-
 <p>Here <code>/home/your/docroot/basepath</code> means the base path under which you want to store your site and its document root folders.</p>
 <h3 id="setting-up-the-actual-document-root">Setting up the actual document root</h3>
 <p>The contents of your site is generally placed under its document root folder.</p>
-<p><img alt="nginx docroot folders" src="https://www.nacnez.com/images/nginx-docroot-folders.png"></p>
+<p><img alt="nginx docroot folders" src="https://www.nacnez.com/images/nginx-docroot-folders.png" style="width: 300px; height: auto; max-width: 100%;"/></p>
 <p>If you look at the configuration above you can understand where the document root of your site is placed. Under the <code>public</code> folder is where your index file (<code>index.html</code> as per the above configuration and which could contain any HTML content) and other website artifacts go. Anybody accessing your web server through the above domain (of course there is more work to be done for that) is taken to this folder. The log folder is used to store logs like <code>access</code> and <code>error</code> logs. There are a couple of other folders (<code>private</code> and <code>backup</code>) but they are not used for simple setups (and I don't even know how they are going to be used - may be something for a future post).</p>
 <h3 id="enabling-the-virtual-host">Enabling the virtual host</h3>
 <p>Though the configuration file has been created inside the <code>sites-available</code> folder, the nginx server still does not serve the pages of this site yet. For enabling this, one needs to create a soft link to the config file inside the <code>sites-enabled</code> folder.</p>
 <div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">ln</span> <span class="o">-</span><span class="n">s</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">sites</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">ex</span><span class="p">.</span><span class="n">nacnez</span><span class="p">.</span><span class="n">com</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">sites</span><span class="o">-</span><span class="n">enabled</span><span class="o">/</span><span class="n">ex</span><span class="p">.</span><span class="n">nacnez</span><span class="p">.</span><span class="n">com</span>
 </pre></div>
-
-
 <p>This enables the site on nginx. Once you restart nginx ideally this site should be available.</p>
 <h2 id="setting-up-the-hosts-file">Setting up the hosts file</h2>
 <p>The last important step is to ensure that the hostname is configured in the DNS server to point to your machine. Since I was using it just for my local development, I went ahead and configured my <code>/etc/hosts</code> file.</p>
 <div class="highlight"><pre><span></span><span class="mi">127</span><span class="p">.</span><span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="p">.</span><span class="mi">1</span>  <span class="n">ex</span><span class="p">.</span><span class="n">nacnez</span><span class="p">.</span><span class="n">com</span>
 </pre></div>
-
-
 <p>Once this is done, we are all set. If you crank up the browser and type in the domain name you must get the content of your index page.</p>
 <p>This was my first encounter with nginx. This was enough for me for my current use of nginx. Hopefully I will get pushed to learn more on nginx and that should be fun.</p>
             </div>
@@ -221,7 +213,7 @@
         </p>
     <p>
       <strong>About Srinivas Narayanan (Srini)</strong><br/>
-        Living in Bengaluru. Family man & Software engineer. Currently I am a <span class="bold-green"><a href="https://getsimpl.com/"><img src="https://www.google.com/s2/favicons?domain=https://getsimpl.com">Simpl</a></span>fier. <br/>This, a place for me to write about anything under the 🌞. <span class="bold-angry">My views are mine alone</span> & not related to any person or organisation including my employer.
+        Living in Bengaluru. Family man & Software engineer. Currently I am working at <a href="https://www.avalara.com/in/en/index.html">Avalara</a>. <br/>This, a place for me to write about anything under the 🌞. <span class="bold-angry">My views are mine alone</span> & not related to any person or organisation including my employer.
     </p>
 </div><!-- Sidebar -->
 <section class="well well-sm">
@@ -247,31 +239,31 @@
       <a href="https://www.nacnez.com/tag/life.html">life</a>
     </li>
     <li class="list-group-item tag-1">
-      <a href="https://www.nacnez.com/tag/development.html">development</a>
+      <a href="https://www.nacnez.com/tag/software-engineering.html">software-engineering</a>
     </li>
     <li class="list-group-item tag-1">
-      <a href="https://www.nacnez.com/tag/software-engineering.html">software-engineering</a>
+      <a href="https://www.nacnez.com/tag/development.html">development</a>
+    </li>
+    <li class="list-group-item tag-2">
+      <a href="https://www.nacnez.com/tag/technology.html">technology</a>
+    </li>
+    <li class="list-group-item tag-2">
+      <a href="https://www.nacnez.com/tag/spirituality.html">spirituality</a>
     </li>
     <li class="list-group-item tag-2">
       <a href="https://www.nacnez.com/tag/architecture.html">architecture</a>
     </li>
     <li class="list-group-item tag-2">
-      <a href="https://www.nacnez.com/tag/people.html">people</a>
+      <a href="https://www.nacnez.com/tag/python.html">python</a>
     </li>
     <li class="list-group-item tag-2">
-      <a href="https://www.nacnez.com/tag/python.html">python</a>
+      <a href="https://www.nacnez.com/tag/people.html">people</a>
     </li>
     <li class="list-group-item tag-2">
       <a href="https://www.nacnez.com/tag/microservices.html">microservices</a>
     </li>
-    <li class="list-group-item tag-2">
-      <a href="https://www.nacnez.com/tag/technology.html">technology</a>
-    </li>
     <li class="list-group-item tag-4">
-      <a href="https://www.nacnez.com/tag/teaching.html">teaching</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="https://www.nacnez.com/tag/education.html">education</a>
+      <a href="https://www.nacnez.com/tag/devotion.html">devotion</a>
     </li>
   </ul>
 </li>
@@ -288,7 +280,7 @@
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2023 Srinivas Narayanan (Srini)
+         <div class="col-xs-10">&copy; 2025 Srinivas Narayanan (Srini)
             &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>

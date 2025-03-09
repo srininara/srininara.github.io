@@ -151,7 +151,7 @@
 <li>These can be brittle and keep breaking.</li>
 </ol>
 <p>All these are valid concerns, and we need to know them and manage them.</p>
-<hr>
+<hr/>
 <p>There are also patrons of Unit tests. What do they say?</p>
 <ul>
 <li>Unit tests are great at busting bugs</li>
@@ -161,54 +161,48 @@
 <li>Improve the stability of the code.</li>
 </ul>
 <p>These are true on the whole, but there are things to take care.</p>
-<hr>
+<hr/>
 <p>Now that, we are finished with thoughts shared by others, let me start with my own why's.</p>
 <h2 id="why-feedback"><span class="bold-calm">Why? Feedback!</span></h2>
-<div class="figure">
-    <img alt="Feedback" src="https://www.nacnez.com/images/ddats/ddats_feedback.jpg"/>
-    <p class="caption">DDATs provide feedback to improve! - Image by <a href="https://www.freepik.com/free-psd/infographic-elements-three-dimensional-icon_32455585.htm#query=feedback%20loop&position=27&from_view=search&track=ais">Freepik</a></p>
+<div class="figure" style="width: 827px; height: auto; max-width: 100%;">
+<img alt="Feedback" src="https://www.nacnez.com/images/ddats/ddats_feedback.jpg" style="width: 827px; height: auto; max-width: 100%;"/>
+<p class="caption">DDATs provide feedback to improve! - Image by <a href="https://www.freepik.com/free-psd/infographic-elements-three-dimensional-icon_32455585.htm#query=feedback%20loop&amp;position=27&amp;from_view=search&amp;track=ais">Freepik</a></p>
 </div>
-
 <!-- <div class="figure">
     <img alt="Feedback" src="https://upload.wikimedia.org/wikipedia/commons/3/39/Feedback_loop_theory.gif"/>
     <p class="caption">Need feedback to improve! - De Rosnay, CC BY-SA 4.0 <a href="https://commons.wikimedia.org/wiki/File:Feedback_loop_theory.gif">via Wikimedia Commons</a></p>
 </div> -->
-
 <p>The cornerstone for creating a system of continuous improvement is <span class="bold-green">Feedback</span>. DDATs provide feedback during execution, but it doesn't stop there. While reading DDATs and the code &amp; interfaces that these helped us to create, we get feedback on how the solution has been developed. We get feedback on our code design when we write the tests. The quality and readability of tests also tell us how good our code is.</p>
 <p>To reiterate, feedback is how we create new and better things - ask any person who has built anything of significance. In development, instead of thinking up all the design ideas all the time, we can look at the code and its tests and these can reveal new responsibility owners &amp; roles (as feedback). </p>
 <p>Earlier we get feedback, faster we can improve a system. We can figure out mistakes faster. Debugging is faster with DDATs because it reduces the time you spend on debugging at the first place. </p>
 <p><span class="bold-green">DDATs are a living feedback system. That is why!</span></p>
 <h2 id="why-modularisation"><span class="bold-calm">Why? Modularisation</span></h2>
-<div class="figure">
-    <img alt="Modularisation" src="https://www.nacnez.com/images/ddats/ddats_modularisation.jpg"/>
-    <p class="caption">DDATs modularise to manage. Image by <a href="https://www.freepik.com/free-vector/hand-drawn-flat-design-sql-illustration_22112355.htm#query=software%20modules&position=2&from_view=search&track=ais">Freepik</a></p>
+<div class="figure" style="width: 1843px; height: auto; max-width: 100%;">
+<img alt="Modularisation" src="https://www.nacnez.com/images/ddats/ddats_modularisation.jpg" style="width: 1843px; height: auto; max-width: 100%;"/>
+<p class="caption">DDATs modularise to manage. Image by <a href="https://www.freepik.com/free-vector/hand-drawn-flat-design-sql-illustration_22112355.htm#query=software%20modules&amp;position=2&amp;from_view=search&amp;track=ais">Freepik</a></p>
 </div>
-
 <p>Another aspect about writing DDATs is that we end up modularising our software. Whenever we have code that does a lot of things, it becomes very difficult to test them. So we split them up. For example, we take out stuff which deals with, say, external systems or databases into separate classes so that we can test the business logic without worrying about those concerns.</p>
 <p>DDATs help us to develop a nose for overcrowded (non-cohesive) and coupled code. If we are mocking too many objects to test a <span class="bold-calm">System Under Test</span> (SUT), it tells us that we have too many dependencies and the SUT is probably dealing with too many aspects of the system - time to split it up.</p>
 <h2 id="why-independent-development"><span class="bold-calm">Why? Independent Development</span></h2>
-<div class="figure">
-    <img alt="Independent Development" src="https://www.nacnez.com/images/ddats/ddats_independence.jpg"/>
-    <p class="caption">Developing anywhere anytime on our own with DDATs. Photo by <a href="https://www.pexels.com/photo/focused-black-male-freelancer-using-laptop-in-street-cafe-3799115/">Andrea Piacquadio</a></p>
+<div class="figure" style="width: 1134px; height: auto; max-width: 100%;">
+<img alt="Independent Development" src="https://www.nacnez.com/images/ddats/ddats_independence.jpg" style="width: 1134px; height: auto; max-width: 100%;"/>
+<p class="caption">Developing anywhere anytime on our own with DDATs. Photo by <a href="https://www.pexels.com/photo/focused-black-male-freelancer-using-laptop-in-street-cafe-3799115/">Andrea Piacquadio</a></p>
 </div>
-
 <p>A very important thing that DDATs enable me to do is, I can test things independently and move forward with development. I don't have to depend on other systems or other people. </p>
 <p>As long as a test can run within the confines of my machine without having to reach a network, I find that test to be useful. It is ok to touch a file or db within your machine (this is my opinion and also why I call it a DDAT). If I am traveling and cannot connect to a network, I am still able to run my DDATs and hence make progress.</p>
 <p>Having this ability gives me a lot of power and convenience. I can confidently move forward and don't need someone to endorse things. Also passing tests act as visible proof of things working instead of just a mental level confidence. Great programmers may not need this, but for a normal developer like me, this is a good thing. As an added bonus, failing tests give me a quick and focused way to debug my code.</p>
 <h2 id="why-a-client-perspective"><span class="bold-calm">Why? A client perspective</span></h2>
-<div class="figure">
-    <img alt="Simple Interface" src="https://www.nacnez.com/images/ddats/ddats_client_perspective.jpg"/>
-    <p class="caption">Simple interface before a complex system - a client's perspective: Image by <a href="https://www.freepik.com/free-photo/delivery-man-with-package-elevator-close-up_12977657.htm#query=looking%20at%20an%20elevator%20interface&position=4&from_view=search&track=ais">Freepik</a></p>
+<div class="figure" style="width: 850px; height: auto; max-width: 100%;">
+<img alt="Simple Interface" src="https://www.nacnez.com/images/ddats/ddats_client_perspective.jpg" style="width: 850px; height: auto; max-width: 100%;"/>
+<p class="caption">Simple interface before a complex system - a client's perspective: Image by <a href="https://www.freepik.com/free-photo/delivery-man-with-package-elevator-close-up_12977657.htm#query=looking%20at%20an%20elevator%20interface&amp;position=4&amp;from_view=search&amp;track=ais">Freepik</a></p>
 </div>
-
 <p>DDATs test our code by acting as a client to your code. This means that when we write them, we are not really thinking of the implementation, but about how the code is going to be used - the <em>interface</em>. It might not look like a big deal, but thinking in terms of interfaces <span class="italic-green"> - to think about what to do (instead of how to do) - </span> is a key technique to creating quality software. </p>
 <p>Seasoned developers do this interface based thinking automatically, but it is always good to have a tool in our box which helps us stay the course. For budding programmers this can be very handy. A more pronounced version of interface-based thinking is observed when you do Test First (TDD) - at least that is my experience. But even if TDD is not your cup of tea, DDATs written after can still be useful for achieving this.</p>
 <h2 id="why-to-conquer-fear"><span class="bold-calm">Why? To conquer fear</span></h2>
-<div class="figure">
-    <img alt="Conquering fear" src="https://www.nacnez.com/images/ddats/ddats_overcome_fear.jpg"/>
-    <p class="caption">DDATs help conquer fear and make refactoring work: Image by <a href="https://pixabay.com/users/counselling-440107/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=1434315">Ulrike Mai</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=1434315">Pixabay</a></p>
+<div class="figure" style="width: 992px; height: auto; max-width: 100%;">
+<img alt="Conquering fear" src="https://www.nacnez.com/images/ddats/ddats_overcome_fear.jpg" style="width: 992px; height: auto; max-width: 100%;"/>
+<p class="caption">DDATs help conquer fear and make refactoring work: Image by <a href="https://pixabay.com/users/counselling-440107/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1434315">Ulrike Mai</a> from <a href="https://pixabay.com//?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1434315">Pixabay</a></p>
 </div>
-
 <p>A good battery of DDATs means that we have protection to refactor our code. This means that I can go ahead and improve the quality of my internals without the fear of breaking something. </p>
 <p>There are too many times (can't keep count), when my code got better by 2x or more after refactoring. Without DDATs, I wouldn't dare touch working code. Just like we need insurance in other aspects of life, DDATs provide us with the same effect when writing code.</p>
 <h2 id="its-not-all-hunkydory"><span class="bold-calm">It's not all hunkydory!</span></h2>
@@ -221,15 +215,15 @@
 </ul>
 <p>The mental effort is there. There are a bunch more things to keep in mind and that is probably a topic of another post. AND all this effort is not one time, it is something you have keep doing (<em>keeping it well oiled</em>). So I agree with what others said earlier.</p>
 <p><span class="bold-green">One thing though - this effort is an investment for getting those benefits mentioned above. Also, if we do this regularly, we will build the mental muscle and the sensitive nose required for becoming better developers!</span></p>
-<hr>
+<hr/>
 <p>Another aspect that comes into play,  is the language or platform or ecosystem that you are working in. Some platforms/ecosystems have a very rich set of tools and libraries which allow you to create DDATs with low effort. Others can make it a very laborious and tedious process. </p>
 <p>So when you make choices of tech platforms, testability should be very important criteria in their selection. <a href="https://www.thoughtworks.com/profiles/n/neal-ford">Neal Ford</a> from <a href="https://www.thoughtworks.com/">Thoughtworks</a> categorically mentioned this in one of his talks that I attended long time back. If you are stuck with a primitive platform (in terms of testing capabilities), you might be tempted to skip DDATs. I can't blame you, but in my opinion it is worth sucking it up and doing the work. It will add value.</p>
-<hr>
+<hr/>
 <p>DDATs might touch files and call other systems like databases. To me this is useful and manageable in the context of local testing in my machine. Using the same in a Continuous Integration (CI) setup can be a little more challenging. </p>
 <p>Having said that, with technologies like containers (e.g. Docker) this is no longer a deal-breaker. I think with a bit of work, we can get things working in our CI setup as well and that makes DDATs super useful for the entire team. I have done this myself many times and so can you.</p>
-<hr>
+<hr/>
 <p>DDATs are not a silver bullet. They are useful to get the benefits like feedback and independent development, but that does not mean, you completely rely on them and forget everything else. For example, if we use DDATs as the only source of feedback and don't have a QA team doing exploratory testing then we are shooting ourselves in the foot. If we become brash about our independence and don't get the code independently tested and reviewed then God save us and our code.</p>
-<hr>
+<hr/>
 <p><span class="bold-angry">A word of general caution:</span>
 No form of testing (not just DDATs) will eliminate all bugs. Expecting that is asking for perfection which is an impossible task and a fool's errand. </p>
 <h2 id="conclusion"><span class="bold-calm">Conclusion</span></h2>
@@ -280,7 +274,7 @@ No form of testing (not just DDATs) will eliminate all bugs. Expecting that is a
         </p>
     <p>
       <strong>About Srinivas Narayanan (Srini)</strong><br/>
-        Living in Bengaluru. Family man & Software engineer. Currently I am a <span class="bold-green"><a href="https://getsimpl.com/"><img src="https://www.google.com/s2/favicons?domain=https://getsimpl.com">Simpl</a></span>fier. <br/>This, a place for me to write about anything under the 🌞. <span class="bold-angry">My views are mine alone</span> & not related to any person or organisation including my employer.
+        Living in Bengaluru. Family man & Software engineer. Currently I am working at <a href="https://www.avalara.com/in/en/index.html">Avalara</a>. <br/>This, a place for me to write about anything under the 🌞. <span class="bold-angry">My views are mine alone</span> & not related to any person or organisation including my employer.
     </p>
 </div><!-- Sidebar -->
 <section class="well well-sm">
@@ -306,31 +300,31 @@ No form of testing (not just DDATs) will eliminate all bugs. Expecting that is a
       <a href="https://www.nacnez.com/tag/life.html">life</a>
     </li>
     <li class="list-group-item tag-1">
-      <a href="https://www.nacnez.com/tag/development.html">development</a>
+      <a href="https://www.nacnez.com/tag/software-engineering.html">software-engineering</a>
     </li>
     <li class="list-group-item tag-1">
-      <a href="https://www.nacnez.com/tag/software-engineering.html">software-engineering</a>
+      <a href="https://www.nacnez.com/tag/development.html">development</a>
+    </li>
+    <li class="list-group-item tag-2">
+      <a href="https://www.nacnez.com/tag/technology.html">technology</a>
+    </li>
+    <li class="list-group-item tag-2">
+      <a href="https://www.nacnez.com/tag/spirituality.html">spirituality</a>
     </li>
     <li class="list-group-item tag-2">
       <a href="https://www.nacnez.com/tag/architecture.html">architecture</a>
     </li>
     <li class="list-group-item tag-2">
-      <a href="https://www.nacnez.com/tag/people.html">people</a>
+      <a href="https://www.nacnez.com/tag/python.html">python</a>
     </li>
     <li class="list-group-item tag-2">
-      <a href="https://www.nacnez.com/tag/python.html">python</a>
+      <a href="https://www.nacnez.com/tag/people.html">people</a>
     </li>
     <li class="list-group-item tag-2">
       <a href="https://www.nacnez.com/tag/microservices.html">microservices</a>
     </li>
-    <li class="list-group-item tag-2">
-      <a href="https://www.nacnez.com/tag/technology.html">technology</a>
-    </li>
     <li class="list-group-item tag-4">
-      <a href="https://www.nacnez.com/tag/teaching.html">teaching</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="https://www.nacnez.com/tag/education.html">education</a>
+      <a href="https://www.nacnez.com/tag/devotion.html">devotion</a>
     </li>
   </ul>
 </li>
@@ -347,7 +341,7 @@ No form of testing (not just DDATs) will eliminate all bugs. Expecting that is a
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2023 Srinivas Narayanan (Srini)
+         <div class="col-xs-10">&copy; 2025 Srinivas Narayanan (Srini)
             &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
