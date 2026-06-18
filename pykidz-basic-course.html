@@ -1,381 +1,48 @@
-<!DOCTYPE html>
-<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
-<head>
-    <title>Pykidz!: My Python Course - Starting Point</title>
-    <!-- Using the latest rendering mode for IE -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!doctype html><html lang=en dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="Basic python course I shared in YouTube"><title>Pykidz!: My Python Course</title><link rel=canonical href=https://www.nacnez.com/pykidz-basic-course.html><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=preload as=style href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"><link rel=stylesheet href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"><link rel=stylesheet href=/scss/style.min.dac9cc9f406847182602d98ddf8a345ec462bf113dc216eb79fcdfc6f43291b3.css><meta property='og:title' content="Pykidz!: My Python Course"><meta property='og:description' content="Basic python course I shared in YouTube"><meta property='og:url' content='https://www.nacnez.com/pykidz-basic-course.html'><meta property='og:site_name' content='Starting Point'><meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:tag' content='development'><meta property='article:tag' content='programming languages'><meta property='article:tag' content='python'><meta property='article:tag' content='training'><meta property='article:tag' content='kids'><meta property='article:tag' content='learning'><meta property='article:published_time' content='2023-08-10T00:00:00+00:00'><meta property='article:modified_time' content='2023-08-10T00:00:00+00:00'><meta name=twitter:site content="@srininara"><meta name=twitter:creator content="@srininara"><meta name=twitter:title content="Pykidz!: My Python Course"><meta name=twitter:description content="Basic python course I shared in YouTube"><link rel="shortcut icon" href=/favicon.ico><script async src="https://www.googletagmanager.com/gtag/js?id=G-79BTGL1LJS"></script><script>var doNotTrack=!1,dnt=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,doNotTrack=dnt=="1"||dnt=="yes";if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-79BTGL1LJS")}</script><script>(function(e,t,n,s,o){e[s]=e[s]||[],e[s].push({"gtm.start":(new Date).getTime(),event:"gtm.js"});var a=t.getElementsByTagName(n)[0],i=t.createElement(n),r=s!="dataLayer"?"&l="+s:"";i.async=!0,i.src="https://www.googletagmanager.com/gtm.js?id="+o+r,a.parentNode.insertBefore(i,a)})(window,document,"script","dataLayer","GTM-NBHLX3B")</script><meta name=twitter:card content="summary_large_image"><meta property="og:image" content="https://www.nacnez.com/images/default-social.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name=twitter:image content="https://www.nacnez.com/images/default-social.jpg"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Pykidz!: My Python Course","description":"Basic python course I shared in YouTube","url":"https://www.nacnez.com/pykidz-basic-course.html","datePublished":"2023-08-10T00:00:00Z","dateModified":"2023-08-10T00:00:00Z","author":{"@type":"Person","name":"Srinivas Narayanan","url":"https://www.nacnez.com","sameAs":["https://github.com/srininara","https://twitter.com/srininara","https://www.linkedin.com/in/srinivas-narayanan-1912b14/"]},"publisher":{"@type":"Person","name":"Srinivas Narayanan","url":"https://www.nacnez.com"}}</script><link rel=preload href=/fonts/Quicksand-Regular.ttf as=font type=font/ttf crossorigin></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label="Toggle Menu">
+<span class=hamburger-box><span class=hamburger-inner></span>
+</span></button>
+<button class=sidebar-collapse-btn id=sidebar-collapse-btn aria-label="Toggle sidebar" title="Toggle sidebar">
+<span class=sidebar-collapse-icon>&#8250;</span>
+</button>
+<a class=sidebar-avatar-collapsed href=/index.html title=Home><img src=/img/avatar.jpeg alt=Home>
+</a><button class=sidebar-darkmode-collapsed onclick='document.getElementById("dark-mode-toggle").click()' aria-label="Toggle dark mode" title="Toggle dark/light mode">◑</button><header><figure class=site-avatar><a href=/index.html><img src=/img/avatar.jpeg width height class=site-logo loading=lazy alt=Avatar></a></figure><div class=site-meta><p class=site-name><a href=/index.html>Starting Point</a></p><h2 class=site-description>Living in Bengaluru. Family man & Software engineer. My views are mine alone & not related to any person or organisation including my employer.</h2></div></header><ol class=menu-social><li><a href=https://github.com/srininara title=GitHub rel=me><svg class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li><li><a href=https://twitter.com/srininara title=Twitter rel=me><svg class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M22 4.01c-1 .49-1.98.689-3 .99-1.121-1.265-2.783-1.335-4.38-.737S11.977 6.323 12 8v1c-3.245.083-6.135-1.395-8-4 0 0-4.182 7.433 4 11-1.872 1.247-3.739 2.088-6 2 3.308 1.803 6.913 2.423 10.034 1.517 3.58-1.04 6.522-3.723 7.651-7.742a13.84 13.84.0 00.497-3.753C20.18 7.773 21.692 5.25 22 4.009z"/></svg></a></li><li><a href=https://www.linkedin.com/in/srinivas-narayanan-1912b14/ title=LinkedIn rel=me><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 012-2h12a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2z"/><path d="M8 11v5"/><path d="M8 8v.01"/><path d="M12 16v-5"/><path d="M16 16v-3a2 2 0 00-4 0"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/index.html><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>Home</span></a></li><li><a href=/archives.html><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>Archives</span></a></li><li><a href=/search.html><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
+<span>Search</span></a></li><li class=menu-bottom-section><ol class=menu><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>Dark Mode</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><button class=toc-toggle-header id=toc-toggle-header aria-label="Toggle table of contents"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">Table of contents</h2><span class=toc-toggle-indicator>&#8250;</span></button><div class=widget--toc id=widget--toc><nav class=toc-nav id=TableOfContents><ol><li><a href=#pykidz-course-curriculum><span class=bold-calm>Pykidz Course Curriculum</span></a><ol><li><a href=#1-introduction-to-python><span class=bold-calm>1. Introduction to Python</span></a></li><li><a href=#2-basic-data-types><span class=bold-calm>2. Basic Data Types</span></a></li><li><a href=#3-fully-hands-on-a-get-your-hands-dirty-session><span class=bold-calm>3. Fully Hands on: A Get your hands dirty session!</span></a></li><li><a href=#4-python-lists><span class=bold-calm>4. Python Lists</span></a></li><li><a href=#5-other-composite-types><span class=bold-calm>5. Other Composite Types</span></a></li><li><a href=#6-conditionals><span class=bold-calm>6. Conditionals</span></a></li><li><a href=#7-loops><span class=bold-calm>7. Loops</span></a></li><li><a href=#8-modular-programming><span class=bold-calm>8. Modular Programming</span></a></li><li><a href=#9-exception-handling><span class=bold-calm>9. Exception Handling</span></a></li></ol></li><li><a href=#conclusion><span class=bold-calm>Conclusion</span></a><ol><li><a href=#my-ulterior-motives><span class=bold-calm>My ulterior motives</span></a></li></ol></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><div class=article-title-wrapper><button class=article-back-btn onclick=history.back() aria-label="Go back">← Back</button><h1 class=article-title><a href=/pykidz-basic-course.html>Pykidz!: My Python Course</a></h1><h2 class=article-subtitle>Basic python course I shared in YouTube</h2></div><header class=article-category><a href=/categories/software-training.html style=background-color:#c9beef;color:#1a0f3d>Software Training</a></header><footer class=article-meta><div class=inline-meta><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published datetime=2023-08-10T00:00:00Z>Aug 10, 2023</time>
+<svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>10 minutes read</time></div></footer></div></header><aside class=article-toc><details><summary><div class=article-toc-title><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6-6 6"/></svg>
+<span>Table of contents</span></div></summary><nav class=toc-nav><ol><li><a href=#pykidz-course-curriculum><span class=bold-calm>Pykidz Course Curriculum</span></a><ol><li><a href=#1-introduction-to-python><span class=bold-calm>1. Introduction to Python</span></a></li><li><a href=#2-basic-data-types><span class=bold-calm>2. Basic Data Types</span></a></li><li><a href=#3-fully-hands-on-a-get-your-hands-dirty-session><span class=bold-calm>3. Fully Hands on: A Get your hands dirty session!</span></a></li><li><a href=#4-python-lists><span class=bold-calm>4. Python Lists</span></a></li><li><a href=#5-other-composite-types><span class=bold-calm>5. Other Composite Types</span></a></li><li><a href=#6-conditionals><span class=bold-calm>6. Conditionals</span></a></li><li><a href=#7-loops><span class=bold-calm>7. Loops</span></a></li><li><a href=#8-modular-programming><span class=bold-calm>8. Modular Programming</span></a></li><li><a href=#9-exception-handling><span class=bold-calm>9. Exception Handling</span></a></li></ol></li><li><a href=#conclusion><span class=bold-calm>Conclusion</span></a><ol><li><a href=#my-ulterior-motives><span class=bold-calm>My ulterior motives</span></a></li></ol></li></ol></nav></details></aside><section class=article-content><p>Programming is already a very important skill in today&rsquo;s world. It is not a stretch to say that it is an essential skill. Professionals from all areas want to learn a bit of programming to get an edge. Kids are excited about learning programming and schools are encouraging them by either having it in their course curriculum or as a differentiating aspect of their training. And learning programming using the <strong><span class=bold-green>Python</span></strong> language has been all the rage for some time now.</p><p>I have had this thought for some time. So, sometime back, I created a video course (in YouTube) on Python fundamentals, which is aimed at kids. The intention of the course was to give the learner (who has no programming experience), the fundamentals of Python and a basic sense of programming. This post describes the details of what I covered in these video sessions.</p><h2 id=pykidz-course-curriculum><a href=#pykidz-course-curriculum class=header-anchor></a><span class=bold-calm>Pykidz Course Curriculum</span></h2><p>The course focuses on the following areas:</p><h3 id=1-introduction-to-python><a href=#1-introduction-to-python class=header-anchor></a><span class=bold-calm>1. Introduction to Python</span></h3><p>As the name goes, this is an introduction. It starts talking about why one should learn programming, and why learn python.</p><p>Then, I provide a brief idea on how you can install python in your machine. I also talk a bit about python versions. Then I get hands-on and demonstrate the usage of the Python shell.</p><p>This video also covers how we can do calculations (on the shell). You get an understanding of the operators in python. The most important concept covered in this session is variables.</p><p>All of this is covered in a single video! At the end, <span class=bold-angry>you</span> will know why programming and python and how to get started.</p><p><span class=bold-calm>First (and only) Video:</span><br></p><iframe width=560 height=315 src=https://www.youtube.com/embed/39H5gtdKrbY title="YouTube video player" frameborder=0 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe><p><span class=bold-calm>Notes & Slides:</span><br><a class=link href=https://github.com/srininara/pykidz/blob/master/sessions/session-1-introduction/session-1-notes.md target=_blank rel=noopener>Pykidz Sessions - Session 1 Notes</a><br><a class=link href=https://github.com/srininara/pykidz/blob/master/sessions/session-1-introduction/session-1-slides.pdf target=_blank rel=noopener>Slides</a></p><h3 id=2-basic-data-types><a href=#2-basic-data-types class=header-anchor></a><span class=bold-calm>2. Basic Data Types</span></h3><p>The second session / video covers all the basic data types supported by Python. This includes numeric types (integers - <code>int</code> and floating point numbers - <code>float</code>), <code>string</code>s and <code>boolean</code>s. I demonstrate operations on these different data types to provide a deeper understanding on them (special focus on strings). At the end of the session, <span class=bold-angry>you</span> will know the various kinds of data that you can work with in Python.</p><p><span class=bold-calm>First (and only) Video:</span><br></p><iframe width=560 height=315 src=https://www.youtube.com/embed/2RUWltA8w5M title="YouTube video player" frameborder=0 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe><p><span class=bold-calm>Notes & Slides:</span><br><a class=link href=https://github.com/srininara/pykidz/blob/master/sessions/session-2-basic_data_types/session-2-notes.md target=_blank rel=noopener>Pykidz Sessions - Session 2 Notes</a><br><a class=link href=https://github.com/srininara/pykidz/blob/master/sessions/session-2-basic_data_types/session-2-slides.pdf target=_blank rel=noopener>Slides</a></p><h3 id=3-fully-hands-on-a-get-your-hands-dirty-session><a href=#3-fully-hands-on-a-get-your-hands-dirty-session class=header-anchor></a><span class=bold-calm>3. Fully Hands on: A Get your hands dirty session!</span></h3><p>After a couple of sessions that were a little heavy on theory & concepts, I made this session (consisting of 4 videos!) to help learners get their hands dirty with working code. The intention of this session is to get <span class=bold-angry>you</span> to write a couple of simple working programs.</p><ul><li>The first video is about taking user input interactively in the program. This is useful for writing <em><span class=bold-green>dynamic</span></em> programs - they can do things based on what users want.</li><li>The next video is about getting <span class=bold-angry>you</span> to know, how you can write code in source files instead of just working with Python shell. The python shell or <span class=bold-green>REPL</span> is great for trying things out quickly and learning stuff, but if we want to write programs that we want to keep around and run multiple times, then using source files are the way to go.</li><li>The third video is about using <code>import</code>s - a way for <span class=bold-angry>you</span> use code others have written. I demonstrate this by importing functions from the standard library. This is a key learning.</li><li>After discussing these learnings, I <span class=bold-calm>build the two programs</span> which I initially talked about. <span class=bold-angry>You</span> can attempt them yourselves before you look at the video and follow along.</li></ul><p><span class=bold-calm>First Video:</span><br></p><iframe width=560 height=315 src=https://www.youtube.com/embed/k98yOwyubDg title="YouTube video player" frameborder=0 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe><p><em><span class=small-italicized-green>NOTE: Links for next videos of the session are present description in this YouTube video.</span></em></p><p><span class=bold-calm>Notes & Slides:</span><br><a class=link href=https://github.com/srininara/pykidz/blob/master/sessions/session-3-fully_hands_on/session-3-notes.md target=_blank rel=noopener>Pykidz Sessions - Session 3 Notes</a><br><a class=link href=https://github.com/srininara/pykidz/blob/master/sessions/session-3-fully_hands_on/session-3-slides.pdf target=_blank rel=noopener>Slides</a><br><a class=link href=https://github.com/srininara/pykidz/tree/master/sessions/session-3-fully_hands_on/code target=_blank rel=noopener>Source Code</a></p><h3 id=4-python-lists><a href=#4-python-lists class=header-anchor></a><span class=bold-calm>4. Python Lists</span></h3><p>After completing the sessions till now, <span class=bold-angry>you</span>, the aspiring developer, have a basic idea on python data types and have written some programs. You know how to take input from the user, and manipulate that data. <span class=bold-angry>You</span> have got your feet wet in the world of programming.</p><p>In <em>this</em> next set of videos, I briefly introduce the different data types that allow us to store more than one item of a given type.</p><p>Let me give a couple of examples: a <span class=bold-green>collection</span> or <span class=bold-green>list</span> of fruit names or a list of subject scores etc. These session videos (4 again!) focus on a specific collection type called <code>lists</code>. I demonstrate how <span class=bold-angry>you</span> can define them, access elements or items in them, <em><span class=bold-green>slice</span></em> them, add/remove items, membership etc. Before I dive into the details of lists, I cover <em><span class=bold-green>comparison operators</span></em> in Python (we already covered basic operators in the second session) which are very important for <span class=bold-angry>you</span> to know down the line.</p><p><span class=bold-calm>First Video:</span><br></p><iframe width=560 height=315 src=https://www.youtube.com/embed/9O2iC1-mnSI title="YouTube video player" frameborder=0 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe><p><em><span class=small-italicized-green>NOTE: Links for next videos of the session are present description in this YouTube video.</span></em></p><p><span class=bold-calm>Notes & Slides:</span><br><a class=link href=https://github.com/srininara/pykidz/blob/master/sessions/session-4-python-lists/session-4-notes.md target=_blank rel=noopener>Pykidz Sessions - Session 4 Notes</a><br><a class=link href=https://github.com/srininara/pykidz/blob/master/sessions/session-4-python-lists/session-4-slides.pdf target=_blank rel=noopener>Slides</a><br></p><h3 id=5-other-composite-types><a href=#5-other-composite-types class=header-anchor></a><span class=bold-calm>5. Other Composite Types</span></h3><p>This session content is split into 3 videos. Each covers one of the remaining main collection data types in Python. We start with <code>tuples</code>, which feel very close to lists but has a very <em>significant</em> difference. The second video covers <code>dictionaries</code> which are not just a collection of things, but a collection which is indexed by a key - hence <em><span class=bold-green>key value pairs</span></em>. The last one covers <code>sets</code> which is a collection of unique elements only. For each of these <em><span class=bold-green>composite</span></em> or collection data types, I describe typical topics like definition, access, membership etc. I also cover properties & operations that apply to that specific type. By the end of these two sessions, <span class=bold-angry>you</span> will know all that is to know about working with collections of data.</p><p><span class=bold-calm>First Video:</span><br></p><iframe width=560 height=315 src=https://www.youtube.com/embed/9weVQqLsRt8 title="YouTube video player" frameborder=0 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe><p><em><span class=small-italicized-green>NOTE: Links for next videos of the session are present description in this YouTube video.</span></em></p><p><span class=bold-calm>Notes & Slides:</span><br><a class=link href=https://github.com/srininara/pykidz/blob/master/sessions/session-5-other-composite-types/session-5-notes.md target=_blank rel=noopener>Pykidz Sessions - Session 5 Notes</a><br><a class=link href=https://github.com/srininara/pykidz/blob/master/sessions/session-5-other-composite-types/session-5-slides.pdf target=_blank rel=noopener>Slides</a><br></p><h3 id=6-conditionals><a href=#6-conditionals class=header-anchor></a><span class=bold-calm>6. Conditionals</span></h3><p>Most computer programs which we use, demonstrate the ability to do different things in different situations - <em><span class=bold-green>decision-making</span></em>. They have an ability to check things and ask for corrections. For this to work, it is important for a program to execute alternative steps depending on situations and <em><span class=bold-green>conditions</span></em>. This is where <strong><span class=bold-green>conditionals</span></strong> come into play. The session is split into 5 videos. These videos explain the key conditional statements like <code>if</code>, <code>else</code>, <code>elif</code>. But, they don&rsquo;t stop there. Key python concepts like <code>blocks</code>, the <code>None</code> keyword, the importance of <em><span class=bold-green>whitespace</span></em> are also covered in these videos. I end this session with <span class=bold-calm>a couple of problems</span> for <span class=bold-angry>you</span> to solve. Now <span class=bold-angry>you</span> can make decisions within your code.</p><p><span class=bold-calm>First Video:</span><br></p><iframe width=560 height=315 src=https://www.youtube.com/embed/EGKE7o6ZURg title="YouTube video player" frameborder=0 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe><p><em><span class=small-italicized-green>NOTE: Links for next videos of the session are present description in this YouTube video.</span></em></p><p><span class=bold-calm>Notes & Slides:</span><br><a class=link href=https://github.com/srininara/pykidz/blob/master/sessions/session-6-conditionals/session-6-notes.md target=_blank rel=noopener>Pykidz Sessions - Session 6 Notes</a><br><a class=link href=https://github.com/srininara/pykidz/blob/master/sessions/session-6-conditionals/session-6-slides.pdf target=_blank rel=noopener>Slides</a><br><a class=link href=https://github.com/srininara/pykidz/tree/master/sessions/session-6-conditionals/code target=_blank rel=noopener>Source Code</a></p><h3 id=7-loops><a href=#7-loops class=header-anchor></a><span class=bold-calm>7. Loops</span></h3><p>We started on the path of controlling flow when we learned conditionals. Another great power of a computer is to be able to repeat a set of tasks as many times as <span class=bold-angry>you</span> need without committing any errors. We humans get bored with repetition, so it is a good thing that computers don&rsquo;t. I am sure <span class=bold-angry>you</span> will appreciate this!</p><p><strong><span class=bold-green>Loops</span></strong> in python allow us to do that. A more technical term for looping is iteration. In these set of 15 videos (phew!), I start with explaining the term iteration and then get into its details. After that, <span class=bold-angry>you</span> will the basics of <code>while</code> loops, and dive deep into the <code>break</code> and <code>continue</code> statements. I then cover infinite while loops and nested while loops as well.</p><p>After covering while loop in detail, I explain <code>for</code> loops. I cover iterators, and provide specifics of how the <code>for</code> loop works. I go through all the related topics just like I did for while loops. Finally, I close the session off by <span class=bold-calm>giving a problem</span> for <span class=bold-angry>you</span> to solve.</p><p><span class=bold-calm>First Video:</span><br></p><iframe width=560 height=315 src=https://www.youtube.com/embed/BhUmH2i4nmE title="YouTube video player" frameborder=0 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe><p><em><span class=small-italicized-green>NOTE: Links for next videos of the session are present description in this YouTube video.</span></em></p><p><span class=bold-calm>Notes & Slides:</span><br><a class=link href=https://github.com/srininara/pykidz/blob/master/sessions/session-7-loops/session-7-notes.md target=_blank rel=noopener>Pykidz Sessions - Session 7 Notes</a><br><a class=link href=https://github.com/srininara/pykidz/blob/master/sessions/session-7-loops/session-7-slides.pdf target=_blank rel=noopener>Slides</a><br><a class=link href=https://github.com/srininara/pykidz/tree/master/sessions/session-7-loops/code target=_blank rel=noopener>Source Code</a></p><h3 id=8-modular-programming><a href=#8-modular-programming class=header-anchor></a><span class=bold-calm>8. Modular Programming</span></h3><p>The next key concept to learn is <strong><span class=bold-green>modularity</span></strong>. I go over functions & modules in python in a set of 13 videos!</p><p><strong><span class=bold-green>Functions</span></strong> are a fundamental concept in programming and I cover its importance in good detail. <span class=bold-angry>You</span> will understand the mechanics of defining & calling functions. I discuss passing arguments in a lot of detail and then complete this section with an explanation of the <code>return</code> statement. Now <span class=bold-angry>you</span> know to write code that you can reuse again & again in other parts of your code.</p><p>The next set of videos cover python <strong><span class=bold-green>modules</span></strong>. It explains the concept first. It then shows how <span class=bold-angry>you</span> can create them and use them using <code>import</code>s. More module details like executing it as a script, reloading it etc. are also discussed. I also have a short mention of python packages.</p><p><span class=bold-calm>First Video:</span><br></p><iframe width=560 height=315 src=https://www.youtube.com/embed/Un7gKVsXq_E title="YouTube video player" frameborder=0 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe><p><em><span class=small-italicized-green>NOTE: Links for next videos of the session are present description in this YouTube video.</span></em></p><p><span class=bold-calm>Notes & Slides:</span><br><a class=link href=https://github.com/srininara/pykidz/blob/master/sessions/session-8-modular_programming/session-8-notes.md target=_blank rel=noopener>Pykidz Sessions - Session 8 Notes</a><br><a class=link href=https://github.com/srininara/pykidz/blob/master/sessions/session-8-modular_programming/session-8-slides.pdf target=_blank rel=noopener>Slides</a><br><a class=link href=https://github.com/srininara/pykidz/tree/master/sessions/session-8-modular_programming/code target=_blank rel=noopener>Source Code</a></p><h3 id=9-exception-handling><a href=#9-exception-handling class=header-anchor></a><span class=bold-calm>9. Exception Handling</span></h3><p>The last session of the course is about <strong><span class=bold-green>Exception Handling</span></strong>. I feel this is an important lesson to learn for all programming beginners. When <span class=bold-angry>you</span> do any kind of development, you will hit upon errors. Having an understanding of what they are and how they work is key to progress with the program. It is an essential skill <span class=bold-angry>you</span> need to develop as a programmer.</p><p>This session consists of 6 videos. I start off discussing <strong><span class=bold-green>syntax errors</span></strong> and <strong><span class=bold-green>exceptions</span></strong> - what they are and how they work in real code. I then show <span class=bold-angry>you</span> how to <code>raise</code> exceptions and how the flow works when exceptions happen. After getting a runtime understanding of how exceptions work, I dive deep into the way we would be handling exception in code. I cover an important gotcha (<strong>crime!</strong>) before closing the session with the <code>finally</code> block <span class=small-italicized-green>(pun intended!)</span>.</p><p><span class=bold-calm>First Video:</span><br></p><iframe width=560 height=315 src=https://www.youtube.com/embed/wJ1W4dtTEhc title="YouTube video player" frameborder=0 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe><p><em><span class=small-italicized-green>NOTE: Links for next videos of the session are present description in this YouTube video.</span></em></p><p><span class=bold-calm>Notes & Slides:</span><br><a class=link href=https://github.com/srininara/pykidz/blob/master/sessions/session-9-exception_handling/session-9-notes.md target=_blank rel=noopener>Pykidz Sessions - Session 9 Notes</a><br><a class=link href=https://github.com/srininara/pykidz/blob/master/sessions/session-9-exception_handling/session-9-slides.pdf target=_blank rel=noopener>Slides</a><br><a class=link href=https://github.com/srininara/pykidz/tree/master/sessions/session-9-exception_handling/code target=_blank rel=noopener>Source Code</a></p><h2 id=conclusion><a href=#conclusion class=header-anchor></a><span class=bold-calm>Conclusion</span></h2><p>That is the high level overview of the entire course material. If <span class=bold-angry>you</span> want to just get at the entire set of videos of the course, checkout this <span class=bold-angry><a class=link href="https://youtube.com/playlist?list=PLMICa_F_j-IQBifxYmlYwm5-C1bE8Eh4e" target=_blank rel=noopener>YouTube playlist</a></span>.</p><p>If <span class=bold-angry>you</span> want to get hold of all the notes, slides and source code, they are in <span class=bold-angry><a class=link href=https://github.com/srininara/pykidz target=_blank rel=noopener>GitHub</a></span>. You can also download it <span class=bold-angry><a class=link href=https://github.com/srininara/pykidz/archive/refs/heads/master.zip target=_blank rel=noopener>here</a></span>.</p><h3 id=my-ulterior-motives><a href=#my-ulterior-motives class=header-anchor></a><span class=bold-calm>My ulterior motives</span></h3><p>The initial reason for starting the video course was that it could be useful to my daughter and for other kids like her. These videos have been out there for some time, but I don&rsquo;t think they have reached many people. So I decided that I will write about it here (<span class=small-italicized-green>I have a small audience here, You</span>), so that people who visit my blog (you) can take advantage of the course if they need it.</p><p>There is another reason for doing this. This is my first attempt at creating a video based course (learned a bit of video editing - it is hard work!). I am sure that there is a lot of scope for improvement. I want to get more feedback from <span class=bold-angry>you</span> on this attempt.</p><p>My daughter has already given one key feedback - my individual videos are too <span class=bold-angry>long</span>! I tried to change that in the later sessions, but did not always succeed. There could be a lot more feedback, and I would be very grateful for <span class=bold-angry>your</span> help. I hope to make a better version of the course soon. And God willing, I will attempt to make other courses in the future.</p><p><span class=small-italicized-green>Aum sarvam SriKrishnarpanam astu</span></p></section><footer class="article-meta article-footer"><section class=article-tags><a href=/tags/development.html>Development</a>
+<a href=/tags/programming-languages.html>Programming Languages</a>
+<a href=/tags/python.html>Python</a>
+<a href=/tags/training.html>Training</a>
+<a href=/tags/kids.html>Kids</a>
+<a href=/tags/learning.html>Learning</a></section></footer></article><aside><h2 class=section-title>Related content</h2><div class=article-list--compact><article><a href=/python-can-be-weird.html><div class=article-details><h2 class=article-title>Python can be weird!</h2><footer class=article-meta><time datetime=2014-11-16T00:00:00Z>Nov 16, 2014</time></footer></div></a></article><article><a href=/gof-inspired-decorators.html><div class=article-details><h2 class=article-title>GOF inspired python decorators</h2><footer class=article-meta><time datetime=2019-09-29T00:00:00Z>Sep 29, 2019</time></footer></div></a></article><article><a href=/nginx-ubuntu.html><div class=article-details><h2 class=article-title>Setting up a nginx virtual host on Ubuntu</h2><footer class=article-meta><time datetime=2012-07-03T00:00:00Z>Jul 03, 2012</time></footer></div></a></article></div></aside><div class=disqus-container><div id=disqus_thread></div><script>window.disqus_config=function(){},function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("disqus_thread").innerHTML="Disqus comments not available by default when the website is previewed locally.";return}var t=document,e=t.createElement("script");e.async=!0,e.src="//nacnez.disqus.com/embed.js",e.setAttribute("data-timestamp",+new Date),(t.head||t.body).appendChild(e)}()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div><style>.disqus-container{background-color:var(--card-background);border-radius:var(--card-border-radius);box-shadow:var(--shadow-l1);padding:var(--card-padding)}</style><script>window.addEventListener("onColorSchemeChange",e=>{typeof DISQUS=="object"&&DISQUS.reset({reload:!0})})</script><footer class=site-footer><section class=copyright>&copy;
+2012 -
+2026 Starting Point</section><section class=powerby>Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a><br>Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=4.0.3>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a></section></footer><script type=module>
+    import gallery from '\/ts\/gallery.js';
 
-
-
-<link rel="canonical" href="https://www.nacnez.com/pykidz-basic-course.html">
-
-        <meta name="author" content="Srinivas Narayanan" />
-        <meta name="keywords" content="development,programming languages,python,training,kids,learning" />
-        <meta name="description" content="Basic python course I shared in YouTube" />
-
-        <meta property="og:site_name" content="Starting Point" />
-        <meta property="og:type" content="article"/>
-        <meta property="og:title" content="Pykidz!: My Python Course"/>
-        <meta property="og:url" content="https://www.nacnez.com/pykidz-basic-course.html"/>
-        <meta property="og:description" content="Basic python course I shared in YouTube"/>
-        <meta property="article:published_time" content="2023-08-10" />
-            <meta property="article:section" content="Software Training" />
-            <meta property="article:tag" content="development" />
-            <meta property="article:tag" content="programming languages" />
-            <meta property="article:tag" content="python" />
-            <meta property="article:tag" content="training" />
-            <meta property="article:tag" content="kids" />
-            <meta property="article:tag" content="learning" />
-            <meta property="article:author" content="Srinivas Narayanan" />
-
-
-
-    <!-- Bootstrap -->
-        <link rel="stylesheet" href="https://www.nacnez.com/theme/css/bootstrap.darkly.min.css" type="text/css"/>
-    <link href="https://www.nacnez.com/theme/css/font-awesome.min.css" rel="stylesheet">
-
-    <link href="https://www.nacnez.com/theme/css/pygments/monokai.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://www.nacnez.com/theme/css/style.css" type="text/css"/>
-        <link href="https://www.nacnez.com/css/custom.css" rel="stylesheet">
-
-        <link href="https://www.nacnez.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
-              title="Starting Point ATOM Feed"/>
-
-        <link href="https://www.nacnez.com/feeds/software-training.atom.xml" type="application/atom+xml" rel="alternate"
-              title="Starting Point Software Training ATOM Feed"/>
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-79BTGL1LJS"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', G-79BTGL1LJS);
-    </script>
-    <!-- End Google Analytics Code -->
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-NBHLX3B');</script>
-    <!-- End Google Tag Manager -->
-
-</head>
-<body>
-
-<div class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="container">
-        <div class="navbar-header">
-            <a href="https://www.nacnez.com/" class="navbar-brand">
-<img class="img-responsive pull-left gap-right" src="https://www.nacnez.com/images/myLogo.png" width=""/> Starting Point            </a>
-        </div>
-        <div class="collapse navbar-collapse navbar-ex1-collapse">
-            <ul class="nav navbar-nav">
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-            </ul>
-        </div>
-        <!-- /.navbar-collapse -->
-    </div>
-</div> <!-- /.navbar -->
-
-<!-- Banner -->
-<!-- End Banner -->
-
-<!-- Content Container -->
-<div class="container">
-    <div class="row">
-        <div class="col-sm-9">
-    <section id="content">
-        <article>
-            <header class="page-header">
-                <h1>
-                    <a href="https://www.nacnez.com/pykidz-basic-course.html"
-                       rel="bookmark"
-                       title="Permalink to Pykidz!: My Python Course">
-                        Pykidz!: My Python Course
-                    </a>
-                </h1>
-            </header>
-            <div class="entry-content">
-                <div class="panel">
-                    <div class="panel-body">
-<footer class="post-info">
-    <span class="label label-success">9 min. read</span>
-    <span class="label label-default">Date</span>
-    <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2023-08-10T00:00:00+05:30"> Thu 10 August 2023</time>
-    </span>
-
-
-
-
-
-<span class="label label-default">Tags</span>
-	<a href="https://www.nacnez.com/tag/development.html">development</a>
-        /
-	<a href="https://www.nacnez.com/tag/programming-languages.html">programming languages</a>
-        /
-	<a href="https://www.nacnez.com/tag/python.html">python</a>
-        /
-	<a href="https://www.nacnez.com/tag/training.html">training</a>
-        /
-	<a href="https://www.nacnez.com/tag/kids.html">kids</a>
-        /
-	<a href="https://www.nacnez.com/tag/learning.html">learning</a>
+    const articleContent = document.querySelector('.article-content');
+    const shouldLoad = articleContent && (articleContent.querySelectorAll('figure').length > 0 || articleContent.querySelectorAll('img.gallery-image').length > 0);
     
-</footer><!-- /.post-info -->                    </div>
-                </div>
-                <p>Programming is already a very important skill in today's world. It is not a stretch to say that it is an essential skill. Professionals from all areas want to learn a bit of programming to get an edge. Kids are excited about learning programming and schools are encouraging them by either having it in their course curriculum or as a differentiating aspect of their training. And learning programming using the <strong><span class="bold-green">Python</span></strong> language has been all the rage for some time now.</p>
-<p>I have had this thought for some time. So, sometime back, I created a video course (in YouTube) on Python fundamentals, which is aimed at kids. The intention of the course was to give the learner (who has no programming experience), the fundamentals of Python and a basic sense of programming. This post describes the details of what I covered in these video sessions.</p>
-<h2 id="pykidz-course-curriculum"><span class="bold-calm">Pykidz Course Curriculum</span></h2>
-<p>The course focuses on the following areas:</p>
-<h3 id="1-introduction-to-python"><span class="bold-calm">1. Introduction to Python</span></h3>
-<p>As the name goes, this is an introduction. It starts talking about why one should learn programming, and why learn python. </p>
-<p>Then, I provide a brief idea on how you can install python in your machine. I also talk a bit about python versions. Then I get hands-on and demonstrate the usage of the Python shell.</p>
-<p>This video also covers how we can do calculations (on the shell). You get an understanding of the operators in python. The most important concept covered in this session is variables. </p>
-<p>All of this is covered in a single video! At the end, <span class="bold-angry">you</span> will know why programming and python and how to get started.</p>
-<p><span class="bold-calm">First (and only) Video:</span> <br/>
-<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" height="315" src="https://www.youtube.com/embed/39H5gtdKrbY" title="YouTube video player" width="560"></iframe></p>
-<p><span class="bold-calm">Notes &amp; Slides:</span> <br/>
-<a href="https://github.com/srininara/pykidz/blob/master/sessions/session-1-introduction/session-1-notes.md">Pykidz Sessions - Session 1 Notes</a><br/>
-<a href="https://github.com/srininara/pykidz/blob/master/sessions/session-1-introduction/session-1-slides.pdf">Slides</a></p>
-<h3 id="2-basic-data-types"><span class="bold-calm">2. Basic Data Types</span></h3>
-<p>The second session / video covers all the basic data types supported by Python. This includes numeric types (integers - <code>int</code> and floating point numbers - <code>float</code>), <code>string</code>s and <code>boolean</code>s. I demonstrate operations on these different data types to provide a deeper understanding on them (special focus on strings). At the end of the session, <span class="bold-angry">you</span> will know the various kinds of data that you can work with in Python.</p>
-<p><span class="bold-calm">First (and only) Video:</span> <br/>
-<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" height="315" src="https://www.youtube.com/embed/2RUWltA8w5M" title="YouTube video player" width="560"></iframe></p>
-<p><span class="bold-calm">Notes &amp; Slides:</span> <br/>
-<a href="https://github.com/srininara/pykidz/blob/master/sessions/session-2-basic_data_types/session-2-notes.md">Pykidz Sessions - Session 2 Notes</a><br/>
-<a href="https://github.com/srininara/pykidz/blob/master/sessions/session-2-basic_data_types/session-2-slides.pdf">Slides</a></p>
-<h3 id="3-fully-hands-on-a-get-your-hands-dirty-session"><span class="bold-calm">3. Fully Hands on: A Get your hands dirty session!</span></h3>
-<p>After a couple of sessions that were a little heavy on theory &amp; concepts, I made this session (consisting of 4 videos!) to help learners get their hands dirty with working code. The intention of this session is to get <span class="bold-angry">you</span> to write a couple of simple working programs. </p>
-<ul>
-<li>The first video is about taking user input interactively in the program. This is useful for writing <em><span class="bold-green">dynamic</span></em> programs - they can do things based on what users want. </li>
-<li>The next video is about getting <span class="bold-angry">you</span> to know, how you can write code in source files instead of just working with Python shell. The python shell or <span class="bold-green">REPL</span> is great for trying things out quickly and learning stuff, but if we want to write programs that we want to keep around and run multiple times, then using source files are the way to go.</li>
-<li>The third video is about using <code>import</code>s - a way for <span class="bold-angry">you</span> use code others have written. I demonstrate this by importing functions from the standard library. This is a key learning.</li>
-<li>After discussing these learnings, I <span class="bold-calm">build the two programs</span> which I initially talked about. <span class="bold-angry">You</span> can attempt them yourselves before you look at the video and follow along.</li>
-</ul>
-<p><span class="bold-calm">First Video:</span> <br/>
-<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" height="315" src="https://www.youtube.com/embed/k98yOwyubDg" title="YouTube video player" width="560"></iframe></p>
-<p><em><span class="small-italicized-green">NOTE: Links for next videos of the session are present description in this YouTube video.</span></em></p>
-<p><span class="bold-calm">Notes &amp; Slides:</span> <br/>
-<a href="https://github.com/srininara/pykidz/blob/master/sessions/session-3-fully_hands_on/session-3-notes.md">Pykidz Sessions - Session 3 Notes</a><br/>
-<a href="https://github.com/srininara/pykidz/blob/master/sessions/session-3-fully_hands_on/session-3-slides.pdf">Slides</a><br/>
-<a href="https://github.com/srininara/pykidz/tree/master/sessions/session-3-fully_hands_on/code">Source Code</a></p>
-<h3 id="4-python-lists"><span class="bold-calm">4. Python Lists</span></h3>
-<p>After completing the sessions till now, <span class="bold-angry">you</span>, the aspiring developer, have a basic idea on python data types and have written some programs. You know how to take input from the user, and manipulate that data. <span class="bold-angry">You</span> have got your feet wet in the world of programming.</p>
-<p>In <em>this</em> next set of videos, I briefly introduce the different data types that allow us to store more than one item of a given type. </p>
-<p>Let me give a couple of examples: a <span class="bold-green">collection</span> or <span class="bold-green">list</span> of fruit names or a list of subject scores etc. These session videos (4 again!) focus on a specific collection type called <code>lists</code>. I demonstrate how <span class="bold-angry">you</span> can define them, access elements or items in them, <em><span class="bold-green">slice</span></em> them, add/remove items, membership etc. Before I dive into the details of lists, I cover <em><span class="bold-green">comparison operators</span></em> in Python (we already covered basic operators in the second session) which are very important for <span class="bold-angry">you</span> to know down the line.</p>
-<p><span class="bold-calm">First Video:</span> <br/>
-<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" height="315" src="https://www.youtube.com/embed/9O2iC1-mnSI" title="YouTube video player" width="560"></iframe></p>
-<p><em><span class="small-italicized-green">NOTE: Links for next videos of the session are present description in this YouTube video.</span></em></p>
-<p><span class="bold-calm">Notes &amp; Slides:</span> <br/>
-<a href="https://github.com/srininara/pykidz/blob/master/sessions/session-4-python-lists/session-4-notes.md">Pykidz Sessions - Session 4 Notes</a><br/>
-<a href="https://github.com/srininara/pykidz/blob/master/sessions/session-4-python-lists/session-4-slides.pdf">Slides</a><br/></p>
-<h3 id="5-other-composite-types"><span class="bold-calm">5. Other Composite Types</span></h3>
-<p>This session content is split into 3 videos. Each covers one of the remaining main collection data types in Python. We start with <code>tuples</code>, which feel very close to lists but has a very <em>significant</em> difference. The second video covers <code>dictionaries</code> which are not just a collection of things, but a collection which is indexed by a key - hence <em><span class="bold-green">key value pairs</span></em>. The last one covers <code>sets</code> which is a collection of unique elements only. For each of these <em><span class="bold-green">composite</span></em> or collection data types, I describe typical topics like definition, access, membership etc. I also cover properties &amp; operations that apply to that specific type. By the end of these two sessions, <span class="bold-angry">you</span> will know all that is to know about working with collections of data.</p>
-<p><span class="bold-calm">First Video:</span> <br/>
-<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" height="315" src="https://www.youtube.com/embed/9weVQqLsRt8" title="YouTube video player" width="560"></iframe></p>
-<p><em><span class="small-italicized-green">NOTE: Links for next videos of the session are present description in this YouTube video.</span></em></p>
-<p><span class="bold-calm">Notes &amp; Slides:</span> <br/>
-<a href="https://github.com/srininara/pykidz/blob/master/sessions/session-5-other-composite-types/session-5-notes.md">Pykidz Sessions - Session 5 Notes</a><br/>
-<a href="https://github.com/srininara/pykidz/blob/master/sessions/session-5-other-composite-types/session-5-slides.pdf">Slides</a><br/></p>
-<h3 id="6-conditionals"><span class="bold-calm">6. Conditionals</span></h3>
-<p>Most computer programs which we use, demonstrate the ability to do different things in different situations - <em><span class="bold-green">decision-making</span></em>. They have an ability to check things and ask for corrections. For this to work, it is important for a program to execute alternative steps depending on situations and <em><span class="bold-green">conditions</span></em>. This is where <strong><span class="bold-green">conditionals</span></strong> come into play. The session is split into 5 videos. These videos explain the key conditional statements like <code>if</code>, <code>else</code>, <code>elif</code>. But, they don't stop there. Key python concepts like <code>blocks</code>, the <code>None</code> keyword, the importance of <em><span class="bold-green">whitespace</span></em> are also covered in these videos. I end this session with <span class="bold-calm">a couple of problems</span> for <span class="bold-angry">you</span> to solve. Now <span class="bold-angry">you</span> can make decisions within your code.</p>
-<p><span class="bold-calm">First Video:</span> <br/>
-<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" height="315" src="https://www.youtube.com/embed/EGKE7o6ZURg" title="YouTube video player" width="560"></iframe></p>
-<p><em><span class="small-italicized-green">NOTE: Links for next videos of the session are present description in this YouTube video.</span></em></p>
-<p><span class="bold-calm">Notes &amp; Slides:</span> <br/>
-<a href="https://github.com/srininara/pykidz/blob/master/sessions/session-6-conditionals/session-6-notes.md">Pykidz Sessions - Session 6 Notes</a><br/>
-<a href="https://github.com/srininara/pykidz/blob/master/sessions/session-6-conditionals/session-6-slides.pdf">Slides</a><br/>
-<a href="https://github.com/srininara/pykidz/tree/master/sessions/session-6-conditionals/code">Source Code</a></p>
-<h3 id="7-loops"><span class="bold-calm">7. Loops</span></h3>
-<p>We started on the path of controlling flow when we learned conditionals. Another great power of a computer is to be able to repeat a set of tasks as many times as <span class="bold-angry">you</span> need without committing any errors. We humans get bored with repetition, so it is a good thing that computers don't. I am sure <span class="bold-angry">you</span> will appreciate this!</p>
-<p><strong><span class="bold-green">Loops</span></strong> in python allow us to do that. A more technical term for looping is iteration. In these set of 15 videos (phew!), I start with explaining the term iteration and then get into its details. After that, <span class="bold-angry">you</span> will the basics of <code>while</code> loops, and dive deep into the <code>break</code> and <code>continue</code> statements. I then cover infinite while loops and nested while loops as well.</p>
-<p>After covering while loop in detail, I explain <code>for</code> loops. I cover iterators, and provide specifics of how the <code>for</code> loop works. I go through all the related topics just like I did for while loops. Finally, I close the session off by <span class="bold-calm">giving a problem</span> for <span class="bold-angry">you</span> to solve.</p>
-<p><span class="bold-calm">First Video:</span> <br/>
-<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" height="315" src="https://www.youtube.com/embed/BhUmH2i4nmE" title="YouTube video player" width="560"></iframe></p>
-<p><em><span class="small-italicized-green">NOTE: Links for next videos of the session are present description in this YouTube video.</span></em></p>
-<p><span class="bold-calm">Notes &amp; Slides:</span> <br/>
-<a href="https://github.com/srininara/pykidz/blob/master/sessions/session-7-loops/session-7-notes.md">Pykidz Sessions - Session 7 Notes</a><br/>
-<a href="https://github.com/srininara/pykidz/blob/master/sessions/session-7-loops/session-7-slides.pdf">Slides</a><br/>
-<a href="https://github.com/srininara/pykidz/tree/master/sessions/session-7-loops/code">Source Code</a></p>
-<h3 id="8-modular-programming"><span class="bold-calm">8. Modular Programming</span></h3>
-<p>The next key concept to learn is <strong><span class="bold-green">modularity</span></strong>. I go over functions &amp; modules in python in a set of 13 videos!</p>
-<p><strong><span class="bold-green">Functions</span></strong> are a fundamental concept in programming and I cover its importance in good detail. <span class="bold-angry">You</span> will understand the mechanics of defining &amp; calling functions. I discuss passing arguments in a lot of detail and then complete this section with an explanation of the <code>return</code> statement. Now <span class="bold-angry">you</span> know to write code that you can reuse again &amp; again in other parts of your code.</p>
-<p>The next set of videos cover python <strong><span class="bold-green">modules</span></strong>. It explains the concept first. It then shows how <span class="bold-angry">you</span> can create them and use them using <code>import</code>s. More module details like executing it as a script, reloading it etc. are also discussed. I also have a short mention of python packages.</p>
-<p><span class="bold-calm">First Video:</span> <br/>
-<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" height="315" src="https://www.youtube.com/embed/Un7gKVsXq_E" title="YouTube video player" width="560"></iframe></p>
-<p><em><span class="small-italicized-green">NOTE: Links for next videos of the session are present description in this YouTube video.</span></em></p>
-<p><span class="bold-calm">Notes &amp; Slides:</span> <br/>
-<a href="https://github.com/srininara/pykidz/blob/master/sessions/session-8-modular_programming/session-8-notes.md">Pykidz Sessions - Session 8 Notes</a><br/>
-<a href="https://github.com/srininara/pykidz/blob/master/sessions/session-8-modular_programming/session-8-slides.pdf">Slides</a><br/>
-<a href="https://github.com/srininara/pykidz/tree/master/sessions/session-8-modular_programming/code">Source Code</a></p>
-<h3 id="9-exception-handling"><span class="bold-calm">9. Exception Handling</span></h3>
-<p>The last session of the course is about <strong><span class="bold-green">Exception Handling</span></strong>. I feel this is an important lesson to learn for all programming beginners. When <span class="bold-angry">you</span> do any kind of development, you will hit upon errors. Having an understanding of what they are and how they work is key to progress with the program. It is an essential skill <span class="bold-angry">you</span> need to develop as a programmer.</p>
-<p>This session consists of 6 videos. I start off discussing <strong><span class="bold-green">syntax errors</span></strong> and <strong><span class="bold-green">exceptions</span></strong> - what they are and how they work in real code. I then show <span class="bold-angry">you</span> how to <code>raise</code> exceptions and how the flow works when exceptions happen. After getting a runtime understanding of how exceptions work, I dive deep into the way we would be handling exception in code. I cover an important gotcha (<strong>crime!</strong>) before closing the session with the <code>finally</code> block <span class="small-italicized-green">(pun intended!)</span>.</p>
-<p><span class="bold-calm">First Video:</span> <br/>
-<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" height="315" src="https://www.youtube.com/embed/wJ1W4dtTEhc" title="YouTube video player" width="560"></iframe></p>
-<p><em><span class="small-italicized-green">NOTE: Links for next videos of the session are present description in this YouTube video.</span></em></p>
-<p><span class="bold-calm">Notes &amp; Slides:</span> <br/>
-<a href="https://github.com/srininara/pykidz/blob/master/sessions/session-9-exception_handling/session-9-notes.md">Pykidz Sessions - Session 9 Notes</a><br/>
-<a href="https://github.com/srininara/pykidz/blob/master/sessions/session-9-exception_handling/session-9-slides.pdf">Slides</a><br/>
-<a href="https://github.com/srininara/pykidz/tree/master/sessions/session-9-exception_handling/code">Source Code</a></p>
-<h2 id="conclusion"><span class="bold-calm">Conclusion</span></h2>
-<p>That is the high level overview of the entire course material. If <span class="bold-angry">you</span> want to just get at the entire set of videos of the course, checkout this <span class="bold-angry"><a href="https://youtube.com/playlist?list=PLMICa_F_j-IQBifxYmlYwm5-C1bE8Eh4e">YouTube playlist</a></span>. </p>
-<p>If <span class="bold-angry">you</span> want to get hold of all the notes, slides and source code, they are in <span class="bold-angry"><a href="https://github.com/srininara/pykidz">GitHub</a></span>. You can also download it <span class="bold-angry"><a href="https://github.com/srininara/pykidz/archive/refs/heads/master.zip">here</a></span>.</p>
-<h3 id="my-ulterior-motives"><span class="bold-calm"> My ulterior motives</span></h3>
-<p>The initial reason for starting the video course was that it could be useful to my daughter and for other kids like her. These videos have been out there for some time, but I don't think they have reached many people. So I decided that I will write about it here (<span class="small-italicized-green">I have a small audience here, You</span>), so that people who visit my blog (you) can take advantage of the course if they need it.</p>
-<p>There is another reason for doing this. This is my first attempt at creating a video based course (learned a bit of video editing - it is hard work!). I am sure that there is a lot of scope for improvement. I want to get more feedback from <span class="bold-angry">you</span> on this attempt. </p>
-<p>My daughter has already given one key feedback - my individual videos are too <span class="bold-angry">long</span>! I tried to change that in the later sessions, but did not always succeed. There could be a lot more feedback, and I would be very grateful for <span class="bold-angry">your</span> help. I hope to make a better version of the course soon. And God willing, I will attempt to make other courses in the future.</p>
-<p><span class="small-italicized-green">Aum sarvam SriKrishnarpanam astu</span></p>
-            </div>
-            <!-- /.entry-content -->
-    <hr/>
-    <section class="comments" id="comments">
-        <h2>Comments</h2>
+    if (shouldLoad) {
+        gallery(articleContent);
 
-        <div id="disqus_thread"></div>
-        <script type="text/javascript">
-            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-            var disqus_shortname = 'nacnez'; // required: replace example with your forum shortname
+        const PhotoSwipeLightbox = (await import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js")).default;
+        const styleHref = "https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.css";
 
-            var disqus_config = function () {
-                this.language = "en";
+        const styleTag = document.createElement('link');
+        styleTag.rel = 'stylesheet';
+        styleTag.href = styleHref;
+        document.head.appendChild(styleTag);
 
-                        this.page.identifier = '2023-08-10-pykidz-basic-course';
-                        this.page.url = 'https://www.nacnez.com/pykidz-basic-course.html';
-            };
-
-            /* * * DON'T EDIT BELOW THIS LINE * * */
-            (function () {
-                var dsq = document.createElement('script');
-                dsq.type = 'text/javascript';
-                dsq.async = true;
-                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-            })();
-        </script>
-        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by
-            Disqus.</a></noscript>
-        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-
-    </section>
-        </article>
-    </section>
-
-        </div>
-        <div class="col-sm-3" id="sidebar">
-            <aside>
-<div id="aboutme">
-        <p>
-            <img width="100%" class="img-thumbnail" src="https://www.nacnez.com/images/profile.jpeg"/>
-        </p>
-    <p>
-      <strong>About Srinivas Narayanan (Srini)</strong><br/>
-        Living in Bengaluru. Family man & Software engineer. Currently I am working at <a href="https://www.avalara.com/in/en/index.html">Avalara</a>. <br/>This, a place for me to write about anything under the 🌞. <span class="bold-angry">My views are mine alone</span> & not related to any person or organisation including my employer.
-    </p>
-</div><!-- Sidebar -->
-<section class="well well-sm">
-  <ul class="list-group list-group-flush">
-
-<!-- Sidebar/Social -->
-<li class="list-group-item">
-  <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
-  <ul class="list-group" id="social">
-    <li class="list-group-item"><a href="http://twitter.com/srininara"><i class="fa fa-twitter-square fa-lg"></i> twitter</a></li>
-    <li class="list-group-item"><a href="http://github.com/srininara"><i class="fa fa-github-square fa-lg"></i> github</a></li>
-    <li class="list-group-item"><a href="https://www.linkedin.com/in/srinivas-narayanan-1912b14/"><i class="fa fa-linkedin-square fa-lg"></i> linkedin</a></li>
-    <li class="list-group-item"><a href="https://www.nacnez.com/feeds/all.atom.xml"><i class="fa fa-rss-square fa-lg"></i> rss</a></li>
-  </ul>
-</li>
-<!-- End Sidebar/Social -->
-
-<!-- Sidebar/Tag Cloud -->
-<li class="list-group-item">
-  <a href="https://www.nacnez.com/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
-  <ul class="list-group " id="tags">
-    <li class="list-group-item tag-1">
-      <a href="https://www.nacnez.com/tag/life.html">life</a>
-    </li>
-    <li class="list-group-item tag-1">
-      <a href="https://www.nacnez.com/tag/software-engineering.html">software-engineering</a>
-    </li>
-    <li class="list-group-item tag-1">
-      <a href="https://www.nacnez.com/tag/development.html">development</a>
-    </li>
-    <li class="list-group-item tag-2">
-      <a href="https://www.nacnez.com/tag/technology.html">technology</a>
-    </li>
-    <li class="list-group-item tag-2">
-      <a href="https://www.nacnez.com/tag/spirituality.html">spirituality</a>
-    </li>
-    <li class="list-group-item tag-2">
-      <a href="https://www.nacnez.com/tag/architecture.html">architecture</a>
-    </li>
-    <li class="list-group-item tag-2">
-      <a href="https://www.nacnez.com/tag/python.html">python</a>
-    </li>
-    <li class="list-group-item tag-2">
-      <a href="https://www.nacnez.com/tag/people.html">people</a>
-    </li>
-    <li class="list-group-item tag-2">
-      <a href="https://www.nacnez.com/tag/microservices.html">microservices</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="https://www.nacnez.com/tag/devotion.html">devotion</a>
-    </li>
-  </ul>
-</li>
-<!-- End Sidebar/Tag Cloud -->
-  </ul>
-</section>
-<!-- End Sidebar -->            </aside>
-        </div>
-    </div>
-</div>
-<!-- End Content Container -->
-
-<footer>
-   <div class="container">
-      <hr>
-      <div class="row">
-         <div class="col-xs-10">&copy; 2025 Srinivas Narayanan (Srini)
-            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
-            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
-            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
-         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
-      </div>
-   </div>
-</footer>
-<script src="https://www.nacnez.com/theme/js/jquery.min.js"></script>
-
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="https://www.nacnez.com/theme/js/bootstrap.min.js"></script>
-
-<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
-<script src="https://www.nacnez.com/theme/js/respond.min.js"></script>
-
-
-    <!-- Disqus -->
-    <script type="text/javascript">
-        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-        var disqus_shortname = 'nacnez'; // required: replace example with your forum shortname
-
-        /* * * DON'T EDIT BELOW THIS LINE * * */
-        (function () {
-            var s = document.createElement('script');
-            s.async = true;
-            s.type = 'text/javascript';
-            s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-        }());
-    </script>
-    <!-- End Disqus Code -->
-
-
-</body>
-</html>
+        const lightbox = new PhotoSwipeLightbox({
+            gallerySelector: '.article-content',
+            childSelector: 'figure a.image-link',
+            pswpModule: () => import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js")
+        });
+        lightbox.init();
+    }
+</script></main></div><script type=text/javascript src=/ts/main.1ff1e5fdc4e178ed422e50aa407526dc552f26342d729343fded19416194382c.js defer></script><script>(function(){var e="nacnez-toc";function t(){var r,o=document.querySelector(".left-sidebar"),a=document.getElementById("sidebar-collapse-btn"),t=document.querySelector(".right-sidebar"),i=document.getElementById("widget--toc"),n=document.getElementById("toc-toggle-header"),s=n?n.closest("section"):null;o&&a&&(r=!0,r&&o.classList.add("is-collapsed"),a.addEventListener("click",function(){o.classList.toggle("is-collapsed")})),i&&n&&(localStorage.getItem(e)!=="open"&&(i.classList.add("is-collapsed"),s&&s.classList.add("toc-collapsed"),t&&t.classList.add("is-collapsed")),n.addEventListener("click",function(){var n=i.classList.toggle("is-collapsed");s&&s.classList.toggle("toc-collapsed",n),t&&t.classList.toggle("is-collapsed",n),localStorage.setItem(e,n?"closed":"open")}))}document.readyState==="loading"?document.addEventListener("DOMContentLoaded",t):t()})()</script></body></html>

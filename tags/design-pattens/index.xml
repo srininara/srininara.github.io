@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Design Pattens on Starting Point</title><link>https://www.nacnez.com/tags/design-pattens.html</link><description>Recent content in Design Pattens on Starting Point</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 29 Sep 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://www.nacnez.com/tags/design-pattens/index.xml" rel="self" type="application/rss+xml"/><item><title>GOF inspired python decorators</title><link>https://www.nacnez.com/gof-inspired-decorators.html</link><pubDate>Sun, 29 Sep 2019 00:00:00 +0000</pubDate><guid>https://www.nacnez.com/gof-inspired-decorators.html</guid><description>&lt;h2 id="the-back-story"&gt;&lt;a href="#the-back-story" class="header-anchor"&gt;&lt;/a&gt;The back story
+&lt;/h2&gt;&lt;p&gt;As part of day to day development work, I have been trying to apply functional concepts wherever it makes sense. I have long been a OO developer and hence some of the effects stay with you. Especially design patterns. In my opinion, design patterns - primarily &lt;a class="link" href="https://en.wikipedia.org/wiki/Design_Patterns" target="_blank" rel="noopener"
+ &gt;GOF patterns&lt;/a&gt;, though referenced in the context of OO design and languages, have some good ideas that can apply elsewhere too. With languages that support functional features, I believe some of these patterns can be applied at a method/function level instead of carrying around the cruft of classes for just doing behavior (OO enthusiasts bear with me - Classes are great in the right places, but in others they are just there because a language forces you to use &lt;a class="link" href="http://bit.ly/2mTnlZz" target="_blank" rel="noopener"
+ &gt;them&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;I am also a fan of Python decorators. Decorators are a very cool and powerful feature of python. It is syntactic sugar to create higher order functions - a very important functional paradigm feature. We can combine multiple functions to get work done - composability. You can read a lot about decorators &lt;a class="link" href="http://bit.ly/2lmNNKn" target="_blank" rel="noopener"
+ &gt;here&lt;/a&gt; - a highly recommended read. I will referring to it throughout this post.&lt;/p&gt;
+&lt;p&gt;So given my background and my current love (functional programming and decorators), I have had a chance to get inspired by GOF pattens and use decorators to create some clean code as part of my work. Here I am going to share that attempt with you.&lt;/p&gt;
+&lt;h2 id="ok-let-us-get-in"&gt;&lt;a href="#ok-let-us-get-in" class="header-anchor"&gt;&lt;/a&gt;Ok, let us get in
+&lt;/h2&gt;&lt;p&gt;When you look at the general use and applicability of python decorators they feel like a ready-made way to replace the traditional &lt;a class="link" href="https://en.wikipedia.org/wiki/Decorator_pattern" target="_blank" rel="noopener"
+ &gt;Decorator pattern&lt;/a&gt; - and for the code lovers you can look &lt;a class="link" href="https://sourcemaking.com/design_patterns/decorator/python/1" target="_blank" rel="noopener"
+ &gt;here&lt;/a&gt;. This thought is not knew and you will see it mentioned in &lt;a class="link" href="https://yos.io/2013/07/05/decorator-pattern/" target="_blank" rel="noopener"
+ &gt;other places&lt;/a&gt; too. Theoretically, this is not exactly correct (my opinion). A class level decorator is a structural pattern which allows me to decorate multiple behaviors of the object or component. But in practical terms, I have seen that this does not pan out and method level decorators (using python decorators) are more prevalent.&lt;/p&gt;
+&lt;p&gt;As I played more with python decorators, I realized that there is one more of my favorite patterns that I could implement using decorators. That is the &lt;a class="link" href="https://en.wikipedia.org/wiki/Chain-of-responsibility_pattern" target="_blank" rel="noopener"
+ &gt;Chain or Responsibility&lt;/a&gt; pattern (CoR) - &lt;a class="link" href="https://sourcemaking.com/design_patterns/chain_of_responsibility/python/1" target="_blank" rel="noopener"
+ &gt;code sample&lt;/a&gt;. CoR is a behavioral pattern and behaviors are generally managed at method level. Hence decorators feel like a great fit for CoR.&lt;/p&gt;
+&lt;h2 id="enough-talk"&gt;&lt;a href="#enough-talk" class="header-anchor"&gt;&lt;/a&gt;Enough talk!
+&lt;/h2&gt;&lt;p&gt;It is really difficult to explain my thinking with english words. So let us get down to writing some python words/code. I need an example to illustrate what this is.&lt;/p&gt;
+&lt;h3 id="the-example"&gt;&lt;a href="#the-example" class="header-anchor"&gt;&lt;/a&gt;The example
+&lt;/h3&gt;&lt;p&gt;Here is a contrived example (of course) - a calculator. And since I love &lt;a class="link" href="https://en.wikipedia.org/wiki/Test-driven_development" target="_blank" rel="noopener"
+ &gt;TDD&lt;/a&gt; and &lt;a class="link" href="https://docs.pytest.org/en/latest/" target="_blank" rel="noopener"
+ &gt;py.test&lt;/a&gt; let us start with a test which can drive our code.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;:::python
+import pytest
+import app.natural_number_calc as calc
+
+@pytest.mark.parametrize(&amp;quot;operator, arg1, arg2, output&amp;quot;, [
+ ('+',3,2,5),
+ ('+',4,2,6),
+ ('-',22,12,10),
+ ('-',24,4,20),
+ ('*',12,7,84),
+ ('*',11,11,121),
+ ('/',84,6,14),
+ ('/',11,11,1),
+ ('^',11,2,121),
+ ('^',4,3,64),
+])
+def test_calculator(operator, arg1, arg2, output):
+ assert output == calc.do(operator, arg1, arg2)
+
+
+def test_calculator_operator_not_supported():
+ with pytest.raises(ValueError) as ve:
+ calc.do('%', 5, 10)
+
+ assert 'Calc Error - Operator not supported' in str(ve.value)
+
+
+@pytest.mark.parametrize(&amp;quot;operator, arg1, arg2&amp;quot;, [
+ ('+',3,0),
+ ('+',4,-2),
+ ('-',22,0),
+ ('-',-24,4),
+ ('*',12,0),
+ ('*',11,-4),
+ ('/',84,0),
+ ('/',12,-2),
+ ('^',11,-2),
+ ('^',-4,2),
+])
+def test_calculator_non_natural_numbers_not_supported(operator, arg1, arg2):
+ with pytest.raises(ValueError) as ve:
+ calc.do(operator, arg1, arg2)
+
+ assert 'Calc Error - Natural numbers only supported' in str(ve.value)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The test suite covers everything which I want to implement with my calculator. So we have a start.&lt;/p&gt;
+&lt;h3 id="that-is-some-c"&gt;&lt;a href="#that-is-some-c" class="header-anchor"&gt;&lt;/a&gt;That is some c***!
+&lt;/h3&gt;&lt;p&gt;For satisfying the test suite, here is some plain vanilla code.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;:::python
+def do(operator, arg1, arg2):
+ if operator == '+':
+ return _add(arg1, arg2)
+ elif operator == '-':
+ return _subtract(arg1, arg2)
+ elif operator == '*':
+ return _multiply(arg1, arg2)
+ elif operator == '/':
+ return _divide(arg1, arg2)
+ elif operator == '^':
+ return _power(arg1, arg2)
+ else:
+ raise ValueError('Calc Error - Operator not supported')
+
+def _power(arg1, arg2):
+ if arg1 &amp;lt; 1 or arg2 &amp;lt; 1:
+ raise ValueError('Calc Error - Natural numbers only supported')
+ return arg1 ** arg2
+
+def _divide(arg1, arg2):
+ if arg1 &amp;lt; 1 or arg2 &amp;lt; 1:
+ raise ValueError('Calc Error - Natural numbers only supported')
+ return arg1 / arg2
+
+def _multiply(arg1, arg2):
+ if arg1 &amp;lt; 1 or arg2 &amp;lt; 1:
+ raise ValueError('Calc Error - Natural numbers only supported')
+ return arg1 * arg2
+
+def _subtract(arg1, arg2):
+ if arg1 &amp;lt; 1 or arg2 &amp;lt; 1:
+ raise ValueError('Calc Error - Natural numbers only supported')
+ return arg1 - arg2
+
+def _add(arg1, arg2):
+ if arg1 &amp;lt; 1 or arg2 &amp;lt; 1:
+ raise ValueError('Calc Error - Natural numbers only supported')
+ return arg1 + arg2
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Yeah, I know. This is pathetic code&amp;hellip; so many &lt;code&gt;if&lt;/code&gt;s and &lt;code&gt;elif&lt;/code&gt;s and all. That is on purpose so that we can improve it with some &lt;em&gt;decorator and pattern&lt;/em&gt; goodness. And it is code that works and hence our test passes! We are on &lt;em&gt;green&lt;/em&gt; mode &amp;amp; we can start refactoring.&lt;/p&gt;
+&lt;h3 id="let-us-start-decorating"&gt;&lt;a href="#let-us-start-decorating" class="header-anchor"&gt;&lt;/a&gt;Let us start decorating
+&lt;/h3&gt;&lt;p&gt;If you look at the above code we see an obvious copy paste case. The check for natural numbers is repeated on every operation code and we can easily &lt;strong&gt;decorate&lt;/strong&gt; each operation code using the Decorator pattern or in our case python decorators. Let us first look at the decorator code.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;:::python
+def only_natural(func):
+ def wrapper(arg1, arg2):
+ if arg1 &amp;lt; 1 or arg2 &amp;lt; 1:
+ raise ValueError('Calc Error - Natural numbers only supported')
+
+ return func(arg1, arg2)
+return wrapper
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If you know your decorators, this is a &lt;a class="link" href="https://realpython.com/primer-on-python-decorators/#simple-decorators" target="_blank" rel="noopener"
+ &gt;simple decorator&lt;/a&gt; in action. It takes the function that needs to be wrapped. It defines an inner wrapper function which take two arguments which checks the arguments are natural numbers. If they are then the wrapped function is called else raise an error. Let us now use this decorator on our calculator module.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;:::python
+def do(operator, arg1, arg2):
+ if operator == '+':
+ return _add(arg1, arg2)
+ elif operator == '-':
+ return _subtract(arg1, arg2)
+ elif operator == '*':
+ return _multiply(arg1, arg2)
+ elif operator == '/':
+ return divide(arg1, arg2)
+ elif operator == '^':
+ return _power(arg1, arg2)
+ else:
+ raise ValueError('Calc Error - Operator not supported')
+
+@only_natural # decorator applied
+def _power(arg1, arg2):
+ return arg1 ** arg2 #1
+
+@only_natural
+def divide(arg1, arg2):
+ return arg1 / arg2 #2
+
+@only_natural
+def _multiply(arg1, arg2):
+ return arg1 * arg2 #3
+
+@only_natural
+def _subtract(arg1, arg2):
+ return arg1 - arg2 #4
+
+@only_natural
+def _add(arg1, arg2):
+ return arg1 + arg2 #5
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;You can see that our calculator is surely improved (note the numbers) using the &lt;em&gt;decorator&lt;/em&gt; pattern created with decorators. But the &lt;code&gt;do&lt;/code&gt; method is still a eyesore. With just 5 operations, we have a huge &lt;code&gt;if/elif/else&lt;/code&gt; clause and this will only grow further if we want to support more operations (I understand this is a toy example but you get the picture).&lt;/p&gt;
+&lt;h3 id="enter-cor"&gt;&lt;a href="#enter-cor" class="header-anchor"&gt;&lt;/a&gt;Enter CoR
+&lt;/h3&gt;&lt;p&gt;So how can we improve this. Let us dig in. It is clear that for each operation, there is a corresponding method to handle it. The handling determination happens one after the other. It almost feels like a set of actions to do&amp;hellip; a chain of things to do&amp;hellip; a Chain of Responsibilities to complete (come on, that is not such a bad lead up!). Let us give it a shot once.&lt;/p&gt;
+&lt;p&gt;Before we get to the code let us understand a bit. A classic COR goes roughly like this. A request which needs to be processed is given to the first link in the chain of processors. That processor either processes it if it can or passes it on to the next processor. A given processor knows what it can process and also knows who is the next one in the chain. That is pretty much the essence of it. The class based style is already referred earlier, so let us try to do this with decorators which can work at method level.&lt;/p&gt;
+&lt;p&gt;First shot:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;:::python
+def cor(next):
+ def wrapper(current):
+ def inner(*args):
+ output = current(*args)
+ return output if output else next(*args) if next else None
+ return inner
+ return wrapper
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This is a more involved decorator than the first one. Because we need to take an argument, we need this double nested structure. The outer most &lt;code&gt;cor&lt;/code&gt; function is the visible annotation part of the decorator and it takes the function object that needs to be called next in the chain as argument. The &lt;code&gt;cor&lt;/code&gt; function defines a &lt;code&gt;wrapper&lt;/code&gt; function which is the one that accepts the actual function that is being decorated - the &lt;code&gt;current&lt;/code&gt;. The &lt;code&gt;wrapper&lt;/code&gt; in turn has the &lt;code&gt;inner&lt;/code&gt; function where the actual work happens. It calls the current function and gets its response. If that response is valid (a simple &lt;em&gt;truthy&lt;/em&gt; response), then it means that request has been processed and the chain can be broken to return the result. If the response is not valid, it means that the current function is not the one to handle the request. Hence the control has to pass on to the next processor or function (which is available to &lt;code&gt;inner&lt;/code&gt; because it is a &lt;a class="link" href="https://en.wikipedia.org/wiki/Closure_%28computer_programming%29" target="_blank" rel="noopener"
+ &gt;closure&lt;/a&gt; - another functional feature of python. You can read more about decorators that take arguments &lt;a class="link" href="https://realpython.com/primer-on-python-decorators/#decorators-with-arguments" target="_blank" rel="noopener"
+ &gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;For this to &lt;a class="link" href="https://realpython.com/primer-on-python-decorators/#nesting-decorators" target="_blank" rel="noopener"
+ &gt;nest&lt;/a&gt; along with the already existing decorator for natural numbers, we need to do some changes to that decorator.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;:::python
+def only_natural_with_operator(func):
+ def wrapper(operator, arg1, arg2):
+ if arg1 &amp;lt; 1 or arg2 &amp;lt; 1:
+ raise ValueError('Calc Error - Natural numbers only supported')
+
+ return func(operator, arg1, arg2)
+ return wrapper
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The above one is just a simple tweak, so let us move on. Let us look at the calculator to figure out how its usage gets manifested.&lt;/p&gt;
+&lt;h3 id="what-the-cor"&gt;&lt;a href="#what-the-cor" class="header-anchor"&gt;&lt;/a&gt;What the CoR?
+&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;:::python
+def do(operator, arg1, arg2):
+ value = _add(operator, arg1, arg2)
+ if value:
+ return value
+ else:
+ raise ValueError('Calc Error - Operator not supported')
+
+@only_natural_with_operator
+def _power(operator, arg1, arg2):
+ if operator == '^':
+ return arg1 ** arg2
+ else:
+ return None
+
+@only_natural_with_operator
+@cor(next=_power)
+def _divide(operator, arg1, arg2):
+ if operator == '/':
+ return arg1 / arg2
+ else:
+ return None
+
+@only_natural_with_operator
+@cor(next=_divide)
+def _multiply(operator, arg1, arg2):
+ if operator == '*':
+ return arg1 * arg2
+ else:
+ return None
+
+@only_natural_with_operator
+@cor(next=_multiply)
+def _subtract(operator, arg1, arg2):
+ if operator == '-':
+ return arg1 - arg2
+ else:
+ return None
+
+@only_natural_with_operator
+@cor(next=_subtract)
+def _add(operator, arg1, arg2):
+ if operator == '+':
+ return arg1 + arg2
+ else:
+ return None
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Hmm&amp;hellip; Pretty underwhelming to put it nicely. But before we get into it, let me first explain what this is doing.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;do&lt;/code&gt; method just calls the first method in the chain, the &lt;code&gt;_add&lt;/code&gt; method. It expects that the processing gets completed to return a valid result. If it gets back an invalid result (&lt;code&gt;None&lt;/code&gt;), then it understands that this calculation cannot be processed and throws an Error. The &lt;code&gt;do&lt;/code&gt; method has improved for sure.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;_add&lt;/code&gt; method declares the next operator/function to call as decorator parameter - (&lt;code&gt;@cor(next=_subtract)&lt;/code&gt;). In the body it checks if it can process the request - &lt;em&gt;is it the right operator?&lt;/em&gt; . If it is then great, else it returns &lt;code&gt;None&lt;/code&gt; denoting that it is not interested. This happens in each operator/function till we reach &lt;code&gt;_power&lt;/code&gt; which has no next. So the chain stops here. We can of course extend the chain from this point onwards and for that we don&amp;rsquo;t have to touch the &lt;code&gt;do&lt;/code&gt; or the &lt;code&gt;_add&lt;/code&gt; (or other) methods. All the methods are separated. This &lt;code&gt;cor&lt;/code&gt; decorator could be used to create a chain of any set of functions as long as they follow the basic contract of returning a truthy value if they did the processing or a falsy value if they want to pass it on (provided if they have defined a next).&lt;/p&gt;
+&lt;h3 id="cor-20"&gt;&lt;a href="#cor-20" class="header-anchor"&gt;&lt;/a&gt;CoR 2.0?
+&lt;/h3&gt;&lt;p&gt;Now back to that bad feeling we get on seeing the resultant code. In the process of introducing CoR to save the &lt;code&gt;do&lt;/code&gt; method, the operation functions have lost their charm. They are crowded now and that is not what we want. And when we look closely, we see that each operation function does one common thing: it checks if the operation is what it can handle, before it actually does the real work. The error handling in the &lt;code&gt;do&lt;/code&gt; function looks similar in some way too. All these seem to be common behavior which can be applied to these functions using a &lt;em&gt;wrapper/decorator&lt;/em&gt; - is it not? Let us get our decorator pattern back now. The improved cor (2.0) decorator looks like this.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;:::python
+def calc_cor(my_operator, next=None):
+ def wrapper(current):
+ def inner(*args):
+ if args[0] == my_operator:
+ return current(*args)
+ elif next:
+ return next(*args)
+ else:
+ raise ValueError('Calc Error - Operator not supported')
+ return inner
+ return wrapper
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This is no longer the very generic &lt;code&gt;cor&lt;/code&gt; decorator we started with but we sort of expected that. This is a decorated-calculator-specific-CoR - &lt;code&gt;calc_cor&lt;/code&gt;. This decorator takes two arguments. The first one is the operator supported by the current function and the second one is the next function. It also expects the the &lt;em&gt;current&lt;/em&gt; function (which is being decorated) to always takes the operator symbol as the first argument - the implicit contract. Since the operator is passed, the check of applicability can be done in the decorator itself. Also it does the error handling. This is the &lt;em&gt;decorated&lt;/em&gt; part of the new CoR. Now let us see how this changes our calculator code.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;:::python
+def do(operator, arg1, arg2):
+ return _add(operator, arg1, arg2)
+
+
+@only_natural_with_operator
+@calc_cor(my_operator='^')
+def _power(operator, arg1, arg2):
+ return arg1 ** arg2
+
+
+@only_natural_with_operator
+@calc_cor(my_operator='/', next=_power)
+def _divide(operator, arg1, arg2):
+ return arg1 / arg2
+
+
+@only_natural_with_operator
+@calc_cor(my_operator='*', next=_divide)
+def _multiply(operator, arg1, arg2):
+ return arg1 * arg2
+
+
+@only_natural_with_operator
+@calc_cor(my_operator='-', next=_multiply)
+def _subtract(operator, arg1, arg2):
+ return arg1 - arg2
+
+
+@only_natural_with_operator
+@calc_cor(my_operator='+', next=_subtract)
+def _add(operator, arg1, arg2):
+ return arg1 + arg2
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;That looks way better than what we had before. The &lt;code&gt;do&lt;/code&gt; method just calls the first link in the chain. Each chain link just does its processing. Everything else is just declared as decorator arguments and we are done. This combination of COR and Decorator pattern using decorators seems to have produced the best results. Wouldn&amp;rsquo;t you agree?&lt;/p&gt;
+&lt;h3 id="centralized-cor--30"&gt;&lt;a href="#centralized-cor--30" class="header-anchor"&gt;&lt;/a&gt;Centralized CoR -3.0!?!
+&lt;/h3&gt;&lt;p&gt;I showed this result to Sathia, a &lt;a class="link" href="https://twitter.com/sathia27" target="_blank" rel="noopener"
+ &gt;friend&lt;/a&gt; and colleague of mine (that was different production code but the concept is the same). He pointed out something. With this design somebody trying to add a new operator has to figure out where in the chain she needs to add it. Rather she has to figure out where the current chain ends and add the new one there. In the above example that is simple. In real world code this may or may not be easy. He wanted to see if there is a way for each operator function to just register itself and then the chain would execute them. Of course in all these cases we are talking with the underlying premise that the operator processing order does not matter.&lt;/p&gt;
+&lt;p&gt;So some more thinking is needed. Can we make the CoR satisfy this? For this, we probably have to give away the decentralized nature of the current CoR. We need some kind of centralization. We need some way to register operation functions to a common place and then &lt;em&gt;pull the chain&lt;/em&gt; to execute them all. Here goes another shot.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;:::python
+CHAIN = []
+
+def link_to_chain(predicate):
+ def wrapper(operator):
+ CHAIN.append((predicate,operator))
+ return operator
+ return wrapper
+
+
+def pull_chain(*args):
+ for predicate,operator in CHAIN:
+ if predicate(*args):
+ return operator(*args)
+
+ raise ValueError('Calc Error - Operator not supported')
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The first function &lt;code&gt;link_to_chain&lt;/code&gt; is a decorator function which registers (or links) the &lt;em&gt;operator&lt;/em&gt; and its &lt;em&gt;predicate&lt;/em&gt; into a registry or chain &lt;code&gt;CHAIN&lt;/code&gt;. The predicate is nothing but a function or lambda which provides applicability check. In this case the decorator is not really doing any decoration (no pre or post processing). It is more a way to &lt;a class="link" href="https://realpython.com/primer-on-python-decorators/#registering-plugins" target="_blank" rel="noopener"
+ &gt;plug things&lt;/a&gt; in.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;pull_chain&lt;/code&gt; function executes the CoR. It runs through the chain of handlers, uses the registered predicate to find the right one, executes them and breaks out of the chain. If there is none found then it &lt;em&gt;raises&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;With this idea now the calculator looks like this&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;:::python
+def do(operator, arg1, arg2):
+ return pull_chain(operator, arg1, arg2)
+
+
+@link_to_chain(lambda *args: args[0]=='^')
+@only_natural_with_operator
+def _power(operator, arg1, arg2):
+ return arg1 ** arg2
+
+
+@link_to_chain(lambda *args: args[0]=='*')
+@only_natural_with_operator
+def _multiply(operator, arg1, arg2):
+ return arg1 * arg2
+
+
+@link_to_chain(lambda *args: args[0]=='/')
+@only_natural_with_operator
+def _divide(operator, arg1, arg2):
+ return arg1 / arg2
+
+
+@link_to_chain(lambda *args: args[0]=='+')
+@only_natural_with_operator
+def _add(operator, arg1, arg2):
+ return arg1 + arg2
+
+
+@link_to_chain(lambda *args: args[0]=='-')
+@only_natural_with_operator
+def _subtract(operator, arg1, arg2):
+ return arg1 - arg2
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Not bad at all! Actually looks pretty good to me. Individual functions link to the chain and the &lt;code&gt;do&lt;/code&gt; method pulls the chain. The single responsibility of the functions shine through. Given that the chain is centralized, the individual functions don&amp;rsquo;t even care about who is next. All they do is register into the chain along with their predicate. This is probably the cleanest solution we can get as of now. Time to stop and take a break!&lt;/p&gt;
+&lt;h2 id="closing-thoughts"&gt;&lt;a href="#closing-thoughts" class="header-anchor"&gt;&lt;/a&gt;Closing thoughts
+&lt;/h2&gt;&lt;p&gt;Python is great language with support for useful functional features. Decorators are a sweet way of doing functional programming in python. The great thing I realized in this attempt is, when we try to do functional programming, your earlier learnings of GOF design patterns don&amp;rsquo;t go waste. The ideas still make sense. All we need to do was to tweak them a bit to make them applicable in a functional context. And lo behold we have much better code than where we started &amp;hellip;the &lt;code&gt;if/elif/else&lt;/code&gt; blob in the beginning&amp;hellip; Let us keep learning and try to extract out the essence of the things we learn. Then we might actually be able use it in more than one places and in more than one ways.&lt;/p&gt;
+&lt;p&gt;Happy development to all in the festive season! Please chime in with your thoughts and comments. Your criticisms and improvements are most welcome since I learn a lot from them. See you soon.&lt;/p&gt;
+&lt;p&gt;p.s: You can get all this code &lt;a class="link" href="http://bit.ly/2mMojaa" target="_blank" rel="noopener"
+ &gt;here&lt;/a&gt;&lt;/p&gt;</description></item></channel></rss>

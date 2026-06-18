@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+Disallow: /tags/
+Disallow: /categories/
+Disallow: /page/
+
+Sitemap: https://www.nacnez.com/sitemap.xml

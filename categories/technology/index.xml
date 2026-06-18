@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Technology on Starting Point</title><link>https://www.nacnez.com/categories/technology.html</link><description>Recent content in Technology on Starting Point</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 03 Jul 2012 00:00:00 +0000</lastBuildDate><atom:link href="https://www.nacnez.com/categories/technology/index.xml" rel="self" type="application/rss+xml"/><item><title>Setting up a nginx virtual host on Ubuntu</title><link>https://www.nacnez.com/nginx-ubuntu.html</link><pubDate>Tue, 03 Jul 2012 00:00:00 +0000</pubDate><guid>https://www.nacnez.com/nginx-ubuntu.html</guid><description>&lt;p&gt;I had heard of &lt;a class="link" href="http://www.nginx.org/" target="_blank" rel="noopener"
+ &gt;nginx&lt;/a&gt; as a very good web server from the perspective of performance. So I decided to try it out for one of my learning endeavors.&lt;/p&gt;
+&lt;h2 id="installation"&gt;&lt;a href="#installation" class="header-anchor"&gt;&lt;/a&gt;Installation
+&lt;/h2&gt;&lt;p&gt;Installation of nginx on my &lt;a class="link" href="http://www.ubuntu.com/" target="_blank" rel="noopener"
+ &gt;Ubuntu&lt;/a&gt; was a breeze. Nginx is available as part of the Ubuntu distribution from Canonical. So I could just search the &lt;a class="link" href="http://en.wikipedia.org/wiki/Ubuntu_Software_Center" target="_blank" rel="noopener"
+ &gt;Ubuntu Software Center&lt;/a&gt; and install it on my machine. Once installed, starting and stopping the nginx server is simple. Just open the &lt;a class="link" href="https://help.ubuntu.com/community/UsingTheTerminal" target="_blank" rel="noopener"
+ &gt;terminal&lt;/a&gt;, and use the following commands&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;sudo nginx&lt;/code&gt; (starts the server)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;sudo nginx -s quit&lt;/code&gt; (stops the server)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;sudo nginx -h&lt;/code&gt; (provides basic usage help)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;One thing to notice is that you have to execute these commands with superuser privileges (sudo).&lt;/p&gt;
+&lt;h2 id="setting-up-the-virtual-host"&gt;&lt;a href="#setting-up-the-virtual-host" class="header-anchor"&gt;&lt;/a&gt;Setting up the virtual host
+&lt;/h2&gt;&lt;p&gt;Being able to run the nginx server is all good. But for me to use it, I needed a virtual host where I can put my development site&amp;rsquo;s content.&lt;/p&gt;
+&lt;p&gt;Using the &lt;a class="link" href="http://www.google.co.in/" target="_blank" rel="noopener"
+ &gt;readily available and trusted resource&lt;/a&gt;, I reached a &lt;a class="link" href="https://web.archive.org/web/20120706001842/http://articles.slicehost.com/2008/5/16/ubuntu-hardy-nginx-virtual-hosts" target="_blank" rel="noopener"
+ &gt;link&lt;/a&gt; which talked about this. After reading the same and some experimentation, I was able to set the virtual host. Below is a brief description of the steps which I followed:&lt;/p&gt;
+&lt;h3 id="folder-structure"&gt;&lt;a href="#folder-structure" class="header-anchor"&gt;&lt;/a&gt;Folder Structure
+&lt;/h3&gt;&lt;p&gt;Once nginx is set up, you find the following folder where definitions of the virtual hosts are kept:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;/etc/nginx/
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The folder structure is as depicted below:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Nginx folder structure" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://www.nacnez.com/images/nginx-folders1.png"&gt;&lt;/p&gt;
+&lt;p&gt;The important folders for our discussion are &lt;code&gt;sites-available&lt;/code&gt; and &lt;code&gt;sites-enabled&lt;/code&gt;. For all sites which are to be hosted by nginx inside the current machine, an entry needs to be made inside the &lt;code&gt;sites-available&lt;/code&gt; folder.  A file needs to be created which holds the configuration and the name of file is the domain name. For example, I can create a file - &lt;code&gt;ex.nacnez.com&lt;/code&gt; which represents the domain name using which the virtual host can be accessed. The contents of the configuration file are as follows (remember this is just the basic stuff - more configuration is possible but for setting up the virtual host this is good enough):&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;server {
+ listen   80;
+ server_name example.nacnez.com;
+ access_log  /home/your/docroot/basepath/ex.nacnez.com/log/access.log;
+ error_log  /home/your/docroot/basepath/ex.nacnez.com/log/error.log;
+ location / {
+ root   /home/your/docroot/basepath/ex.nacnez.com/public/;
+ index  index.html;
+ }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Here &lt;code&gt;/home/your/docroot/basepath&lt;/code&gt; means the base path under which you want to store your site and its document root folders.&lt;/p&gt;
+&lt;h3 id="setting-up-the-actual-document-root"&gt;&lt;a href="#setting-up-the-actual-document-root" class="header-anchor"&gt;&lt;/a&gt;Setting up the actual document root
+&lt;/h3&gt;&lt;p&gt;The contents of your site is generally placed under its document root folder.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="nginx docroot folders" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://www.nacnez.com/images/nginx-docroot-folders.png"&gt;&lt;/p&gt;
+&lt;p&gt;If you look at the configuration above you can understand where the document root of your site is placed. Under the &lt;code&gt;public&lt;/code&gt; folder is where your index file (&lt;code&gt;index.html&lt;/code&gt; as per the above configuration and which could contain any HTML content) and other website artifacts go. Anybody accessing your web server through the above domain (of course there is more work to be done for that) is taken to this folder. The log folder is used to store logs like &lt;code&gt;access&lt;/code&gt; and &lt;code&gt;error&lt;/code&gt; logs. There are a couple of other folders (&lt;code&gt;private&lt;/code&gt; and &lt;code&gt;backup&lt;/code&gt;) but they are not used for simple setups (and I don&amp;rsquo;t even know how they are going to be used - may be something for a future post).&lt;/p&gt;
+&lt;h3 id="enabling-the-virtual-host"&gt;&lt;a href="#enabling-the-virtual-host" class="header-anchor"&gt;&lt;/a&gt;Enabling the virtual host
+&lt;/h3&gt;&lt;p&gt;Though the configuration file has been created inside the &lt;code&gt;sites-available&lt;/code&gt; folder, the nginx server still does not serve the pages of this site yet. For enabling this, one needs to create a soft link to the config file inside the &lt;code&gt;sites-enabled&lt;/code&gt; folder.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo ln -s /etc/nginx/sites-available/ex.nacnez.com /etc/nginx/sites-enabled/ex.nacnez.com
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This enables the site on nginx. Once you restart nginx ideally this site should be available.&lt;/p&gt;
+&lt;h2 id="setting-up-the-hosts-file"&gt;&lt;a href="#setting-up-the-hosts-file" class="header-anchor"&gt;&lt;/a&gt;Setting up the hosts file
+&lt;/h2&gt;&lt;p&gt;The last important step is to ensure that the hostname is configured in the DNS server to point to your machine. Since I was using it just for my local development, I went ahead and configured my &lt;code&gt;/etc/hosts&lt;/code&gt; file.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;127.0.0.1  ex.nacnez.com
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Once this is done, we are all set. If you crank up the browser and type in the domain name you must get the content of your index page.&lt;/p&gt;
+&lt;p&gt;This was my first encounter with nginx. This was enough for me for my current use of nginx. Hopefully I will get pushed to learn more on nginx and that should be fun.&lt;/p&gt;</description></item></channel></rss>

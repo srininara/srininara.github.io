@@ -1,598 +1,327 @@
-<!DOCTYPE html>
-<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
-<head>
-    <title>GOF inspired python decorators - Starting Point</title>
-    <!-- Using the latest rendering mode for IE -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!doctype html><html lang=en dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="Inspired by GOF patterns, implemented with methods and decorators"><title>GOF inspired python decorators</title><link rel=canonical href=https://www.nacnez.com/gof-inspired-decorators.html><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=preload as=style href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"><link rel=stylesheet href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"><link rel=stylesheet href=/scss/style.min.dac9cc9f406847182602d98ddf8a345ec462bf113dc216eb79fcdfc6f43291b3.css><meta property='og:title' content="GOF inspired python decorators"><meta property='og:description' content="Inspired by GOF patterns, implemented with methods and decorators"><meta property='og:url' content='https://www.nacnez.com/gof-inspired-decorators.html'><meta property='og:site_name' content='Starting Point'><meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:tag' content='design pattens'><meta property='article:tag' content='functional programming'><meta property='article:tag' content='decorators'><meta property='article:tag' content='python'><meta property='article:published_time' content='2019-09-29T00:00:00+00:00'><meta property='article:modified_time' content='2019-09-29T00:00:00+00:00'><meta name=twitter:site content="@srininara"><meta name=twitter:creator content="@srininara"><meta name=twitter:title content="GOF inspired python decorators"><meta name=twitter:description content="Inspired by GOF patterns, implemented with methods and decorators"><link rel="shortcut icon" href=/favicon.ico><script async src="https://www.googletagmanager.com/gtag/js?id=G-79BTGL1LJS"></script><script>var doNotTrack=!1,dnt=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,doNotTrack=dnt=="1"||dnt=="yes";if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-79BTGL1LJS")}</script><script>(function(e,t,n,s,o){e[s]=e[s]||[],e[s].push({"gtm.start":(new Date).getTime(),event:"gtm.js"});var a=t.getElementsByTagName(n)[0],i=t.createElement(n),r=s!="dataLayer"?"&l="+s:"";i.async=!0,i.src="https://www.googletagmanager.com/gtm.js?id="+o+r,a.parentNode.insertBefore(i,a)})(window,document,"script","dataLayer","GTM-NBHLX3B")</script><meta name=twitter:card content="summary_large_image"><meta property="og:image" content="https://www.nacnez.com/images/default-social.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name=twitter:image content="https://www.nacnez.com/images/default-social.jpg"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"GOF inspired python decorators","description":"Inspired by GOF patterns, implemented with methods and decorators","url":"https://www.nacnez.com/gof-inspired-decorators.html","datePublished":"2019-09-29T00:00:00Z","dateModified":"2019-09-29T00:00:00Z","author":{"@type":"Person","name":"Srinivas Narayanan","url":"https://www.nacnez.com","sameAs":["https://github.com/srininara","https://twitter.com/srininara","https://www.linkedin.com/in/srinivas-narayanan-1912b14/"]},"publisher":{"@type":"Person","name":"Srinivas Narayanan","url":"https://www.nacnez.com"}}</script><link rel=preload href=/fonts/Quicksand-Regular.ttf as=font type=font/ttf crossorigin></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label="Toggle Menu">
+<span class=hamburger-box><span class=hamburger-inner></span>
+</span></button>
+<button class=sidebar-collapse-btn id=sidebar-collapse-btn aria-label="Toggle sidebar" title="Toggle sidebar">
+<span class=sidebar-collapse-icon>&#8250;</span>
+</button>
+<a class=sidebar-avatar-collapsed href=/index.html title=Home><img src=/img/avatar.jpeg alt=Home>
+</a><button class=sidebar-darkmode-collapsed onclick='document.getElementById("dark-mode-toggle").click()' aria-label="Toggle dark mode" title="Toggle dark/light mode">◑</button><header><figure class=site-avatar><a href=/index.html><img src=/img/avatar.jpeg width height class=site-logo loading=lazy alt=Avatar></a></figure><div class=site-meta><p class=site-name><a href=/index.html>Starting Point</a></p><h2 class=site-description>Living in Bengaluru. Family man & Software engineer. My views are mine alone & not related to any person or organisation including my employer.</h2></div></header><ol class=menu-social><li><a href=https://github.com/srininara title=GitHub rel=me><svg class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li><li><a href=https://twitter.com/srininara title=Twitter rel=me><svg class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M22 4.01c-1 .49-1.98.689-3 .99-1.121-1.265-2.783-1.335-4.38-.737S11.977 6.323 12 8v1c-3.245.083-6.135-1.395-8-4 0 0-4.182 7.433 4 11-1.872 1.247-3.739 2.088-6 2 3.308 1.803 6.913 2.423 10.034 1.517 3.58-1.04 6.522-3.723 7.651-7.742a13.84 13.84.0 00.497-3.753C20.18 7.773 21.692 5.25 22 4.009z"/></svg></a></li><li><a href=https://www.linkedin.com/in/srinivas-narayanan-1912b14/ title=LinkedIn rel=me><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 012-2h12a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2z"/><path d="M8 11v5"/><path d="M8 8v.01"/><path d="M12 16v-5"/><path d="M16 16v-3a2 2 0 00-4 0"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/index.html><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>Home</span></a></li><li><a href=/archives.html><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>Archives</span></a></li><li><a href=/search.html><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
+<span>Search</span></a></li><li class=menu-bottom-section><ol class=menu><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>Dark Mode</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><button class=toc-toggle-header id=toc-toggle-header aria-label="Toggle table of contents"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">Table of contents</h2><span class=toc-toggle-indicator>&#8250;</span></button><div class=widget--toc id=widget--toc><nav class=toc-nav id=TableOfContents><ol><li><a href=#the-back-story>The back story</a></li><li><a href=#ok-let-us-get-in>Ok, let us get in</a></li><li><a href=#enough-talk>Enough talk!</a><ol><li><a href=#the-example>The example</a></li><li><a href=#that-is-some-c>That is some c***!</a></li><li><a href=#let-us-start-decorating>Let us start decorating</a></li><li><a href=#enter-cor>Enter CoR</a></li><li><a href=#what-the-cor>What the CoR?</a></li><li><a href=#cor-20>CoR 2.0?</a></li><li><a href=#centralized-cor--30>Centralized CoR -3.0!?!</a></li></ol></li><li><a href=#closing-thoughts>Closing thoughts</a></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><div class=article-title-wrapper><button class=article-back-btn onclick=history.back() aria-label="Go back">← Back</button><h1 class=article-title><a href=/gof-inspired-decorators.html>GOF inspired python decorators</a></h1><h2 class=article-subtitle>Inspired by GOF patterns, implemented with methods and decorators</h2></div><header class=article-category><a href=/categories/functional-python.html style=background-color:#efbed9;color:#3d0f29>Functional Python</a></header><footer class=article-meta><div class=inline-meta><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published datetime=2019-09-29T00:00:00Z>Sep 29, 2019</time>
+<svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>14 minutes read</time></div></footer></div></header><aside class=article-toc><details><summary><div class=article-toc-title><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6-6 6"/></svg>
+<span>Table of contents</span></div></summary><nav class=toc-nav><ol><li><a href=#the-back-story>The back story</a></li><li><a href=#ok-let-us-get-in>Ok, let us get in</a></li><li><a href=#enough-talk>Enough talk!</a><ol><li><a href=#the-example>The example</a></li><li><a href=#that-is-some-c>That is some c***!</a></li><li><a href=#let-us-start-decorating>Let us start decorating</a></li><li><a href=#enter-cor>Enter CoR</a></li><li><a href=#what-the-cor>What the CoR?</a></li><li><a href=#cor-20>CoR 2.0?</a></li><li><a href=#centralized-cor--30>Centralized CoR -3.0!?!</a></li></ol></li><li><a href=#closing-thoughts>Closing thoughts</a></li></ol></nav></details></aside><section class=article-content><h2 id=the-back-story><a href=#the-back-story class=header-anchor></a>The back story</h2><p>As part of day to day development work, I have been trying to apply functional concepts wherever it makes sense. I have long been a OO developer and hence some of the effects stay with you. Especially design patterns. In my opinion, design patterns - primarily <a class=link href=https://en.wikipedia.org/wiki/Design_Patterns target=_blank rel=noopener>GOF patterns</a>, though referenced in the context of OO design and languages, have some good ideas that can apply elsewhere too. With languages that support functional features, I believe some of these patterns can be applied at a method/function level instead of carrying around the cruft of classes for just doing behavior (OO enthusiasts bear with me - Classes are great in the right places, but in others they are just there because a language forces you to use <a class=link href=http://bit.ly/2mTnlZz target=_blank rel=noopener>them</a>).</p><p>I am also a fan of Python decorators. Decorators are a very cool and powerful feature of python. It is syntactic sugar to create higher order functions - a very important functional paradigm feature. We can combine multiple functions to get work done - composability. You can read a lot about decorators <a class=link href=http://bit.ly/2lmNNKn target=_blank rel=noopener>here</a> - a highly recommended read. I will referring to it throughout this post.</p><p>So given my background and my current love (functional programming and decorators), I have had a chance to get inspired by GOF pattens and use decorators to create some clean code as part of my work. Here I am going to share that attempt with you.</p><h2 id=ok-let-us-get-in><a href=#ok-let-us-get-in class=header-anchor></a>Ok, let us get in</h2><p>When you look at the general use and applicability of python decorators they feel like a ready-made way to replace the traditional <a class=link href=https://en.wikipedia.org/wiki/Decorator_pattern target=_blank rel=noopener>Decorator pattern</a> - and for the code lovers you can look <a class=link href=https://sourcemaking.com/design_patterns/decorator/python/1 target=_blank rel=noopener>here</a>. This thought is not knew and you will see it mentioned in <a class=link href=https://yos.io/2013/07/05/decorator-pattern/ target=_blank rel=noopener>other places</a> too. Theoretically, this is not exactly correct (my opinion). A class level decorator is a structural pattern which allows me to decorate multiple behaviors of the object or component. But in practical terms, I have seen that this does not pan out and method level decorators (using python decorators) are more prevalent.</p><p>As I played more with python decorators, I realized that there is one more of my favorite patterns that I could implement using decorators. That is the <a class=link href=https://en.wikipedia.org/wiki/Chain-of-responsibility_pattern target=_blank rel=noopener>Chain or Responsibility</a> pattern (CoR) - <a class=link href=https://sourcemaking.com/design_patterns/chain_of_responsibility/python/1 target=_blank rel=noopener>code sample</a>. CoR is a behavioral pattern and behaviors are generally managed at method level. Hence decorators feel like a great fit for CoR.</p><h2 id=enough-talk><a href=#enough-talk class=header-anchor></a>Enough talk!</h2><p>It is really difficult to explain my thinking with english words. So let us get down to writing some python words/code. I need an example to illustrate what this is.</p><h3 id=the-example><a href=#the-example class=header-anchor></a>The example</h3><p>Here is a contrived example (of course) - a calculator. And since I love <a class=link href=https://en.wikipedia.org/wiki/Test-driven_development target=_blank rel=noopener>TDD</a> and <a class=link href=https://docs.pytest.org/en/latest/ target=_blank rel=noopener>py.test</a> let us start with a test which can drive our code.</p><pre><code>:::python
+import pytest
+import app.natural_number_calc as calc
+
+@pytest.mark.parametrize(&quot;operator, arg1, arg2, output&quot;, [
+    ('+',3,2,5),
+    ('+',4,2,6),
+    ('-',22,12,10),
+    ('-',24,4,20),
+    ('*',12,7,84),
+    ('*',11,11,121),
+    ('/',84,6,14),
+    ('/',11,11,1),
+    ('^',11,2,121),
+    ('^',4,3,64),
+])
+def test_calculator(operator, arg1, arg2, output):
+    assert output == calc.do(operator, arg1, arg2)
 
 
+def test_calculator_operator_not_supported():
+    with pytest.raises(ValueError) as ve:
+        calc.do('%', 5, 10)
 
-<link rel="canonical" href="https://www.nacnez.com/gof-inspired-decorators.html">
-
-        <meta name="author" content="Srinivas Narayanan" />
-        <meta name="keywords" content="design pattens,functional programming,decorators,python" />
-        <meta name="description" content="Inspired by GOF patterns, implemented with methods and decorators" />
-
-        <meta property="og:site_name" content="Starting Point" />
-        <meta property="og:type" content="article"/>
-        <meta property="og:title" content="GOF inspired python decorators"/>
-        <meta property="og:url" content="https://www.nacnez.com/gof-inspired-decorators.html"/>
-        <meta property="og:description" content="Inspired by GOF patterns, implemented with methods and decorators"/>
-        <meta property="article:published_time" content="2019-09-29" />
-            <meta property="article:section" content="Functional Python" />
-            <meta property="article:tag" content="design pattens" />
-            <meta property="article:tag" content="functional programming" />
-            <meta property="article:tag" content="decorators" />
-            <meta property="article:tag" content="python" />
-            <meta property="article:author" content="Srinivas Narayanan" />
+    assert 'Calc Error - Operator not supported' in str(ve.value)
 
 
+@pytest.mark.parametrize(&quot;operator, arg1, arg2&quot;, [
+    ('+',3,0),
+    ('+',4,-2),
+    ('-',22,0),
+    ('-',-24,4),
+    ('*',12,0),
+    ('*',11,-4),
+    ('/',84,0),
+    ('/',12,-2),
+    ('^',11,-2),
+    ('^',-4,2),
+])
+def test_calculator_non_natural_numbers_not_supported(operator, arg1, arg2):
+    with pytest.raises(ValueError) as ve:
+        calc.do(operator, arg1, arg2)
 
-    <!-- Bootstrap -->
-        <link rel="stylesheet" href="https://www.nacnez.com/theme/css/bootstrap.darkly.min.css" type="text/css"/>
-    <link href="https://www.nacnez.com/theme/css/font-awesome.min.css" rel="stylesheet">
+    assert 'Calc Error - Natural numbers only supported' in str(ve.value)
+</code></pre><p>The test suite covers everything which I want to implement with my calculator. So we have a start.</p><h3 id=that-is-some-c><a href=#that-is-some-c class=header-anchor></a>That is some c***!</h3><p>For satisfying the test suite, here is some plain vanilla code.</p><pre><code>:::python
+def do(operator, arg1, arg2):
+    if operator == '+':
+        return _add(arg1, arg2)
+    elif operator == '-':
+        return _subtract(arg1, arg2)
+    elif operator == '*':
+        return _multiply(arg1, arg2)
+    elif operator == '/':
+        return _divide(arg1, arg2)
+    elif operator == '^':
+        return _power(arg1, arg2)
+    else:
+        raise ValueError('Calc Error - Operator not supported')
 
-    <link href="https://www.nacnez.com/theme/css/pygments/monokai.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://www.nacnez.com/theme/css/style.css" type="text/css"/>
-        <link href="https://www.nacnez.com/css/custom.css" rel="stylesheet">
+def _power(arg1, arg2):
+    if arg1 &lt; 1 or arg2 &lt; 1:
+        raise ValueError('Calc Error - Natural numbers only supported')
+    return arg1 ** arg2
 
-        <link href="https://www.nacnez.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
-              title="Starting Point ATOM Feed"/>
+def _divide(arg1, arg2):
+    if arg1 &lt; 1 or arg2 &lt; 1:
+        raise ValueError('Calc Error - Natural numbers only supported')
+    return arg1 / arg2
 
-        <link href="https://www.nacnez.com/feeds/functional-python.atom.xml" type="application/atom+xml" rel="alternate"
-              title="Starting Point Functional Python ATOM Feed"/>
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-79BTGL1LJS"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
+def _multiply(arg1, arg2):
+    if arg1 &lt; 1 or arg2 &lt; 1:
+        raise ValueError('Calc Error - Natural numbers only supported')
+    return arg1 * arg2
 
-        gtag('config', G-79BTGL1LJS);
-    </script>
-    <!-- End Google Analytics Code -->
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-NBHLX3B');</script>
-    <!-- End Google Tag Manager -->
+def _subtract(arg1, arg2):
+    if arg1 &lt; 1 or arg2 &lt; 1:
+        raise ValueError('Calc Error - Natural numbers only supported')
+    return arg1 - arg2
 
-</head>
-<body>
+def _add(arg1, arg2):
+    if arg1 &lt; 1 or arg2 &lt; 1:
+        raise ValueError('Calc Error - Natural numbers only supported')
+    return arg1 + arg2
+</code></pre><p>Yeah, I know. This is pathetic code&mldr; so many <code>if</code>s and <code>elif</code>s and all. That is on purpose so that we can improve it with some <em>decorator and pattern</em> goodness. And it is code that works and hence our test passes! We are on <em>green</em> mode & we can start refactoring.</p><h3 id=let-us-start-decorating><a href=#let-us-start-decorating class=header-anchor></a>Let us start decorating</h3><p>If you look at the above code we see an obvious copy paste case. The check for natural numbers is repeated on every operation code and we can easily <strong>decorate</strong> each operation code using the Decorator pattern or in our case python decorators. Let us first look at the decorator code.</p><pre><code>:::python
+def only_natural(func):
+    def wrapper(arg1, arg2):
+        if arg1 &lt; 1 or arg2 &lt; 1:
+            raise ValueError('Calc Error - Natural numbers only supported')
 
-<div class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="container">
-        <div class="navbar-header">
-            <a href="https://www.nacnez.com/" class="navbar-brand">
-<img class="img-responsive pull-left gap-right" src="https://www.nacnez.com/images/myLogo.png" width=""/> Starting Point            </a>
-        </div>
-        <div class="collapse navbar-collapse navbar-ex1-collapse">
-            <ul class="nav navbar-nav">
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-            </ul>
-        </div>
-        <!-- /.navbar-collapse -->
-    </div>
-</div> <!-- /.navbar -->
+        return func(arg1, arg2)
+return wrapper
+</code></pre><p>If you know your decorators, this is a <a class=link href=https://realpython.com/primer-on-python-decorators/#simple-decorators target=_blank rel=noopener>simple decorator</a> in action. It takes the function that needs to be wrapped. It defines an inner wrapper function which take two arguments which checks the arguments are natural numbers. If they are then the wrapped function is called else raise an error. Let us now use this decorator on our calculator module.</p><pre><code>:::python
+def do(operator, arg1, arg2):
+    if operator == '+':
+        return _add(arg1, arg2)
+    elif operator == '-':
+        return _subtract(arg1, arg2)
+    elif operator == '*':
+        return _multiply(arg1, arg2)
+    elif operator == '/':
+        return divide(arg1, arg2)
+    elif operator == '^':
+        return _power(arg1, arg2)
+    else:
+        raise ValueError('Calc Error - Operator not supported')
 
-<!-- Banner -->
-<!-- End Banner -->
+@only_natural # decorator applied
+def _power(arg1, arg2):
+    return arg1 ** arg2     #1
 
-<!-- Content Container -->
-<div class="container">
-    <div class="row">
-        <div class="col-sm-9">
-    <section id="content">
-        <article>
-            <header class="page-header">
-                <h1>
-                    <a href="https://www.nacnez.com/gof-inspired-decorators.html"
-                       rel="bookmark"
-                       title="Permalink to GOF inspired python decorators">
-                        GOF inspired python decorators
-                    </a>
-                </h1>
-            </header>
-            <div class="entry-content">
-                <div class="panel">
-                    <div class="panel-body">
-<footer class="post-info">
-    <span class="label label-success">14 min. read</span>
-    <span class="label label-default">Date</span>
-    <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2019-09-29T00:00:00+05:30"> Sun 29 September 2019</time>
-    </span>
+@only_natural
+def divide(arg1, arg2):
+    return arg1 / arg2      #2
+
+@only_natural
+def _multiply(arg1, arg2):
+    return arg1 * arg2      #3
+
+@only_natural
+def _subtract(arg1, arg2):
+    return arg1 - arg2      #4
+
+@only_natural
+def _add(arg1, arg2):
+    return arg1 + arg2      #5
+</code></pre><p>You can see that our calculator is surely improved (note the numbers) using the <em>decorator</em> pattern created with decorators. But the <code>do</code> method is still a eyesore. With just 5 operations, we have a huge <code>if/elif/else</code> clause and this will only grow further if we want to support more operations (I understand this is a toy example but you get the picture).</p><h3 id=enter-cor><a href=#enter-cor class=header-anchor></a>Enter CoR</h3><p>So how can we improve this. Let us dig in. It is clear that for each operation, there is a corresponding method to handle it. The handling determination happens one after the other. It almost feels like a set of actions to do&mldr; a chain of things to do&mldr; a Chain of Responsibilities to complete (come on, that is not such a bad lead up!). Let us give it a shot once.</p><p>Before we get to the code let us understand a bit. A classic COR goes roughly like this. A request which needs to be processed is given to the first link in the chain of processors. That processor either processes it if it can or passes it on to the next processor. A given processor knows what it can process and also knows who is the next one in the chain. That is pretty much the essence of it. The class based style is already referred earlier, so let us try to do this with decorators which can work at method level.</p><p>First shot:</p><pre><code>:::python
+def cor(next):
+    def wrapper(current):
+        def inner(*args):
+            output = current(*args)
+            return output if output else next(*args) if next else None
+        return inner
+    return wrapper
+</code></pre><p>This is a more involved decorator than the first one. Because we need to take an argument, we need this double nested structure. The outer most <code>cor</code> function is the visible annotation part of the decorator and it takes the function object that needs to be called next in the chain as argument. The <code>cor</code> function defines a <code>wrapper</code> function which is the one that accepts the actual function that is being decorated - the <code>current</code>. The <code>wrapper</code> in turn has the <code>inner</code> function where the actual work happens. It calls the current function and gets its response. If that response is valid (a simple <em>truthy</em> response), then it means that request has been processed and the chain can be broken to return the result. If the response is not valid, it means that the current function is not the one to handle the request. Hence the control has to pass on to the next processor or function (which is available to <code>inner</code> because it is a <a class=link href=https://en.wikipedia.org/wiki/Closure_%28computer_programming%29 target=_blank rel=noopener>closure</a> - another functional feature of python. You can read more about decorators that take arguments <a class=link href=https://realpython.com/primer-on-python-decorators/#decorators-with-arguments target=_blank rel=noopener>here</a>.</p><p>For this to <a class=link href=https://realpython.com/primer-on-python-decorators/#nesting-decorators target=_blank rel=noopener>nest</a> along with the already existing decorator for natural numbers, we need to do some changes to that decorator.</p><pre><code>:::python
+def only_natural_with_operator(func):
+    def wrapper(operator, arg1, arg2):
+        if arg1 &lt; 1 or arg2 &lt; 1:
+            raise ValueError('Calc Error - Natural numbers only supported')
+
+        return func(operator, arg1, arg2)
+    return wrapper
+</code></pre><p>The above one is just a simple tweak, so let us move on. Let us look at the calculator to figure out how its usage gets manifested.</p><h3 id=what-the-cor><a href=#what-the-cor class=header-anchor></a>What the CoR?</h3><pre><code>:::python
+def do(operator, arg1, arg2):
+    value = _add(operator, arg1, arg2)
+    if value:
+        return value
+    else:
+        raise ValueError('Calc Error - Operator not supported')
+
+@only_natural_with_operator
+def _power(operator, arg1, arg2):
+    if operator == '^':
+        return arg1 ** arg2
+    else:
+        return None
+
+@only_natural_with_operator
+@cor(next=_power)
+def _divide(operator, arg1, arg2):
+    if operator == '/':
+        return arg1 / arg2
+    else:
+        return None
+
+@only_natural_with_operator
+@cor(next=_divide)
+def _multiply(operator, arg1, arg2):
+    if operator == '*':
+        return arg1 * arg2
+    else:
+        return None
+
+@only_natural_with_operator
+@cor(next=_multiply)
+def _subtract(operator, arg1, arg2):
+    if operator == '-':
+        return arg1 - arg2
+    else:
+        return None
+
+@only_natural_with_operator
+@cor(next=_subtract)
+def _add(operator, arg1, arg2):
+    if operator == '+':
+        return arg1 + arg2
+    else:
+        return None
+</code></pre><p>Hmm&mldr; Pretty underwhelming to put it nicely. But before we get into it, let me first explain what this is doing.</p><p>The <code>do</code> method just calls the first method in the chain, the <code>_add</code> method. It expects that the processing gets completed to return a valid result. If it gets back an invalid result (<code>None</code>), then it understands that this calculation cannot be processed and throws an Error. The <code>do</code> method has improved for sure.</p><p>The <code>_add</code> method declares the next operator/function to call as decorator parameter - (<code>@cor(next=_subtract)</code>). In the body it checks if it can process the request - <em>is it the right operator?</em> . If it is then great, else it returns <code>None</code> denoting that it is not interested. This happens in each operator/function till we reach <code>_power</code> which has no next. So the chain stops here. We can of course extend the chain from this point onwards and for that we don&rsquo;t have to touch the <code>do</code> or the <code>_add</code> (or other) methods. All the methods are separated. This <code>cor</code> decorator could be used to create a chain of any set of functions as long as they follow the basic contract of returning a truthy value if they did the processing or a falsy value if they want to pass it on (provided if they have defined a next).</p><h3 id=cor-20><a href=#cor-20 class=header-anchor></a>CoR 2.0?</h3><p>Now back to that bad feeling we get on seeing the resultant code. In the process of introducing CoR to save the <code>do</code> method, the operation functions have lost their charm. They are crowded now and that is not what we want. And when we look closely, we see that each operation function does one common thing: it checks if the operation is what it can handle, before it actually does the real work. The error handling in the <code>do</code> function looks similar in some way too. All these seem to be common behavior which can be applied to these functions using a <em>wrapper/decorator</em> - is it not? Let us get our decorator pattern back now. The improved cor (2.0) decorator looks like this.</p><pre><code>:::python
+def calc_cor(my_operator, next=None):
+    def wrapper(current):
+        def inner(*args):
+            if args[0] == my_operator:
+                return current(*args)
+            elif next:
+                return next(*args)
+            else:
+                raise ValueError('Calc Error - Operator not supported')
+        return inner
+    return wrapper
+</code></pre><p>This is no longer the very generic <code>cor</code> decorator we started with but we sort of expected that. This is a decorated-calculator-specific-CoR - <code>calc_cor</code>. This decorator takes two arguments. The first one is the operator supported by the current function and the second one is the next function. It also expects the the <em>current</em> function (which is being decorated) to always takes the operator symbol as the first argument - the implicit contract. Since the operator is passed, the check of applicability can be done in the decorator itself. Also it does the error handling. This is the <em>decorated</em> part of the new CoR. Now let us see how this changes our calculator code.</p><pre><code>:::python
+def do(operator, arg1, arg2):
+    return _add(operator, arg1, arg2)
 
 
+@only_natural_with_operator
+@calc_cor(my_operator='^')
+def _power(operator, arg1, arg2):
+    return arg1 ** arg2
 
 
+@only_natural_with_operator
+@calc_cor(my_operator='/', next=_power)
+def _divide(operator, arg1, arg2):
+    return arg1 / arg2
 
-<span class="label label-default">Tags</span>
-	<a href="https://www.nacnez.com/tag/design-pattens.html">design pattens</a>
-        /
-	<a href="https://www.nacnez.com/tag/functional-programming.html">functional programming</a>
-        /
-	<a href="https://www.nacnez.com/tag/decorators.html">decorators</a>
-        /
-	<a href="https://www.nacnez.com/tag/python.html">python</a>
+
+@only_natural_with_operator
+@calc_cor(my_operator='*', next=_divide)
+def _multiply(operator, arg1, arg2):
+    return arg1 * arg2
+
+
+@only_natural_with_operator
+@calc_cor(my_operator='-', next=_multiply)
+def _subtract(operator, arg1, arg2):
+    return arg1 - arg2
+
+
+@only_natural_with_operator
+@calc_cor(my_operator='+', next=_subtract)
+def _add(operator, arg1, arg2):
+    return arg1 + arg2
+</code></pre><p>That looks way better than what we had before. The <code>do</code> method just calls the first link in the chain. Each chain link just does its processing. Everything else is just declared as decorator arguments and we are done. This combination of COR and Decorator pattern using decorators seems to have produced the best results. Wouldn&rsquo;t you agree?</p><h3 id=centralized-cor--30><a href=#centralized-cor--30 class=header-anchor></a>Centralized CoR -3.0!?!</h3><p>I showed this result to Sathia, a <a class=link href=https://twitter.com/sathia27 target=_blank rel=noopener>friend</a> and colleague of mine (that was different production code but the concept is the same). He pointed out something. With this design somebody trying to add a new operator has to figure out where in the chain she needs to add it. Rather she has to figure out where the current chain ends and add the new one there. In the above example that is simple. In real world code this may or may not be easy. He wanted to see if there is a way for each operator function to just register itself and then the chain would execute them. Of course in all these cases we are talking with the underlying premise that the operator processing order does not matter.</p><p>So some more thinking is needed. Can we make the CoR satisfy this? For this, we probably have to give away the decentralized nature of the current CoR. We need some kind of centralization. We need some way to register operation functions to a common place and then <em>pull the chain</em> to execute them all. Here goes another shot.</p><pre><code>:::python
+CHAIN = []
+
+def link_to_chain(predicate):
+    def wrapper(operator):
+        CHAIN.append((predicate,operator))
+        return operator
+    return wrapper
+
+
+def pull_chain(*args):
+    for predicate,operator in CHAIN:
+        if predicate(*args):
+            return operator(*args)
+
+    raise ValueError('Calc Error - Operator not supported')
+</code></pre><p>The first function <code>link_to_chain</code> is a decorator function which registers (or links) the <em>operator</em> and its <em>predicate</em> into a registry or chain <code>CHAIN</code>. The predicate is nothing but a function or lambda which provides applicability check. In this case the decorator is not really doing any decoration (no pre or post processing). It is more a way to <a class=link href=https://realpython.com/primer-on-python-decorators/#registering-plugins target=_blank rel=noopener>plug things</a> in.</p><p>The <code>pull_chain</code> function executes the CoR. It runs through the chain of handlers, uses the registered predicate to find the right one, executes them and breaks out of the chain. If there is none found then it <em>raises</em>.</p><p>With this idea now the calculator looks like this</p><pre><code>:::python
+def do(operator, arg1, arg2):
+    return pull_chain(operator, arg1, arg2)
+
+
+@link_to_chain(lambda *args: args[0]=='^')
+@only_natural_with_operator
+def _power(operator, arg1, arg2):
+    return arg1 ** arg2
+
+
+@link_to_chain(lambda *args: args[0]=='*')
+@only_natural_with_operator
+def _multiply(operator, arg1, arg2):
+    return arg1 * arg2
+
+
+@link_to_chain(lambda *args: args[0]=='/')
+@only_natural_with_operator
+def _divide(operator, arg1, arg2):
+    return arg1 / arg2
+
+
+@link_to_chain(lambda *args: args[0]=='+')
+@only_natural_with_operator
+def _add(operator, arg1, arg2):
+    return arg1 + arg2
+
+
+@link_to_chain(lambda *args: args[0]=='-')
+@only_natural_with_operator
+def _subtract(operator, arg1, arg2):
+    return arg1 - arg2
+</code></pre><p>Not bad at all! Actually looks pretty good to me. Individual functions link to the chain and the <code>do</code> method pulls the chain. The single responsibility of the functions shine through. Given that the chain is centralized, the individual functions don&rsquo;t even care about who is next. All they do is register into the chain along with their predicate. This is probably the cleanest solution we can get as of now. Time to stop and take a break!</p><h2 id=closing-thoughts><a href=#closing-thoughts class=header-anchor></a>Closing thoughts</h2><p>Python is great language with support for useful functional features. Decorators are a sweet way of doing functional programming in python. The great thing I realized in this attempt is, when we try to do functional programming, your earlier learnings of GOF design patterns don&rsquo;t go waste. The ideas still make sense. All we need to do was to tweak them a bit to make them applicable in a functional context. And lo behold we have much better code than where we started &mldr;the <code>if/elif/else</code> blob in the beginning&mldr; Let us keep learning and try to extract out the essence of the things we learn. Then we might actually be able use it in more than one places and in more than one ways.</p><p>Happy development to all in the festive season! Please chime in with your thoughts and comments. Your criticisms and improvements are most welcome since I learn a lot from them. See you soon.</p><p>p.s: You can get all this code <a class=link href=http://bit.ly/2mMojaa target=_blank rel=noopener>here</a></p></section><footer class="article-meta article-footer"><section class=article-tags><a href=/tags/design-pattens.html>Design Pattens</a>
+<a href=/tags/functional-programming.html>Functional Programming</a>
+<a href=/tags/decorators.html>Decorators</a>
+<a href=/tags/python.html>Python</a></section></footer></article><aside><h2 class=section-title>Related content</h2><div class=article-list--compact><article><a href=/python-can-be-weird.html><div class=article-details><h2 class=article-title>Python can be weird!</h2><footer class=article-meta><time datetime=2014-11-16T00:00:00Z>Nov 16, 2014</time></footer></div></a></article></div></aside><div class=disqus-container><div id=disqus_thread></div><script>window.disqus_config=function(){},function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("disqus_thread").innerHTML="Disqus comments not available by default when the website is previewed locally.";return}var t=document,e=t.createElement("script");e.async=!0,e.src="//nacnez.disqus.com/embed.js",e.setAttribute("data-timestamp",+new Date),(t.head||t.body).appendChild(e)}()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div><style>.disqus-container{background-color:var(--card-background);border-radius:var(--card-border-radius);box-shadow:var(--shadow-l1);padding:var(--card-padding)}</style><script>window.addEventListener("onColorSchemeChange",e=>{typeof DISQUS=="object"&&DISQUS.reset({reload:!0})})</script><footer class=site-footer><section class=copyright>&copy;
+2012 -
+2026 Starting Point</section><section class=powerby>Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a><br>Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=4.0.3>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a></section></footer><script type=module>
+    import gallery from '\/ts\/gallery.js';
+
+    const articleContent = document.querySelector('.article-content');
+    const shouldLoad = articleContent && (articleContent.querySelectorAll('figure').length > 0 || articleContent.querySelectorAll('img.gallery-image').length > 0);
     
-</footer><!-- /.post-info -->                    </div>
-                </div>
-                <h2 id="the-back-story">The back story</h2>
-<p>As part of day to day development work, I have been trying to apply functional concepts wherever it makes sense. I have long been a OO developer and hence some of the effects stay with you. Especially design patterns. In my opinion, design patterns - primarily <a href="https://en.wikipedia.org/wiki/Design_Patterns">GOF patterns</a>, though referenced in the context of OO design and languages, have some good ideas that can apply elsewhere too. With languages that support functional features, I believe some of these patterns can be applied at a method/function level instead of carrying around the cruft of classes for just doing behavior (OO enthusiasts bear with me - Classes are great in the right places, but in others they are just there because a language forces you to use <a href="http://bit.ly/2mTnlZz">them</a>).</p>
-<p>I am also a fan of Python decorators. Decorators are a very cool and powerful feature of python. It is syntactic sugar to create higher order functions - a very important functional paradigm feature. We can combine multiple functions to get work done - composability. You can read a lot about decorators <a href="http://bit.ly/2lmNNKn">here</a> - a highly recommended read. I will referring to it throughout this post.</p>
-<p>So given my background and my current love (functional programming and decorators), I have had a chance to get inspired by GOF pattens and use decorators to create some clean code as part of my work. Here I am going to share that attempt with you.</p>
-<h2 id="ok-let-us-get-in">Ok, let us get in</h2>
-<p>When you look at the general use and applicability of python decorators they feel like a ready-made way to replace the traditional <a href="https://en.wikipedia.org/wiki/Decorator_pattern">Decorator pattern</a> - and for the code lovers you can look <a href="https://sourcemaking.com/design_patterns/decorator/python/1">here</a>. This thought is not knew and you will see it mentioned in <a href="https://yos.io/2013/07/05/decorator-pattern/">other places</a> too. Theoretically, this is not exactly correct (my opinion). A class level decorator is a structural pattern which allows me to decorate multiple behaviors of the object or component. But in practical terms, I have seen that this does not pan out and method level decorators (using python decorators) are more prevalent.</p>
-<p>As I played more with python decorators, I realized that there is one more of my favorite patterns that I could implement using decorators. That is the <a href="https://en.wikipedia.org/wiki/Chain-of-responsibility_pattern">Chain or Responsibility</a> pattern (CoR) - <a href="https://sourcemaking.com/design_patterns/chain_of_responsibility/python/1">code sample</a>. CoR is a behavioral pattern and behaviors are generally managed at method level. Hence decorators feel like a great fit for CoR.</p>
-<h2 id="enough-talk">Enough talk!</h2>
-<p>It is really difficult to explain my thinking with english words. So let us get down to writing some python words/code. I need an example to illustrate what this is.</p>
-<h3 id="the-example">The example</h3>
-<p>Here is a contrived example (of course) - a calculator. And since I love <a href="https://en.wikipedia.org/wiki/Test-driven_development">TDD</a> and <a href="https://docs.pytest.org/en/latest/">py.test</a> let us start with a test which can drive our code.</p>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pytest</span>
-<span class="kn">import</span> <span class="nn">app.natural_number_calc</span> <span class="kn">as</span> <span class="nn">calc</span>
-
-<span class="nd">@pytest.mark.parametrize</span><span class="p">(</span><span class="s2">"operator, arg1, arg2, output"</span><span class="p">,</span> <span class="p">[</span>
-    <span class="p">(</span><span class="s1">'+'</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span>
-    <span class="p">(</span><span class="s1">'+'</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">6</span><span class="p">),</span>
-    <span class="p">(</span><span class="s1">'-'</span><span class="p">,</span><span class="mi">22</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span>
-    <span class="p">(</span><span class="s1">'-'</span><span class="p">,</span><span class="mi">24</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span>
-    <span class="p">(</span><span class="s1">'*'</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">84</span><span class="p">),</span>
-    <span class="p">(</span><span class="s1">'*'</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">121</span><span class="p">),</span>
-    <span class="p">(</span><span class="s1">'/'</span><span class="p">,</span><span class="mi">84</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">14</span><span class="p">),</span>
-    <span class="p">(</span><span class="s1">'/'</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span>
-    <span class="p">(</span><span class="s1">'^'</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">121</span><span class="p">),</span>
-    <span class="p">(</span><span class="s1">'^'</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">64</span><span class="p">),</span>
-<span class="p">])</span>
-<span class="k">def</span> <span class="nf">test_calculator</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">,</span> <span class="n">output</span><span class="p">):</span>
-    <span class="k">assert</span> <span class="n">output</span> <span class="o">==</span> <span class="n">calc</span><span class="o">.</span><span class="n">do</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">)</span>
-
-
-<span class="k">def</span> <span class="nf">test_calculator_operator_not_supported</span><span class="p">():</span>
-    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">)</span> <span class="k">as</span> <span class="n">ve</span><span class="p">:</span>
-        <span class="n">calc</span><span class="o">.</span><span class="n">do</span><span class="p">(</span><span class="s1">'%'</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-
-    <span class="k">assert</span> <span class="s1">'Calc Error - Operator not supported'</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">ve</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
-
-
-<span class="nd">@pytest.mark.parametrize</span><span class="p">(</span><span class="s2">"operator, arg1, arg2"</span><span class="p">,</span> <span class="p">[</span>
-    <span class="p">(</span><span class="s1">'+'</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span>
-    <span class="p">(</span><span class="s1">'+'</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">),</span>
-    <span class="p">(</span><span class="s1">'-'</span><span class="p">,</span><span class="mi">22</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span>
-    <span class="p">(</span><span class="s1">'-'</span><span class="p">,</span><span class="o">-</span><span class="mi">24</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span>
-    <span class="p">(</span><span class="s1">'*'</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span>
-    <span class="p">(</span><span class="s1">'*'</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="o">-</span><span class="mi">4</span><span class="p">),</span>
-    <span class="p">(</span><span class="s1">'/'</span><span class="p">,</span><span class="mi">84</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span>
-    <span class="p">(</span><span class="s1">'/'</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">),</span>
-    <span class="p">(</span><span class="s1">'^'</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">),</span>
-    <span class="p">(</span><span class="s1">'^'</span><span class="p">,</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span>
-<span class="p">])</span>
-<span class="k">def</span> <span class="nf">test_calculator_non_natural_numbers_not_supported</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
-    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">)</span> <span class="k">as</span> <span class="n">ve</span><span class="p">:</span>
-        <span class="n">calc</span><span class="o">.</span><span class="n">do</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">)</span>
-
-    <span class="k">assert</span> <span class="s1">'Calc Error - Natural numbers only supported'</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">ve</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
-</pre></div>
-<p>The test suite covers everything which I want to implement with my calculator. So we have a start.</p>
-<h3 id="that-is-some-c">That is some c***!</h3>
-<p>For satisfying the test suite, here is some plain vanilla code.</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">do</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">operator</span> <span class="o">==</span> <span class="s1">'+'</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">_add</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">operator</span> <span class="o">==</span> <span class="s1">'-'</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">_subtract</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">operator</span> <span class="o">==</span> <span class="s1">'*'</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">_multiply</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">operator</span> <span class="o">==</span> <span class="s1">'/'</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">_divide</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">operator</span> <span class="o">==</span> <span class="s1">'^'</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">_power</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">'Calc Error - Operator not supported'</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">_power</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">arg1</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">arg2</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">'Calc Error - Natural numbers only supported'</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">arg1</span> <span class="o">**</span> <span class="n">arg2</span>
-
-<span class="k">def</span> <span class="nf">_divide</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">arg1</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">arg2</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">'Calc Error - Natural numbers only supported'</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">arg1</span> <span class="o">/</span> <span class="n">arg2</span>
-
-<span class="k">def</span> <span class="nf">_multiply</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">arg1</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">arg2</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">'Calc Error - Natural numbers only supported'</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">arg1</span> <span class="o">*</span> <span class="n">arg2</span>
-
-<span class="k">def</span> <span class="nf">_subtract</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">arg1</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">arg2</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">'Calc Error - Natural numbers only supported'</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">arg1</span> <span class="o">-</span> <span class="n">arg2</span>
-
-<span class="k">def</span> <span class="nf">_add</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">arg1</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">arg2</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">'Calc Error - Natural numbers only supported'</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">arg1</span> <span class="o">+</span> <span class="n">arg2</span>
-</pre></div>
-<p>Yeah, I know. This is pathetic code... so many <code>if</code>s and <code>elif</code>s and all. That is on purpose so that we can improve it with some <em>decorator and pattern</em> goodness. And it is code that works and hence our test passes! We are on <em>green</em> mode &amp; we can start refactoring.</p>
-<h3 id="let-us-start-decorating">Let us start decorating</h3>
-<p>If you look at the above code we see an obvious copy paste case. The check for natural numbers is repeated on every operation code and we can easily <strong>decorate</strong> each operation code using the Decorator pattern or in our case python decorators. Let us first look at the decorator code.</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">only_natural</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">arg1</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">arg2</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">'Calc Error - Natural numbers only supported'</span><span class="p">)</span>
-
-        <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">)</span>
-<span class="k">return</span> <span class="n">wrapper</span>
-</pre></div>
-<p>If you know your decorators, this is a <a href="https://realpython.com/primer-on-python-decorators/#simple-decorators">simple decorator</a> in action. It takes the function that needs to be wrapped. It defines an inner wrapper function which take two arguments which checks the arguments are natural numbers. If they are then the wrapped function is called else raise an error. Let us now use this decorator on our calculator module.</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">do</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">operator</span> <span class="o">==</span> <span class="s1">'+'</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">_add</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">operator</span> <span class="o">==</span> <span class="s1">'-'</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">_subtract</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">operator</span> <span class="o">==</span> <span class="s1">'*'</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">_multiply</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">operator</span> <span class="o">==</span> <span class="s1">'/'</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">divide</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">operator</span> <span class="o">==</span> <span class="s1">'^'</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">_power</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">'Calc Error - Operator not supported'</span><span class="p">)</span>
-
-<span class="nd">@only_natural</span> <span class="c1"># decorator applied</span>
-<span class="k">def</span> <span class="nf">_power</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">arg1</span> <span class="o">**</span> <span class="n">arg2</span>     <span class="c1">#1</span>
-
-<span class="nd">@only_natural</span>
-<span class="k">def</span> <span class="nf">divide</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">arg1</span> <span class="o">/</span> <span class="n">arg2</span>      <span class="c1">#2</span>
-
-<span class="nd">@only_natural</span>
-<span class="k">def</span> <span class="nf">_multiply</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">arg1</span> <span class="o">*</span> <span class="n">arg2</span>      <span class="c1">#3</span>
-
-<span class="nd">@only_natural</span>
-<span class="k">def</span> <span class="nf">_subtract</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">arg1</span> <span class="o">-</span> <span class="n">arg2</span>      <span class="c1">#4</span>
-
-<span class="nd">@only_natural</span>
-<span class="k">def</span> <span class="nf">_add</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">arg1</span> <span class="o">+</span> <span class="n">arg2</span>      <span class="c1">#5</span>
-</pre></div>
-<p>You can see that our calculator is surely improved (note the numbers) using the <em>decorator</em> pattern created with decorators. But the <code>do</code> method is still a eyesore. With just 5 operations, we have a huge <code>if/elif/else</code> clause and this will only grow further if we want to support more operations (I understand this is a toy example but you get the picture).</p>
-<h3 id="enter-cor">Enter CoR</h3>
-<p>So how can we improve this. Let us dig in. It is clear that for each operation, there is a corresponding method to handle it. The handling determination happens one after the other. It almost feels like a set of actions to do... a chain of things to do... a Chain of Responsibilities to complete (come on, that is not such a bad lead up!). Let us give it a shot once.</p>
-<p>Before we get to the code let us understand a bit. A classic COR goes roughly like this. A request which needs to be processed is given to the first link in the chain of processors. That processor either processes it if it can or passes it on to the next processor. A given processor knows what it can process and also knows who is the next one in the chain. That is pretty much the essence of it. The class based style is already referred earlier, so let us try to do this with decorators which can work at method level.</p>
-<p>First shot:</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">cor</span><span class="p">(</span><span class="nb">next</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="n">current</span><span class="p">):</span>
-        <span class="k">def</span> <span class="nf">inner</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
-            <span class="n">output</span> <span class="o">=</span> <span class="n">current</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">output</span> <span class="k">if</span> <span class="n">output</span> <span class="k">else</span> <span class="nb">next</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span> <span class="k">if</span> <span class="nb">next</span> <span class="k">else</span> <span class="bp">None</span>
-        <span class="k">return</span> <span class="n">inner</span>
-    <span class="k">return</span> <span class="n">wrapper</span>
-</pre></div>
-<p>This is a more involved decorator than the first one. Because we need to take an argument, we need this double nested structure. The outer most <code>cor</code> function is the visible annotation part of the decorator and it takes the function object that needs to be called next in the chain as argument. The <code>cor</code> function defines a <code>wrapper</code> function which is the one that accepts the actual function that is being decorated - the <code>current</code>. The <code>wrapper</code> in turn has the <code>inner</code> function where the actual work happens. It calls the current function and gets its response. If that response is valid (a simple <em>truthy</em> response), then it means that request has been processed and the chain can be broken to return the result. If the response is not valid, it means that the current function is not the one to handle the request. Hence the control has to pass on to the next processor or function (which is available to <code>inner</code> because it is a <a href="https://en.wikipedia.org/wiki/Closure_(computer_programming)">closure</a> - another functional feature of python. You can read more about decorators that take arguments <a href="https://realpython.com/primer-on-python-decorators/#decorators-with-arguments">here</a>.</p>
-<p>For this to <a href="https://realpython.com/primer-on-python-decorators/#nesting-decorators">nest</a> along with the already existing decorator for natural numbers, we need to do some changes to that decorator.</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">only_natural_with_operator</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">arg1</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">arg2</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">'Calc Error - Natural numbers only supported'</span><span class="p">)</span>
-
-        <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">wrapper</span>
-</pre></div>
-<p>The above one is just a simple tweak, so let us move on. Let us look at the calculator to figure out how its usage gets manifested.</p>
-<h3 id="what-the-cor">What the CoR?</h3>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">do</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
-    <span class="n">value</span> <span class="o">=</span> <span class="n">_add</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">value</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">value</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">'Calc Error - Operator not supported'</span><span class="p">)</span>
-
-<span class="nd">@only_natural_with_operator</span>
-<span class="k">def</span> <span class="nf">_power</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">operator</span> <span class="o">==</span> <span class="s1">'^'</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">arg1</span> <span class="o">**</span> <span class="n">arg2</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="bp">None</span>
-
-<span class="nd">@only_natural_with_operator</span>
-<span class="nd">@cor</span><span class="p">(</span><span class="nb">next</span><span class="o">=</span><span class="n">_power</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">_divide</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">operator</span> <span class="o">==</span> <span class="s1">'/'</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">arg1</span> <span class="o">/</span> <span class="n">arg2</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="bp">None</span>
-
-<span class="nd">@only_natural_with_operator</span>
-<span class="nd">@cor</span><span class="p">(</span><span class="nb">next</span><span class="o">=</span><span class="n">_divide</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">_multiply</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">operator</span> <span class="o">==</span> <span class="s1">'*'</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">arg1</span> <span class="o">*</span> <span class="n">arg2</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="bp">None</span>
-
-<span class="nd">@only_natural_with_operator</span>
-<span class="nd">@cor</span><span class="p">(</span><span class="nb">next</span><span class="o">=</span><span class="n">_multiply</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">_subtract</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">operator</span> <span class="o">==</span> <span class="s1">'-'</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">arg1</span> <span class="o">-</span> <span class="n">arg2</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="bp">None</span>
-
-<span class="nd">@only_natural_with_operator</span>
-<span class="nd">@cor</span><span class="p">(</span><span class="nb">next</span><span class="o">=</span><span class="n">_subtract</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">_add</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">operator</span> <span class="o">==</span> <span class="s1">'+'</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">arg1</span> <span class="o">+</span> <span class="n">arg2</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="bp">None</span>
-</pre></div>
-<p>Hmm... Pretty underwhelming to put it nicely. But before we get into it, let me first explain what this is doing.</p>
-<p>The <code>do</code> method just calls the first method in the chain, the <code>_add</code> method. It expects that the processing gets completed to return a valid result. If it gets back an invalid result (<code>None</code>), then it understands that this calculation cannot be processed and throws an Error. The <code>do</code> method has improved for sure.</p>
-<p>The <code>_add</code> method declares the next operator/function to call as decorator parameter - (<code>@cor(next=_subtract)</code>). In the body it checks if it can process the request - <em>is it the right operator?</em> . If it is then great, else it returns <code>None</code> denoting that it is not interested. This happens in each operator/function till we reach <code>_power</code> which has no next. So the chain stops here. We can of course extend the chain from this point onwards and for that we don't have to touch the <code>do</code> or the <code>_add</code> (or other) methods. All the methods are separated. This <code>cor</code> decorator could be used to create a chain of any set of functions as long as they follow the basic contract of returning a truthy value if they did the processing or a falsy value if they want to pass it on (provided if they have defined a next).</p>
-<h3 id="cor-20">CoR 2.0?</h3>
-<p>Now back to that bad feeling we get on seeing the resultant code. In the process of introducing CoR to save the <code>do</code> method, the operation functions have lost their charm. They are crowded now and that is not what we want. And when we look closely, we see that each operation function does one common thing: it checks if the operation is what it can handle, before it actually does the real work. The error handling in the <code>do</code> function looks similar in some way too. All these seem to be common behavior which can be applied to these functions using a <em>wrapper/decorator</em> - is it not? Let us get our decorator pattern back now. The improved cor (2.0) decorator looks like this.</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calc_cor</span><span class="p">(</span><span class="n">my_operator</span><span class="p">,</span> <span class="nb">next</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="n">current</span><span class="p">):</span>
-        <span class="k">def</span> <span class="nf">inner</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">my_operator</span><span class="p">:</span>
-                <span class="k">return</span> <span class="n">current</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
-            <span class="k">elif</span> <span class="nb">next</span><span class="p">:</span>
-                <span class="k">return</span> <span class="nb">next</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">'Calc Error - Operator not supported'</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">inner</span>
-    <span class="k">return</span> <span class="n">wrapper</span>
-</pre></div>
-<p>This is no longer the very generic <code>cor</code> decorator we started with but we sort of expected that. This is a decorated-calculator-specific-CoR - <code>calc_cor</code>. This decorator takes two arguments. The first one is the operator supported by the current function and the second one is the next function. It also expects the the <em>current</em> function (which is being decorated) to always takes the operator symbol as the first argument - the implicit contract. Since the operator is passed, the check of applicability can be done in the decorator itself. Also it does the error handling. This is the <em>decorated</em> part of the new CoR. Now let us see how this changes our calculator code.</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">do</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">_add</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">)</span>
-
-
-<span class="nd">@only_natural_with_operator</span>
-<span class="nd">@calc_cor</span><span class="p">(</span><span class="n">my_operator</span><span class="o">=</span><span class="s1">'^'</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">_power</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">arg1</span> <span class="o">**</span> <span class="n">arg2</span>
-
-
-<span class="nd">@only_natural_with_operator</span>
-<span class="nd">@calc_cor</span><span class="p">(</span><span class="n">my_operator</span><span class="o">=</span><span class="s1">'/'</span><span class="p">,</span> <span class="nb">next</span><span class="o">=</span><span class="n">_power</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">_divide</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">arg1</span> <span class="o">/</span> <span class="n">arg2</span>
-
-
-<span class="nd">@only_natural_with_operator</span>
-<span class="nd">@calc_cor</span><span class="p">(</span><span class="n">my_operator</span><span class="o">=</span><span class="s1">'*'</span><span class="p">,</span> <span class="nb">next</span><span class="o">=</span><span class="n">_divide</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">_multiply</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">arg1</span> <span class="o">*</span> <span class="n">arg2</span>
-
-
-<span class="nd">@only_natural_with_operator</span>
-<span class="nd">@calc_cor</span><span class="p">(</span><span class="n">my_operator</span><span class="o">=</span><span class="s1">'-'</span><span class="p">,</span> <span class="nb">next</span><span class="o">=</span><span class="n">_multiply</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">_subtract</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">arg1</span> <span class="o">-</span> <span class="n">arg2</span>
-
-
-<span class="nd">@only_natural_with_operator</span>
-<span class="nd">@calc_cor</span><span class="p">(</span><span class="n">my_operator</span><span class="o">=</span><span class="s1">'+'</span><span class="p">,</span> <span class="nb">next</span><span class="o">=</span><span class="n">_subtract</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">_add</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">arg1</span> <span class="o">+</span> <span class="n">arg2</span>
-</pre></div>
-<p>That looks way better than what we had before. The <code>do</code> method just calls the first link in the chain. Each chain link just does its processing. Everything else is just declared as decorator arguments and we are done. This combination of COR and Decorator pattern using decorators seems to have produced the best results. Wouldn't you agree?</p>
-<h3 id="centralized-cor-30">Centralized CoR -3.0!?!</h3>
-<p>I showed this result to Sathia, a <a href="https://twitter.com/sathia27">friend</a> and colleague of mine (that was different production code but the concept is the same). He pointed out something. With this design somebody trying to add a new operator has to figure out where in the chain she needs to add it. Rather she has to figure out where the current chain ends and add the new one there. In the above example that is simple. In real world code this may or may not be easy. He wanted to see if there is a way for each operator function to just register itself and then the chain would execute them. Of course in all these cases we are talking with the underlying premise that the operator processing order does not matter.</p>
-<p>So some more thinking is needed. Can we make the CoR satisfy this? For this, we probably have to give away the decentralized nature of the current CoR. We need some kind of centralization. We need some way to register operation functions to a common place and then <em>pull the chain</em> to execute them all. Here goes another shot.</p>
-<div class="highlight"><pre><span></span><span class="n">CHAIN</span> <span class="o">=</span> <span class="p">[]</span>
-
-<span class="k">def</span> <span class="nf">link_to_chain</span><span class="p">(</span><span class="n">predicate</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="n">operator</span><span class="p">):</span>
-        <span class="n">CHAIN</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">predicate</span><span class="p">,</span><span class="n">operator</span><span class="p">))</span>
-        <span class="k">return</span> <span class="n">operator</span>
-    <span class="k">return</span> <span class="n">wrapper</span>
-
-
-<span class="k">def</span> <span class="nf">pull_chain</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">predicate</span><span class="p">,</span><span class="n">operator</span> <span class="ow">in</span> <span class="n">CHAIN</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">predicate</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">operator</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
-
-    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">'Calc Error - Operator not supported'</span><span class="p">)</span>
-</pre></div>
-<p>The first function <code>link_to_chain</code> is a decorator function which registers (or links) the <em>operator</em> and its <em>predicate</em> into a registry or chain <code>CHAIN</code>. The predicate is nothing but a function or lambda which provides applicability check. In this case the decorator is not really doing any decoration (no pre or post processing). It is more a way to <a href="https://realpython.com/primer-on-python-decorators/#registering-plugins">plug things</a> in.</p>
-<p>The <code>pull_chain</code> function executes the CoR. It runs through the chain of handlers, uses the registered predicate to find the right one, executes them and breaks out of the chain. If there is none found then it <em>raises</em>.</p>
-<p>With this idea now the calculator looks like this</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">do</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">pull_chain</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">)</span>
-
-
-<span class="nd">@link_to_chain</span><span class="p">(</span><span class="k">lambda</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="s1">'^'</span><span class="p">)</span>
-<span class="nd">@only_natural_with_operator</span>
-<span class="k">def</span> <span class="nf">_power</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">arg1</span> <span class="o">**</span> <span class="n">arg2</span>
-
-
-<span class="nd">@link_to_chain</span><span class="p">(</span><span class="k">lambda</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="s1">'*'</span><span class="p">)</span>
-<span class="nd">@only_natural_with_operator</span>
-<span class="k">def</span> <span class="nf">_multiply</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">arg1</span> <span class="o">*</span> <span class="n">arg2</span>
-
-
-<span class="nd">@link_to_chain</span><span class="p">(</span><span class="k">lambda</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="s1">'/'</span><span class="p">)</span>
-<span class="nd">@only_natural_with_operator</span>
-<span class="k">def</span> <span class="nf">_divide</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">arg1</span> <span class="o">/</span> <span class="n">arg2</span>
-
-
-<span class="nd">@link_to_chain</span><span class="p">(</span><span class="k">lambda</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="s1">'+'</span><span class="p">)</span>
-<span class="nd">@only_natural_with_operator</span>
-<span class="k">def</span> <span class="nf">_add</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">arg1</span> <span class="o">+</span> <span class="n">arg2</span>
-
-
-<span class="nd">@link_to_chain</span><span class="p">(</span><span class="k">lambda</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="s1">'-'</span><span class="p">)</span>
-<span class="nd">@only_natural_with_operator</span>
-<span class="k">def</span> <span class="nf">_subtract</span><span class="p">(</span><span class="n">operator</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">arg1</span> <span class="o">-</span> <span class="n">arg2</span>
-</pre></div>
-<p>Not bad at all! Actually looks pretty good to me. Individual functions link to the chain and the <code>do</code> method pulls the chain. The single responsibility of the functions shine through. Given that the chain is centralized, the individual functions don't even care about who is next. All they do is register into the chain along with their predicate. This is probably the cleanest solution we can get as of now. Time to stop and take a break!</p>
-<h2 id="closing-thoughts">Closing thoughts</h2>
-<p>Python is great language with support for useful functional features. Decorators are a sweet way of doing functional programming in python. The great thing I realized in this attempt is, when we try to do functional programming, your earlier learnings of GOF design patterns don't go waste. The ideas still make sense. All we need to do was to tweak them a bit to make them applicable in a functional context. And lo behold we have much better code than where we started ...the <code>if/elif/else</code> blob in the beginning... Let us keep learning and try to extract out the essence of the things we learn. Then we might actually be able use it in more than one places and in more than one ways.</p>
-<p>Happy development to all in the festive season! Please chime in with your thoughts and comments. Your criticisms and improvements are most welcome since I  learn a lot from them. See you soon.</p>
-<p>p.s: You can get all this code <a href="http://bit.ly/2mMojaa">here</a></p>
-            </div>
-            <!-- /.entry-content -->
-    <hr/>
-    <section class="comments" id="comments">
-        <h2>Comments</h2>
-
-        <div id="disqus_thread"></div>
-        <script type="text/javascript">
-            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-            var disqus_shortname = 'nacnez'; // required: replace example with your forum shortname
-
-            var disqus_config = function () {
-                this.language = "en";
-
-                        this.page.identifier = '2019-09-29-gof-inspired-decorators';
-                        this.page.url = 'https://www.nacnez.com/gof-inspired-decorators.html';
-            };
-
-            /* * * DON'T EDIT BELOW THIS LINE * * */
-            (function () {
-                var dsq = document.createElement('script');
-                dsq.type = 'text/javascript';
-                dsq.async = true;
-                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-            })();
-        </script>
-        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by
-            Disqus.</a></noscript>
-        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-
-    </section>
-        </article>
-    </section>
-
-        </div>
-        <div class="col-sm-3" id="sidebar">
-            <aside>
-<div id="aboutme">
-        <p>
-            <img width="100%" class="img-thumbnail" src="https://www.nacnez.com/images/profile.jpeg"/>
-        </p>
-    <p>
-      <strong>About Srinivas Narayanan (Srini)</strong><br/>
-        Living in Bengaluru. Family man & Software engineer. Currently I am working at <a href="https://www.avalara.com/in/en/index.html">Avalara</a>. <br/>This, a place for me to write about anything under the 🌞. <span class="bold-angry">My views are mine alone</span> & not related to any person or organisation including my employer.
-    </p>
-</div><!-- Sidebar -->
-<section class="well well-sm">
-  <ul class="list-group list-group-flush">
-
-<!-- Sidebar/Social -->
-<li class="list-group-item">
-  <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
-  <ul class="list-group" id="social">
-    <li class="list-group-item"><a href="http://twitter.com/srininara"><i class="fa fa-twitter-square fa-lg"></i> twitter</a></li>
-    <li class="list-group-item"><a href="http://github.com/srininara"><i class="fa fa-github-square fa-lg"></i> github</a></li>
-    <li class="list-group-item"><a href="https://www.linkedin.com/in/srinivas-narayanan-1912b14/"><i class="fa fa-linkedin-square fa-lg"></i> linkedin</a></li>
-    <li class="list-group-item"><a href="https://www.nacnez.com/feeds/all.atom.xml"><i class="fa fa-rss-square fa-lg"></i> rss</a></li>
-  </ul>
-</li>
-<!-- End Sidebar/Social -->
-
-<!-- Sidebar/Tag Cloud -->
-<li class="list-group-item">
-  <a href="https://www.nacnez.com/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
-  <ul class="list-group " id="tags">
-    <li class="list-group-item tag-1">
-      <a href="https://www.nacnez.com/tag/life.html">life</a>
-    </li>
-    <li class="list-group-item tag-1">
-      <a href="https://www.nacnez.com/tag/software-engineering.html">software-engineering</a>
-    </li>
-    <li class="list-group-item tag-1">
-      <a href="https://www.nacnez.com/tag/development.html">development</a>
-    </li>
-    <li class="list-group-item tag-2">
-      <a href="https://www.nacnez.com/tag/technology.html">technology</a>
-    </li>
-    <li class="list-group-item tag-2">
-      <a href="https://www.nacnez.com/tag/spirituality.html">spirituality</a>
-    </li>
-    <li class="list-group-item tag-2">
-      <a href="https://www.nacnez.com/tag/architecture.html">architecture</a>
-    </li>
-    <li class="list-group-item tag-2">
-      <a href="https://www.nacnez.com/tag/python.html">python</a>
-    </li>
-    <li class="list-group-item tag-2">
-      <a href="https://www.nacnez.com/tag/people.html">people</a>
-    </li>
-    <li class="list-group-item tag-2">
-      <a href="https://www.nacnez.com/tag/microservices.html">microservices</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="https://www.nacnez.com/tag/devotion.html">devotion</a>
-    </li>
-  </ul>
-</li>
-<!-- End Sidebar/Tag Cloud -->
-  </ul>
-</section>
-<!-- End Sidebar -->            </aside>
-        </div>
-    </div>
-</div>
-<!-- End Content Container -->
-
-<footer>
-   <div class="container">
-      <hr>
-      <div class="row">
-         <div class="col-xs-10">&copy; 2025 Srinivas Narayanan (Srini)
-            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
-            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
-            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
-         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
-      </div>
-   </div>
-</footer>
-<script src="https://www.nacnez.com/theme/js/jquery.min.js"></script>
-
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="https://www.nacnez.com/theme/js/bootstrap.min.js"></script>
-
-<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
-<script src="https://www.nacnez.com/theme/js/respond.min.js"></script>
-
-
-    <!-- Disqus -->
-    <script type="text/javascript">
-        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-        var disqus_shortname = 'nacnez'; // required: replace example with your forum shortname
-
-        /* * * DON'T EDIT BELOW THIS LINE * * */
-        (function () {
-            var s = document.createElement('script');
-            s.async = true;
-            s.type = 'text/javascript';
-            s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-        }());
-    </script>
-    <!-- End Disqus Code -->
-
-
-</body>
-</html>
+    if (shouldLoad) {
+        gallery(articleContent);
+
+        const PhotoSwipeLightbox = (await import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js")).default;
+        const styleHref = "https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.css";
+
+        const styleTag = document.createElement('link');
+        styleTag.rel = 'stylesheet';
+        styleTag.href = styleHref;
+        document.head.appendChild(styleTag);
+
+        const lightbox = new PhotoSwipeLightbox({
+            gallerySelector: '.article-content',
+            childSelector: 'figure a.image-link',
+            pswpModule: () => import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js")
+        });
+        lightbox.init();
+    }
+</script></main></div><script type=text/javascript src=/ts/main.1ff1e5fdc4e178ed422e50aa407526dc552f26342d729343fded19416194382c.js defer></script><script>(function(){var e="nacnez-toc";function t(){var r,o=document.querySelector(".left-sidebar"),a=document.getElementById("sidebar-collapse-btn"),t=document.querySelector(".right-sidebar"),i=document.getElementById("widget--toc"),n=document.getElementById("toc-toggle-header"),s=n?n.closest("section"):null;o&&a&&(r=!0,r&&o.classList.add("is-collapsed"),a.addEventListener("click",function(){o.classList.toggle("is-collapsed")})),i&&n&&(localStorage.getItem(e)!=="open"&&(i.classList.add("is-collapsed"),s&&s.classList.add("toc-collapsed"),t&&t.classList.add("is-collapsed")),n.addEventListener("click",function(){var n=i.classList.toggle("is-collapsed");s&&s.classList.toggle("toc-collapsed",n),t&&t.classList.toggle("is-collapsed",n),localStorage.setItem(e,n?"closed":"open")}))}document.readyState==="loading"?document.addEventListener("DOMContentLoaded",t):t()})()</script></body></html>
