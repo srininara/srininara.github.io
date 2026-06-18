@@ -231,6 +231,7 @@
 &lt;li&gt;It is not an &lt;em&gt;&amp;ldquo;in vogue&amp;rdquo;&lt;/em&gt; thing, and you don&amp;rsquo;t have to join it if you don&amp;rsquo;t want to!&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;That&amp;rsquo;s it. We have come to the end. I have listed down all my references, so that you can go read &amp;amp; explore more. Please share your thoughts, comments, insights with me so that I can also learn from your experiences. Ciao!&lt;/p&gt;
+&lt;p&gt;For more on practical microservices challenges, I&amp;rsquo;ve also written about &lt;a class="link" href="https://www.nacnez.com/caching-in-microservices.html" &gt;caching strategies in microservices&lt;/a&gt; and used a &lt;a class="link" href="https://www.nacnez.com/2-%c2%b5-services-chat-timeout.html" &gt;fictional bar conversation to explore timeouts and cascading failures&lt;/a&gt; — both connect directly to the distributed communication concerns raised above.&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id="references--explorations"&gt;&lt;a href="#references--explorations" class="header-anchor"&gt;&lt;/a&gt;&lt;span class="bold-green"&gt;References &amp;amp; Explorations&lt;/span&gt;
 &lt;/h2&gt;&lt;ul&gt;
@@ -306,4 +307,5 @@
 &lt;p&gt;&lt;span class="bold-calm"&gt;Jack µ&lt;/span&gt;: Okay! This is good. I am finishing this drink and going to talk to my Dev folks right after. I am going to be the stablest µ service in the world. Cheers!!&lt;/p&gt;
 &lt;p&gt;&lt;span class="bold-calm"&gt;Jill µ&lt;/span&gt;: Cheers!! Have fun buddy! Have a timeout!&lt;/p&gt;
 &lt;h2 id="music-grows-louder-and-jack-and-jill-go-up-to-the-dance-floor"&gt;&lt;a href="#music-grows-louder-and-jack-and-jill-go-up-to-the-dance-floor" class="header-anchor"&gt;&lt;/a&gt;&lt;span class="small-italicized-green"&gt; Music grows louder and Jack and Jill go up to the dance floor. &lt;/span&gt;
-&lt;/h2&gt;&lt;p&gt;&lt;span class="small-italicized-green"&gt; &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash; The curtain falls &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash; &lt;/span&gt;&lt;/p&gt;</description></item></channel></rss>
+&lt;/h2&gt;&lt;p&gt;&lt;span class="small-italicized-green"&gt; &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash; The curtain falls &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash; &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;For more on building resilient microservices, see &lt;a class="link" href="https://www.nacnez.com/caching-in-microservices.html" &gt;Caching in Microservices&lt;/a&gt; for performance and scale patterns, and &lt;a class="link" href="https://www.nacnez.com/micro-service-size.html" &gt;The Right size of a µService?&lt;/a&gt; for the architectural thinking behind bounded contexts and service sizing.&lt;/p&gt;</description></item></channel></rss>

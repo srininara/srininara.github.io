@@ -49,4 +49,4 @@
 &lt;pre&gt;&lt;code&gt;127.0.0.1  ex.nacnez.com
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Once this is done, we are all set. If you crank up the browser and type in the domain name you must get the content of your index page.&lt;/p&gt;
-&lt;p&gt;This was my first encounter with nginx. This was enough for me for my current use of nginx. Hopefully I will get pushed to learn more on nginx and that should be fun.&lt;/p&gt;</description></item></channel></rss>
+&lt;p&gt;This was my first encounter with nginx. This was enough for me for my current use of nginx. Hopefully I will get pushed to learn more on nginx and that should be fun. I did get pushed — see &lt;a class="link" href="https://www.nacnez.com/nginx-working-deepdive.html" &gt;Nginx Serves Us like this - Maybe&lt;/a&gt; for a deeper dive into how nginx actually works inside: its master/worker architecture, epoll, and event-driven request processing.&lt;/p&gt;</description></item></channel></rss>
