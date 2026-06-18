@@ -132,7 +132,7 @@ In a social setting (which is where all learning happens), the effect of peers o
 
 &lt;p&gt;I developed a simple locust plugin and open sourced it. Your questions answered:&lt;/p&gt;
 &lt;h2 id="what-are-you-talking-about"&gt;&lt;a href="#what-are-you-talking-about" class="header-anchor"&gt;&lt;/a&gt;&lt;span class="bold-calm"&gt;What are you talking about?&lt;/span&gt;
-&lt;/h2&gt;&lt;p&gt;Let me give you some context. I needed a performance test setup for one of our important services in &lt;a href="https://get-simpl.com/"&gt;&lt;img src="https://www.google.com/s2/favicons?domain=https://get-simpl.com"&gt;Simpl&lt;/a&gt;. My tool of choice for load generation was &lt;a class="link" href="https://locust.io/" target="_blank" rel="noopener"
+&lt;/h2&gt;&lt;p&gt;Let me give you some context. I needed a performance test setup for one of our important services in &lt;a href="https://get-simpl.com/"&gt;&lt;img src="https://www.google.com/s2/favicons?domain=https://get-simpl.com" alt=""&gt;Simpl&lt;/a&gt;. My tool of choice for load generation was &lt;a class="link" href="https://locust.io/" target="_blank" rel="noopener"
  &gt;Locust&lt;/a&gt;. I had my reasons and I will discuss that in a different post.&lt;/p&gt;
 &lt;h2 id="ok-so-what-why-a-plugin"&gt;&lt;a href="#ok-so-what-why-a-plugin" class="header-anchor"&gt;&lt;/a&gt;&lt;span class="bold-calm"&gt;Ok, so what? Why a plugin?&lt;/span&gt;
 &lt;/h2&gt;&lt;p&gt;Locust is a great load generation tool. It has been around for a long time, has a good community, fairly performant and supports a lot of features for load generation. But, there was still one problem that needed to be solved for our case - &lt;span class="real-bold-green"&gt;performance test reporting the way we wanted it&lt;/span&gt;.&lt;/p&gt;
@@ -171,7 +171,7 @@ In a social setting (which is where all learning happens), the effect of peers o
 &lt;p&gt;That is it! If you want to look at the code in full, check it &lt;a class="link" href="https://github.com/SvenskaSpel/locust-plugins/blob/master/locust_plugins/listeners/cloudwatch.py" target="_blank" rel="noopener"
  &gt;here&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id="where-does-the-plugin-run-now"&gt;&lt;a href="#where-does-the-plugin-run-now" class="header-anchor"&gt;&lt;/a&gt;&lt;span class="bold-calm"&gt;Where does the plugin run now?&lt;/span&gt;
-&lt;/h2&gt;&lt;p&gt;The plugin (a version of it) has been running in &lt;a href="https://get-simpl.com/"&gt;&lt;img src="https://www.google.com/s2/favicons?domain=https://get-simpl.com"&gt;Simpl&lt;/a&gt; perf environments for one of the services for more than a year. More teams/services within Simpl are adopting it now.&lt;/p&gt;
+&lt;/h2&gt;&lt;p&gt;The plugin (a version of it) has been running in &lt;a href="https://get-simpl.com/"&gt;&lt;img src="https://www.google.com/s2/favicons?domain=https://get-simpl.com" alt=""&gt;Simpl&lt;/a&gt; perf environments for one of the services for more than a year. More teams/services within Simpl are adopting it now.&lt;/p&gt;
 &lt;p&gt;The version which is running inside Simpl has some support for configuring AWS Cloudwatch response time alarms as well. But we have not open sourced that yet (hopefully can do it soon).&lt;/p&gt;
 &lt;h2 id="where-is-the-code-now"&gt;&lt;a href="#where-is-the-code-now" class="header-anchor"&gt;&lt;/a&gt;&lt;span class="bold-calm"&gt;Where is the code now?&lt;/span&gt;
 &lt;/h2&gt;&lt;p&gt;The &lt;a class="link" href="https://github.com/SvenskaSpel/locust-plugins/pull/147" target="_blank" rel="noopener"
